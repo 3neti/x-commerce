@@ -1,32 +1,69 @@
-# Channel And Institutional Partner
+# Channel Partner
 
-## What's In It For Them?
+## Status
 
-Channel partners may help distribute the program to institutions and receive approved channel economics, access, or strategic value.
+Deferred pending emergence of a genuine channel-distribution model.
 
-## Contribution
+## Deferral Rationale
 
-Market access, institutional relationships, distribution capacity, training, and local support.
+This stakeholder is intentionally not drafted as a full business case yet.
 
-## Receives
+The current x-commerce stakeholder model already has clearer, better-supported roles for the examples encountered so far:
 
-Possible referral, resale, program, or co-marketing value.
+- Business Development Partner;
+- RBAP;
+- Participating Rural Bank;
+- Value-Added Service Provider;
+- DevOps Provider.
 
-## Costs
+The Business Development Partner document currently answers:
 
-Enablement, sales effort, support coordination, governance, and reputational risk.
+```text
+Who creates trusted commercial relationships?
+```
 
-## Risks
+A Channel Partner would answer a different question:
 
-Misaligned incentives, unclear support boundary, unauthorized commitments, and channel conflict.
+```text
+Who scales distribution through an existing commercial channel?
+```
 
-## Five-Year Outcome
+That role may eventually become important, but it has not yet appeared through a concrete commercial scenario. Creating a full stakeholder business case now would risk formalizing an imagined role before the ecosystem has proven that it needs one.
 
-Model channel economics separately from ODTI platform revenue and bank-generated revenue.
+## Possible Future Examples
 
-## Open Decisions
+A Channel Partner document may become appropriate if a real scenario emerges, such as:
 
-- Referral, reseller, implementation, or institutional partner?
-- Territory or account rules?
-- Compensation basis?
+- a payroll software vendor distributing x-Payout through its existing customer base;
+- a core banking vendor integrating the ecosystem across its clients;
+- an accounting software company bundling transaction outcomes into its workflows;
+- a systems integrator adopting the ecosystem as part of its implementation portfolio;
+- a consulting firm bringing the program into multiple institutional clients;
+- a cooperative federation distributing the ecosystem across member cooperatives;
+- a regional distributor scaling adoption through an existing commercial network.
 
+These examples are exploratory. They do not represent approved partners, accepted roles, compensation models, or commercial commitments.
+
+## Revisit Criteria
+
+Revisit this stakeholder only when an actual commercial scenario cannot be accurately described using the existing stakeholder documents.
+
+Evidence that the role may deserve a full business case includes:
+
+- the participant already has an existing customer base;
+- the participant scales adoption through that base;
+- the participant is more than a relationship originator;
+- the participant performs distribution, enablement, implementation, resale, or ecosystem-multiplication work;
+- the participant's economics cannot be represented cleanly as Business Development Partner, RBAP, Value-Added Service Provider, DevOps Provider, or Rural Bank economics.
+
+Until then, the existing stakeholder model remains simpler and stronger without a separate Channel Partner business case.
+
+## Governance Note
+
+The same discipline used for software abstractions should apply to stakeholder types:
+
+```text
+Let repeated documentation reveal enduring concepts before introducing software abstractions.
+```
+
+Not every imagined role deserves immediate formalization. If Channel Partner becomes a stable commercial role, it will naturally earn its place in x-commerce. If it does not, deferral is the correct architectural outcome.
