@@ -32,6 +32,12 @@ How does the stakeholder's position in its own market, institution, or ecosystem
 
 What revenue, avoided cost, strategic value, public-interest value, or ecosystem value may they gain?
 
+## Success Indicators
+
+How do we know the model is working before financial outcomes are fully visible?
+
+Examples may include adoption, repeat usage, retention, participation, implementation time, support burden, satisfaction, value-added attachment rate, transaction completion rate, or other stakeholder-specific leading indicators.
+
 ## Costs
 
 What costs do they incur?
