@@ -2,7 +2,7 @@
 
 ## Status
 
-Current status: governed financial-architecture register.
+Register status: governed financial-architecture register.
 
 This register is the canonical source for financial and operating assumptions used by x-commerce economic models.
 
@@ -131,7 +131,8 @@ Recommended identifier prefixes:
 | `VOL` | Transaction volume and activity |
 | `PRC` | Pricing |
 | `LIC` | License, maintenance, and subscription |
-| `VAS` | Value-added services |
+| `VAS` | Value-added service pricing, service definitions, and commercial terms |
+| `ATT` | Capability or value-added service attachment rates |
 | `OPS` | DevOps, cloud, and managed operations |
 | `CST` | Provider, rail, support, and operating costs |
 | `REV` | Revenue allocation and Commercial Waterfall inputs |
@@ -143,6 +144,10 @@ Recommended identifier prefixes:
 | `INV` | Investor and capital assumptions |
 
 Identifiers should be stable. If an assumption is retired, mark it retired instead of reusing its identifier.
+
+`VAS-*` assumptions describe prices, service definitions, or value-added service commercial terms.
+
+`ATT-*` assumptions describe how often a capability is attached to qualifying outcomes.
 
 ## Evidence Status Values
 
@@ -175,6 +180,30 @@ Use one of:
 
 Low confidence does not mean the assumption is useless. It means the model must treat sensitivity seriously.
 
+## Current Status Values
+
+Current status describes whether an assumption is usable within a model. It is separate from evidence status and confidence level.
+
+Use one of:
+
+- `Draft`;
+- `Active`;
+- `Blocked`;
+- `Approved`;
+- `Superseded`;
+- `Retired`.
+
+Definitions:
+
+- `Draft`: the assumption record exists but is not yet ready for model use.
+- `Active`: the assumption is currently usable as a working assumption, subject to its confidence and evidence status.
+- `Blocked`: the assumption is required but cannot be used until a dependency is resolved.
+- `Approved`: the assumption is supported by an approved pricing decision, signed contract, approved authority, or equivalent governing source.
+- `Superseded`: the assumption has been replaced by another canonical assumption but remains in the register for traceability.
+- `Retired`: the assumption is no longer used and has no current replacement requirement.
+
+Examples of blocked dependencies include provider quote required, legal review required, billable unit unresolved, accounting treatment unresolved, or offering scope unresolved.
+
 ## Scenario Values
 
 Scenario values should use:
@@ -188,6 +217,18 @@ If no value is justified, use `Open`.
 If a value is not scenario-dependent, repeat the same value and explain why.
 
 If a value is already a range, preserve the range and identify what evidence is needed to narrow it.
+
+Conservative, Base, and Accelerated do not universally mean low, medium, and high numeric values.
+
+Scenario direction depends on the assumption category:
+
+- Adoption: Accelerated may mean more banks, faster activation, or lower churn.
+- Transaction volume: Accelerated may mean more transactions per active bank.
+- Provider cost: Accelerated scale may mean lower unit cost but higher total provider cost because volume is larger.
+- Support cost: Accelerated growth may mean higher total cost, lower cost per active bank, or temporarily higher onboarding burden.
+- Pricing: the same approved price may apply across all scenarios.
+
+The projection framework must interpret scenarios coherently rather than mechanically assuming that every Accelerated value is numerically higher.
 
 ## Offering References
 
@@ -237,7 +278,7 @@ Affected calculations: onboarding economics, license revenue, bank payback, ODTI
 
 Legal or accounting dependency: contract, revenue recognition, tax, license characterization.
 
-Current status: Active working assumption.
+Current status: Active.
 
 Notes: Not an approved price. Compare against annual subscription and hybrid models.
 
@@ -275,7 +316,7 @@ Affected calculations: annual maintenance revenue, support funding, ODTI operati
 
 Legal or accounting dependency: maintenance scope, support obligation, revenue recognition, tax.
 
-Current status: Active working assumption.
+Current status: Active.
 
 Notes: Must be tested against actual support, updates, and maintenance obligations.
 
@@ -313,7 +354,7 @@ Affected calculations: subscription revenue, bank annual cost, ODTI recurring re
 
 Legal or accounting dependency: subscription terms, revenue recognition, tax, service obligations.
 
-Current status: Active working assumption.
+Current status: Active.
 
 Notes: The base value is a midpoint for scenario structure, not an approved price.
 
@@ -351,7 +392,7 @@ Affected calculations: onboarding revenue, implementation cost recovery, bank in
 
 Legal or accounting dependency: activation scope, implementation scope, revenue recognition, tax.
 
-Current status: Active working assumption.
+Current status: Active.
 
 Notes: Must be separated from DevOps setup fees and professional services.
 
@@ -389,7 +430,7 @@ Affected calculations: annual platform revenue, bank annual cost, ODTI revenue, 
 
 Legal or accounting dependency: subscription terms, revenue recognition, tax.
 
-Current status: Active working assumption.
+Current status: Active.
 
 Notes: Not approved. Should be compared with `LIC-001`, `LIC-002`, and `LIC-003`.
 
@@ -427,7 +468,7 @@ Affected calculations: transaction revenue, platform charge, bank-retained fee, 
 
 Legal or accounting dependency: fee disclosure, tax, revenue recognition, transaction characterization, x-legal review.
 
-Current status: Active working assumption.
+Current status: Active.
 
 Notes: The billable event, payer, reversal treatment, rail costs, and bank-retained amount must be defined per offering.
 
@@ -465,7 +506,7 @@ Affected calculations: customer-facing price, provider cost, markup, attachment 
 
 Legal or accounting dependency: provider agreement, tax, privacy, consent, messaging compliance.
 
-Current status: Active working assumption.
+Current status: Active.
 
 Notes: Provider cost must be separately recorded under a provider-cost assumption before margin can be calculated.
 
@@ -503,7 +544,7 @@ Affected calculations: customer-facing price, provider cost, markup, attachment 
 
 Legal or accounting dependency: provider agreement, tax, privacy, consent, messaging compliance.
 
-Current status: Active working assumption.
+Current status: Active.
 
 Notes: Provider cost may be small or bundled, but it cannot be assumed to be zero without evidence.
 
@@ -541,7 +582,7 @@ Affected calculations: customer-facing price, provider cost, markup, attachment 
 
 Legal or accounting dependency: KYC sufficiency, identity obligations, privacy, consent, consumer protection, provider agreement, tax.
 
-Current status: Active working assumption.
+Current status: Active.
 
 Notes: This does not conclude that any provider service satisfies legal KYC obligations.
 
@@ -579,7 +620,9 @@ Affected calculations: customer-facing price, provider cost, campaign revenue, m
 
 Legal or accounting dependency: advertising or campaign terms, consent, privacy, consumer protection, tax, revenue recognition.
 
-Current status: Active working assumption with unresolved billable unit.
+Current status: Blocked.
+
+Blocked reason: Billable unit unresolved.
 
 Notes: Billable unit may be per transaction, per campaign, per placement, per response, or another approved model. Do not calculate projections until the billable unit is defined.
 
@@ -617,7 +660,7 @@ Affected calculations: bank initial cost, DevOps provider revenue, ODTI resale o
 
 Legal or accounting dependency: DevOps contracting model, revenue recognition, tax, service responsibility, ownership and delegated authority.
 
-Current status: Active working assumption.
+Current status: Active.
 
 Notes: Must be separated from ODTI activation fees and cloud infrastructure costs.
 
@@ -655,85 +698,9 @@ Affected calculations: annual managed operations cost, DevOps provider revenue, 
 
 Legal or accounting dependency: DevOps contracting model, service-level scope, revenue recognition, tax, ownership and delegated authority.
 
-Current status: Active working assumption.
+Current status: Active.
 
 Notes: Annual recurring total is PHP 120,000 per bank before setup, excluding cloud infrastructure charges unless a future model explicitly bundles them.
-
-### `VOL-001` Average Successful Payroll Transactions Per Active Bank Per Month
-
-Identifier: `VOL-001`
-
-Category: Transaction volume and activity.
-
-Description: Average successful payroll transactions per active participating rural bank per month for a payroll-focused offering.
-
-Unit of measure: Successful payroll transactions per active bank per month.
-
-Conservative value: Open.
-
-Base value: Open.
-
-Accelerated value: Open.
-
-Source: Required first-offering model input.
-
-Evidence status: Open.
-
-Confidence level: Low.
-
-Owner: Future offering model owner.
-
-Review date: Open.
-
-Affected offerings: `OFR-RB-PAYROLL-STARTER`.
-
-Affected stakeholders: Depositor and Customer, Rural Bank, ODTI, 3neti, NetBank, DevOps Provider, Value-Added Service Provider, Business Development Partner, Investor, Regulator and Public Interest.
-
-Affected calculations: transaction revenue, platform revenue, NetBank volume, support load, DevOps load, value-added attachment volume, partner participation, royalty calculations, public-interest indicators.
-
-Legal or accounting dependency: none for volume itself; downstream fee, tax, accounting, and legal treatment require review.
-
-Current status: Open.
-
-Notes: This is the example of one assumption affecting many models. Do not duplicate it in stakeholder financial views.
-
-### `VOL-002` Active Banks By Year
-
-Identifier: `VOL-002`
-
-Category: Adoption and onboarding.
-
-Description: Number of active participating rural banks by year for a selected offering.
-
-Unit of measure: Active banks per year.
-
-Conservative value: Open.
-
-Base value: Open.
-
-Accelerated value: Open.
-
-Source: Required first-offering model input.
-
-Evidence status: Open.
-
-Confidence level: Low.
-
-Owner: Future offering model owner.
-
-Review date: Open.
-
-Affected offerings: `OFR-RB-PAYROLL-STARTER`, `OFR-RB-DISBURSEMENT-STARTER`.
-
-Affected stakeholders: Rural Bank, RBAP, ODTI, 3neti, NetBank, DevOps Provider, Value-Added Service Provider, Business Development Partner, Investor, Regulator and Public Interest.
-
-Affected calculations: license revenue, subscription revenue, transaction volume, managed operations cost, provider volume, royalty basis, public-interest reach.
-
-Legal or accounting dependency: none for count itself; downstream commercial treatment requires review.
-
-Current status: Open.
-
-Notes: Separate active banks from banks onboarded. An onboarded bank may not yet be active.
 
 ### `ADP-001` Banks Onboarded By Year
 
@@ -769,15 +736,91 @@ Affected calculations: onboarding revenue, implementation workload, deployment s
 
 Legal or accounting dependency: onboarding contract terms, revenue recognition, tax.
 
-Current status: Open.
+Current status: Blocked.
 
 Notes: Must be connected to active-bank assumption but not collapsed into it.
 
-### `VAS-ATT-001` SMS Attachment Rate
+### `ADP-002` Active Banks By Year
 
-Identifier: `VAS-ATT-001`
+Identifier: `ADP-002`
 
-Category: Value-added services.
+Category: Adoption and onboarding.
+
+Description: Number of active participating rural banks by year for a selected offering.
+
+Unit of measure: Active banks per year.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Required first-offering model input.
+
+Evidence status: Open.
+
+Confidence level: Low.
+
+Owner: Future offering model owner.
+
+Review date: Open.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Rural Bank, RBAP, ODTI, 3neti, NetBank, DevOps Provider, Value-Added Service Provider, Business Development Partner, Investor, Regulator and Public Interest.
+
+Affected calculations: license revenue, subscription revenue, transaction volume, managed operations cost, provider volume, royalty basis, public-interest reach.
+
+Legal or accounting dependency: none for count itself; downstream commercial treatment requires review.
+
+Current status: Blocked.
+
+Notes: Separate active banks from banks onboarded. An onboarded bank may not yet be active.
+
+### `VOL-001` Average Successful Payroll Transactions Per Active Bank Per Month
+
+Identifier: `VOL-001`
+
+Category: Transaction volume and activity.
+
+Description: Average successful payroll transactions per active participating rural bank per month for a payroll-focused offering.
+
+Unit of measure: Successful payroll transactions per active bank per month.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Required first-offering model input.
+
+Evidence status: Open.
+
+Confidence level: Low.
+
+Owner: Future offering model owner.
+
+Review date: Open.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`.
+
+Affected stakeholders: Depositor and Customer, Rural Bank, ODTI, 3neti, NetBank, DevOps Provider, Value-Added Service Provider, Business Development Partner, Investor, Regulator and Public Interest.
+
+Affected calculations: transaction revenue, platform revenue, NetBank volume, support load, DevOps load, value-added attachment volume, partner participation, royalty calculations, public-interest indicators.
+
+Legal or accounting dependency: none for volume itself; downstream fee, tax, accounting, and legal treatment require review.
+
+Current status: Blocked.
+
+Notes: This is the example of one assumption affecting many models. Do not duplicate it in stakeholder financial views.
+
+### `ATT-001` SMS Attachment Rate
+
+Identifier: `ATT-001`
+
+Category: Capability or value-added service attachment rates.
 
 Description: Percentage of qualifying transactions that attach SMS notification.
 
@@ -807,15 +850,15 @@ Affected calculations: SMS volume, provider revenue, ODTI markup, customer cost,
 
 Legal or accounting dependency: messaging consent, privacy, provider agreement, tax.
 
-Current status: Open.
+Current status: Blocked.
 
 Notes: Attachment rate should be modeled separately from transaction volume.
 
-### `VAS-ATT-002` KYC Attachment Rate
+### `ATT-002` KYC Attachment Rate
 
-Identifier: `VAS-ATT-002`
+Identifier: `ATT-002`
 
-Category: Value-added services.
+Category: Capability or value-added service attachment rates.
 
 Description: Percentage of qualifying transactions or recipients that require KYC or identity service.
 
@@ -845,7 +888,7 @@ Affected calculations: KYC volume, provider revenue, provider cost, markup, supp
 
 Legal or accounting dependency: KYC sufficiency, privacy, identity obligations, provider agreement, tax.
 
-Current status: Open.
+Current status: Blocked.
 
 Notes: The billable unit must be defined before projections are calculated.
 
@@ -883,7 +926,7 @@ Affected calculations: gross markup, gross margin, provider revenue, ODTI net pl
 
 Legal or accounting dependency: provider agreement, tax, revenue recognition.
 
-Current status: Open.
+Current status: Blocked.
 
 Notes: Do not calculate SMS margin from `VAS-001` until this cost is known or explicitly assumed.
 
@@ -921,7 +964,7 @@ Affected calculations: gross markup, gross margin, provider revenue, ODTI net pl
 
 Legal or accounting dependency: provider agreement, privacy, identity/KYC legal review, tax, revenue recognition.
 
-Current status: Open.
+Current status: Blocked.
 
 Notes: Do not treat the full KYC customer-facing price as ODTI revenue.
 
@@ -959,7 +1002,7 @@ Affected calculations: 3neti revenue, ODTI net contribution, investor scenarios,
 
 Legal or accounting dependency: license agreement, royalty characterization, withholding tax, revenue recognition, related-party review.
 
-Current status: Open.
+Current status: Blocked.
 
 Notes: Do not represent any percentage of ODTI revenue as 3neti income until this assumption is approved.
 
@@ -997,7 +1040,7 @@ Affected calculations: Commercial Waterfall, partner allocation, ODTI net contri
 
 Legal or accounting dependency: commission versus referral fee versus revenue share, tax withholding, contract language, attribution and duration rules.
 
-Current status: Open.
+Current status: Blocked.
 
 Notes: Compensation should be earned by Commercial Events, not by discretion. No named individual has an approved allocation from this record.
 
@@ -1035,7 +1078,7 @@ Affected calculations: active-bank count, recurring revenue, provider volume, su
 
 Legal or accounting dependency: contract termination terms, revenue recognition, refund rules.
 
-Current status: Open.
+Current status: Blocked.
 
 Notes: Must define whether churn applies to banks, customers, sponsors, transactions, or modules.
 
@@ -1073,7 +1116,7 @@ Affected calculations: collected revenue, Commercial Waterfall timing, partner a
 
 Legal or accounting dependency: accounting policy, collection policy, contract terms, tax treatment.
 
-Current status: Open.
+Current status: Blocked.
 
 Notes: Commercial allocations should define whether payment waits for collection.
 
@@ -1111,7 +1154,7 @@ Affected calculations: net revenue, withholding, payable amounts, stakeholder fi
 
 Legal or accounting dependency: tax review, accounting review, legal characterization.
 
-Current status: Open.
+Current status: Blocked.
 
 Notes: Do not embed tax rates in financial models without a canonical assumption record.
 
@@ -1149,7 +1192,7 @@ Affected calculations: non-financial stakeholder views, public-interest narrativ
 
 Legal or accounting dependency: none unless tied to regulated reporting or public-sector requirements.
 
-Current status: Open.
+Current status: Blocked.
 
 Notes: Public Value should not be reduced to platform revenue.
 
@@ -1163,14 +1206,99 @@ Notes: Public Value should not be reduced to platform revenue.
 | ODTI platform transaction revenue | Yes |
 | NetBank transaction volume | Yes |
 | DevOps operational load | Yes |
-| SMS attachment count | Yes, with `VAS-ATT-001` |
-| KYC attachment count | Yes, with `VAS-ATT-002` |
+| SMS attachment count | Yes, with `ATT-001` |
+| KYC attachment count | Yes, with `ATT-002` |
 | Business Development Partner allocation | Yes, if `PAR-001` is approved |
 | 3neti royalty calculation | Yes, if `ROY-001` uses transaction activity |
 | Investor scenario view | Yes |
 | Public-interest completion indicators | Possibly |
 
 No stakeholder financial view should create a duplicate version of this assumption.
+
+## Minimum Assumptions Required Before First Numeric Model
+
+No first numeric projection should be produced until the minimum required assumptions are either Active or Approved, or are explicitly identified as controlled scenario placeholders.
+
+A blocked assumption must not be silently replaced by a spreadsheet guess.
+
+For a likely first modeled offering such as `OFR-RB-PAYROLL-STARTER`, the minimum readiness checklist is:
+
+### Offering Definition
+
+- approved offering scope;
+- target buyer;
+- payer;
+- recipient;
+- included modules;
+- optional capabilities;
+- launch pricing model.
+
+### Adoption
+
+- banks onboarded by year;
+- active banks by year;
+- activation timing;
+- churn.
+
+### Customer And Payroll Activity
+
+- payroll customers per active bank;
+- payroll frequency;
+- average recipients or employees per payroll customer;
+- successful transactions per active bank per month;
+- completion or failure rate.
+
+### Pricing And Revenue
+
+- license, subscription, or hybrid model selected;
+- customer-facing transaction fee;
+- rural-bank retained amount or formula;
+- ODTI retained amount or formula;
+- billable event definition;
+- payment and collection timing.
+
+### Provider And Infrastructure Costs
+
+- NetBank or rail cost;
+- cloud infrastructure cost;
+- DevOps setup and recurring cost;
+- ODTI support cost per bank;
+- implementation effort or cost;
+- SMS direct provider cost;
+- KYC direct provider cost, if included;
+- other provider costs.
+
+### Attachments
+
+- SMS attachment rate;
+- KYC attachment rate, if applicable;
+- service success or failure rate;
+- billable unit for each attached capability.
+
+### Commercial Waterfall
+
+- 3neti royalty or license basis;
+- business development partner allocation, if any;
+- attribution basis;
+- deduction order;
+- reversal and refund treatment.
+
+### Risk And Finance
+
+- bad debt or collection timing;
+- taxes and withholding;
+- refund or reversal assumptions;
+- contingency;
+- support burden.
+
+### Public And Non-Financial Indicators
+
+- customer preparation time;
+- transaction completion;
+- reconciliation burden;
+- recipient satisfaction or another approved Public Value indicator.
+
+If any required assumption is still Blocked, the first numeric model must either pause or explicitly label the value as a controlled scenario placeholder approved for sensitivity testing. Controlled placeholders are not approved prices, forecasts, contracts, or commitments.
 
 ## Review Workflow
 
