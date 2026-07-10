@@ -17,6 +17,8 @@ Current: x-commerce is a documentation-first package organized around commercial
 - decisions for commercial architecture decisions;
 - templates for repeatable analysis.
 
+Current: x-commerce owns the knowledge structure and architectural definitions for commercial concepts. It does not yet own production software implementations of pricing, catalogs, checkout, subscriptions, invoices, metering, commissions, royalties, or revenue sharing.
+
 ## Documentation Sources And Projections
 
 Current source artifacts include assumptions, model registers, stakeholder documents, decision records, and program documents.
@@ -102,7 +104,7 @@ Third-party service selling prices must not be treated as ODTI revenue without s
 
 ## Future Software Architecture
 
-Future and exploratory contracts may include:
+Future and exploratory reusable software primitives may include:
 
 ```php
 PriceProvider
@@ -123,7 +125,7 @@ Subscription
 Entitlement
 ```
 
-These names are exploratory. They are not implemented in this scaffold.
+These names are exploratory. They are not implemented in this scaffold and do not represent current production ownership.
 
 ## Integration Boundaries
 
@@ -150,4 +152,3 @@ Future extraction from x-change requires:
 7. migrate incrementally without changing behavior.
 
 Until then, x-commerce records the commercial architecture without claiming ownership of existing execution behavior.
-

@@ -39,7 +39,7 @@ Current: no production commercial logic has yet been extracted from x-change.
 
 x-change owns representation, authorization, execution, lifecycle, settlement, redemption or disbursement, execution state, and evidence for value-bearing instructions.
 
-x-commerce owns commercial architecture: offerings, prices, rate cards, licensing plans, maintenance, subscriptions, usage billing, transaction charges, value-added service economics, marketplace participation, commissions, royalties, referrals, revenue sharing, and stakeholder business cases.
+x-commerce currently owns the commercial knowledge and architectural definitions for offerings, prices, rate cards, licensing plans, maintenance, subscriptions, usage billing, transaction charges, value-added service economics, marketplace participation, commissions, royalties, referrals, revenue sharing, and stakeholder business cases. It may later own approved reusable software primitives for these concepts.
 
 x-legal owns legal characterization, regulatory dependencies, legal traceability, and legal handoffs.
 
@@ -116,7 +116,7 @@ Phase 1: documentation and commercial architecture.
 
 Phase 2: stakeholder-specific financial models and presentation source material.
 
-Phase 3: approved commercial contracts, pricing primitives, and package interfaces.
+Phase 3: approved commercial contracts, reusable software primitives, and package interfaces for pricing and related commercial concepts.
 
 Phase 4: characterized extraction of commercial logic from x-change, if separately approved.
 
@@ -127,4 +127,3 @@ The PHP implementation is intentionally minimal. The package currently exposes o
 ## Recommended Next Task
 
 Draft `docs/ecosystems/rbap-digital-banking-program/00-program-overview.md` as the complete RBAP program overview and use it to validate the stakeholder map, assumptions register, and five-year model template.
-

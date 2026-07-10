@@ -2,7 +2,7 @@
 
 | ID | Title | Status | Location |
 | --- | --- | --- | --- |
-| 0001 | Documentation-first package | Proposed | [0001-documentation-first-package.md](decisions/0001-documentation-first-package.md) |
+| 0001 | Documentation-first package | Accepted | [0001-documentation-first-package.md](decisions/0001-documentation-first-package.md) |
 
 ## Pending Decisions
 
@@ -13,4 +13,3 @@
 - NetBank commercial participation model.
 - Early partner compensation structures.
 - External product terminology after x-legal review.
-

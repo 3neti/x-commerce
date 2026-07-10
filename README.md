@@ -2,7 +2,7 @@
 
 **x-commerce is the commercial architecture and knowledge system for packaging, pricing, licensing, metering, and sustaining outcomes delivered through the x-change ecosystem.**
 
-This package begins as a documentation-first Laravel package. It names the commercial vocabulary, stakeholder incentives, pricing assumptions, money-flow categories, and future software boundaries needed to turn value-bearing executions into sustainable commercial offerings.
+This package is currently a documentation-first Laravel package. It names the commercial vocabulary, stakeholder incentives, pricing assumptions, money-flow categories, and future software boundaries needed to turn value-bearing executions into sustainable commercial offerings.
 
 ## Foundational Axioms
 
@@ -14,7 +14,7 @@ The customer is purchasing an outcome, not a software feature.
 
 ## What This Package Is
 
-x-commerce is a reusable package for commercial architecture. It describes how outcomes delivered through x-change can eventually be packaged, priced, licensed, sold, metered, commissioned, shared, and maintained.
+x-commerce is a reusable package for commercial architecture. It currently owns the commercial knowledge and architectural definitions for how outcomes delivered through x-change can be packaged, priced, licensed, sold, metered, commissioned, shared, and maintained. It may later own approved reusable software primitives for those concepts.
 
 The first documented ecosystem is the proposed **RBAP Digital Banking Program**, a rural-bank digital services program introduced through the Rural Bankers Association of the Philippines. RBAP is the first subject, not the package boundary.
 
@@ -55,7 +55,7 @@ x-commerce answers how an outcome is packaged, priced, licensed, sold, metered, 
 
 x-legal owns legal characterization, regulatory dependencies, legal traceability, and counsel-facing questions. x-commerce records commercial assumptions and hands legal questions to x-legal instead of settling them locally.
 
-Applications such as x-Payout assemble execution and commercial primitives into deployable products for specific customers.
+Applications such as x-Payout assemble execution capabilities and approved commercial primitives, once they exist, into deployable products for specific customers.
 
 ## Current Status
 
@@ -85,4 +85,3 @@ No production commercial logic has yet been extracted from x-change.
 ## Recommended Next Task
 
 Draft the complete RBAP program overview in `docs/ecosystems/rbap-digital-banking-program/00-program-overview.md`, using the scaffolded registers and stakeholder questions as constraints.
-
