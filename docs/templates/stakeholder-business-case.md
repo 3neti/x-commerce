@@ -12,6 +12,10 @@ Summarize the stakeholder-specific value in plain language.
 
 Describe the current pain or opportunity cost.
 
+## Why They Would Participate
+
+Why would this stakeholder choose to join, support, buy, operate, fund, or enable the program?
+
 ## Contribution
 
 What does the program ask them to provide?
@@ -20,9 +24,13 @@ What does the program ask them to provide?
 
 What do they receive?
 
-## Revenue
+## Competitive Position
 
-What new revenue can they earn?
+How does the stakeholder's position in its own market, institution, or ecosystem change if the program succeeds?
+
+## Revenue Or Value Drivers
+
+What revenue, avoided cost, strategic value, public-interest value, or ecosystem value may they gain?
 
 ## Costs
 
@@ -59,4 +67,3 @@ What evidence would prove or disprove the model?
 ## Contractual Or Regulatory Work
 
 What formal work is required?
-

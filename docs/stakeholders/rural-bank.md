@@ -8,7 +8,7 @@ This document is a stakeholder business-case draft. It is not evidence that any 
 
 ## What's In It For Them?
 
-The rural bank may gain the ability to offer new branded digital financial services without replacing its existing core banking system.
+The program is intended to enable participating rural banks to offer new branded digital financial services without replacing their existing core banking systems.
 
 The strongest commercial idea is incremental modernization: the bank can start with the outcome most relevant to its market, such as payroll, remittance, government payouts, Pay Codes, merchant payments, collections, notifications, validation, or KYC-attached payouts. It does not need to adopt every capability at once.
 
@@ -29,11 +29,11 @@ The bank may also face constraints such as:
 - customer pressure from larger banks, wallets, fintechs, remittance providers, and merchants;
 - limited ability to package payroll, merchant, government, remittance, or collection relationships into repeatable digital services.
 
-The program is relevant if it lets the bank introduce useful transaction outcomes without making a single all-or-nothing technology decision.
+The program is designed to let the bank introduce useful transaction outcomes without making a single all-or-nothing technology decision.
 
 ## Why They Would Participate
 
-A rural bank may participate to defend and deepen its local customer relationship.
+A rural bank participates in the business case to evaluate whether the program can defend and deepen its local customer relationship.
 
 Potential reasons include:
 
@@ -69,7 +69,7 @@ The bank should not be expected to contribute undefined operational obligations.
 
 ## Receives
 
-Depending on the approved model, the rural bank may receive:
+Depending on the approved model, the program is intended to provide the rural bank with:
 
 - access to a rural-bank-branded digital transaction platform;
 - selected transaction outcomes such as payroll, remittance, payouts, collections, merchant payments, or Pay Codes;
@@ -82,6 +82,22 @@ Depending on the approved model, the rural bank may receive:
 - a path to expand from one use case to additional services.
 
 The bank receives commercial capability, not a guarantee of customer adoption.
+
+## Competitive Position
+
+If the program succeeds, the participating rural bank improves its strategic position by remaining the trusted local financial institution while expanding the range of digital services it can offer under its own brand.
+
+The intended positioning benefits include:
+
+- preserving the bank's local customer relationship as more transactions become digital;
+- offering branded digital services without replacing the existing core banking system;
+- competing more credibly with larger banks, wallets, fintechs, remittance providers, and other digital channels;
+- introducing new capabilities incrementally instead of through a single transformation project;
+- deepening relationships with employers, merchants, remittance partners, agencies, and program sponsors;
+- remaining locally relevant while building digital transaction capability;
+- creating a practical path from one successful use case to a broader service menu.
+
+This is strategic positioning, not a claim of market leadership. The bank's actual competitive outcome depends on adoption, operating performance, customer trust, pricing, legal readiness, and the quality of the first use case.
 
 ## Revenue Or Value Drivers
 
@@ -275,4 +291,3 @@ Required work may include:
 - legal characterization handoff to x-legal.
 
 This document does not settle any legal characterization. It identifies the commercial questions the bank must answer before participation can be responsibly presented.
-
