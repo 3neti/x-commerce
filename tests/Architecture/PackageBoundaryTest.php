@@ -1,0 +1,61 @@
+<?php
+
+namespace LBHurtado\XCommerce\Tests\Architecture;
+
+use LBHurtado\XCommerce\Tests\TestCase;
+use LBHurtado\XCommerce\XCommerceServiceProvider;
+
+class PackageBoundaryTest extends TestCase
+{
+    public function test_package_metadata_is_coherent(): void
+    {
+        $composer = json_decode(file_get_contents($this->packageRoot('composer.json')), true, flags: JSON_THROW_ON_ERROR);
+
+        $this->assertSame('3neti/x-commerce', $composer['name']);
+        $this->assertSame('library', $composer['type']);
+        $this->assertSame('src/', $composer['autoload']['psr-4']['LBHurtado\\XCommerce\\']);
+        $this->assertContains(
+            XCommerceServiceProvider::class,
+            $composer['extra']['laravel']['providers']
+        );
+    }
+
+    public function test_service_provider_is_available(): void
+    {
+        $this->assertTrue(class_exists(XCommerceServiceProvider::class));
+    }
+
+    public function test_foundational_documentation_exists(): void
+    {
+        foreach ([
+            'README.md',
+            'docs/COMPASS.md',
+            'docs/ARCHITECTURE.md',
+            'docs/GRAMMAR.md',
+            'docs/ASSUMPTIONS_REGISTER.md',
+            'docs/COMMERCIAL_MODEL_REGISTER.md',
+            'docs/decisions/0001-documentation-first-package.md',
+            'docs/ecosystems/rbap-digital-banking-program/README.md',
+        ] as $path) {
+            $this->assertFileExists($this->packageRoot($path), $path);
+        }
+    }
+
+    public function test_no_forbidden_x_change_dependency_has_been_introduced(): void
+    {
+        $composer = json_decode(file_get_contents($this->packageRoot('composer.json')), true, flags: JSON_THROW_ON_ERROR);
+        $requires = array_merge($composer['require'] ?? [], $composer['require-dev'] ?? []);
+
+        $this->assertArrayNotHasKey('3neti/x-change', $requires);
+        $this->assertArrayNotHasKey('lbhurtado/x-change', $requires);
+    }
+
+    public function test_documentation_preserves_package_boundary(): void
+    {
+        $compass = file_get_contents($this->packageRoot('docs/COMPASS.md'));
+
+        $this->assertStringContainsString('no production commercial logic has yet been extracted from x-change', $compass);
+        $this->assertStringContainsString('An idea is not an assumption', $compass);
+    }
+}
+
