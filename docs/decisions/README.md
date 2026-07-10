@@ -14,3 +14,4 @@ Decision records preserve commercial architecture choices, assumptions, and defe
 | ID | Title | Status |
 | --- | --- | --- |
 | 0001 | [Documentation-first package](0001-documentation-first-package.md) | Accepted |
+| 0002 | [Select first modeled offering](0002-select-first-modeled-offering.md) | Accepted |
