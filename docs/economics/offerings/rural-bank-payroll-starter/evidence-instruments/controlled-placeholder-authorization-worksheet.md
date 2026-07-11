@@ -36,6 +36,18 @@ Sensitivity-only input
 Evidence-supported provisional input
 ```
 
+Controlled `Assumption role` values:
+
+```text
+Primitive input
+Derived input
+Validation-only input
+```
+
+Derived canonical assumptions must not receive independent provisional values when their component assumptions are used to derive them in the same model.
+
+The model must select one calculation mode. It may not use both simultaneously.
+
 ## Input Record
 
 ```text
@@ -45,8 +57,21 @@ Assumption name:
 Current status:
 Evidence status:
 Input classification:
+Assumption role:
+Derivation formula:
+Component assumption IDs:
+Calculation method:
+Alternative method considered:
+Reason for selected method:
+Validation assumption IDs:
+Conflict-resolution rule:
 Proposed value:
 Unit:
+Range interpretation:
+Range period:
+Range population:
+Range exclusions:
+Expected central value, if any:
 Scenario:
 Rationale:
 Source:
@@ -57,6 +82,48 @@ Affected line items:
 Affected stakeholder views:
 Outputs blocked or qualified:
 ```
+
+## Volume Method
+
+Select exactly one method for each scenario set:
+
+```text
+Volume method:
+- Component-derived
+- Independently controlled aggregate
+```
+
+Preferred baseline:
+
+```text
+CUS-001
+x CUS-002
+x CUS-003
+x VOL-002
+= VOL-001
+```
+
+When `Component-derived` is selected, do not authorize `VOL-001` independently. Authorize or evidence `CUS-001`, `CUS-002`, `CUS-003`, and `VOL-002`, then record `VOL-001` as a derived value.
+
+When `Independently controlled aggregate` is selected, `CUS-001`, `CUS-002`, `CUS-003`, and `VOL-002` may be used only for validation or sensitivity, not to drive the same volume calculation.
+
+## Derived-Value Record
+
+```text
+Derived assumption ID:
+Derived value:
+Scenario:
+Formula:
+Component assumption IDs:
+Component input versions:
+Calculation date:
+Model version:
+Reviewer:
+Validation result:
+Status:
+```
+
+If a validation-only aggregate materially conflicts with the component-derived result, stop the model and record the discrepancy. Do not average the two values or select one silently.
 
 ## Authorization
 

@@ -17,6 +17,11 @@ Responding organization:
 Respondent role:
 Population or sample represented:
 Method used:
+Range interpretation:
+Range period:
+Range population:
+Range exclusions:
+Expected central value, if any:
 Known exclusions:
 Known limitations:
 Confidentiality classification:
@@ -29,6 +34,33 @@ Reviewer notes:
 ```
 
 This block prevents weak evidence from being treated as stronger than it is. A provider quote is not permanent. One employer interview is not portfolio data. One-bank pilot data is not automatically representative of all RBAP members. Provider SLA language is not the same as observed performance. Confidential evidence may be usable internally but not in stakeholder-facing materials.
+
+## Range Semantics
+
+When a response provides a range, classify the range using one controlled `Range interpretation` value:
+
+```text
+Observed minimum and maximum
+Expected operating range
+Negotiation range
+Confidence interval
+Rough estimate
+Scenario recommendation
+Contractual range
+Provider tier range
+Other - explain
+```
+
+Also identify:
+
+```text
+Range period:
+Range population:
+Range exclusions:
+Expected central value, if any:
+```
+
+This prevents a negotiated price range from being mistaken for observed operating variability, or a rough estimate from being treated as a contractual tier.
 
 ## Instrument Index
 
@@ -53,7 +85,7 @@ This block prevents weak evidence from being treated as stronger than it is. A p
 | `CUS-001` | Rural Bank and RBAP Questionnaire; Controlled-Placeholder Authorization Worksheet | Payroll Portfolio | ODTI commercial owner and rural-bank relationship owner | P0 |
 | `CUS-002` | Employer Payroll Questionnaire; Controlled-Placeholder Authorization Worksheet | Payroll Activity | ODTI commercial owner | P0 |
 | `CUS-003` | Employer Payroll Questionnaire; Controlled-Placeholder Authorization Worksheet | Payroll Activity | ODTI commercial owner | P0 |
-| `VOL-001` | Controlled-Placeholder Authorization Worksheet; Pilot Measurement via Evidence Plan | Input Record | ODTI finance owner | P0 |
+| `VOL-001` | Derived from `CUS-001`, `CUS-002`, `CUS-003`, and `VOL-002`; Controlled-Placeholder Authorization Worksheet only if aggregate method is explicitly selected | Derived-value record; not independently eligible under component-derived method | ODTI finance owner | P0 |
 | `VOL-002` | NetBank Information Request; Employer Payroll Questionnaire; Pilot Measurement via Evidence Plan | Operational Information; Payroll Activity | ODTI operations owner | P0 |
 | `LIC-004` | ODTI and 3neti Commercial Decision Worksheet; Controlled-Placeholder Authorization Worksheet | Offering Economics | ODTI commercial owner | P0 |
 | `LIC-005` | ODTI and 3neti Commercial Decision Worksheet; Controlled-Placeholder Authorization Worksheet | Offering Economics | ODTI commercial owner | P0 |

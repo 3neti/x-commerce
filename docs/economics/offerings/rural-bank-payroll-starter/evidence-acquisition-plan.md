@@ -153,13 +153,13 @@ The table compresses repeated fields, but every assumption is governed by the fu
 
 | Assumption ID | Name | Current status | Evidence source category | Responsible owner | Evidence required | Minimum acceptable evidence | Preferred evidence | Affected views and line items | Outputs blocked | Dependency | Placeholder eligibility | Approval required | Review trigger | Risk if wrong | Priority |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `ADP-001` | Banks onboarded by year | Active | Rural Bank or RBAP; ODTI Management | ODTI commercial owner and RBAP liaison | Onboarding scenario and pipeline basis | Management-approved onboarding scenario | RBAP member survey, bank pipeline, and onboarding-capacity assessment | Rural Bank, ODTI, DevOps, Investor, Public Interest; `RB-COST-*`, `ODTI-REV-*`, `DEVOPS-REV-*` | Activation revenue, setup cost, adoption indicators | Operational capacity | Eligible for controlled placeholder | ODTI commercial lead | Before Level 1 model | Overstates setup activity and early revenue | P0 |
+| `ADP-001` | Banks onboarded by year | Blocked | Rural Bank or RBAP; ODTI Management | ODTI commercial owner and RBAP liaison | Onboarding scenario and pipeline basis | Management-approved onboarding scenario | RBAP member survey, bank pipeline, and onboarding-capacity assessment | Rural Bank, ODTI, DevOps, Investor, Public Interest; `RB-COST-*`, `ODTI-REV-*`, `DEVOPS-REV-*` | Activation revenue, setup cost, adoption indicators | Operational capacity | Eligible for controlled placeholder | ODTI commercial lead | Before Level 1 model | Overstates setup activity and early revenue | P0 |
 | `ADP-002` | Active banks by year | Blocked | Rural Bank or RBAP; Observed Pilot Data | ODTI commercial owner and RBAP liaison | Active-bank scenario tied to onboarding, activation, and churn | Approved active-bank working scenario | Pilot activation data plus bank-by-bank readiness status | All financial views; subscription, recurring operations, activity drivers | Recurring revenue, recurring costs, transaction activity | Activation timing and churn | Eligible for controlled placeholder | ODTI commercial lead and finance reviewer | Before Level 1 model | Overstates recurring activity and sustainability | P0 |
 | `ADP-003` | Active months per bank by year | Blocked | Rural Bank or RBAP; ODTI Management | ODTI implementation owner | Active bank-month logic after onboarding | Approved activation-timing rule | Implementation plan and pilot go-live data | Rural Bank, ODTI, DevOps, Investor, Public Interest; recurring and activity lines | Annualized activity, recurring cost, subscription recognition | Onboarding schedule and go-live timing | Eligible for controlled placeholder | ODTI implementation and finance owners | Before Level 1 model | Assumes full-year activity from partial-year banks | P0 |
 | `CUS-001` | Payroll customers per active rural bank | Blocked | Rural Bank or RBAP; Employer Interview or Employer Data | ODTI commercial owner and rural-bank relationship owner | Payroll employer base per active bank | Bank interview or management estimate | Rural-bank payroll portfolio and employer pipeline | Customer, Rural Bank, ODTI, NetBank, DevOps, VASP, Investor, Public Interest; `VOL-001` drivers | Activity volume, support load, provider usage | Bank portfolio data | Eligible for controlled placeholder | ODTI commercial lead | Before Level 1 model | Overstates employer demand | P0 |
 | `CUS-002` | Payroll runs per customer per month | Blocked | Employer Interview or Employer Data | ODTI commercial owner | Payroll frequency by employer | Employer interview or documented payroll schedule | Employer payroll records or pilot logs | Customer, Rural Bank, ODTI, NetBank, VASP; `VOL-001` drivers | Transaction volume and activity frequency | Employer payroll policy | Eligible for controlled placeholder | ODTI commercial lead | Before Level 1 model | Misstates recurring activity | P0 |
 | `CUS-003` | Average recipients per payroll run | Blocked | Employer Interview or Employer Data; Rural Bank or RBAP | ODTI commercial owner | Recipient count per payroll run | Employer interview or payroll-size estimate | Employer payroll records or pilot data | Customer, Rural Bank, ODTI, NetBank, VASP, Public Interest; `VOL-001` drivers | Recipient-level volume and reach | Employer payroll records and privacy review | Eligible for controlled placeholder | ODTI commercial lead | Before Level 1 model | Misstates billable events and public reach | P0 |
-| `VOL-001` | Average successful payroll transactions per active bank per month | Blocked | Controlled Scenario Placeholder; Observed Pilot Data | ODTI finance owner | Derived canonical volume from `CUS-001`, `CUS-002`, `CUS-003`, and `VOL-002` | Component assumptions or explicitly approved aggregate placeholder | Pilot-calibrated derived volume | All transaction and SMS views; `CUST-COST-001`, `RB-REV-001`, `RB-COST-003`, `ODTI-REV-003`, `VASP-VOL-001` | Transaction revenue, provider usage, public completion | Component assumptions and x-change evidence | Eligible for controlled placeholder | ODTI finance owner | Before Level 1 model | Breaks every volume-driven output | P0 |
+| `VOL-001` | Average successful payroll transactions per active bank per month | Blocked | Derived from components under preferred method; Controlled Scenario Placeholder only if aggregate method is selected | ODTI finance owner | Derived canonical volume from `CUS-001`, `CUS-002`, `CUS-003`, and `VOL-002` | Component assumptions or explicitly approved aggregate method | Pilot-calibrated derived volume | All transaction and SMS views; `CUST-COST-001`, `RB-REV-001`, `RB-COST-003`, `ODTI-REV-003`, `VASP-VOL-001` | Transaction revenue, provider usage, public completion | Component assumptions and x-change evidence | Not independently eligible under component-derived method | ODTI finance owner | Before Level 1 model | Breaks every volume-driven output if method is inconsistent | P0 |
 | `VOL-002` | Payroll completion rate | Blocked | Observed Pilot Data; NetBank or Banking Partner; x-change execution evidence when available | ODTI operations owner | Definition and rate of successful qualifying recipient disbursements | Approved completion definition and management scenario | Pilot completion logs and reconciliation evidence | Customer, Rural Bank, ODTI, NetBank, Public Interest; `VOL-001` and completion indicators | Successful billable events and exception burden | Attempted/successful/failed/reversed event definitions | Eligible for controlled placeholder | ODTI operations and finance owners | Before Level 1 model | Confuses attempted activity with successful billable events | P0 |
 | `LIC-004` | Hybrid activation fee | Active | ODTI Management; Market Reference | ODTI commercial owner | Activation price decision | Management-approved working price | Approved commercial pricing decision | Rural Bank, ODTI, Investor; `RB-COST-001`, `ODTI-REV-001` | Activation economics | Pricing approval and tax review | Eligible only for sensitivity testing | ODTI commercial lead | Before external use | May be mistaken for approved pricing | P0 |
 | `LIC-005` | Hybrid annual platform subscription | Active | ODTI Management; Market Reference | ODTI commercial owner | Annual platform price decision | Management-approved working price | Approved commercial pricing decision | Rural Bank, ODTI, Investor; `RB-COST-002`, `ODTI-REV-002` | Subscription economics | Pricing approval and tax review | Eligible only for sensitivity testing | ODTI commercial lead | Before external use | May misstate bank affordability | P0 |
@@ -343,6 +343,14 @@ Unit:
 Assumption current status:
 Evidence status:
 Input classification:
+Assumption role:
+Derivation formula:
+Component assumption IDs:
+Calculation method:
+Alternative method considered:
+Reason for selected method:
+Validation assumption IDs:
+Conflict-resolution rule:
 Reason for provisional use:
 Source or rationale:
 Approving reviewer:
@@ -365,6 +373,105 @@ Evidence-supported provisional input
 ```
 
 No provisional values are authorized by this document.
+
+## Derived-Assumption Governance
+
+A derived canonical assumption must not receive an independent provisional value when its component assumptions are used to derive it in the same model.
+
+The model must select one calculation mode. It may not use both simultaneously.
+
+Controlled `Assumption role` values:
+
+```text
+Primitive input
+Derived input
+Validation-only input
+```
+
+`Primitive input` means a directly supplied assumption used by formulas.
+
+`Derived input` means a canonical value calculated from component assumptions.
+
+`Validation-only input` means a value used to compare, challenge, or test the derived result without driving the same calculation simultaneously.
+
+### Payroll Volume Methods
+
+`Volume method` must be one of:
+
+```text
+Component-derived
+Independently controlled aggregate
+```
+
+Method A, the preferred baseline, is `Component-derived`:
+
+```text
+CUS-001
+x CUS-002
+x CUS-003
+x VOL-002
+= VOL-001
+```
+
+When Method A is selected:
+
+- authorize or evidence the component assumptions;
+- calculate `VOL-001`;
+- record its derived value;
+- preserve formula provenance;
+- do not authorize `VOL-001` independently;
+- use `VOL-001` consistently across all stakeholder views.
+
+Method B is `Independently controlled aggregate`:
+
+```text
+VOL-001
+```
+
+is supplied directly as an aggregate management estimate, institutional data point, or controlled placeholder.
+
+When Method B is selected:
+
+- `CUS-001`, `CUS-002`, `CUS-003`, and `VOL-002` must not simultaneously drive volume;
+- those component assumptions may be used only for validation or sensitivity;
+- the reason for selecting aggregate volume must be documented;
+- the same method must be used across all stakeholder views and scenarios unless an explicit model-version change is approved.
+
+Preferred initial direction: `Component-derived`.
+
+### Derived-Value Record
+
+When a derived assumption is calculated later, use this record:
+
+```text
+Derived assumption ID:
+Derived value:
+Scenario:
+Formula:
+Component assumption IDs:
+Component input versions:
+Calculation date:
+Model version:
+Reviewer:
+Validation result:
+Status:
+```
+
+No derived values are calculated or authorized by this document.
+
+### Conflict Handling
+
+If a validation-only aggregate materially conflicts with the component-derived result, the model must stop and record the discrepancy. It must not average the two values or select one silently.
+
+Possible resolutions:
+
+- correct erroneous source data;
+- change the calculation method through a documented decision;
+- create separate sensitivity cases;
+- gather better evidence;
+- retain the discrepancy as a blocked issue.
+
+This governance applies beyond `VOL-001` to future derived assumptions and outputs, including annual transaction volume, total SMS usage, rural-bank retained economics, provider margin, ODTI contribution, 3neti royalty, stakeholder net contribution, and payback period. Derived outputs must not be separately authorized as if they were primitive inputs.
 
 ## Standard Provisional Warning
 
