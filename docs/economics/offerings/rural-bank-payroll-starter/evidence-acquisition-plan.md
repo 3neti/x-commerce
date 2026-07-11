@@ -26,7 +26,8 @@ This plan depends on:
 - [consolidated-view.md](consolidated-view.md);
 - [../../../ASSUMPTIONS_REGISTER.md](../../../ASSUMPTIONS_REGISTER.md);
 - [../../five-year-projections.md](../../five-year-projections.md);
-- [../../commercial-model.md](../../commercial-model.md).
+- [../../commercial-model.md](../../commercial-model.md);
+- [evidence-instruments/README.md](evidence-instruments/README.md).
 
 ## Evidence Source Categories
 
@@ -54,7 +55,7 @@ An assumption may require more than one source category.
 
 | Priority | Meaning |
 | --- | --- |
-| `P0` | Blocks the first provisional numeric model unless an Active or Approved value, or an explicitly approved controlled placeholder, exists. |
+| `P0` | Blocks the first provisional numeric model unless an Approved input, an evidence-supported Active input, or an explicitly authorized provisional input exists. |
 | `P1` | Required for a credible base scenario or final net economics, but may be visibly blocked or excluded from a narrow Level 1 structural test. |
 | `P2` | Required for stakeholder-specific refinement. |
 | `P3` | Required for later validation, expansion, or non-core variants. |
@@ -69,6 +70,52 @@ Use only these placeholder eligibility values:
 - `Not required for first provisional model`.
 
 Controlled placeholders may test model structure. They are not approved prices, commitments, forecasts, contracts, or factual operating results.
+
+## Level 1 Input Treatment
+
+Level 1 modeling distinguishes three input treatments.
+
+### Approved Input
+
+An assumption may be used as an approved input when:
+
+```text
+Current status: Approved
+```
+
+and it is supported by an approved pricing decision, signed contract, accepted provider quote, approved authority, or equivalent evidence.
+
+### Evidence-Supported Active Input
+
+An assumption may be used as an evidence-supported active input when:
+
+```text
+Current status: Active
+```
+
+and its evidence status is sufficient for the intended use.
+
+Examples may include:
+
+- provider quote received;
+- observed cost;
+- institutional proposal;
+- management estimate formally approved for internal planning;
+- market reference accepted for scenario use.
+
+These inputs must still disclose their evidence level and limitations.
+
+### Provisional Input
+
+An assumption must be treated as provisional when:
+
+- it is `Active` but its evidence status remains `Working assumption`;
+- it is `Blocked` and receives an authorized controlled placeholder;
+- it is otherwise used only to test commercial-model structure, scenario behavior, affordability, or sensitivity.
+
+Active working assumptions remain provisional. They must not silently enter a Level 1 model merely because their current status is `Active`.
+
+No value may appear in the Level 1 model without a record explaining its authority, evidence status, permitted use, and warning requirements.
 
 ## Assumption Records
 
@@ -277,42 +324,74 @@ Examples:
 
 When these are omitted, the affected stakeholder-specific outputs must remain unavailable or explicitly excluded.
 
-## Controlled Placeholder Record
+## Provisional Input Register
 
-Future controlled placeholders should use this format:
+The future [controlled-placeholder authorization worksheet](evidence-instruments/controlled-placeholder-authorization-worksheet.md) should maintain a Provisional Input Register covering both:
+
+1. controlled placeholders for `Blocked` assumptions;
+2. `Active` working assumptions used provisionally.
+
+Future provisional inputs should use this format:
 
 ```text
-Placeholder ID:
+Provisional Input ID:
 Assumption ID:
 Offering:
 Scenario:
 Value:
 Unit:
-Reason:
+Assumption current status:
+Evidence status:
+Input classification:
+Reason for provisional use:
 Source or rationale:
 Approving reviewer:
 Date authorized:
 Expiry or review trigger:
 Affected calculations:
 Affected stakeholder views:
+Permitted use:
 Warning:
 Status:
 ```
 
-No placeholder values are authorized by this document.
+Controlled `Input classification` values:
 
-## Placeholder Warning
+```text
+Active working assumption
+Controlled placeholder
+Sensitivity-only input
+Evidence-supported provisional input
+```
 
-Every provisional output using placeholders must include:
+No provisional values are authorized by this document.
 
-> This value is a controlled scenario placeholder used to test model structure. It is not an approved price, provider quote, institutional commitment, forecast, contract, or factual operating result.
+## Standard Provisional Warning
+
+Every provisional input and every output using one or more provisional inputs must include:
+
+> This input is provisional and is used only to test commercial-model structure, scenario behavior, affordability, or sensitivity. It is not an approved price, provider quote, institutional commitment, contract, factual operating result, budget, or forecast unless explicitly stated otherwise.
+
+## Level 1 Output Classification
+
+A Level 1 model using any material provisional input must be labeled:
+
+```text
+Controlled Placeholder Model
+Provisional
+Non-Forecast
+Not Investment-Grade
+Not Contract-Grade
+```
+
+The presence of some Approved inputs does not remove these warnings while any material provisional input remains.
 
 ## Numeric Maturity Levels
 
 | Level | Name | Description |
 | --- | --- | --- |
 | `Level 0` | Structural Model | Current state. Assumptions, line items, counterparties, and consolidation treatment exist, but no values are used. |
-| `Level 1` | Controlled Placeholder Model | Uses explicitly approved placeholder values to test formulas, reconciliation, scenario sensitivity, and break-even relationships. It is not a forecast. |
+| `Level 1` | Controlled Placeholder Model | Uses Approved inputs, evidence-supported Active inputs, and explicitly authorized provisional inputs to test formulas, reconciliation, scenario sensitivity, and break-even relationships. It is not a forecast. |
 | `Level 2` | Evidence-Supported Management Model | Uses provider quotes, management estimates, employer interviews, rural-bank interviews, DevOps estimates, and draft commercial decisions. Useful for internal planning. |
 | `Level 3` | Pilot-Calibrated Model | Uses observed pilot data, exception rates, support tickets, delivery logs, and before-and-after operating evidence. |
 | `Level 4` | Contract- And Operations-Calibrated Model | Uses signed contracts, approved pricing, actual costs, and operating evidence. Formal budgeting remains subject to accounting, tax, and legal review. |
@@ -333,10 +412,7 @@ Primary assumptions:
 
 Primary instruments:
 
-- rural-bank interview questionnaire;
-- RBAP member readiness survey;
-- rural-bank payroll portfolio request;
-- onboarding-capacity assessment.
+- [rural-bank-and-rbap-questionnaire.md](evidence-instruments/rural-bank-and-rbap-questionnaire.md).
 
 ### Workstream B: Employers
 
@@ -355,10 +431,7 @@ Primary assumptions:
 
 Primary instruments:
 
-- employer payroll questionnaire;
-- current-workflow observation guide;
-- willingness-to-pay interview guide;
-- before-and-after measurement plan.
+- [employer-payroll-questionnaire.md](evidence-instruments/employer-payroll-questionnaire.md).
 
 ### Workstream C: NetBank
 
@@ -372,9 +445,7 @@ Primary assumptions:
 
 Primary instruments:
 
-- NetBank information request;
-- settlement and account-structure question set;
-- infrastructure fee-basis request.
+- [netbank-information-request.md](evidence-instruments/netbank-information-request.md).
 
 ### Workstream D: DevOps And Cloud
 
@@ -391,10 +462,7 @@ Primary assumptions:
 
 Primary instruments:
 
-- DevOps and cloud estimate request;
-- target architecture cost worksheet;
-- managed-operations scope checklist;
-- operational readiness checklist.
+- [devops-and-cloud-estimate-request.md](evidence-instruments/devops-and-cloud-estimate-request.md).
 
 ### Workstream E: SMS Provider
 
@@ -412,10 +480,7 @@ Primary assumptions:
 
 Primary instruments:
 
-- SMS provider quotation request;
-- SMS service-data request;
-- failed-message and billing-rule questionnaire;
-- consent and privacy review checklist.
+- [sms-provider-information-request.md](evidence-instruments/sms-provider-information-request.md).
 
 ### Workstream F: ODTI And 3neti
 
@@ -437,11 +502,7 @@ Primary assumptions:
 
 Primary instruments:
 
-- ODTI pricing decision worksheet;
-- ODTI support and implementation work breakdown;
-- rural-bank retained economics decision paper;
-- 3neti-ODTI royalty decision paper;
-- related-party review request.
+- [odti-3neti-commercial-decision-worksheet.md](evidence-instruments/odti-3neti-commercial-decision-worksheet.md).
 
 ### Workstream G: Legal, Accounting, Tax, Privacy, And Security
 
@@ -460,10 +521,7 @@ Primary assumptions:
 
 Primary instruments:
 
-- legal handoff memorandum;
-- accounting and tax question set;
-- privacy and security review checklist;
-- customer-fund separation question set.
+- [legal-accounting-tax-privacy-handoff.md](evidence-instruments/legal-accounting-tax-privacy-handoff.md).
 
 ### Workstream H: Pilot Measurement
 
@@ -490,26 +548,38 @@ Primary instruments:
 - recipient and employer survey templates;
 - SMS delivery-log extraction request.
 
+Pilot instruments remain recommended follow-up artifacts. They are not required before the Level 1 controlled-placeholder model.
+
+## Evidence Provenance Requirement
+
+Every evidence response must use the shared provenance block in [evidence-instruments/README.md](evidence-instruments/README.md). This requirement applies to questionnaires, provider quotes, management decision worksheets, legal and accounting responses, and pilot evidence.
+
+Evidence must identify its date, period, respondent, represented population or sample, method, exclusions, limitations, confidentiality restrictions, permitted modeling use, permitted sharing, validity period, supporting attachments, and reviewer notes where applicable.
+
 ## First Provisional Model Gate
 
 The Level 1 Offering Economics model may proceed only when:
 
-1. every `P0` assumption has either an Active or Approved value, or an explicitly approved controlled placeholder;
+1. every `P0` assumption has an Approved input, an evidence-supported Active input, or an explicitly authorized provisional input;
 2. all formulas and counterparty references remain valid;
-3. placeholder warnings are attached to every provisional output using placeholders;
-4. unresolved NetBank, royalty, and tax lines are visibly blocked or excluded from specific provisional totals;
-5. no blocked assumption is silently guessed;
-6. the output is labeled:
+3. every provisional input appears in the Provisional Input Register;
+4. provisional warnings are attached to every provisional output using provisional inputs;
+5. no Active working assumption silently enters the model as if it were Approved or evidence-supported;
+6. every value has a record explaining its authority, evidence status, permitted use, and warning requirements;
+7. unresolved NetBank, royalty, and tax lines are visibly blocked or excluded from specific provisional totals;
+8. no blocked assumption is silently guessed;
+9. the output is labeled:
+   - controlled-placeholder model;
    - provisional;
-   - placeholder-driven;
    - non-forecast;
-   - not investment-grade.
+   - not investment-grade;
+   - not contract-grade.
 
 The first Level 1 model may present pre-tax, pre-royalty, and infrastructure-fee-blocked views only if those exclusions are explicit on every affected output.
 
 ## Recommended First Numeric Output
 
-After evidence collection or controlled-placeholder authorization, the first numeric artifact should be:
+After evidence collection or provisional-input authorization, the first numeric artifact should be:
 
 ```text
 Payroll Starter Offering Economics - Controlled Placeholder Model
@@ -527,24 +597,27 @@ It should show:
 - consolidated external inflow and outflow;
 - pass-through payroll value;
 - blocked outputs;
-- explicit placeholder register.
+- explicit Provisional Input Register.
 
 Do not call it a revenue forecast.
 
 ## Missing Evidence Instruments
 
-The following instruments should be created before evidence acquisition begins:
+The following evidence instruments now exist:
 
-1. Rural Bank and RBAP data questionnaire.
-2. Employer payroll questionnaire.
-3. NetBank information request.
-4. DevOps and cloud estimate request.
-5. SMS provider quotation and service-data request.
-6. ODTI and 3neti commercial decision worksheet.
-7. Legal, accounting, tax, privacy, and security handoff questionnaire.
-8. Controlled-placeholder authorization worksheet.
-9. Pilot measurement plan.
-10. Provider-comparison sheet for SMS and future value-added services.
+1. [Rural Bank and RBAP data questionnaire](evidence-instruments/rural-bank-and-rbap-questionnaire.md).
+2. [Employer payroll questionnaire](evidence-instruments/employer-payroll-questionnaire.md).
+3. [NetBank information request](evidence-instruments/netbank-information-request.md).
+4. [DevOps and cloud estimate request](evidence-instruments/devops-and-cloud-estimate-request.md).
+5. [SMS provider quotation and service-data request](evidence-instruments/sms-provider-information-request.md).
+6. [ODTI and 3neti commercial decision worksheet](evidence-instruments/odti-3neti-commercial-decision-worksheet.md).
+7. [Legal, accounting, tax, privacy, and security handoff questionnaire](evidence-instruments/legal-accounting-tax-privacy-handoff.md).
+8. [Controlled-placeholder authorization worksheet](evidence-instruments/controlled-placeholder-authorization-worksheet.md).
+
+Remaining recommended follow-up instruments:
+
+- pilot measurement plan;
+- provider-comparison sheet for SMS and future value-added services.
 
 ## Non-Goals
 

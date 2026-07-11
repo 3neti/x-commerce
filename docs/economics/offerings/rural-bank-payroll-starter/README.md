@@ -191,6 +191,7 @@ This does not mean the line lacks financial importance. It means the line is exc
 | [commercial-model.md](commercial-model.md) | Offering-specific commercial model. |
 | [assumption-map.md](assumption-map.md) | Required, optional, blocked, not-applicable, and missing assumptions. |
 | [evidence-acquisition-plan.md](evidence-acquisition-plan.md) | Evidence sources, placeholder governance, and readiness gates for blocked assumptions. |
+| [evidence-instruments/README.md](evidence-instruments/README.md) | Evidence questionnaires, information requests, handoff templates, and provisional-input authorization worksheet. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |
 | [consolidated-view.md](consolidated-view.md) | Non-numeric consolidation structure and double-counting controls. |
 | [stakeholder-views/customer-view.md](stakeholder-views/customer-view.md) | Employer customer view. |

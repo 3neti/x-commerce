@@ -960,9 +960,9 @@ Base value: Open.
 
 Accelerated value: Open.
 
-Source: Provider quote required.
+Source: Provider pricing evidence required.
 
-Evidence status: Provider service data required.
+Evidence status: Provider quote requested.
 
 Confidence level: Low.
 
@@ -980,7 +980,7 @@ Legal or accounting dependency: provider agreement, privacy, identity/KYC legal 
 
 Current status: Blocked.
 
-Notes: Do not treat the full KYC customer-facing price as ODTI revenue.
+Notes: This assumption captures the provider price or direct provider cost for KYC. It does not establish KYC service performance, completion rates, identity quality, legal sufficiency, privacy, consent, or regulatory requirements.
 
 ### `ROY-001` 3neti Royalty Basis
 
