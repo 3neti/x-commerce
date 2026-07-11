@@ -16,3 +16,8 @@ Every model must distinguish:
 
 No model in this directory is a guaranteed forecast or approved contract.
 
+## Instantiated Offering Models
+
+The first non-numeric offering-level model is:
+
+- [Rural Bank Payroll Starter](offerings/rural-bank-payroll-starter/README.md) (`OFR-RB-PAYROLL-STARTER`)
