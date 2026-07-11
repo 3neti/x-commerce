@@ -4,6 +4,7 @@
 | --- | --- | --- | --- |
 | 0001 | Documentation-first package | Accepted | [0001-documentation-first-package.md](decisions/0001-documentation-first-package.md) |
 | 0002 | Select first modeled offering | Accepted | [0002-select-first-modeled-offering.md](decisions/0002-select-first-modeled-offering.md) |
+| 0003 | Payroll Starter economic treatment | Accepted | [0003-payroll-starter-economic-treatment.md](decisions/0003-payroll-starter-economic-treatment.md) |
 
 ## Pending Decisions
 

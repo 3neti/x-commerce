@@ -12,6 +12,8 @@ Offering: `OFR-RB-PAYROLL-STARTER`.
 
 This document proposes candidate inputs for internal review. It does not authorize values, change assumption statuses, create a forecast, create a spreadsheet, approve pricing, approve provider fees, approve taxes, approve royalties, resolve NetBank fees, or produce a numeric model.
 
+Level 1 draft internal authorization is recorded separately in [provisional-input-register-level-1.md](provisional-input-register-level-1.md). The first numeric controlled placeholder model is recorded in [offering-economics-level-1.md](offering-economics-level-1.md).
+
 Economic-coherence review: [economic-coherence-review.md](economic-coherence-review.md).
 
 Authorization warning: this candidate pack should not be authorized until the economic-coherence and cost-allocation findings are reviewed.
@@ -371,6 +373,91 @@ Under the baseline model, the rural bank owns and pays the cloud account. `CLD-0
 | `SMS-004` | Internal modeling only; no external SMS use until privacy review | Internal modeling only; no external SMS use until privacy review | Internal modeling only; no external SMS use until privacy review | Consent and privacy readiness treatment | Remain blocked for external use | Internal management candidate - not authorized |
 
 SMS provider internal margin remains excluded unless `SMS-002` is later evidenced or authorized.
+
+## Economic-Coherence Revision Candidates
+
+These candidates respond to the economic-coherence review. They preserve the original transaction, adoption, DevOps, cloud, and risk candidates above.
+
+Every value in this section is:
+
+```text
+Economic-coherence revision candidate
+Not evidence-supported
+Not authorized until recorded in a Level 1 provisional input register
+```
+
+### Revised Commercial Units
+
+The Level 1 model should test this customer-facing fee structure:
+
+```text
+Employer onboarding fee
++
+Employer monthly payroll-service fee
++
+Per-successful-recipient fee
++
+Optional SMS
+```
+
+Payroll batch pricing remains deferred. `BAT-001` is not part of the first Level 1 baseline.
+
+### Employer Pricing Candidates
+
+| Assumption ID | Conservative | Base | Accelerated | Unit | Treatment | Status |
+| --- | ---: | ---: | ---: | --- | --- | --- |
+| `EMP-001` | PHP 1,500 | PHP 3,000 | PHP 5,000 | Employer onboarding fee per newly onboarded employer | Controlled-placeholder candidate | Economic-coherence revision candidate - not authorized |
+| `EMP-002` | PHP 300 | PHP 750 | PHP 1,250 | Employer monthly payroll-service fee per active employer | Controlled-placeholder candidate | Economic-coherence revision candidate - not authorized |
+
+Rationale:
+
+- the onboarding fee corresponds to employer setup, payroll configuration, data preparation, training, approval configuration, and launch support;
+- the monthly fee corresponds to recurring payroll availability, employer support, reports, reconciliation, payroll administration, and workflow capability;
+- the values are deliberately modest internal candidates for small and medium Philippine employers and rural-bank customers;
+- the values do not claim market evidence or employer willingness to pay.
+
+### Provisional Revenue Split
+
+| Commercial fee | Rural Bank share | ODTI share | Notes |
+| --- | ---: | ---: | --- |
+| `EMP-001` employer onboarding fee | 40% | 60% | ODTI carries more setup, configuration, training, and launch work; Rural Bank owns the customer relationship. |
+| `EMP-002` employer monthly payroll-service fee | 60% | 40% | Rural Bank owns the employer relationship and front-line support; ODTI supports platform operations, reporting, and reconciliation. |
+| `PRC-001` recipient disbursement fee | Fixed retained amount through `RB-001` | Remainder after `RB-001` | `RB-001 <= PRC-001` remains required. |
+| `VAS-001` optional SMS fee | Gross SMS margin in the Level 1 baseline | 0% markup in the Level 1 baseline | Keeps the first SMS variant simple until provider commercial terms are evidenced. |
+
+Every split must reconcile to the employer-paid amount. Business-development partner participation, 3neti royalty, NetBank fees, and tax remain excluded or blocked.
+
+### Revised Payroll-Specific ODTI Cost Candidates
+
+The original ODTI cost candidates treated support and implementation as broad per-bank costs. For the Level 1 incremental payroll model, use the following payroll-specific revision candidates:
+
+| Assumption ID | Conservative | Base | Accelerated | Unit | Treatment | Status |
+| --- | ---: | ---: | ---: | --- | --- | --- |
+| `ODTI-001` | PHP 3,000 | PHP 2,500 | PHP 2,000 | Payroll-specific ODTI support cost per active bank per active month | Management-estimate candidate | Economic-coherence revision candidate - not authorized |
+| `ODTI-002` | PHP 20,000 | PHP 15,000 | PHP 12,000 | Payroll-specific ODTI implementation cost per newly onboarded bank | Management-estimate candidate | Economic-coherence revision candidate - not authorized |
+
+This does not retire the original broader ODTI cost candidates. It creates a narrower Level 1 treatment for incremental Payroll economics. Shared program support and broader platform-operation costs should be handled in a later modernization or shared-allocation view.
+
+### Level 1 Boundary After Revision
+
+Primary incremental Payroll view includes:
+
+- employer onboarding revenue;
+- employer monthly payroll-service revenue;
+- recipient transaction revenue;
+- payroll-specific ODTI implementation cost;
+- payroll-specific ODTI support cost;
+- optional SMS revenue and wholesale cost;
+- bad debt or non-collection on employer commercial fees.
+
+Rural Bank Modernization Portfolio view separately shows:
+
+- Rural Bank platform activation and annual subscription;
+- DevOps setup and recurring managed operations;
+- public cloud cost;
+- common infrastructure and institutional readiness costs.
+
+Full-cost stand-alone Payroll remains a stress test and may remain negative.
 
 ## Derived Candidates
 

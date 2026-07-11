@@ -2,9 +2,9 @@
 
 ## Status
 
-Current status: non-numeric assumption map for `OFR-RB-PAYROLL-STARTER`.
+Current status: assumption map for `OFR-RB-PAYROLL-STARTER`.
 
-This document maps canonical assumptions to the instantiated offering. It does not create values or resolve blocked inputs.
+This document maps canonical assumptions to the instantiated offering. It does not create approved values or resolve blocked inputs. Level 1 draft internal placeholder values are recorded separately in [provisional-input-register-level-1.md](provisional-input-register-level-1.md).
 
 ## Governing Rule
 
@@ -50,6 +50,8 @@ Until the component assumptions are Active, Approved, or explicitly controlled p
 | `VOL-001` | Successful payroll transactions per active bank per month, preferably derived from payroll customers, payroll runs, recipients, and completion rate. | Transaction fee, transaction platform obligation, SMS usage, NetBank volume, public completion. | Customer, Rural Bank, ODTI, 3neti, NetBank, VASP, Investor, Public Interest. | Blocked | Component assumptions `CUS-001`, `CUS-002`, `CUS-003`, `VOL-002`, and activation timing, or an explicitly controlled aggregate placeholder. |
 | `LIC-004` | Hybrid activation fee. | `RB-COST-001`, `ODTI-REV-001`. | Rural Bank, ODTI, Investor. | Structurally Ready | Approved commercial price before numeric model. |
 | `LIC-005` | Hybrid annual platform subscription. | `RB-COST-002`, `ODTI-REV-002`. | Rural Bank, ODTI, Investor. | Structurally Ready | Approved commercial price before numeric model. |
+| `EMP-001` | Employer payroll onboarding fee. | Employer cost, Rural Bank revenue, ODTI revenue, onboarding payback. | Customer, Rural Bank, ODTI, Investor. | Blocked | Approved employer-facing price or controlled placeholder. |
+| `EMP-002` | Employer monthly payroll-service fee. | Employer recurring cost, Rural Bank recurring revenue, ODTI recurring revenue, incremental payroll contribution. | Customer, Rural Bank, ODTI, Investor. | Blocked | Approved employer-facing price or controlled placeholder. |
 | `PRC-001` | Base per-successful-recipient-disbursement fee. | `CUST-COST-001`, `RB-REV-001`, `RB-REV-003`, `RB-COST-003`, `ODTI-REV-003`. | Customer, Rural Bank, ODTI, 3neti, Investor. | Structurally Ready | Approved customer-facing fee and allocation basis before numeric model. |
 | `OPS-001` | DevOps deployment setup fee. | `RB-COST-004`, `DEVOPS-REV-001`. | Rural Bank, DevOps Provider. | Structurally Ready | Provider quote or approved managed-operations commercial decision. |
 | `OPS-002` | DevOps monthly managed operations fee. | `RB-COST-005`, `DEVOPS-REV-002`. | Rural Bank, DevOps Provider. | Structurally Ready | Provider quote or approved managed-operations commercial decision. |
@@ -75,6 +77,8 @@ The following currently block affected line items and downstream totals:
 
 - `ADP-001`;
 - `ADP-002`;
+- `EMP-001`;
+- `EMP-002`;
 - `VOL-001`;
 - `ATT-001`, if SMS is included;
 - `CST-001`, if SMS is included;
@@ -140,3 +144,14 @@ The following canonical assumption records were identified during offering insta
 | `INV-003` | Confidence and governance indicator. | Model investability, traceability, and governance fidelity. | Investor, Public Interest. |
 
 These records are canonical inputs now, but they are not numeric-ready.
+
+## Canonical Assumptions Added From Economic-Treatment Decision
+
+Decision 0003 added employer-level commercial units for the Level 1 model.
+
+| Assumption ID | Assumption needed | Purpose | Affected views |
+| --- | --- | --- | --- |
+| `EMP-001` | Employer payroll onboarding fee. | Model employer setup, payroll configuration, training, launch support, Rural Bank revenue, and ODTI onboarding economics. | Customer, Rural Bank, ODTI, Investor. |
+| `EMP-002` | Employer monthly payroll-service fee. | Model recurring employer payroll-service revenue, support, reporting, reconciliation, and incremental payroll contribution. | Customer, Rural Bank, ODTI, Investor. |
+
+These assumptions remain `Blocked` in the Assumptions Register. Their Level 1 use is controlled by [provisional-input-register-level-1.md](provisional-input-register-level-1.md).

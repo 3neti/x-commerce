@@ -15,3 +15,4 @@ Decision records preserve commercial architecture choices, assumptions, and defe
 | --- | --- | --- |
 | 0001 | [Documentation-first package](0001-documentation-first-package.md) | Accepted |
 | 0002 | [Select first modeled offering](0002-select-first-modeled-offering.md) | Accepted |
+| 0003 | [Payroll Starter economic treatment](0003-payroll-starter-economic-treatment.md) | Accepted |

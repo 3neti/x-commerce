@@ -2,13 +2,13 @@
 
 ## Status
 
-Current status: non-numeric instantiated offering model.
+Current status: Level 1 controlled placeholder model created.
 
 Offering ID: `OFR-RB-PAYROLL-STARTER`
 
 Decision source: [0002: Select First Modeled Offering](../../../decisions/0002-select-first-modeled-offering.md)
 
-This directory instantiates the first selected offering across stakeholder financial and value views. It does not approve prices, forecasts, legal characterization, accounting treatment, tax treatment, provider costs, royalties, partner allocations, or software implementation.
+This directory instantiates the first selected offering across stakeholder financial and value views and now includes the first numeric Level 1 controlled placeholder model. It does not approve prices, forecasts, legal characterization, accounting treatment, tax treatment, provider costs, royalties, partner allocations, or software implementation.
 
 ## Purpose
 
@@ -194,6 +194,8 @@ This does not mean the line lacks financial importance. It means the line is exc
 | [evidence-instruments/README.md](evidence-instruments/README.md) | Evidence questionnaires, information requests, handoff templates, and provisional-input authorization worksheet. |
 | [provisional-input-candidate-pack.md](provisional-input-candidate-pack.md) | Internal review pack for candidate Level 1 provisional inputs. |
 | [economic-coherence-review.md](economic-coherence-review.md) | Cost-allocation and unit-economics review before provisional-input authorization. |
+| [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Draft internal authorization register for Level 1 controlled placeholder inputs. |
+| [offering-economics-level-1.md](offering-economics-level-1.md) | First numeric Payroll Starter Offering Economics controlled placeholder model. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |
 | [consolidated-view.md](consolidated-view.md) | Non-numeric consolidation structure and double-counting controls. |
 | [stakeholder-views/customer-view.md](stakeholder-views/customer-view.md) | Employer customer view. |
@@ -212,4 +214,4 @@ No Channel Partner view is created. Channel Partner remains deferred.
 
 ## Next Step
 
-After this evidence plan is accepted, create the evidence-acquisition instruments and controlled-placeholder authorization worksheet before producing any numeric model.
+After this Level 1 model is accepted, produce a stakeholder-facing Five-Year Revenue Projection Summary derived from the controlled model, preserving the same provisional warnings and blocked exclusions.

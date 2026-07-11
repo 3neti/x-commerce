@@ -132,6 +132,7 @@ Recommended identifier prefixes:
 | `CUS` | Customer, employer, payroll-account, and recipient-structure assumptions |
 | `COL` | Billing, invoicing, collection, and payment timing |
 | `PRC` | Pricing |
+| `EMP` | Employer payroll commercial pricing |
 | `LIC` | License, maintenance, and subscription |
 | `VAS` | Value-added service pricing, service definitions, and commercial terms |
 | `ATT` | Capability or value-added service attachment rates |
@@ -485,6 +486,82 @@ Legal or accounting dependency: fee disclosure, tax, revenue recognition, transa
 Current status: Active.
 
 Notes: The billable event, payer, reversal treatment, rail costs, and bank-retained amount must be defined per offering.
+
+### `EMP-001` Employer Payroll Onboarding Fee
+
+Identifier: `EMP-001`
+
+Category: Employer commercial pricing.
+
+Description: One-time commercial fee associated with establishing and configuring an employer payroll relationship for `OFR-RB-PAYROLL-STARTER`.
+
+Unit of measure: PHP per newly onboarded employer.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Payroll Starter economic-coherence treatment decision.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner and Rural Bank commercial owner.
+
+Review date: Before Level 1 authorization or employer-facing pricing use.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future employer-funded payroll or payout offerings.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, Investor.
+
+Affected calculations: employer first-year cost, Rural Bank revenue, ODTI revenue or retained economics, onboarding payback, implementation recovery, consolidated external inflows.
+
+Legal or accounting dependency: customer-facing fee disclosure, revenue recognition, tax, contract terms, employer onboarding scope.
+
+Current status: Blocked.
+
+Notes: This is not an approved price. Any Level 1 numeric use requires a provisional input record or approved commercial decision.
+
+### `EMP-002` Employer Monthly Payroll-Service Fee
+
+Identifier: `EMP-002`
+
+Category: Employer commercial pricing.
+
+Description: Recurring employer-level service fee for payroll availability, employer support, reporting, reconciliation, payroll administration, and recurring workflow capability.
+
+Unit of measure: PHP per active employer per month.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Payroll Starter economic-coherence treatment decision.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner and Rural Bank commercial owner.
+
+Review date: Before Level 1 authorization or employer-facing pricing use.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future employer-funded payroll or payout offerings.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, Investor.
+
+Affected calculations: employer recurring cost, Rural Bank recurring revenue, ODTI recurring revenue where shared, payroll incremental contribution, employer break-even, active-employer economics, consolidated external inflows.
+
+Legal or accounting dependency: customer-facing fee disclosure, revenue recognition, tax, contract terms, service-level scope.
+
+Current status: Blocked.
+
+Notes: This is not an approved price. Any Level 1 numeric use requires a provisional input record or approved commercial decision.
 
 ### `VAS-001` SMS Notification Customer-Facing Price
 
