@@ -103,7 +103,7 @@ Cash timing: Cost-payment timing unresolved.
 Counterparty stakeholder: Not applicable
 Counterparty line-item reference: Not applicable
 Reconciliation basis: Internal NetBank operating cost, not inter-stakeholder transfer unless outsourced.
-Consolidation treatment: External outflow if paid outside modeled ecosystem; otherwise internal cost.
+Consolidation treatment: Non-financial
 Commercial Event: Infrastructure-supported payroll activity
 Billable Event: Not applicable unless cost is directly tied to a billable event
 Commercial Right: Not applicable
@@ -115,7 +115,7 @@ Blocked inputs: NET-002, VOL-001, VOL-002
 Controlled placeholder: None approved
 Line-item readiness: Blocked
 Output use: NetBank contribution and infrastructure readiness view.
-Notes: Operating burden must be known before evaluating infrastructure participation.
+Notes: Baseline NetBank operating burden is a stakeholder reporting line, not a new ecosystem cash flow. External outsourced costs should be represented by a separate external-outflow line if later modeled. Operating burden must be known before evaluating infrastructure participation.
 ```
 
 ### Recognized Income

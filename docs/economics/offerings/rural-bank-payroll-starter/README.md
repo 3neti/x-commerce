@@ -154,13 +154,35 @@ The offering is structurally instantiated but not numerically ready.
 
 Line-item readiness values used in this directory:
 
-- `Structurally Ready`: the line can be described and reconciled, but may still need values before calculation;
-- `Conditionally Ready`: the line applies only if an optional capability or decision is selected;
-- `Blocked`: the line cannot be calculated until required assumptions or reviews are resolved;
+- `Structurally Ready`: the commercial relationship, formula shape, counterparty, assumption references, and consolidation treatment are defined. It does not mean the line is numerically calculable;
+- `Conditionally Ready`: the line applies only when an optional capability or commercial variant is selected;
+- `Blocked`: a structural or computational dependency remains unresolved;
 - `Deferred`: the line is intentionally outside the baseline;
 - `Not Applicable`: the concept does not apply to the line.
 
 This readiness vocabulary applies to offering line items. It does not replace the Assumptions Register status vocabulary.
+
+## Consolidation Rules
+
+Every line item must use exactly one baseline consolidation value:
+
+- `Internal elimination`;
+- `External inflow`;
+- `External outflow`;
+- `Pass-through`;
+- `Financing`;
+- `Tax or government amount`;
+- `Non-financial`.
+
+Derived totals, margins, retained amounts, and contribution lines are reporting outputs, not additional money flows.
+
+Under the current vocabulary, derived financial reporting outputs use:
+
+```text
+Consolidation treatment: Non-financial
+```
+
+This does not mean the line lacks financial importance. It means the line is excluded from money-flow aggregation to avoid double counting. A future vocabulary pass may consider adding `Derived output` as a clearer consolidation treatment.
 
 ## Directory Map
 

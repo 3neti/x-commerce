@@ -106,7 +106,7 @@ Cash timing: Cost-payment timing unresolved.
 Counterparty stakeholder: Not applicable
 Counterparty line-item reference: Not applicable
 Reconciliation basis: Internal DevOps Provider operating cost, not inter-stakeholder transfer unless outsourced.
-Consolidation treatment: External outflow if paid outside modeled ecosystem; otherwise internal cost.
+Consolidation treatment: Non-financial
 Commercial Event: Active managed operations period
 Billable Event: Not applicable
 Commercial Right: Not applicable
@@ -118,7 +118,7 @@ Blocked inputs: OPS-003, ADP-002, RISK-001
 Controlled placeholder: None approved
 Line-item readiness: Blocked
 Output use: DevOps Provider margin and capacity view.
-Notes: Underpriced support risk should be visible here.
+Notes: Baseline engineering, monitoring, backup, and on-call cost is a DevOps Provider stakeholder reporting line, not a new ecosystem cash flow. External tooling is represented separately. Underpriced support risk should be visible here.
 ```
 
 ### Tooling Cost

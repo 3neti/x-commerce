@@ -36,6 +36,8 @@ Current external inflow line items:
 
 These are the customer-facing commercial fees. They are not approved amounts.
 
+`OFR-RB-PAYROLL-STARTER-RB-REV-003` is not listed here because it is a derived retained-economics view of `OFR-RB-PAYROLL-STARTER-RB-REV-001`, not another external inflow.
+
 ## Pass-Through Amounts
 
 Pass-through amounts move through the commercial model but are not operating revenue.
@@ -65,6 +67,8 @@ Current internal-elimination pairs:
 
 These transfers should not be counted as additional consolidated ecosystem revenue.
 
+NetBank is structurally inside the baseline modeled ecosystem. Therefore any approved Rural Bank-to-NetBank fee and corresponding NetBank revenue are classified as `Internal elimination` in this baseline. A model that treats NetBank as external should be created as a separate variant.
+
 ## External Outflows
 
 External outflows are payments to parties outside the modeled ecosystem.
@@ -72,8 +76,9 @@ External outflows are payments to parties outside the modeled ecosystem.
 Current external-outflow line items:
 
 - `OFR-RB-PAYROLL-STARTER-RB-COST-009`: public cloud vendor cost;
-- external components of `OFR-RB-PAYROLL-STARTER-VASP-COST-001`, if the SMS Provider pays outside network or delivery providers;
-- external components of `OFR-RB-PAYROLL-STARTER-DEVOPS-COST-002`, if the DevOps Provider uses external tooling.
+- `OFR-RB-PAYROLL-STARTER-VASP-COST-001`: SMS delivery cost paid to external carriers or aggregators;
+- `OFR-RB-PAYROLL-STARTER-DEVOPS-COST-002`: external DevOps tooling cost;
+- `OFR-RB-PAYROLL-STARTER-3NETI-COST-003`: external legal or IP-service cost.
 
 External outflows require canonical cost assumptions before numeric modeling.
 
@@ -106,6 +111,18 @@ Non-financial indicators must not be monetized merely to increase total value.
 
 Current non-financial line items include:
 
+- `OFR-RB-PAYROLL-STARTER-RB-REV-003`: derived Rural Bank retained transaction economics;
+- `OFR-RB-PAYROLL-STARTER-RB-CONTRIB-001`: derived Rural Bank net contribution;
+- `OFR-RB-PAYROLL-STARTER-ODTI-CONTRIB-001`: derived ODTI net operating contribution;
+- `OFR-RB-PAYROLL-STARTER-3NETI-COST-001`: internal 3neti R&D cost view;
+- `OFR-RB-PAYROLL-STARTER-3NETI-COST-002`: internal 3neti stewardship cost view;
+- `OFR-RB-PAYROLL-STARTER-3NETI-CONTRIB-001`: derived 3neti net contribution;
+- `OFR-RB-PAYROLL-STARTER-NETBANK-COST-001`: internal NetBank operating-burden view;
+- `OFR-RB-PAYROLL-STARTER-NETBANK-REV-002`: derived NetBank recognized-income view;
+- `OFR-RB-PAYROLL-STARTER-DEVOPS-COST-001`: internal DevOps operating-cost view;
+- `OFR-RB-PAYROLL-STARTER-DEVOPS-CONTRIB-001`: derived DevOps Provider gross margin;
+- `OFR-RB-PAYROLL-STARTER-VASP-RISK-001`: SMS failed-message risk view;
+- `OFR-RB-PAYROLL-STARTER-VASP-CONTRIB-001`: derived SMS Provider margin;
 - customer administrative work avoided;
 - customer cost of doing nothing;
 - payroll completion;
@@ -116,6 +133,8 @@ Current non-financial line items include:
 - customer-fund separation;
 - governance fidelity;
 - public confidence.
+
+Derived totals, margins, retained amounts, and contribution lines are reporting outputs, not additional money flows. They remain financially meaningful, but they must not be aggregated as new inflows or outflows.
 
 ## Blocked Totals
 
@@ -133,14 +152,17 @@ The following consolidated outputs remain blocked:
 
 1. Employer payroll funding is Pass-through.
 2. Employer fees are counted once as External inflow.
-3. Rural Bank-to-ODTI payments are Internal eliminations.
-4. ODTI-to-3neti royalties are Internal eliminations.
-5. Rural Bank-to-DevOps payments are Internal eliminations while DevOps Provider is inside the model.
-6. Rural Bank-to-SMS Provider payments are Internal eliminations while the Value-Added Provider is inside the model.
-7. External cloud charges remain External outflows.
-8. Taxes remain separate.
-9. Investor capital remains Financing.
-10. Public Value remains Non-financial.
+3. Payroll funding is Pass-through.
+4. Rural-bank retained economics are derived outputs, not additional inflows.
+5. Rural Bank-to-ODTI amounts are Internal eliminations.
+6. ODTI-to-3neti royalty amounts are Internal eliminations.
+7. Rural Bank-to-DevOps amounts are Internal eliminations while DevOps Provider is inside the model.
+8. Rural Bank-to-SMS Provider amounts are Internal eliminations while the Value-Added Provider is inside the model.
+9. External cloud, telecom, legal, and other vendor costs remain External outflows.
+10. Taxes remain separate.
+11. Investor capital remains Financing.
+12. Public-interest indicators remain Non-financial.
+13. Derived contribution and margin lines must not be aggregated as new money flows.
 
 ## No Numeric Results
 

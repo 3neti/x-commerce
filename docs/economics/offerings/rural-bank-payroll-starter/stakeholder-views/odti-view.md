@@ -171,7 +171,7 @@ Cash timing: Payroll, contractor, or vendor timing unresolved.
 Counterparty stakeholder: Not applicable
 Counterparty line-item reference: Not applicable
 Reconciliation basis: Internal ODTI operating cost, not inter-stakeholder transfer unless outsourced.
-Consolidation treatment: External outflow if paid to external staff or vendors; internal cost if within ODTI.
+Consolidation treatment: Non-financial
 Commercial Event: Active offering support period
 Billable Event: Not applicable
 Commercial Right: Not applicable
@@ -183,7 +183,7 @@ Blocked inputs: ODTI-001, ADP-002, CUS-001, RISK-001
 Controlled placeholder: None approved
 Line-item readiness: Blocked
 Output use: ODTI contribution view.
-Notes: Support cost must not be hidden inside platform revenue.
+Notes: Baseline support cost is an ODTI stakeholder reporting line, not a new ecosystem cash flow. External outsourced support should be represented by a separate external-outflow line if later modeled. Support cost must not be hidden inside platform revenue.
 ```
 
 ### Commercial Administration Cost
@@ -205,7 +205,7 @@ Cash timing: Cost-payment timing unresolved.
 Counterparty stakeholder: Not applicable
 Counterparty line-item reference: Not applicable
 Reconciliation basis: Internal ODTI operating cost, not inter-stakeholder transfer unless outsourced.
-Consolidation treatment: External outflow if paid outside ODTI; otherwise internal operating cost.
+Consolidation treatment: Non-financial
 Commercial Event: Active offering administration period
 Billable Event: Not applicable
 Commercial Right: Not applicable
@@ -217,7 +217,7 @@ Blocked inputs: ODTI-002, ADP-001, ADP-002, COL-001
 Controlled placeholder: None approved
 Line-item readiness: Blocked
 Output use: ODTI contribution view.
-Notes: Business-development allocations are not included here.
+Notes: Baseline commercial administration cost is an ODTI stakeholder reporting line, not a new ecosystem cash flow. External outsourced administration should be represented by a separate external-outflow line if later modeled. Business-development allocations are not included here.
 ```
 
 ### ODTI Tax Or Government Amount

@@ -12,6 +12,34 @@ One assumption may affect many model lines, but it should have one canonical ide
 
 Line items must reference canonical assumptions rather than inventing local values.
 
+## Payroll Activity Derivation
+
+The future numeric model should treat `VOL-001` as the canonical successful payroll transaction volume used by stakeholder views.
+
+Preferred future derivation:
+
+```text
+VOL-001 =
+    CUS-001 Payroll customers per active bank
+    x CUS-002 Payroll runs per customer per month
+    x CUS-003 Average recipients per payroll run
+    x VOL-002 Payroll completion rate
+```
+
+Total program activity for the offering should then be derived from:
+
+```text
+ADP-002 Active banks
+    x VOL-001 Successful payroll transactions per active bank per month
+    x ADP-003 Active months or first-year activation timing
+```
+
+Precedence rule:
+
+> When `VOL-001` is derived from component assumptions, stakeholder views must reference the derived canonical value and must not independently recalculate or override it.
+
+Until the component assumptions exist and are Active, Approved, or explicitly controlled placeholders, `VOL-001` remains blocked. The model must not produce both an independent aggregate volume and a derived volume for the same scenario.
+
 ## Required Assumptions
 
 | Assumption ID | Purpose in offering | Affected line items | Affected stakeholder views | Readiness | Evidence needed |
@@ -19,7 +47,7 @@ Line items must reference canonical assumptions rather than inventing local valu
 | `OFR-RB-PAYROLL-STARTER` | Offering identity and scope. | All line items. | All views. | Structurally Ready | Decision 0002 is accepted. |
 | `ADP-001` | Banks onboarded by year. | `RB-COST-*`, `ODTI-REV-*`, `DEVOPS-REV-*`, adoption indicators. | Rural Bank, ODTI, DevOps, Investor, Public Interest. | Blocked | Approved adoption scenario or controlled placeholder. |
 | `ADP-002` | Active banks by year. | Subscription, operations, activity, public-interest reach. | Rural Bank, ODTI, 3neti, NetBank, DevOps, Investor, Public Interest. | Blocked | Active-bank scenario tied to onboarding and churn. |
-| `VOL-001` | Successful payroll transactions per active bank per month. | Transaction fee, transaction platform obligation, SMS usage, NetBank volume, public completion. | Customer, Rural Bank, ODTI, 3neti, NetBank, VASP, Investor, Public Interest. | Blocked | Payroll activity evidence or controlled scenario placeholder. |
+| `VOL-001` | Successful payroll transactions per active bank per month, preferably derived from payroll customers, payroll runs, recipients, and completion rate. | Transaction fee, transaction platform obligation, SMS usage, NetBank volume, public completion. | Customer, Rural Bank, ODTI, 3neti, NetBank, VASP, Investor, Public Interest. | Blocked | Component assumptions `CUS-001`, `CUS-002`, `CUS-003`, `VOL-002`, and activation timing, or an explicitly controlled aggregate placeholder. |
 | `LIC-004` | Hybrid activation fee. | `RB-COST-001`, `ODTI-REV-001`. | Rural Bank, ODTI, Investor. | Structurally Ready | Approved commercial price before numeric model. |
 | `LIC-005` | Hybrid annual platform subscription. | `RB-COST-002`, `ODTI-REV-002`. | Rural Bank, ODTI, Investor. | Structurally Ready | Approved commercial price before numeric model. |
 | `PRC-001` | Base per-successful-recipient-disbursement fee. | `CUST-COST-001`, `RB-REV-001`, `RB-REV-003`, `RB-COST-003`, `ODTI-REV-003`. | Customer, Rural Bank, ODTI, 3neti, Investor. | Structurally Ready | Approved customer-facing fee and allocation basis before numeric model. |
@@ -82,8 +110,8 @@ The following canonical assumption records should be added before numeric modeli
 | `CUS-001` | Payroll customers per active rural bank. | Convert active banks into employer demand. | Customer, Rural Bank, ODTI, Investor. |
 | `CUS-002` | Payroll runs per customer per month. | Convert employers into payroll batches. | Customer, Rural Bank, ODTI, NetBank, Public Interest. |
 | `CUS-003` | Average recipients per payroll run. | Support recipient-level transaction volume and completion indicators. | Customer, Rural Bank, ODTI, NetBank, Public Interest. |
-| `VOL-002` | Payroll completion or failure rate. | Separate attempted, successful, failed, reversed, and corrected payroll events. | Customer, Rural Bank, ODTI, NetBank, Public Interest. |
-| `ADP-003` | First-year activation timing. | Separate onboarded banks from active offering usage. | Rural Bank, ODTI, DevOps, Investor. |
+| `VOL-002` | Payroll completion rate. | Derive successful recipient payroll transactions from payroll runs and recipients; separate attempted, successful, failed, reversed, and corrected payroll events. | Customer, Rural Bank, ODTI, NetBank, Public Interest. |
+| `ADP-003` | First-year activation timing and active months. | Separate onboarded banks from active offering usage and convert active banks into active model months. | Rural Bank, ODTI, DevOps, Investor. |
 | `COL-001` | Employer collection timing. | Distinguish billing, collection, cash receipt, and downstream payment. | Rural Bank, ODTI, 3neti, DevOps, VASP. |
 | `RB-001` | Rural-bank retained fee amount or formula. | Calculate rural-bank retained economics. | Rural Bank, ODTI, Consolidated View. |
 | `ODTI-001` | ODTI support cost per active bank or active payroll customer. | Model ODTI operating burden. | ODTI, Investor. |

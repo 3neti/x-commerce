@@ -256,7 +256,7 @@ Destination line-item ID: `OFR-RB-PAYROLL-STARTER-NETBANK-REV-001`
 
 Commercial basis: Possible approved account, API, rail, settlement, or transaction-service fee.
 
-Consolidation treatment: Internal elimination if NetBank is inside the modeled ecosystem.
+Consolidation treatment: Internal elimination
 
 Timing difference: Service event, settlement, billing, and recognition timing unresolved.
 

@@ -67,7 +67,7 @@ Cash timing: Payroll, contractor, or vendor timing unresolved.
 Counterparty stakeholder: Not applicable
 Counterparty line-item reference: Not applicable
 Reconciliation basis: Internal 3neti cost, not inter-stakeholder transfer unless outsourced.
-Consolidation treatment: External outflow if paid outside 3neti; otherwise internal cost.
+Consolidation treatment: Non-financial
 Commercial Event: Not directly tied to individual payroll event
 Billable Event: Not applicable
 Commercial Right: Not applicable
@@ -79,7 +79,7 @@ Blocked inputs: 3NETI-001, TAX-001
 Controlled placeholder: None approved
 Line-item readiness: Blocked
 Output use: 3neti contribution and investor view.
-Notes: Future software should emerge from documented commercial practice.
+Notes: Internal R&D cost is a stakeholder reporting line, not a new ecosystem cash flow. External contractor costs should be represented by a separate external-outflow line if later modeled.
 ```
 
 ### Package Stewardship And Documentation Cost
@@ -101,7 +101,7 @@ Cash timing: Cost-payment timing unresolved.
 Counterparty stakeholder: Not applicable
 Counterparty line-item reference: Not applicable
 Reconciliation basis: Internal 3neti cost, not inter-stakeholder transfer unless outsourced.
-Consolidation treatment: External outflow if paid outside 3neti; otherwise internal cost.
+Consolidation treatment: Non-financial
 Commercial Event: Not directly tied to individual payroll event
 Billable Event: Not applicable
 Commercial Right: Not applicable
@@ -113,7 +113,7 @@ Blocked inputs: 3NETI-002, TAX-001
 Controlled placeholder: None approved
 Line-item readiness: Blocked
 Output use: 3neti contribution and investor view.
-Notes: This captures reusable commercial learning, not deployable customer operations.
+Notes: Internal stewardship cost is a stakeholder reporting line, not a new ecosystem cash flow. External documentation or advisory services should be represented by a separate external-outflow line if later modeled.
 ```
 
 ### IP And Legal Cost
@@ -135,7 +135,7 @@ Cash timing: Legal-service payment timing unresolved.
 Counterparty stakeholder: Not applicable
 Counterparty line-item reference: Not applicable
 Reconciliation basis: External professional service schedule if outsourced.
-Consolidation treatment: External outflow if paid to external professionals; otherwise internal cost.
+Consolidation treatment: External outflow
 Commercial Event: Not directly tied to individual payroll event
 Billable Event: Not applicable
 Commercial Right: Not applicable
@@ -147,7 +147,7 @@ Blocked inputs: 3NETI-003, TAX-001
 Controlled placeholder: None approved
 Line-item readiness: Blocked
 Output use: 3neti cost view and legal-handoff planning.
-Notes: x-commerce identifies commercial architecture; x-legal determines legal characterization.
+Notes: This baseline line represents external legal or IP-service cost. Internal 3neti stewardship remains represented separately as non-financial stakeholder reporting output. x-commerce identifies commercial architecture; x-legal determines legal characterization.
 ```
 
 ### 3neti Net Contribution

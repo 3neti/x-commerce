@@ -137,7 +137,7 @@ Cash timing: Refund or credit timing unresolved.
 Counterparty stakeholder: Rural Bank
 Counterparty line-item reference: OFR-RB-PAYROLL-STARTER-RB-COST-006
 Reconciliation basis: Adjustment to REC-009 if failed-message treatment affects billing.
-Consolidation treatment: Internal elimination if adjusted against Rural Bank provider cost
+Consolidation treatment: Non-financial
 Commercial Event: Successful recipient payroll distribution with SMS attachment
 Billable Event: SMS notification event, if approved
 Commercial Right: Depends on provider agreement.
@@ -149,7 +149,7 @@ Blocked inputs: SMS-001, SMS-003, RISK-002
 Controlled placeholder: None approved
 Line-item readiness: Blocked
 Output use: VASP risk view and Rural Bank SMS cost adjustment.
-Notes: Failure treatment must be explicit before SMS margin is modeled.
+Notes: This risk line is not a cash flow. If failed-message treatment creates a credit, refund, or payable adjustment, that adjustment should be represented as a separate internal-elimination line.
 ```
 
 ### SMS Provider Margin

@@ -137,7 +137,7 @@ Cash timing: Collection and remittance timing unresolved.
 Counterparty stakeholder: Not applicable
 Counterparty line-item reference: Not applicable
 Reconciliation basis: Derived from RB-REV-001 after approved obligations; not a separate inter-stakeholder transfer.
-Consolidation treatment: External inflow
+Consolidation treatment: Non-financial
 Commercial Event: Successful recipient payroll distribution
 Billable Event: Successful recipient payroll disbursement
 Commercial Right: Rural Bank retained economics, if approved.
@@ -149,7 +149,7 @@ Blocked inputs: VOL-001, RB-001, TAX-001
 Controlled placeholder: None approved
 Line-item readiness: Blocked
 Output use: Rural Bank contribution view.
-Notes: Requires a canonical retained-fee assumption. Do not infer retention from `PRC-001`.
+Notes: RB-REV-001 is the external inflow. RB-REV-003 is a derived rural-bank contribution view of that same inflow after approved obligations and must not be added again in consolidation. Requires a canonical retained-fee assumption. Do not infer retention from `PRC-001`.
 ```
 
 ### Activation Obligation To ODTI
