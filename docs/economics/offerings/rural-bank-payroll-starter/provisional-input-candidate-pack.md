@@ -12,6 +12,10 @@ Offering: `OFR-RB-PAYROLL-STARTER`.
 
 This document proposes candidate inputs for internal review. It does not authorize values, change assumption statuses, create a forecast, create a spreadsheet, approve pricing, approve provider fees, approve taxes, approve royalties, resolve NetBank fees, or produce a numeric model.
 
+Economic-coherence review: [economic-coherence-review.md](economic-coherence-review.md).
+
+Authorization warning: this candidate pack should not be authorized until the economic-coherence and cost-allocation findings are reviewed.
+
 ## Standard Provisional Warning
 
 > This input is provisional and is used only to test commercial-model structure, scenario behavior, affordability, or sensitivity. It is not an approved price, provider quote, institutional commitment, contract, factual operating result, budget, or forecast unless explicitly stated otherwise.
