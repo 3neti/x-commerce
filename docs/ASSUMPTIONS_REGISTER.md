@@ -129,11 +129,19 @@ Recommended identifier prefixes:
 | `OFR` | Offering definition |
 | `ADP` | Adoption and onboarding |
 | `VOL` | Transaction volume and activity |
+| `CUS` | Customer, employer, payroll-account, and recipient-structure assumptions |
+| `COL` | Billing, invoicing, collection, and payment timing |
 | `PRC` | Pricing |
 | `LIC` | License, maintenance, and subscription |
 | `VAS` | Value-added service pricing, service definitions, and commercial terms |
 | `ATT` | Capability or value-added service attachment rates |
-| `OPS` | DevOps, cloud, and managed operations |
+| `OPS` | DevOps and managed operations |
+| `CLD` | Public-cloud infrastructure cost |
+| `RB` | Rural-bank retained economics and bank-specific operating inputs |
+| `ODTI` | ODTI implementation, support, and operating-cost assumptions |
+| `3NETI` | 3neti R&D, stewardship, IP, and legal-cost assumptions |
+| `NET` | NetBank, rail, settlement, API, and infrastructure-fee assumptions |
+| `SMS` | SMS delivery-quality and messaging-operation assumptions |
 | `CST` | Provider, rail, support, and operating costs |
 | `REV` | Revenue allocation and Commercial Waterfall inputs |
 | `ROY` | 3neti royalty or license consideration |
@@ -155,11 +163,14 @@ Use one of:
 
 - `Open`;
 - `Working assumption`;
+- `Management estimate required`;
 - `Management estimate`;
+- `Institutional data required`;
 - `Provider quote requested`;
 - `Provider quote received`;
 - `Institutional proposal`;
 - `Market reference`;
+- `Observed cost required`;
 - `Observed cost`;
 - `Approved pricing decision`;
 - `Signed contract`;
@@ -236,7 +247,7 @@ Initial offering references:
 
 | Offering ID | Offering | Status | Notes |
 | --- | --- | --- | --- |
-| `OFR-RB-PAYROLL-STARTER` | Rural Bank Payroll Starter | Candidate first modeled offering | Do not model numerically until offering scope is approved. |
+| `OFR-RB-PAYROLL-STARTER` | Rural Bank Payroll Starter | Selected first modeled offering | Selected by Decision 0002. Do not model numerically until required assumptions are ready. |
 | `OFR-RB-DISBURSEMENT-STARTER` | Rural Bank Digital Disbursement Starter | Candidate first modeled offering | Alternative to payroll starter. |
 | `OFR-RBAP-ECOSYSTEM` | RBAP Digital Banking Program ecosystem | Do not model first | Aggregate only after one concrete offering is modeled. |
 
@@ -784,7 +795,7 @@ Identifier: `VOL-001`
 
 Category: Transaction volume and activity.
 
-Description: Average successful payroll transactions per active participating rural bank per month for a payroll-focused offering.
+Description: Average successful payroll transactions per active participating rural bank per month for a payroll-focused offering. Intended to be derived from payroll customers, payroll runs, recipients per run, and completion rate once component assumptions exist.
 
 Unit of measure: Successful payroll transactions per active bank per month.
 
@@ -794,7 +805,7 @@ Base value: Open.
 
 Accelerated value: Open.
 
-Source: Required first-offering model input.
+Source: Derived first-offering model input.
 
 Evidence status: Open.
 
@@ -808,13 +819,13 @@ Affected offerings: `OFR-RB-PAYROLL-STARTER`.
 
 Affected stakeholders: Depositor and Customer, Rural Bank, ODTI, 3neti, NetBank, DevOps Provider, Value-Added Service Provider, Business Development Partner, Investor, Regulator and Public Interest.
 
-Affected calculations: transaction revenue, platform revenue, NetBank volume, support load, DevOps load, value-added attachment volume, partner participation, royalty calculations, public-interest indicators.
+Affected calculations: transaction revenue, platform revenue, NetBank volume, support load, DevOps load, value-added attachment volume, partner participation, royalty calculations, public-interest indicators, and annual offering activity when combined with `ADP-002` and `ADP-003`.
 
 Legal or accounting dependency: none for volume itself; downstream fee, tax, accounting, and legal treatment require review.
 
 Current status: Blocked.
 
-Notes: This is the example of one assumption affecting many models. Do not duplicate it in stakeholder financial views.
+Notes: Preferred derivation is `CUS-001 x CUS-002 x CUS-003 x VOL-002 = VOL-001`. Annual offering activity is then driven by `ADP-002 x VOL-001 x ADP-003`. Stakeholder views must reference the derived canonical `VOL-001` value and must not independently recalculate or override it. No parallel direct transaction total may be used in the same scenario without a documented decision.
 
 ### `ATT-001` SMS Attachment Rate
 
@@ -1196,7 +1207,1268 @@ Current status: Blocked.
 
 Notes: Public Value should not be reduced to platform revenue.
 
+### `ADP-003` Active Months Per Bank By Year
+
+Identifier: `ADP-003`
+
+Category: Adoption and onboarding.
+
+Description: Number of months in each modeled year that an active bank contributes transaction activity after onboarding and activation.
+
+Unit of measure: Active bank-months or active months per bank per year.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Institutional data required.
+
+Confidence level: Low.
+
+Owner: Future offering model owner.
+
+Review date: Before first numeric payroll model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future activated-bank offerings.
+
+Affected stakeholders: Rural Bank, ODTI, DevOps Provider, Value-Added Service Provider, Investor, Regulator and Public Interest.
+
+Affected calculations: annual transaction volume, annual subscription recognition, recurring DevOps cost, ODTI support cost, provider attachment volume, public-interest reach.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-ODTI-REV-002`, `OFR-RB-PAYROLL-STARTER-RB-COST-002`, `OFR-RB-PAYROLL-STARTER-DEVOPS-REV-002`, `OFR-RB-PAYROLL-STARTER-VASP-VOL-001`.
+
+Legal or accounting dependency: activation definition, subscription period, revenue recognition, service-period accounting.
+
+Current status: Blocked.
+
+Notes: Prevents the model from assuming every bank onboarded during a year contributes twelve full months of activity.
+
+### `CUS-001` Payroll Customers Per Active Rural Bank
+
+Identifier: `CUS-001`
+
+Category: Customer, employer, payroll-account, and recipient-structure assumptions.
+
+Description: Average number of active employer payroll customers served by one active participating rural bank.
+
+Unit of measure: Active payroll customers per active bank.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Institutional data required.
+
+Confidence level: Low.
+
+Owner: Future offering model owner.
+
+Review date: Before first numeric payroll model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, 3neti, NetBank, DevOps Provider, Value-Added Service Provider, Investor, Regulator and Public Interest.
+
+Affected calculations: `VOL-001` derivation, payroll activity, transaction volume, support load, customer-service burden, revenue, provider usage, infrastructure load, public reach.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-INV-MEMO-001`, `OFR-RB-PAYROLL-STARTER-ODTI-COST-002`, `OFR-RB-PAYROLL-STARTER-ODTI-CONTRIB-001`.
+
+Legal or accounting dependency: none for customer count itself; downstream pricing, privacy, contracting, and reporting treatment require review.
+
+Current status: Blocked.
+
+Notes: Evidence may come from bank payroll portfolio data, pilot target assumptions, management estimate, employer pipeline, or observed operating data.
+
+### `CUS-002` Payroll Runs Per Customer Per Month
+
+Identifier: `CUS-002`
+
+Category: Customer, employer, payroll-account, and recipient-structure assumptions.
+
+Description: Average number of payroll runs performed by one active employer customer per month.
+
+Unit of measure: Payroll runs per active payroll customer per month.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Institutional data required.
+
+Confidence level: Low.
+
+Owner: Future offering model owner.
+
+Review date: Before first numeric payroll model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, NetBank, Value-Added Service Provider, Investor, Regulator and Public Interest.
+
+Affected calculations: `VOL-001` derivation, transaction activity, operational load, notification usage, support requirements.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-CUST-PASS-001`, `OFR-RB-PAYROLL-STARTER-RB-PASS-001`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-001`.
+
+Legal or accounting dependency: none for frequency itself; downstream payroll, billing, and disclosure treatment require review.
+
+Current status: Blocked.
+
+Notes: Do not assume monthly payroll automatically equals one run. Frequency may be monthly, semi-monthly, weekly, irregular, or supplemental.
+
+### `CUS-003` Average Recipients Per Payroll Run
+
+Identifier: `CUS-003`
+
+Category: Customer, employer, payroll-account, and recipient-structure assumptions.
+
+Description: Average number of approved payroll recipients or employees included in one payroll run.
+
+Unit of measure: Recipients per payroll run.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Institutional data required.
+
+Confidence level: Low.
+
+Owner: Future offering model owner.
+
+Review date: Before first numeric payroll model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, 3neti, NetBank, DevOps Provider, Value-Added Service Provider, Investor, Regulator and Public Interest.
+
+Affected calculations: `VOL-001` derivation, employer transaction fees, recipient reach, SMS usage, NetBank or rail activity, infrastructure load, public-interest reach.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-CUST-PASS-001`, `OFR-RB-PAYROLL-STARTER-RB-PASS-001`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-001`.
+
+Legal or accounting dependency: privacy, recipient authorization, payroll documentation, and data handling require review.
+
+Current status: Blocked.
+
+Notes: Evidence may come from employer payroll-size data, pilot-employer profiles, rural-bank customer portfolios, or management estimate.
+
+### `CUS-004` Employer Administrative Labor Cost Per Payroll Cycle
+
+Identifier: `CUS-004`
+
+Category: Customer, employer, payroll-account, and recipient-structure assumptions.
+
+Description: Internal employer labor or administrative cost required to prepare, validate, coordinate, support, and reconcile one payroll cycle under the current or baseline process.
+
+Unit of measure: PHP or labor hours per payroll cycle.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: Future customer-research owner.
+
+Review date: Before first customer operational-value model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future employer-funded payout offerings.
+
+Affected stakeholders: Employer / Customer, Rural Bank, Investor, Regulator and Public Interest.
+
+Affected calculations: employer total cost of outcome, operational-value view, cost-of-doing-nothing comparison, payback and adoption rationale.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-CUST-OPVAL-001`, `OFR-RB-PAYROLL-STARTER-CUST-RISK-001`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-005`.
+
+Legal or accounting dependency: none unless monetized in formal financial statements or external claims.
+
+Current status: Blocked.
+
+Notes: Supports the customer-side thesis that administrative work may be the real cost around payments.
+
+### `CUS-005` Employer Time Saved Per Payroll Cycle
+
+Identifier: `CUS-005`
+
+Category: Customer, employer, payroll-account, and recipient-structure assumptions.
+
+Description: Administrative time saved after adopting the payroll offering compared with the approved baseline process.
+
+Unit of measure: Hours per payroll cycle.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: Future customer-research owner.
+
+Review date: Before first customer operational-value model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future employer-funded payout offerings.
+
+Affected stakeholders: Employer / Customer, Rural Bank, Investor, Regulator and Public Interest.
+
+Affected calculations: operational value, customer ROI, adoption evidence, investor and public-interest indicators.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-CUST-OPVAL-001`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-005`.
+
+Legal or accounting dependency: none unless externally reported or monetized in formal projections.
+
+Current status: Blocked.
+
+Notes: Evidence may come from before-and-after process measurement, pilot observation, employer interviews, or workflow analysis.
+
+### `CUS-006` Failed-Payment Handling Cost
+
+Identifier: `CUS-006`
+
+Category: Customer, employer, payroll-account, and recipient-structure assumptions.
+
+Description: Internal employer or rural-bank effort and cost associated with one failed or exception payroll transaction.
+
+Unit of measure: PHP or labor hours per failed event.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: Future customer and operations research owner.
+
+Review date: Before first exception-cost model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future transaction offerings with exception handling.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, NetBank, Investor, Regulator and Public Interest.
+
+Affected calculations: customer operational cost, rural-bank support cost, impact of completion rate, value of improved evidence and reconciliation.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-CUST-RISK-001`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-005`.
+
+Legal or accounting dependency: none unless used in contractual service levels, penalties, or external claims.
+
+Current status: Blocked.
+
+Notes: Should be considered alongside `VOL-002` and reversal/refund treatment.
+
+### `VOL-002` Payroll Completion Rate
+
+Identifier: `VOL-002`
+
+Category: Transaction volume and activity.
+
+Description: Percentage of attempted recipient payroll disbursements that become successful qualifying payroll transactions.
+
+Unit of measure: Percentage of attempted recipient disbursements.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Open.
+
+Confidence level: Low.
+
+Owner: Future offering model owner and x-change evidence owner.
+
+Review date: Before first numeric payroll activity model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, 3neti, NetBank, DevOps Provider, Value-Added Service Provider, Investor, Regulator and Public Interest.
+
+Affected calculations: `VOL-001` derivation, successful billable events, transaction fee revenue, provider attachment volume, support and exception burden, public-interest completion indicators.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-CUST-PASS-001`, `OFR-RB-PAYROLL-STARTER-CUST-RISK-001`, `OFR-RB-PAYROLL-STARTER-CUST-OPVAL-002`, `OFR-RB-PAYROLL-STARTER-NETBANK-VOL-001`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-001`.
+
+Legal or accounting dependency: definition of attempted event, definition of successful event, reversal treatment, failed-event treatment, reconciliation logic, x-change execution evidence, refund treatment.
+
+Current status: Blocked.
+
+Notes: Intended derivation relationship is `CUS-001 x CUS-002 x CUS-003 x VOL-002 = VOL-001`. Do not assign a value until event definitions and evidence sources are defined.
+
+### `COL-001` Employer Fee Collection Timing
+
+Identifier: `COL-001`
+
+Category: Billing, invoicing, collection, and payment timing.
+
+Description: Timing between employer billing, rural-bank collection, and availability of collected commercial fees for downstream obligations.
+
+Unit of measure: Days, billing cycle, or collection period.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Accounting review required.
+
+Confidence level: Low.
+
+Owner: Future finance/accounting owner.
+
+Review date: Before first cash-flow or payable model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future invoiced or collected offerings.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, 3neti, NetBank, DevOps Provider, Value-Added Service Provider, Investor.
+
+Affected calculations: rural-bank cash receipt, ODTI payable timing, provider-payment timing, royalty-payment timing, bad debt, working capital, Commercial Waterfall timing if later applicable.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-CUST-COST-001`, `OFR-RB-PAYROLL-STARTER-RB-REV-001`, `OFR-RB-PAYROLL-STARTER-RB-COST-003`, `OFR-RB-PAYROLL-STARTER-ODTI-REV-003`, `OFR-RB-PAYROLL-STARTER-ODTI-COST-001`, `OFR-RB-PAYROLL-STARTER-3NETI-REV-001`, `OFR-RB-PAYROLL-STARTER-VASP-REV-001`.
+
+Legal or accounting dependency: contract terms, invoicing model, collection policy, accounting review, tax timing.
+
+Current status: Blocked.
+
+Notes: Commercial allocations should define whether payment waits for collection.
+
+### `RB-001` Rural-Bank Retained Transaction Economics
+
+Identifier: `RB-001`
+
+Category: Rural-bank retained economics and bank-specific operating inputs.
+
+Description: Approved basis by which the rural bank retains commercial value from the employer-paid payroll service fee.
+
+Unit of measure: Fixed amount, percentage, margin formula, or another approved basis.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Legal review required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner, Rural Bank commercial owner, and legal/accounting reviewers.
+
+Review date: Before first Rural Bank or ODTI transaction economics model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future rural-bank transaction offerings.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, 3neti, Investor.
+
+Affected calculations: Rural Bank retained contribution, Rural Bank payback, ODTI transaction revenue, employer customer-facing price allocation, consolidated offering economics.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-RB-REV-003`, `OFR-RB-PAYROLL-STARTER-RB-COST-003`, `OFR-RB-PAYROLL-STARTER-ODTI-REV-003`, `OFR-RB-PAYROLL-STARTER-RB-CONTRIB-001`, `OFR-RB-PAYROLL-STARTER-ODTI-CONTRIB-001`.
+
+Legal or accounting dependency: pricing decision, customer-facing disclosure, ODTI commercial terms, legal review, accounting review, tax treatment.
+
+Current status: Blocked.
+
+Notes: This is a derived allocation from the employer fee. It is not a second external inflow.
+
+### `ODTI-001` ODTI Support Cost Per Active Bank
+
+Identifier: `ODTI-001`
+
+Category: ODTI implementation, support, and operating-cost assumptions.
+
+Description: Recurring ODTI support, commercial administration, customer coordination, reporting, reconciliation, and program-operations cost attributable to one active rural bank.
+
+Unit of measure: PHP per active bank per month or per year.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI operations and finance owner.
+
+Review date: Before first ODTI contribution model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future ODTI-operated programs.
+
+Affected stakeholders: ODTI, Rural Bank, 3neti, Investor.
+
+Affected calculations: ODTI operating cost, ODTI net contribution, staffing needs, support capacity, investor view.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-ODTI-COST-002`, `OFR-RB-PAYROLL-STARTER-ODTI-CONTRIB-001`, `OFR-RB-PAYROLL-STARTER-INV-FIN-001`.
+
+Legal or accounting dependency: accounting classification, employment/contractor treatment, tax treatment.
+
+Current status: Blocked.
+
+Notes: Do not confuse this with DevOps managed-operations fees.
+
+### `ODTI-002` ODTI Implementation Effort Or Cost Per Bank
+
+Identifier: `ODTI-002`
+
+Category: ODTI implementation, support, and operating-cost assumptions.
+
+Description: ODTI implementation, configuration, training, commercial onboarding, coordination, and launch effort required for one rural bank.
+
+Unit of measure: Hours, person-days, or PHP per bank.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI implementation and finance owner.
+
+Review date: Before first activation economics model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future ODTI-implemented programs.
+
+Affected stakeholders: ODTI, Rural Bank, 3neti, Investor.
+
+Affected calculations: activation economics, implementation margin, staffing, first-year cost, payback, ODTI contribution.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-ODTI-COST-003`, `OFR-RB-PAYROLL-STARTER-ODTI-CONTRIB-001`, `OFR-RB-PAYROLL-STARTER-INV-FIN-001`.
+
+Legal or accounting dependency: implementation scope, training scope, standardization, bank readiness, legal and accounting treatment.
+
+Current status: Blocked.
+
+Notes: Keep separate from `LIC-004` activation price and `OPS-001` DevOps setup fee.
+
+### `CLD-001` Public-Cloud Infrastructure Cost Per Bank
+
+Identifier: `CLD-001`
+
+Category: Public-cloud infrastructure cost.
+
+Description: Direct public-cloud infrastructure cost for one rural-bank-owned deployment.
+
+Unit of measure: PHP per bank per month or year.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Provider quote requested.
+
+Confidence level: Low.
+
+Owner: Rural Bank infrastructure owner and DevOps Provider.
+
+Review date: Before first Rural Bank operating-cost model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future rural-bank-owned deployment offerings.
+
+Affected stakeholders: Rural Bank, DevOps Provider, ODTI, Investor.
+
+Affected calculations: Rural Bank operating cost, DevOps or managed-operations model, external outflow, ODTI bundle economics if later applicable, investor and scalability views.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-RB-COST-009`, `OFR-RB-PAYROLL-STARTER-RB-CONTRIB-001`.
+
+Legal or accounting dependency: cloud contract, data protection, accounting classification, tax treatment.
+
+Current status: Blocked.
+
+Notes: Under the baseline model, the rural bank owns the production environment and cloud billing relationship. Cloud cost is not automatically DevOps revenue.
+
+### `NET-001` NetBank Or Infrastructure Fee Basis
+
+Identifier: `NET-001`
+
+Category: NetBank, rail, settlement, API, and infrastructure-fee assumptions.
+
+Description: Approved fee basis for NetBank or another regulated banking, rail, API, account, settlement, or transaction-services participant.
+
+Unit of measure: Unresolved.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Legal review required.
+
+Confidence level: Low.
+
+Owner: NetBank or infrastructure commercial owner, ODTI commercial owner, and x-legal reviewer.
+
+Review date: Before first NetBank or rail economics model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future infrastructure-supported offerings.
+
+Affected stakeholders: Rural Bank, NetBank, ODTI, 3neti, Investor, Regulator and Public Interest.
+
+Affected calculations: Rural Bank cost, NetBank revenue, ODTI economics where applicable, consolidated internal elimination, transaction pricing, public-interest and infrastructure-readiness views.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-RB-COST-007`, `OFR-RB-PAYROLL-STARTER-NETBANK-REV-001`, `OFR-RB-PAYROLL-STARTER-NETBANK-VOL-001`, `OFR-RB-PAYROLL-STARTER-NETBANK-MEMO-001`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-003`.
+
+Legal or accounting dependency: exact NetBank role, regulated responsibility, account and settlement structure, contract, x-legal characterization, revenue recognition, tax.
+
+Current status: Blocked.
+
+Notes: Do not assign revenue merely because NetBank is structurally present.
+
+### `NET-002` NetBank Or Infrastructure Operating Cost Basis
+
+Identifier: `NET-002`
+
+Category: NetBank, rail, settlement, API, and infrastructure-fee assumptions.
+
+Description: Cost basis for NetBank or another infrastructure participant to provide account, API, rail, settlement, monitoring, compliance, exception handling, or reconciliation support.
+
+Unit of measure: Unresolved.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Instantiated `OFR-RB-PAYROLL-STARTER` NetBank stakeholder view.
+
+Evidence status: Institutional data required.
+
+Confidence level: Low.
+
+Owner: NetBank or infrastructure operating owner.
+
+Review date: Before first NetBank contribution model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future infrastructure-supported offerings.
+
+Affected stakeholders: NetBank, Rural Bank, ODTI, Investor, Regulator and Public Interest.
+
+Affected calculations: NetBank service cost, compliance burden, reconciliation burden, recognized-income view, infrastructure-readiness view.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-NETBANK-COST-001`, `OFR-RB-PAYROLL-STARTER-NETBANK-REV-002`.
+
+Legal or accounting dependency: compliance, banking, settlement, and accounting review.
+
+Current status: Blocked.
+
+Notes: Operating burden must be understood before infrastructure participation is evaluated as revenue.
+
+### `SMS-001` SMS Delivery Success Rate
+
+Identifier: `SMS-001`
+
+Category: SMS delivery-quality and messaging-operation assumptions.
+
+Description: Percentage of attempted SMS notifications successfully delivered or accepted under the approved service definition.
+
+Unit of measure: Percentage of attempted SMS notifications.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Provider quote requested.
+
+Confidence level: Low.
+
+Owner: SMS provider-commercial owner.
+
+Review date: Before first SMS-attached payroll model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future SMS-attached offerings.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, Value-Added Service Provider, Investor, Regulator and Public Interest.
+
+Affected calculations: successful SMS service volume, provider performance, failed-message treatment, customer value, support burden, Public Value indicators.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-VASP-VOL-001`, `OFR-RB-PAYROLL-STARTER-VASP-REV-001`, `OFR-RB-PAYROLL-STARTER-RB-COST-006`, `OFR-RB-PAYROLL-STARTER-VASP-RISK-001`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-002`.
+
+Legal or accounting dependency: provider definition of delivered, carrier reporting, retry policy, billing rule, failed-message refund rule, privacy and consent.
+
+Current status: Blocked.
+
+Notes: Do not confuse SMS attachment rate (`ATT-001`), SMS customer-facing price (`VAS-001`), SMS provider cost (`CST-001`), and SMS delivery success (`SMS-001`).
+
+### `SMS-002` SMS Provider Delivery Cost Basis
+
+Identifier: `SMS-002`
+
+Category: SMS delivery-quality and messaging-operation assumptions.
+
+Description: Cost incurred by the SMS Provider to deliver or attempt qualifying SMS notifications.
+
+Unit of measure: PHP per SMS, carrier charge, aggregator charge, or another approved provider-cost basis.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Instantiated `OFR-RB-PAYROLL-STARTER` Value-Added Provider view.
+
+Evidence status: Provider quote requested.
+
+Confidence level: Low.
+
+Owner: SMS provider-commercial owner.
+
+Review date: Before first SMS provider-margin model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future SMS-attached offerings.
+
+Affected stakeholders: Value-Added Service Provider, Rural Bank, ODTI, Investor.
+
+Affected calculations: provider delivery cost, provider margin, external telecom outflow, failed-message treatment.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-VASP-COST-001`, `OFR-RB-PAYROLL-STARTER-VASP-CONTRIB-001`.
+
+Legal or accounting dependency: provider and carrier agreements, privacy, accounting, tax.
+
+Current status: Blocked.
+
+Notes: This may differ from `CST-001`, which describes the charge to the Rural Bank.
+
+### `SMS-003` SMS Failed-Message Treatment
+
+Identifier: `SMS-003`
+
+Category: SMS delivery-quality and messaging-operation assumptions.
+
+Description: Commercial and operational treatment of failed, delayed, duplicate, or undelivered SMS events.
+
+Unit of measure: Failure rate, refund rule, credit rule, retry rule, or another approved treatment.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Instantiated `OFR-RB-PAYROLL-STARTER` Value-Added Provider view.
+
+Evidence status: Provider quote requested.
+
+Confidence level: Low.
+
+Owner: SMS provider-commercial owner and ODTI commercial owner.
+
+Review date: Before first SMS provider-margin model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future SMS-attached offerings.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, Value-Added Service Provider, Regulator and Public Interest.
+
+Affected calculations: failed-message treatment, provider margin, Rural Bank SMS cost adjustment, customer value, support burden.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-VASP-RISK-001`, `OFR-RB-PAYROLL-STARTER-VASP-CONTRIB-001`.
+
+Legal or accounting dependency: provider agreement, refund treatment, privacy, accounting, tax.
+
+Current status: Blocked.
+
+Notes: If failed-message treatment creates a refund, credit, or payable adjustment, the offering model should add a separate internal-elimination line.
+
+### `SMS-004` SMS Privacy And Consent Readiness
+
+Identifier: `SMS-004`
+
+Category: SMS delivery-quality and messaging-operation assumptions.
+
+Description: Readiness of SMS notification consent, disclosure, recipient contact-data handling, and privacy controls.
+
+Unit of measure: Approved readiness status, checklist, or other governance indicator.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Instantiated `OFR-RB-PAYROLL-STARTER` Value-Added Provider and Public Interest views.
+
+Evidence status: Legal review required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner, SMS provider owner, and x-legal reviewer.
+
+Review date: Before SMS is included in external customer-facing material or numeric model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future SMS-attached offerings.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, Value-Added Service Provider, Regulator and Public Interest.
+
+Affected calculations: SMS eligibility, public-interest transparency, provider participation, customer-facing disclosure.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-VASP-MEMO-001`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-002`.
+
+Legal or accounting dependency: privacy, consent, disclosure, data handling, and provider-contract review.
+
+Current status: Blocked.
+
+Notes: SMS should not be modeled as purely technical usage without consent and privacy review.
+
+### `OPS-003` DevOps Direct Engineering And Tooling Cost Per Bank
+
+Identifier: `OPS-003`
+
+Category: DevOps and managed operations.
+
+Description: Direct DevOps cost required to provision, monitor, maintain, back up, patch, support, and hand over one rural-bank environment.
+
+Unit of measure: PHP or engineering hours per bank per month or year.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: DevOps Provider and ODTI operations owner.
+
+Review date: Before first DevOps margin or staffing model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future managed operations offerings.
+
+Affected stakeholders: DevOps Provider, Rural Bank, ODTI, Investor.
+
+Affected calculations: DevOps gross margin, staffing capacity, setup economics, managed-operations sustainability, rural-bank total cost, investor operating view.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-DEVOPS-COST-001`, `OFR-RB-PAYROLL-STARTER-DEVOPS-CONTRIB-001`.
+
+Legal or accounting dependency: service agreement, accounting classification, tax.
+
+Current status: Blocked.
+
+Notes: Keep separate from `OPS-001` customer-facing setup fee, `OPS-002` recurring managed-operations fee, and `CLD-001` cloud infrastructure cost.
+
+### `OPS-004` DevOps External Tooling Cost
+
+Identifier: `OPS-004`
+
+Category: DevOps and managed operations.
+
+Description: External monitoring, backup, security, incident, documentation, automation, or similar tooling cost used by the DevOps Provider.
+
+Unit of measure: PHP per environment, per month, per tool, or another approved basis.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Instantiated `OFR-RB-PAYROLL-STARTER` DevOps Provider view.
+
+Evidence status: Provider quote requested.
+
+Confidence level: Low.
+
+Owner: DevOps Provider.
+
+Review date: Before first DevOps cost model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future managed operations offerings.
+
+Affected stakeholders: DevOps Provider, Rural Bank, ODTI, Investor.
+
+Affected calculations: DevOps external outflow, DevOps margin, operating sustainability.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-DEVOPS-COST-002`, `OFR-RB-PAYROLL-STARTER-DEVOPS-CONTRIB-001`.
+
+Legal or accounting dependency: vendor contract, data protection, accounting, tax.
+
+Current status: Blocked.
+
+Notes: External tooling cost should remain separate from DevOps Provider revenue.
+
+### `OPS-005` DevOps Operational Readiness Indicator
+
+Identifier: `OPS-005`
+
+Category: DevOps and managed operations.
+
+Description: Operational readiness indicator for environments supported, uptime, incident response, backup verification, recovery time, and handover quality.
+
+Unit of measure: Checklist, service-level indicator, percentage, time measure, or another approved operational measure.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Instantiated `OFR-RB-PAYROLL-STARTER` DevOps Provider and Public Interest views.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: DevOps Provider and ODTI operations owner.
+
+Review date: Before external operating model or public-interest reporting.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future managed operations offerings.
+
+Affected stakeholders: DevOps Provider, Rural Bank, ODTI, Investor, Regulator and Public Interest.
+
+Affected calculations: operational readiness, public confidence, provider replaceability, governance fidelity, capacity planning.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-DEVOPS-CAP-001`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-004`.
+
+Legal or accounting dependency: service-level commitments, data protection, operational governance.
+
+Current status: Blocked.
+
+Notes: Operational reliability is part of commercial trust, but this indicator should not be monetized automatically.
+
+### `3NETI-001` 3neti R&D Cost Basis
+
+Identifier: `3NETI-001`
+
+Category: 3neti R&D, stewardship, IP, and legal-cost assumptions.
+
+Description: 3neti cost to improve reusable technology and architecture related to the payroll offering and future extracted package capabilities.
+
+Unit of measure: PHP, hours, person-days, or another approved R&D basis.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Instantiated `OFR-RB-PAYROLL-STARTER` 3neti view.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: 3neti R&D owner.
+
+Review date: Before first 3neti contribution or investor model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future offerings using 3neti IP.
+
+Affected stakeholders: 3neti, ODTI, Investor.
+
+Affected calculations: 3neti contribution, investor capital requirement, R&D sustainability.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-3NETI-COST-001`, `OFR-RB-PAYROLL-STARTER-3NETI-CONTRIB-001`, `OFR-RB-PAYROLL-STARTER-INV-FIN-001`.
+
+Legal or accounting dependency: accounting classification, IP capitalization or expensing review, tax.
+
+Current status: Blocked.
+
+Notes: Documentation continues to discover software; this should not trigger premature implementation.
+
+### `3NETI-002` 3neti Package Stewardship And Documentation Cost Basis
+
+Identifier: `3NETI-002`
+
+Category: 3neti R&D, stewardship, IP, and legal-cost assumptions.
+
+Description: 3neti cost of maintaining x-commerce documentation, assumptions, architecture, and traceability for the offering.
+
+Unit of measure: PHP, hours, person-days, or another approved stewardship basis.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Instantiated `OFR-RB-PAYROLL-STARTER` 3neti view.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: 3neti architecture and documentation owner.
+
+Review date: Before first 3neti contribution or investor model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future offerings requiring x-commerce stewardship.
+
+Affected stakeholders: 3neti, ODTI, Investor.
+
+Affected calculations: 3neti contribution, investor capital requirement, commercial-architecture sustainability.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-3NETI-COST-002`, `OFR-RB-PAYROLL-STARTER-3NETI-CONTRIB-001`, `OFR-RB-PAYROLL-STARTER-INV-FIN-001`.
+
+Legal or accounting dependency: accounting classification, IP/legal documentation review, tax.
+
+Current status: Blocked.
+
+Notes: Captures reusable commercial learning, not deployable customer operations.
+
+### `3NETI-003` 3neti External IP And Legal-Service Cost Basis
+
+Identifier: `3NETI-003`
+
+Category: 3neti R&D, stewardship, IP, and legal-cost assumptions.
+
+Description: External IP protection, license documentation, legal handoff, and related-party review cost.
+
+Unit of measure: PHP, professional-service fee, or another approved legal-cost basis.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Instantiated `OFR-RB-PAYROLL-STARTER` 3neti view.
+
+Evidence status: Legal review required.
+
+Confidence level: Low.
+
+Owner: 3neti legal/IP owner and x-legal reviewer.
+
+Review date: Before first 3neti legal-cost or investor model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future offerings using 3neti IP.
+
+Affected stakeholders: 3neti, ODTI, Investor.
+
+Affected calculations: 3neti cost view, legal-handoff planning, investor capital requirement.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-3NETI-COST-003`, `OFR-RB-PAYROLL-STARTER-3NETI-CONTRIB-001`, `OFR-RB-PAYROLL-STARTER-INV-FIN-001`.
+
+Legal or accounting dependency: legal review required, accounting treatment, tax.
+
+Current status: Blocked.
+
+Notes: x-commerce identifies commercial architecture; x-legal determines legal characterization.
+
+### `INV-001` Payroll Offering Capital Requirement
+
+Identifier: `INV-001`
+
+Category: Investor and capital assumptions.
+
+Description: Capital potentially required to support offering development, launch readiness, governance, operations, or scale.
+
+Unit of measure: PHP, funding tranche, or approved use-of-funds basis.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Instantiated `OFR-RB-PAYROLL-STARTER` Investor view.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: Future finance owner and investor-relations owner.
+
+Review date: Before first investor financing model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future financed offerings.
+
+Affected stakeholders: Investor, ODTI, 3neti, Rural Bank.
+
+Affected calculations: capital requirement, use of funds, offering readiness, investor financing view.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-INV-FIN-001`.
+
+Legal or accounting dependency: securities, corporate, tax, accounting, and governance review.
+
+Current status: Blocked.
+
+Notes: Capital inflow must not be counted as operating revenue.
+
+### `INV-002` Investor Return Mechanism
+
+Identifier: `INV-002`
+
+Category: Investor and capital assumptions.
+
+Description: Possible mechanism by which investor return may arise, such as equity, dividends, appreciation, repayment, or conversion.
+
+Unit of measure: Financing-instrument term, percentage, repayment term, conversion term, or another approved basis.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Instantiated `OFR-RB-PAYROLL-STARTER` Investor view.
+
+Evidence status: Legal review required.
+
+Confidence level: Low.
+
+Owner: Future finance owner, corporate owner, and legal reviewer.
+
+Review date: Before any investor return model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future financed offerings.
+
+Affected stakeholders: Investor, ODTI, 3neti.
+
+Affected calculations: investor ownership view, financing model, potential return mechanism.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-INV-OWN-001`.
+
+Legal or accounting dependency: securities, corporate, tax, accounting, and governance review.
+
+Current status: Blocked.
+
+Notes: Investor return is not an operational Commercial Waterfall allocation.
+
+### `INV-003` Confidence And Governance Indicator
+
+Identifier: `INV-003`
+
+Category: Investor and capital assumptions.
+
+Description: Indicator that the offering remains understandable, governed, traceable, reconcilable, and aligned with documented commercial architecture.
+
+Unit of measure: Checklist, maturity rating, governance score, or another approved non-financial measure.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Instantiated `OFR-RB-PAYROLL-STARTER` Investor and Public Interest views.
+
+Evidence status: Open.
+
+Confidence level: Low.
+
+Owner: x-commerce commercial architecture owner.
+
+Review date: Before external investor or governance reporting.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future modeled offerings.
+
+Affected stakeholders: Investor, ODTI, 3neti, Rural Bank, Regulator and Public Interest.
+
+Affected calculations: investor confidence indicators, public-interest governance fidelity, provider replaceability, traceability maturity.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-INV-MEMO-002`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-004`.
+
+Legal or accounting dependency: none unless externally reported or used in financing documents.
+
+Current status: Blocked.
+
+Notes: Confidence Value is not operating revenue.
+
+### `PUB-002` Recipient Satisfaction Indicator
+
+Identifier: `PUB-002`
+
+Category: Public-interest and non-financial indicators.
+
+Description: Offering-specific indicator of recipient satisfaction, convenience, clarity, flexibility, or experience.
+
+Unit of measure: Survey score, percentage, index, or another approved measure.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Open.
+
+Confidence level: Low.
+
+Owner: Future public-interest reviewer.
+
+Review date: Before first public-interest or customer-value model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future recipient-facing offerings.
+
+Affected stakeholders: Employer / Customer, Rural Bank, Investor, Regulator and Public Interest.
+
+Affected calculations: customer value, recipient value, public-interest indicator, investor confidence.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-CUST-OPVAL-002`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-001`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-005`.
+
+Legal or accounting dependency: none unless externally reported, surveyed under regulated program rules, or used in public claims.
+
+Current status: Blocked.
+
+Notes: Do not monetize this automatically.
+
+### `PUB-003` Employer Administrative-Burden Reduction
+
+Identifier: `PUB-003`
+
+Category: Public-interest and non-financial indicators.
+
+Description: Measured reduction in payroll preparation, coordination, follow-up, exception handling, or reconciliation effort.
+
+Unit of measure: Percentage, hours, or another approved operational measure.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: Future public-interest reviewer and customer-research owner.
+
+Review date: Before first public-interest or customer-value model.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future customer-work-reduction offerings.
+
+Affected stakeholders: Employer / Customer, Rural Bank, Investor, Regulator and Public Interest.
+
+Affected calculations: operational value, public-interest view, investor confidence, adoption rationale.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-CUST-OPVAL-001`, `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-005`.
+
+Legal or accounting dependency: none unless externally reported or monetized in formal projections.
+
+Current status: Blocked.
+
+Notes: Supports the thesis: Payments take seconds. Work takes days.
+
+### `PUB-004` Payroll Outcome Completion Indicator
+
+Identifier: `PUB-004`
+
+Category: Public-interest and non-financial indicators.
+
+Description: Non-financial indicator showing whether approved payroll value reaches intended recipients with evidence and reconciliation.
+
+Unit of measure: Percentage, count, or approved completion measure.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
+
+Evidence status: Open.
+
+Confidence level: Low.
+
+Owner: Future public-interest reviewer and x-change evidence owner.
+
+Review date: Before first public-interest model or external reporting.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future payout and disbursement offerings.
+
+Affected stakeholders: Employer / Customer, Rural Bank, ODTI, NetBank, Investor, Regulator and Public Interest.
+
+Affected calculations: public-interest completion, customer outcome quality, governance reporting.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-PUBLIC-PI-001`, `OFR-RB-PAYROLL-STARTER-CUST-OPVAL-002`.
+
+Legal or accounting dependency: none unless tied to regulated reporting, public-sector reporting, or public claims.
+
+Current status: Blocked.
+
+Notes: May use `VOL-002` operationally but should remain a public-interest output definition rather than a duplicate volume assumption.
+
 ## Assumption Dependency Example
+
+`VOL-001` is intended to be derived once its component assumptions are ready:
+
+```text
+CUS-001
+    x CUS-002
+    x CUS-003
+    x VOL-002
+    =
+VOL-001
+```
+
+Annual offering activity is then driven by:
+
+```text
+ADP-002
+    x VOL-001
+    x ADP-003
+```
+
+No stakeholder view may independently override `VOL-001` once it is derived. A direct aggregate `VOL-001` placeholder may be used only in a later task if explicitly authorized as a controlled scenario placeholder.
 
 `VOL-001` should be referenced by many calculations:
 
@@ -1235,68 +2507,120 @@ For a likely first modeled offering such as `OFR-RB-PAYROLL-STARTER`, the minimu
 
 ### Adoption
 
-- banks onboarded by year;
-- active banks by year;
-- activation timing;
-- churn.
+- banks onboarded by year: `ADP-001`;
+- active banks by year: `ADP-002`;
+- active months or first-year activation timing: `ADP-003`;
+- churn: `RISK-001`.
 
 ### Customer And Payroll Activity
 
-- payroll customers per active bank;
-- payroll frequency;
-- average recipients or employees per payroll customer;
-- successful transactions per active bank per month;
-- completion or failure rate.
+- payroll customers per active bank: `CUS-001`;
+- payroll runs per customer per month: `CUS-002`;
+- average recipients or employees per payroll run: `CUS-003`;
+- successful transactions per active bank per month: `VOL-001`;
+- payroll completion rate: `VOL-002`;
+- customer administrative labor cost: `CUS-004`;
+- time saved per payroll cycle: `CUS-005`;
+- failed-payment handling cost: `CUS-006`.
 
 ### Pricing And Revenue
 
-- license, subscription, or hybrid model selected;
-- customer-facing transaction fee;
-- rural-bank retained amount or formula;
-- ODTI retained amount or formula;
-- billable event definition;
-- payment and collection timing.
+- license, subscription, or hybrid model selected: `LIC-004`, `LIC-005`;
+- customer-facing transaction fee: `PRC-001`;
+- rural-bank retained amount or formula: `RB-001`;
+- ODTI retained amount or formula: derived with `RB-001` and `PRC-001`;
+- billable event definition: offering decision and `VOL-002`;
+- payment and collection timing: `COL-001`.
 
 ### Provider And Infrastructure Costs
 
-- NetBank or rail cost;
-- cloud infrastructure cost;
-- DevOps setup and recurring cost;
-- ODTI support cost per bank;
-- implementation effort or cost;
-- SMS direct provider cost;
-- KYC direct provider cost, if included;
-- other provider costs.
+- NetBank or rail fee basis: `NET-001`;
+- NetBank or infrastructure operating cost basis: `NET-002`;
+- cloud infrastructure cost: `CLD-001`;
+- DevOps setup and recurring customer-facing fees: `OPS-001`, `OPS-002`;
+- DevOps direct engineering and tooling cost: `OPS-003`, `OPS-004`;
+- DevOps operational readiness: `OPS-005`;
+- ODTI support cost per bank: `ODTI-001`;
+- ODTI implementation effort or cost: `ODTI-002`;
+- SMS direct provider cost: `CST-001`;
+- SMS delivery cost and failed-message treatment: `SMS-001`, `SMS-002`, `SMS-003`;
+- SMS privacy and consent readiness: `SMS-004`;
+- KYC direct provider cost, if included: `CST-002`.
 
 ### Attachments
 
-- SMS attachment rate;
-- KYC attachment rate, if applicable;
-- service success or failure rate;
-- billable unit for each attached capability.
+- SMS attachment rate: `ATT-001`;
+- SMS customer-facing price: `VAS-001`;
+- SMS delivery success rate: `SMS-001`;
+- KYC attachment rate, if applicable: `ATT-002`;
+- billable unit for each attached capability: service-specific `VAS-*`, `ATT-*`, `SMS-*`, or `CST-*` records.
 
 ### Commercial Waterfall
 
-- 3neti royalty or license basis;
-- business development partner allocation, if any;
+- 3neti royalty or license basis: `ROY-001`;
+- 3neti R&D, stewardship, and legal-cost assumptions: `3NETI-001`, `3NETI-002`, `3NETI-003`;
+- business development partner allocation, if any: `PAR-001`;
 - attribution basis;
 - deduction order;
 - reversal and refund treatment.
 
 ### Risk And Finance
 
-- bad debt or collection timing;
-- taxes and withholding;
+- bad debt or collection timing: `RISK-002`, `COL-001`;
+- taxes and withholding: `TAX-001`;
 - refund or reversal assumptions;
 - contingency;
 - support burden.
 
 ### Public And Non-Financial Indicators
 
-- customer preparation time;
-- transaction completion;
-- reconciliation burden;
-- recipient satisfaction or another approved Public Value indicator.
+- customer preparation time and burden: `CUS-004`, `CUS-005`, `PUB-003`;
+- transaction completion: `PUB-004`, supported operationally by `VOL-002`;
+- reconciliation burden: `CUS-004`, `CUS-006`, `PUB-003`;
+- recipient satisfaction or another approved Public Value indicator: `PUB-002`;
+- investor confidence and governance indicators: `INV-001`, `INV-002`, `INV-003`.
+
+## First Payroll Offering Readiness Summary
+
+### Structurally Present But Blocked
+
+- adoption: `ADP-001`, `ADP-002`, `ADP-003`;
+- activity derivation: `CUS-001`, `CUS-002`, `CUS-003`, `VOL-001`, `VOL-002`;
+- pricing allocation: `RB-001`;
+- provider costs: `CST-001`, `SMS-001`, `SMS-002`, `SMS-003`, `SMS-004`;
+- NetBank fees and operating burden: `NET-001`, `NET-002`;
+- cloud costs: `CLD-001`;
+- ODTI support and implementation costs: `ODTI-001`, `ODTI-002`;
+- DevOps direct costs and readiness: `OPS-003`, `OPS-004`, `OPS-005`;
+- tax: `TAX-001`;
+- bad debt and collection timing: `RISK-002`, `COL-001`;
+- royalty and 3neti stewardship costs: `ROY-001`, `3NETI-001`, `3NETI-002`, `3NETI-003`;
+- customer operational-value indicators: `CUS-004`, `CUS-005`, `CUS-006`;
+- public-interest indicators: `PUB-001`, `PUB-002`, `PUB-003`, `PUB-004`;
+- investor indicators: `INV-001`, `INV-002`, `INV-003`.
+
+### Active Working Assumptions
+
+The following records remain Active working assumptions, not approved terms:
+
+- `LIC-004`;
+- `LIC-005`;
+- `PRC-001`;
+- `VAS-001`;
+- `OPS-001`;
+- `OPS-002`.
+
+### Not Applicable To Baseline
+
+The following remain outside the first payroll baseline:
+
+- perpetual license and maintenance model: `LIC-001`, `LIC-002`;
+- subscription-only model: `LIC-003`;
+- email attachment: `VAS-002`;
+- KYC attachment and pricing: `ATT-002`, `VAS-003`, `CST-002`;
+- rider or CTA: `VAS-004`;
+- business-development partner allocation: `PAR-001`;
+- Channel Partner assumptions.
 
 If any required assumption is still Blocked, the first numeric model must either pause or explicitly label the value as a controlled scenario placeholder approved for sensitivity testing. Controlled placeholders are not approved prices, forecasts, contracts, or commitments.
 
@@ -1330,12 +2654,10 @@ Mark it retired and explain:
 
 ## Next Work
 
-Recommended next document:
+Recommended next task:
 
 ```text
-docs/economics/five-year-projections.md
+Create an evidence-acquisition and controlled-placeholder plan for OFR-RB-PAYROLL-STARTER.
 ```
 
-That document should define the projection framework and calculation order. It should not begin with numeric ecosystem projections.
-
-After the projection framework exists, stakeholder financial-view templates should consume assumptions from this register rather than inventing local values.
+That plan should classify each blocked assumption by evidence source before any provisional numeric model is produced.

@@ -38,7 +38,7 @@ Precedence rule:
 
 > When `VOL-001` is derived from component assumptions, stakeholder views must reference the derived canonical value and must not independently recalculate or override it.
 
-Until the component assumptions exist and are Active, Approved, or explicitly controlled placeholders, `VOL-001` remains blocked. The model must not produce both an independent aggregate volume and a derived volume for the same scenario.
+Until the component assumptions are Active, Approved, or explicitly controlled placeholders, `VOL-001` remains blocked. The model must not produce both an independent aggregate volume and a derived volume for the same scenario.
 
 ## Required Assumptions
 
@@ -83,7 +83,7 @@ The following currently block affected line items and downstream totals:
 - `RISK-002`;
 - `TAX-001`;
 - `PUB-001`;
-- missing assumptions listed below.
+- newly canonicalized blocked assumptions listed below.
 
 Blocked assumptions do not block the structural model. They block calculation of affected values.
 
@@ -101,9 +101,9 @@ Blocked assumptions do not block the structural model. They block calculation of
 | `CST-002` | KYC provider cost is not part of the baseline. |
 | `PAR-001` | Business Development Partner participation is deferred. |
 
-## Missing Assumptions Discovered
+## Canonical Assumptions Added From Instantiation
 
-The following canonical assumption records should be added before numeric modeling:
+The following canonical assumption records were identified during offering instantiation and should remain blocked until evidence or approved controlled placeholders exist:
 
 | Candidate ID | Assumption needed | Purpose | Affected views |
 | --- | --- | --- | --- |
@@ -123,5 +123,20 @@ The following canonical assumption records should be added before numeric modeli
 | `CUS-004` | Customer administrative labor cost. | Measure work avoided by payroll offering. | Customer, Public Interest, Investor. |
 | `CUS-005` | Time saved per payroll cycle. | Measure operational value. | Customer, Public Interest. |
 | `PUB-002` | Recipient satisfaction or access indicator. | Measure Recipient Value and Public Value. | Customer, Public Interest, Investor. |
+| `CUS-006` | Failed-payment handling cost. | Measure exception burden and value of completion. | Customer, Rural Bank, Public Interest. |
+| `PUB-003` | Employer administrative-burden reduction. | Measure work reduction as a public-interest and customer-value indicator. | Customer, Public Interest, Investor. |
+| `PUB-004` | Payroll outcome completion indicator. | Define public-interest completion output without duplicating `VOL-002`. | Customer, Public Interest, Investor. |
+| `NET-002` | NetBank or infrastructure operating cost basis. | Model infrastructure operating burden. | NetBank, Rural Bank, ODTI, Investor. |
+| `SMS-002` | SMS provider delivery cost basis. | Model SMS provider external delivery cost. | VASP, Rural Bank, Investor. |
+| `SMS-003` | SMS failed-message treatment. | Model failed, delayed, duplicate, or undelivered SMS events. | Customer, Rural Bank, VASP, Public Interest. |
+| `SMS-004` | SMS privacy and consent readiness. | Model SMS eligibility, disclosure, consent, and governance dependency. | Customer, Rural Bank, VASP, Public Interest. |
+| `OPS-004` | DevOps external tooling cost. | Model external operational tooling cost. | DevOps Provider, Rural Bank, Investor. |
+| `OPS-005` | DevOps operational readiness indicator. | Model uptime, recovery, backup, handover, and operational confidence. | DevOps Provider, Rural Bank, Public Interest, Investor. |
+| `3NETI-001` | 3neti R&D cost basis. | Model reusable technology and architecture stewardship cost. | 3neti, ODTI, Investor. |
+| `3NETI-002` | 3neti package stewardship and documentation cost basis. | Model x-commerce stewardship and traceability cost. | 3neti, ODTI, Investor. |
+| `3NETI-003` | 3neti external IP and legal-service cost basis. | Model external legal and IP-service cost. | 3neti, ODTI, Investor. |
+| `INV-001` | Payroll offering capital requirement. | Model capital need without treating financing as revenue. | Investor, ODTI, 3neti. |
+| `INV-002` | Investor return mechanism. | Model ownership or financing rights separately from operational waterfalls. | Investor. |
+| `INV-003` | Confidence and governance indicator. | Model investability, traceability, and governance fidelity. | Investor, Public Interest. |
 
-These records should be added in the next Assumptions Register slice without unsupported values.
+These records are canonical inputs now, but they are not numeric-ready.
