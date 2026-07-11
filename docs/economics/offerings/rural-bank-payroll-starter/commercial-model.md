@@ -84,7 +84,7 @@ Canonical assumptions:
 - transaction fee: `PRC-001`;
 - SMS customer-facing price: `VAS-001`;
 - SMS attachment rate: `ATT-001`;
-- SMS provider cost: `CST-001`.
+- SMS wholesale provider price: `CST-001`.
 
 These assumptions do not approve values. They provide traceability for future calculation.
 
@@ -104,7 +104,7 @@ Rural Bank
     |
     +-- owes DevOps Provider managed operations fees
     |
-    +-- owes SMS Provider direct provider charges, if SMS is used
+    +-- owes SMS Provider wholesale provider charges, if SMS is used
     |
     +-- owes NetBank or rail fees, if approved
     |
@@ -182,9 +182,9 @@ The rural bank owns the production environment.
 
 Receives:
 
-- direct SMS provider charge from Rural Bank based on qualifying SMS attachment usage.
+- wholesale SMS provider charge from Rural Bank based on qualifying SMS attachment usage.
 
-The provider cost must remain distinct from customer-facing SMS price.
+The wholesale provider price must remain distinct from both the customer-facing SMS price and the SMS provider's internal delivery cost.
 
 ## Included Capabilities
 

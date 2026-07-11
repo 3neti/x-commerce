@@ -12,7 +12,7 @@ Baseline role: optional SMS capability provider attached to payroll outcomes.
 
 The SMS Provider does not own the payroll transaction. It attaches a communication capability to the payroll outcome.
 
-Customer-facing SMS price must remain distinct from SMS direct provider cost.
+Customer-facing SMS price must remain distinct from SMS wholesale provider price and SMS provider internal delivery cost.
 
 ## Line Items
 
@@ -59,7 +59,7 @@ Stakeholder: Value-Added Provider
 View type: Revenue
 Category: SMS provider charge
 Description: SMS Provider revenue from Rural Bank for qualifying SMS notification usage.
-Formula: SMS attachment volume x approved SMS direct provider charge
+Formula: SMS attachment volume x approved SMS wholesale provider price
 Input assumption IDs: VOL-001, ATT-001, CST-001, SMS-001, COL-001, TAX-001
 Scenario behavior: Follows payroll volume, attachment rate, provider cost, and delivery success.
 Year applicability: Years 1-5
@@ -81,19 +81,19 @@ Blocked inputs: VOL-001, ATT-001, CST-001, SMS-001, COL-001, TAX-001
 Controlled placeholder: None approved
 Line-item readiness: Conditionally Ready
 Output use: VASP revenue view and Rural Bank SMS cost view.
-Notes: `CST-001` is blocked until provider quote or approved cost basis exists.
+Notes: `CST-001` is blocked until the wholesale provider price is supported by provider quote, pricing schedule, approved proposal, or signed agreement.
 ```
 
 ### Provider Delivery Cost
 
 ```text
 Line-item ID: OFR-RB-PAYROLL-STARTER-VASP-COST-001
-Line-item name: Provider delivery cost
+Line-item name: Provider internal delivery cost
 Stakeholder: Value-Added Provider
 View type: Cost
 Category: SMS delivery cost
-Description: Cost incurred by the SMS Provider to deliver or attempt qualifying SMS notifications.
-Formula: SMS attachment volume x approved provider delivery cost basis
+Description: Carrier, aggregator, infrastructure, retry, routing, and other direct operating cost incurred by the SMS Provider to deliver or attempt qualifying SMS notifications.
+Formula: SMS attachment volume x approved SMS provider internal delivery cost
 Input assumption IDs: SMS-002, VOL-001, ATT-001, SMS-001
 Scenario behavior: Follows attachment volume, delivery success, and wholesale delivery cost.
 Year applicability: Years 1-5
@@ -115,7 +115,7 @@ Blocked inputs: SMS-002, VOL-001, ATT-001, SMS-001
 Controlled placeholder: None approved
 Line-item readiness: Blocked
 Output use: VASP margin and consolidated external outflow.
-Notes: This cost may differ from `CST-001`, which is the charge to Rural Bank.
+Notes: SMS Provider gross margin is `CST-001 - SMS-002`. `SMS-002` may remain unavailable if the SMS provider does not disclose internal delivery cost.
 ```
 
 ### Failed-Message Treatment
@@ -161,7 +161,7 @@ Stakeholder: Value-Added Provider
 View type: Contribution
 Category: Provider margin
 Description: SMS Provider contribution after provider revenue, delivery cost, failed-message treatment, support cost, and tax treatment.
-Formula: SMS provider revenue - delivery cost - adjustments - taxes
+Formula: SMS wholesale provider revenue - provider internal delivery cost - adjustments - taxes
 Input assumption IDs: CST-001, SMS-002, SMS-003, VOL-001, ATT-001, TAX-001
 Scenario behavior: Follows attachment volume, provider charge, delivery cost, failure treatment, and tax treatment.
 Year applicability: Years 1-5
@@ -183,7 +183,7 @@ Blocked inputs: CST-001, SMS-002, SMS-003, VOL-001, ATT-001, TAX-001
 Controlled placeholder: None approved
 Line-item readiness: Blocked
 Output use: VASP stakeholder view.
-Notes: Customer-facing SMS price is not provider margin.
+Notes: Customer-facing SMS price is not provider margin. Rural Bank or ODTI SMS margin is `VAS-001 - CST-001`; SMS Provider margin is `CST-001 - SMS-002`.
 ```
 
 ### Privacy And Consent Dependency

@@ -190,6 +190,7 @@ This does not mean the line lacks financial importance. It means the line is exc
 | --- | --- |
 | [commercial-model.md](commercial-model.md) | Offering-specific commercial model. |
 | [assumption-map.md](assumption-map.md) | Required, optional, blocked, not-applicable, and missing assumptions. |
+| [evidence-acquisition-plan.md](evidence-acquisition-plan.md) | Evidence sources, placeholder governance, and readiness gates for blocked assumptions. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |
 | [consolidated-view.md](consolidated-view.md) | Non-numeric consolidation structure and double-counting controls. |
 | [stakeholder-views/customer-view.md](stakeholder-views/customer-view.md) | Employer customer view. |
@@ -208,4 +209,4 @@ No Channel Partner view is created. Channel Partner remains deferred.
 
 ## Next Step
 
-After this model is accepted, update the Assumptions Register with missing canonical assumption records discovered here, without introducing unsupported values.
+After this evidence plan is accepted, create the evidence-acquisition instruments and controlled-placeholder authorization worksheet before producing any numeric model.

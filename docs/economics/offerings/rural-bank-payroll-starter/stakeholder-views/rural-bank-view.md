@@ -326,12 +326,12 @@ Notes: Provider replaceability remains part of the model.
 
 ```text
 Line-item ID: OFR-RB-PAYROLL-STARTER-RB-COST-006
-Line-item name: SMS provider cost
+Line-item name: SMS wholesale provider price
 Stakeholder: Rural Bank
 View type: Cost
 Category: Optional value-added provider cost
-Description: Rural Bank direct provider cost for qualifying SMS notifications.
-Formula: Successful payroll events x SMS attachment rate x SMS direct provider cost
+Description: Rural Bank wholesale provider price for qualifying SMS notifications.
+Formula: Successful payroll events x SMS attachment rate x SMS wholesale provider price
 Input assumption IDs: VOL-001, ATT-001, CST-001, SMS-001, COL-001, TAX-001
 Scenario behavior: Follows payroll volume, attachment rate, provider cost, and delivery success.
 Year applicability: Years 1-5
@@ -353,7 +353,7 @@ Blocked inputs: VOL-001, ATT-001, CST-001, SMS-001, COL-001, TAX-001
 Controlled placeholder: None approved
 Line-item readiness: Conditionally Ready
 Output use: Rural Bank SMS margin view and VASP revenue view.
-Notes: Provider cost is distinct from customer-facing SMS price.
+Notes: Rural Bank or ODTI SMS margin is `VAS-001 - CST-001`. `CST-001` is distinct from the SMS provider's internal delivery cost `SMS-002`.
 ```
 
 ### NetBank Or Rail Cost

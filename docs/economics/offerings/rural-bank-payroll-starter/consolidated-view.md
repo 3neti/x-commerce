@@ -143,7 +143,8 @@ The following consolidated outputs remain blocked:
 - tax-adjusted consolidated contribution, blocked by `TAX-001`;
 - ODTI contribution after royalty, blocked by `ROY-001`;
 - consolidated output requiring royalty elimination, blocked by `ROY-001`;
-- SMS margin, blocked by `ATT-001`, `CST-001`, and `SMS-001`;
+- Rural Bank or ODTI SMS margin, blocked by `ATT-001`, `CST-001`, and `SMS-001`;
+- SMS Provider margin, blocked by `CST-001`, `SMS-002`, `SMS-003`, `ATT-001`, and `SMS-001`;
 - NetBank contribution, blocked by `NET-001`;
 - cash-flow timing, blocked by `COL-001`;
 - public-interest completion score, blocked by `PUB-001` and `VOL-002`.

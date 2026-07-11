@@ -228,7 +228,7 @@ Destination stakeholder: Value-Added Provider
 
 Destination line-item ID: `OFR-RB-PAYROLL-STARTER-VASP-REV-001`
 
-Commercial basis: Rural Bank owes SMS Provider direct provider charge for qualifying SMS usage.
+Commercial basis: Rural Bank owes SMS Provider wholesale provider charge for qualifying SMS usage.
 
 Consolidation treatment: Internal elimination
 

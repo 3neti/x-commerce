@@ -168,6 +168,8 @@ Use one of:
 - `Institutional data required`;
 - `Provider quote requested`;
 - `Provider quote received`;
+- `Provider service data required`;
+- `Provider contract required`;
 - `Institutional proposal`;
 - `Market reference`;
 - `Observed cost required`;
@@ -175,6 +177,7 @@ Use one of:
 - `Approved pricing decision`;
 - `Signed contract`;
 - `Legal review required`;
+- `Privacy review required`;
 - `Accounting review required`;
 - `Tax review required`;
 - `Retired`.
@@ -903,15 +906,15 @@ Current status: Blocked.
 
 Notes: The billable unit must be defined before projections are calculated.
 
-### `CST-001` SMS Direct Provider Cost
+### `CST-001` SMS Wholesale Provider Price
 
 Identifier: `CST-001`
 
 Category: Provider, rail, support, and operating costs.
 
-Description: Direct provider cost for SMS notification.
+Description: Amount charged by the SMS provider to the Rural Bank, ODTI, or another approved contracting participant for one qualifying SMS notification or approved billable unit.
 
-Unit of measure: PHP per SMS or approved billable unit.
+Unit of measure: PHP per qualifying SMS or approved billable unit.
 
 Conservative value: Open.
 
@@ -919,7 +922,7 @@ Base value: Open.
 
 Accelerated value: Open.
 
-Source: Provider quote required.
+Source: Provider pricing evidence required.
 
 Evidence status: Provider quote requested.
 
@@ -933,13 +936,13 @@ Affected offerings: Notification-attached offerings.
 
 Affected stakeholders: ODTI, Rural Bank, Value-Added Service Provider, Investor.
 
-Affected calculations: gross markup, gross margin, provider revenue, ODTI net platform revenue.
+Affected calculations: Rural Bank or ODTI SMS margin, provider revenue, customer-facing markup, net platform revenue, value-added provider revenue. Rural Bank or ODTI SMS margin is `VAS-001 - CST-001`.
 
 Legal or accounting dependency: provider agreement, tax, revenue recognition.
 
 Current status: Blocked.
 
-Notes: Do not calculate SMS margin from `VAS-001` until this cost is known or explicitly assumed.
+Notes: `CST-001` is the SMS wholesale provider price paid to the SMS provider. It is not the SMS provider's internal delivery cost. Do not calculate Rural Bank or ODTI SMS margin from `VAS-001` until this price is known or explicitly authorized as a controlled placeholder.
 
 ### `CST-002` KYC Direct Provider Cost
 
@@ -959,7 +962,7 @@ Accelerated value: Open.
 
 Source: Provider quote required.
 
-Evidence status: Provider quote requested.
+Evidence status: Provider service data required.
 
 Confidence level: Low.
 
@@ -1705,7 +1708,7 @@ Accelerated value: Open.
 
 Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
 
-Evidence status: Provider quote requested.
+Evidence status: Provider service data required.
 
 Confidence level: Low.
 
@@ -1825,7 +1828,7 @@ Accelerated value: Open.
 
 Source: Normalized `OFR-RB-PAYROLL-STARTER` offering model.
 
-Evidence status: Provider quote requested.
+Evidence status: Provider service data required.
 
 Confidence level: Low.
 
@@ -1845,17 +1848,17 @@ Legal or accounting dependency: provider definition of delivered, carrier report
 
 Current status: Blocked.
 
-Notes: Do not confuse SMS attachment rate (`ATT-001`), SMS customer-facing price (`VAS-001`), SMS provider cost (`CST-001`), and SMS delivery success (`SMS-001`).
+Notes: Do not confuse SMS attachment rate (`ATT-001`), SMS customer-facing price (`VAS-001`), SMS wholesale provider price (`CST-001`), SMS provider internal delivery cost (`SMS-002`), and SMS delivery success (`SMS-001`). A provider quote may prove price, but it does not prove delivery performance.
 
-### `SMS-002` SMS Provider Delivery Cost Basis
+### `SMS-002` SMS Provider Internal Delivery Cost
 
 Identifier: `SMS-002`
 
 Category: SMS delivery-quality and messaging-operation assumptions.
 
-Description: Cost incurred by the SMS Provider to deliver or attempt qualifying SMS notifications.
+Description: Carrier, aggregator, infrastructure, retry, routing, and other direct operating cost incurred by the SMS provider to deliver or attempt one qualifying SMS notification.
 
-Unit of measure: PHP per SMS, carrier charge, aggregator charge, or another approved provider-cost basis.
+Unit of measure: PHP per qualifying SMS attempt, successful delivery, or approved provider-cost unit.
 
 Conservative value: Open.
 
@@ -1865,7 +1868,7 @@ Accelerated value: Open.
 
 Source: Instantiated `OFR-RB-PAYROLL-STARTER` Value-Added Provider view.
 
-Evidence status: Provider quote requested.
+Evidence status: Provider service data required.
 
 Confidence level: Low.
 
@@ -1877,15 +1880,15 @@ Affected offerings: `OFR-RB-PAYROLL-STARTER`, future SMS-attached offerings.
 
 Affected stakeholders: Value-Added Service Provider, Rural Bank, ODTI, Investor.
 
-Affected calculations: provider delivery cost, provider margin, external telecom outflow, failed-message treatment.
+Affected calculations: SMS Provider gross margin, provider delivery cost, external telecom outflow, failed-message treatment. SMS Provider gross margin is `CST-001 - SMS-002`.
 
 Affected line items: `OFR-RB-PAYROLL-STARTER-VASP-COST-001`, `OFR-RB-PAYROLL-STARTER-VASP-CONTRIB-001`.
 
-Legal or accounting dependency: provider and carrier agreements, privacy, accounting, tax.
+Legal or accounting dependency: provider internal cost disclosure, carrier or aggregator pricing, provider and carrier agreements, privacy, accounting, tax.
 
 Current status: Blocked.
 
-Notes: This may differ from `CST-001`, which describes the charge to the Rural Bank.
+Notes: This is the SMS provider's internal delivery cost. It is distinct from `CST-001`, which is the wholesale price charged to the Rural Bank, ODTI, or another approved contracting participant. If the provider does not disclose internal delivery cost, this assumption may remain blocked or be excluded from the ecosystem model boundary.
 
 ### `SMS-003` SMS Failed-Message Treatment
 
@@ -1905,7 +1908,7 @@ Accelerated value: Open.
 
 Source: Instantiated `OFR-RB-PAYROLL-STARTER` Value-Added Provider view.
 
-Evidence status: Provider quote requested.
+Evidence status: Provider contract required.
 
 Confidence level: Low.
 
@@ -1921,7 +1924,7 @@ Affected calculations: failed-message treatment, provider margin, Rural Bank SMS
 
 Affected line items: `OFR-RB-PAYROLL-STARTER-VASP-RISK-001`, `OFR-RB-PAYROLL-STARTER-VASP-CONTRIB-001`.
 
-Legal or accounting dependency: provider agreement, refund treatment, privacy, accounting, tax.
+Legal or accounting dependency: provider contract, billing rules, operational policy, SLA or support documentation, refund treatment, privacy, accounting, tax.
 
 Current status: Blocked.
 
@@ -1945,7 +1948,7 @@ Accelerated value: Open.
 
 Source: Instantiated `OFR-RB-PAYROLL-STARTER` Value-Added Provider and Public Interest views.
 
-Evidence status: Legal review required.
+Evidence status: Privacy review required.
 
 Confidence level: Low.
 
@@ -2542,8 +2545,8 @@ For a likely first modeled offering such as `OFR-RB-PAYROLL-STARTER`, the minimu
 - DevOps operational readiness: `OPS-005`;
 - ODTI support cost per bank: `ODTI-001`;
 - ODTI implementation effort or cost: `ODTI-002`;
-- SMS direct provider cost: `CST-001`;
-- SMS delivery cost and failed-message treatment: `SMS-001`, `SMS-002`, `SMS-003`;
+- SMS wholesale provider price: `CST-001`;
+- SMS provider delivery performance, internal delivery cost, and failed-message treatment: `SMS-001`, `SMS-002`, `SMS-003`;
 - SMS privacy and consent readiness: `SMS-004`;
 - KYC direct provider cost, if included: `CST-002`.
 
@@ -2587,7 +2590,7 @@ For a likely first modeled offering such as `OFR-RB-PAYROLL-STARTER`, the minimu
 - adoption: `ADP-001`, `ADP-002`, `ADP-003`;
 - activity derivation: `CUS-001`, `CUS-002`, `CUS-003`, `VOL-001`, `VOL-002`;
 - pricing allocation: `RB-001`;
-- provider costs: `CST-001`, `SMS-001`, `SMS-002`, `SMS-003`, `SMS-004`;
+- provider pricing and operating evidence: `CST-001`, `SMS-001`, `SMS-002`, `SMS-003`, `SMS-004`;
 - NetBank fees and operating burden: `NET-001`, `NET-002`;
 - cloud costs: `CLD-001`;
 - ODTI support and implementation costs: `ODTI-001`, `ODTI-002`;

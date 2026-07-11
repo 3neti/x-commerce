@@ -67,7 +67,7 @@ SMS is optional but instantiated as the first modeled optional attachment.
 | --- | --- | --- | --- | --- | --- |
 | `ATT-001` | SMS attachment rate. | `CUST-COST-002`, `RB-REV-002`, `RB-COST-006`, `VASP-VOL-001`, `VASP-REV-001`. | Customer, Rural Bank, VASP, ODTI, Investor. | Blocked | Attachment-rate evidence or controlled placeholder. |
 | `VAS-001` | Customer-facing SMS price. | `CUST-COST-002`, `RB-REV-002`. | Customer, Rural Bank, VASP. | Structurally Ready | Approved customer-facing SMS price before numeric model. |
-| `CST-001` | SMS direct provider cost. | `RB-COST-006`, `VASP-REV-001`, `VASP-CONTRIB-001`. | Rural Bank, VASP, Investor. | Blocked | Provider quote or approved provider cost. |
+| `CST-001` | SMS wholesale provider price. | `RB-COST-006`, `VASP-REV-001`, `VASP-CONTRIB-001`. | Rural Bank, VASP, Investor. | Blocked | Provider quote, wholesale pricing schedule, signed provider agreement, or approved commercial proposal. |
 
 ## Blocked Assumptions
 
@@ -83,7 +83,7 @@ The following currently block affected line items and downstream totals:
 - `RISK-002`;
 - `TAX-001`;
 - `PUB-001`;
-- newly canonicalized blocked assumptions listed below.
+- canonical blocked assumptions listed below.
 
 Blocked assumptions do not block the structural model. They block calculation of affected values.
 
@@ -105,7 +105,7 @@ Blocked assumptions do not block the structural model. They block calculation of
 
 The following canonical assumption records were identified during offering instantiation and should remain blocked until evidence or approved controlled placeholders exist:
 
-| Candidate ID | Assumption needed | Purpose | Affected views |
+| Assumption ID | Assumption needed | Purpose | Affected views |
 | --- | --- | --- | --- |
 | `CUS-001` | Payroll customers per active rural bank. | Convert active banks into employer demand. | Customer, Rural Bank, ODTI, Investor. |
 | `CUS-002` | Payroll runs per customer per month. | Convert employers into payroll batches. | Customer, Rural Bank, ODTI, NetBank, Public Interest. |
@@ -127,7 +127,7 @@ The following canonical assumption records were identified during offering insta
 | `PUB-003` | Employer administrative-burden reduction. | Measure work reduction as a public-interest and customer-value indicator. | Customer, Public Interest, Investor. |
 | `PUB-004` | Payroll outcome completion indicator. | Define public-interest completion output without duplicating `VOL-002`. | Customer, Public Interest, Investor. |
 | `NET-002` | NetBank or infrastructure operating cost basis. | Model infrastructure operating burden. | NetBank, Rural Bank, ODTI, Investor. |
-| `SMS-002` | SMS provider delivery cost basis. | Model SMS provider external delivery cost. | VASP, Rural Bank, Investor. |
+| `SMS-002` | SMS provider internal delivery cost. | Model SMS provider internal delivery economics. | VASP, Rural Bank, Investor. |
 | `SMS-003` | SMS failed-message treatment. | Model failed, delayed, duplicate, or undelivered SMS events. | Customer, Rural Bank, VASP, Public Interest. |
 | `SMS-004` | SMS privacy and consent readiness. | Model SMS eligibility, disclosure, consent, and governance dependency. | Customer, Rural Bank, VASP, Public Interest. |
 | `OPS-004` | DevOps external tooling cost. | Model external operational tooling cost. | DevOps Provider, Rural Bank, Investor. |
