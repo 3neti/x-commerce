@@ -183,6 +183,248 @@ Accelerated may imply more active banks, earlier activation, more employer custo
 
 Some prices may remain fixed across scenarios until pricing evidence or management decisions justify variation.
 
+## Candidate Authority
+
+Every candidate value in this pack has the same authority unless explicitly stated otherwise:
+
+```text
+Source: Internal architecture and management scenario design
+Evidence status: Not evidence-supported
+Authorization status: Not authorized
+```
+
+Each candidate exists only to test model structure, inspect scenario behavior, expose break-even relationships, identify unreasonable assumptions, and prepare authorization review.
+
+## Core Versus Optional SMS Variant
+
+### Core Payroll Starter Model
+
+The smallest honest core model requires:
+
+- adoption;
+- activation timing;
+- employer and payroll activity;
+- completion rate;
+- activation fee;
+- annual platform subscription;
+- transaction fee;
+- rural-bank retained economics;
+- ODTI implementation and support costs;
+- DevOps setup, recurring fee, and direct cost;
+- cloud cost;
+- bad debt or collection haircut.
+
+The core model must remain calculable without SMS.
+
+### Optional SMS Variant
+
+SMS is an optional attachment view. It uses:
+
+- `ATT-001`;
+- `VAS-001`;
+- `CST-001`;
+- `SMS-001`;
+- `SMS-003`;
+- `SMS-004`;
+- `SMS-002` only if provider internal margin is modeled.
+
+Missing SMS evidence must not block the core Payroll Starter model. SMS should be presented as a separate optional scenario or attachment view.
+
+## Adoption Definitions And Cohort Logic
+
+`ADP-001` means newly onboarded rural banks during the modeled year. It is not a cumulative year-end count.
+
+`ADP-002` means participating rural banks that generate qualifying payroll activity during the modeled year.
+
+Constraint:
+
+```text
+Active banks <= cumulative onboarded banks available by that point
+```
+
+`ADP-003` means weighted average active operating months contributed by active banks during the modeled year. It accounts for banks activating at different times.
+
+Intended relationship:
+
+```text
+Beginning active banks
++
+newly activated banks
+-
+churned or inactive banks
+=
+active banks during or at the end of the year
+```
+
+The first candidate pack uses this annual activity convention:
+
+```text
+Annual successful payroll activity
+=
+ADP-002
+x ADP-003
+x VOL-001
+```
+
+where:
+
+- `ADP-002` is active banks;
+- `ADP-003` is weighted average active months per active bank;
+- `VOL-001` is successful payroll transactions per active bank per month.
+
+The candidate pack does not double count newly onboarded cohorts.
+
+## Candidate Summary Tables
+
+Every row below is:
+
+```text
+Internal management candidate
+Not authorized
+Not evidence-supported
+```
+
+### Adoption And Activity
+
+| Assumption ID | Conservative | Base | Accelerated | Unit | Treatment | Status |
+| --- | ---: | ---: | ---: | --- | --- | --- |
+| `ADP-001` | Year 1: 2; Year 2: 3; Year 3: 4; Year 4: 4; Year 5: 5 | Year 1: 5; Year 2: 7; Year 3: 8; Year 4: 10; Year 5: 10 | Year 1: 10; Year 2: 12; Year 3: 15; Year 4: 18; Year 5: 20 | Newly onboarded banks during year | Controlled-placeholder candidate | Internal management candidate - not authorized |
+| `ADP-002` | Year 1: 1; Year 2: 3; Year 3: 6; Year 4: 9; Year 5: 12 | Year 1: 3; Year 2: 8; Year 3: 14; Year 4: 22; Year 5: 32 | Year 1: 7; Year 2: 16; Year 3: 28; Year 4: 42; Year 5: 60 | Active banks during year | Controlled-placeholder candidate | Internal management candidate - not authorized |
+| `ADP-003` | Year 1: 4; Year 2: 6; Year 3: 7; Year 4: 8; Year 5: 8 | Year 1: 5; Year 2: 7; Year 3: 8; Year 4: 9; Year 5: 10 | Year 1: 6; Year 2: 8; Year 3: 9; Year 4: 10; Year 5: 10 | Weighted average active months per active bank | Controlled-placeholder candidate | Internal management candidate - not authorized |
+| `CUS-001` | 2 | 4 | 6 | Payroll customers per active bank | Stakeholder-evidence candidate | Internal management candidate - not authorized |
+| `CUS-002` | 1 | 2 | 2 | Payroll runs per customer per month | Stakeholder-evidence candidate | Internal management candidate - not authorized |
+| `CUS-003` | 20 | 35 | 60 | Recipients per payroll run | Stakeholder-evidence candidate | Internal management candidate - not authorized |
+| `VOL-002` | 92% | 96% | 98% | Successful completion rate | Controlled-placeholder candidate | Internal management candidate - not authorized |
+
+### Pricing And Retained Economics
+
+| Assumption ID | Conservative | Base | Accelerated | Unit | Treatment | Status |
+| --- | ---: | ---: | ---: | --- | --- | --- |
+| `LIC-004` | PHP 50,000 | PHP 50,000 | PHP 50,000 | Activation fee per rural bank | Existing Active working assumption | Provisional, not approved |
+| `LIC-005` | PHP 60,000 | PHP 60,000 | PHP 60,000 | Annual platform subscription per rural bank | Existing Active working assumption | Provisional, not approved |
+| `PRC-001` | PHP 1.00 | PHP 1.50 | PHP 2.00 | Customer-facing fee per successful disbursement | Existing Active working assumption | Provisional, not approved |
+| `RB-001` | PHP 0.40 | PHP 0.50 | PHP 0.60 | Fixed rural-bank retained amount per successful disbursement | Controlled-placeholder candidate | Internal management candidate - not authorized |
+
+Candidate transaction split:
+
+| Scenario | PRC-001 customer-facing fee | RB-001 retained amount | Candidate ODTI transaction-platform amount before other allocations |
+| --- | ---: | ---: | ---: |
+| Conservative | PHP 1.00 | PHP 0.40 | PHP 0.60 |
+| Base | PHP 1.50 | PHP 0.50 | PHP 1.00 |
+| Accelerated | PHP 2.00 | PHP 0.60 | PHP 1.40 |
+
+Invariant for fixed retained amount:
+
+```text
+RB-001 <= PRC-001
+```
+
+### ODTI Costs
+
+| Assumption ID | Conservative | Base | Accelerated | Unit | Treatment | Status |
+| --- | ---: | ---: | ---: | --- | --- | --- |
+| `ODTI-001` | PHP 8,000 | PHP 6,000 | PHP 5,000 | ODTI support cost per active bank per month | Management-estimate candidate | Internal management candidate - not authorized |
+| `ODTI-002` | PHP 35,000 | PHP 25,000 | PHP 20,000 | ODTI implementation cost per newly onboarded bank | Management-estimate candidate | Internal management candidate - not authorized |
+
+These costs exclude DevOps setup, DevOps managed operations, public-cloud cost, NetBank cost, provider cost, tax, royalty, and business-development allocation.
+
+### DevOps And Cloud
+
+| Assumption ID | Conservative | Base | Accelerated | Unit | Treatment | Status |
+| --- | ---: | ---: | ---: | --- | --- | --- |
+| `OPS-001` | PHP 50,000 | PHP 50,000 | PHP 50,000 | DevOps setup fee per bank deployment | Existing Active working assumption | Provisional, not approved |
+| `OPS-002` | PHP 10,000 | PHP 10,000 | PHP 10,000 | DevOps monthly managed-operations fee per bank | Existing Active working assumption | Provisional, not approved |
+| `OPS-003` | PHP 8,000 | PHP 6,000 | PHP 5,000 | DevOps direct engineering and tooling cost per bank per month | Provider-quote candidate | Internal management candidate - not authorized |
+| `CLD-001` | PHP 4,000 | PHP 3,000 | PHP 2,500 | External cloud cost per bank per month | Provider-quote candidate | Internal management candidate - not authorized |
+
+Baseline distinction:
+
+```text
+OPS-003 excludes CLD-001
+```
+
+Under the baseline model, the rural bank owns and pays the cloud account. `CLD-001` is therefore a Rural Bank external outflow, not DevOps Provider revenue and not automatically a DevOps Provider cost.
+
+### Risk And Collection
+
+| Assumption ID | Conservative | Base | Accelerated | Unit | Treatment | Status |
+| --- | ---: | ---: | ---: | --- | --- | --- |
+| `RISK-002` | 5% | 2% | 1% | Non-collection rate on eligible invoiced commercial fees | Management-estimate candidate | Internal management candidate - not authorized |
+| `RISK-001` | 10% | 5% | 3% | Annual active-bank churn or inactivity rate for sensitivity | Controlled-placeholder candidate | Internal management candidate - not authorized |
+| `COL-001` | 45 | 30 | 15 | Collection days for cash-flow timing | Controlled-placeholder candidate | Internal management candidate - not authorized |
+
+`RISK-002` applies only to eligible invoiced commercial revenue. It does not apply to payroll funding, recipient value, settlement balances, or other pass-through amounts.
+
+### Optional SMS Variant
+
+| Assumption ID | Conservative | Base | Accelerated | Unit | Treatment | Status |
+| --- | ---: | ---: | ---: | --- | --- | --- |
+| `ATT-001` | 25% | 50% | 70% | SMS attachment rate on qualifying payroll transactions | Controlled-placeholder candidate | Internal management candidate - not authorized |
+| `VAS-001` | PHP 1.00 | PHP 1.00 | PHP 1.00 | Customer-facing SMS price | Existing Active working assumption | Provisional, not approved |
+| `CST-001` | PHP 0.70 | PHP 0.50 | PHP 0.40 | SMS wholesale provider price | Provider-quote candidate | Internal management candidate - not authorized; requires provider evidence before external use |
+| `SMS-001` | 90% | 95% | 97% | SMS delivery success rate | Stakeholder-evidence candidate | Internal management candidate - not authorized |
+| `SMS-003` | Delivered-only billing; failed attempts excluded | Delivered-only billing; failed attempts excluded | Delivered-only billing; failed attempts excluded | Failed-message billing treatment | Stakeholder-evidence candidate | Internal management candidate - not authorized |
+| `SMS-004` | Internal modeling only; no external SMS use until privacy review | Internal modeling only; no external SMS use until privacy review | Internal modeling only; no external SMS use until privacy review | Consent and privacy readiness treatment | Remain blocked for external use | Internal management candidate - not authorized |
+
+SMS provider internal margin remains excluded unless `SMS-002` is later evidenced or authorized.
+
+## Derived Candidates
+
+### `VOL-001` Candidate
+
+Volume method: `Component-derived`.
+
+Formula:
+
+```text
+VOL-001
+= CUS-001
+x CUS-002
+x CUS-003
+x VOL-002
+```
+
+| Scenario | CUS-001 | CUS-002 | CUS-003 | VOL-002 | VOL-001 calculated candidate |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Conservative | 2 | 1 | 20 | 92% | 36.8 |
+| Base | 4 | 2 | 35 | 96% | 268.8 |
+| Accelerated | 6 | 2 | 60 | 98% | 705.6 |
+
+Status:
+
+```text
+Calculated candidate - not authorized
+Not independently proposed
+Not evidence-supported
+```
+
+Formula provenance: `CUS-001`, `CUS-002`, `CUS-003`, and `VOL-002`.
+
+### Annual Activity Candidate Illustration
+
+Label:
+
+```text
+Candidate activity illustration - not authorized and not a forecast
+```
+
+Formula:
+
+```text
+Annual successful payroll transactions
+= ADP-002
+x ADP-003
+x VOL-001
+```
+
+| Scenario | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Conservative | 147.2 | 662.4 | 1,545.6 | 2,649.6 | 3,532.8 |
+| Base | 4,032.0 | 15,052.8 | 30,105.6 | 53,222.4 | 86,016.0 |
+| Accelerated | 29,635.2 | 90,316.8 | 177,811.2 | 296,352.0 | 423,360.0 |
+
+This table checks volume coherence only. It is not a revenue projection, forecast, commitment, or approved operating plan.
+
 ## Candidate Records
 
 ### `ADP-001` Banks Onboarded By Year
@@ -196,12 +438,12 @@ Calculation method: Direct scenario input
 Current status: Blocked
 Evidence status: Open
 Proposed treatment: Controlled-placeholder candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
-Unit: Banks onboarded per year
-Range interpretation: Scenario recommendation, once proposed
-Rationale: Required to model activation, setup, and adoption, but no current evidence-backed candidate exists in the register.
+Candidate Conservative value or range: Year 1: 2; Year 2: 3; Year 3: 4; Year 4: 4; Year 5: 5
+Candidate Base value or range: Year 1: 5; Year 2: 7; Year 3: 8; Year 4: 10; Year 5: 10
+Candidate Accelerated value or range: Year 1: 10; Year 2: 12; Year 3: 15; Year 4: 18; Year 5: 20
+Unit: Newly onboarded banks during the modeled year
+Range interpretation: Scenario recommendation
+Rationale: Required to model activation, setup, and adoption using a deliberately modest rollout rather than national-scale adoption.
 Existing source: Required first-offering model input
 Evidence still required: Rural Bank/RBAP questionnaire, pipeline assessment, onboarding-capacity estimate
 Risk if wrong: Overstates early implementation revenue, setup activity, and operational workload.
@@ -211,6 +453,7 @@ Outputs affected: Activation revenue, setup cost, adoption indicators
 Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: ODTI commercial lead and finance reviewer
 Recommendation: Include only after controlled placeholder authorization or rural-bank/RBAP evidence.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ### `ADP-002` Active Banks By Year
@@ -224,11 +467,11 @@ Calculation method: Direct scenario input
 Current status: Blocked
 Evidence status: Open
 Proposed treatment: Controlled-placeholder candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
+Candidate Conservative value or range: Year 1: 1; Year 2: 3; Year 3: 6; Year 4: 9; Year 5: 12
+Candidate Base value or range: Year 1: 3; Year 2: 8; Year 3: 14; Year 4: 22; Year 5: 32
+Candidate Accelerated value or range: Year 1: 7; Year 2: 16; Year 3: 28; Year 4: 42; Year 5: 60
 Unit: Active banks per year
-Range interpretation: Scenario recommendation, once proposed
+Range interpretation: Scenario recommendation
 Rationale: Required to drive recurring subscription, operations, and annual transaction volume.
 Existing source: Required first-offering model input
 Evidence still required: Rural-bank readiness, activation timing, churn treatment, pilot activation evidence
@@ -238,7 +481,8 @@ Affected stakeholder views: Rural Bank, ODTI, 3neti, NetBank, DevOps Provider, I
 Outputs affected: Recurring revenue, recurring cost, annual transaction activity
 Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: ODTI commercial lead and finance reviewer
-Recommendation: Include only after controlled placeholder authorization or activation evidence.
+Recommendation: Include only after controlled placeholder authorization or activation evidence. Active banks must not exceed cumulative available onboarded banks.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ### `ADP-003` Active Months Per Bank By Year
@@ -252,12 +496,12 @@ Calculation method: Direct scenario input
 Current status: Blocked
 Evidence status: Institutional data required
 Proposed treatment: Controlled-placeholder candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
-Unit: Active bank-months or active months per bank per year
-Range interpretation: Scenario recommendation, once proposed
-Rationale: Prevents assuming each active bank contributes a full year of activity.
+Candidate Conservative value or range: Year 1: 4; Year 2: 6; Year 3: 7; Year 4: 8; Year 5: 8
+Candidate Base value or range: Year 1: 5; Year 2: 7; Year 3: 8; Year 4: 9; Year 5: 10
+Candidate Accelerated value or range: Year 1: 6; Year 2: 8; Year 3: 9; Year 4: 10; Year 5: 10
+Unit: Weighted average active operating months per active bank
+Range interpretation: Scenario recommendation
+Rationale: Prevents assuming each active bank contributes a full year of activity and reflects staggered cohort activation.
 Existing source: Normalized payroll offering model
 Evidence still required: Onboarding schedule, go-live timing, phased rollout assumptions
 Risk if wrong: Overstates first-year volume and recurring economics.
@@ -266,7 +510,8 @@ Affected stakeholder views: Rural Bank, ODTI, DevOps Provider, Investor, Public 
 Outputs affected: Annual activity, recurring costs, recurring revenue
 Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: ODTI implementation owner and finance reviewer
-Recommendation: Include only after controlled placeholder authorization or rollout evidence.
+Recommendation: Include only after controlled placeholder authorization or rollout evidence. Candidate values must remain between 0 and 12.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ### `CUS-001` Payroll Customers Per Active Rural Bank
@@ -280,11 +525,11 @@ Calculation method: Component-derived volume driver
 Current status: Blocked
 Evidence status: Institutional data required
 Proposed treatment: Stakeholder-evidence candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
+Candidate Conservative value or range: 2
+Candidate Base value or range: 4
+Candidate Accelerated value or range: 6
 Unit: Active payroll customers per active bank
-Range interpretation: Expected operating range, once proposed
+Range interpretation: Expected operating range
 Rationale: Required for explanatory payroll volume under the selected component-derived method.
 Existing source: Normalized payroll offering model
 Evidence still required: Rural-bank payroll portfolio, RBAP survey, employer pipeline
@@ -295,6 +540,7 @@ Outputs affected: Payroll activity, transaction revenue, support load, provider 
 Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: ODTI commercial lead after rural-bank/RBAP evidence
 Recommendation: Prefer stakeholder evidence; use placeholder only for structure testing.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ### `CUS-002` Payroll Runs Per Customer Per Month
@@ -308,11 +554,11 @@ Calculation method: Component-derived volume driver
 Current status: Blocked
 Evidence status: Institutional data required
 Proposed treatment: Stakeholder-evidence candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
+Candidate Conservative value or range: 1
+Candidate Base value or range: 2
+Candidate Accelerated value or range: 2
 Unit: Payroll runs per active payroll customer per month
-Range interpretation: Expected operating range, once proposed
+Range interpretation: Expected operating range
 Rationale: Payroll frequency varies and must not be assumed to equal one run per month without evidence.
 Existing source: Normalized payroll offering model
 Evidence still required: Employer payroll questionnaire and payroll schedule evidence
@@ -323,6 +569,7 @@ Outputs affected: Payroll activity, transaction fees, SMS volume
 Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: ODTI commercial lead after employer evidence
 Recommendation: Prefer employer evidence; use placeholder only for structure testing.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ### `CUS-003` Average Recipients Per Payroll Run
@@ -336,11 +583,11 @@ Calculation method: Component-derived volume driver
 Current status: Blocked
 Evidence status: Institutional data required
 Proposed treatment: Stakeholder-evidence candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
+Candidate Conservative value or range: 20
+Candidate Base value or range: 35
+Candidate Accelerated value or range: 60
 Unit: Recipients per payroll run
-Range interpretation: Expected operating range, once proposed
+Range interpretation: Expected operating range
 Rationale: Determines recipient-level transaction activity and public reach.
 Existing source: Normalized payroll offering model
 Evidence still required: Employer payroll-size data, pilot-employer profile, rural-bank customer portfolio
@@ -351,6 +598,7 @@ Outputs affected: Transaction activity, SMS volume, public-interest reach
 Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: ODTI commercial lead after employer evidence
 Recommendation: Prefer employer evidence; use placeholder only for structure testing.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ### `VOL-002` Payroll Completion Rate
@@ -364,11 +612,11 @@ Calculation method: Component-derived volume driver
 Current status: Blocked
 Evidence status: Management estimate required
 Proposed treatment: Controlled-placeholder candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
+Candidate Conservative value or range: 92%
+Candidate Base value or range: 96%
+Candidate Accelerated value or range: 98%
 Unit: Percentage of attempted recipient disbursements
-Range interpretation: Scenario recommendation, once proposed
+Range interpretation: Scenario recommendation
 Rationale: Converts attempted recipient activity into successful qualifying payroll transactions.
 Existing source: Normalized payroll offering model
 Evidence still required: Successful event definition, failed-event treatment, reversal treatment, pilot completion logs, x-change execution evidence
@@ -379,6 +627,7 @@ Outputs affected: Successful billable events, transaction revenue, provider atta
 Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: ODTI operations and finance owners
 Recommendation: Include only after controlled placeholder authorization or pilot evidence.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ### `VOL-001` Average Successful Payroll Transactions Per Active Bank Per Month
@@ -407,6 +656,7 @@ Outputs affected: Transaction revenue, provider usage, public completion
 Placeholder eligibility: Not independently eligible under component-derived method
 Recommended approval authority: ODTI finance owner for method and derived-value record
 Recommendation: Do not authorize independently. Use derived-value record after component inputs are authorized.
+Authorization readiness: Ready for internal authorization review as a derived value only.
 ```
 
 ### `LIC-004` Hybrid Activation Fee
@@ -503,12 +753,12 @@ Assumption role: Primitive input
 Calculation method: Direct allocation input
 Current status: Blocked
 Evidence status: Management estimate required
-Proposed treatment: Sensitivity-only candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
-Unit: Fixed amount, percentage, margin formula, or another approved basis
-Range interpretation: Negotiation range or scenario recommendation, once proposed
+Proposed treatment: Controlled-placeholder candidate
+Candidate Conservative value or range: PHP 0.40 fixed retained amount per successful disbursement
+Candidate Base value or range: PHP 0.50 fixed retained amount per successful disbursement
+Candidate Accelerated value or range: PHP 0.60 fixed retained amount per successful disbursement
+Unit: PHP per successful disbursement
+Range interpretation: Scenario recommendation
 Rationale: Needed to split employer-paid transaction fee into rural-bank retained economics and ODTI economics.
 Existing source: Normalized payroll offering model
 Evidence still required: ODTI decision, pilot rural-bank discussion, disclosure review, accounting and tax review
@@ -516,9 +766,10 @@ Risk if wrong: Double-counts customer fee or misallocates economic participation
 Affected formulas: Rural Bank retained contribution, ODTI transaction revenue
 Affected stakeholder views: Rural Bank, ODTI, Consolidated View
 Outputs affected: Bank contribution, ODTI contribution
-Placeholder eligibility: Eligible only for sensitivity testing
+Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: ODTI plus pilot rural bank, with finance review
-Recommendation: Do not include as approved. Use only as sensitivity or blocked line until decision.
+Recommendation: Include one controlled baseline rule for Level 1 and separately test sensitivity. Candidate rule must satisfy `RB-001 <= PRC-001`.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ### `ODTI-001` ODTI Support Cost Per Active Bank
@@ -532,11 +783,11 @@ Calculation method: Direct cost input
 Current status: Blocked
 Evidence status: Management estimate required
 Proposed treatment: Management-estimate candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
+Candidate Conservative value or range: PHP 8,000
+Candidate Base value or range: PHP 6,000
+Candidate Accelerated value or range: PHP 5,000
 Unit: PHP per active bank per month or per year
-Range interpretation: Scenario recommendation, once proposed
+Range interpretation: Scenario recommendation
 Rationale: Required to avoid showing ODTI revenue without operating burden.
 Existing source: Normalized payroll offering model
 Evidence still required: Support design, staffing plan, pilot effort, management estimate
@@ -547,6 +798,7 @@ Outputs affected: ODTI net operating contribution
 Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: ODTI operations and finance owners
 Recommendation: Include only after management estimate or controlled placeholder authorization.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ### `ODTI-002` ODTI Implementation Effort Or Cost Per Bank
@@ -560,11 +812,11 @@ Calculation method: Direct cost input
 Current status: Blocked
 Evidence status: Management estimate required
 Proposed treatment: Management-estimate candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
+Candidate Conservative value or range: PHP 35,000
+Candidate Base value or range: PHP 25,000
+Candidate Accelerated value or range: PHP 20,000
 Unit: Hours, person-days, or PHP per bank
-Range interpretation: Scenario recommendation, once proposed
+Range interpretation: Scenario recommendation
 Rationale: Required to compare activation revenue with implementation cost.
 Existing source: Normalized payroll offering model
 Evidence still required: Implementation work breakdown, training scope, pilot implementation effort
@@ -575,6 +827,7 @@ Outputs affected: Activation economics, staffing needs
 Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: ODTI implementation and finance owners
 Recommendation: Include only after management estimate or controlled placeholder authorization.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ### `OPS-001` DevOps Deployment Setup Fee
@@ -644,11 +897,11 @@ Calculation method: Direct cost input
 Current status: Blocked
 Evidence status: Management estimate required
 Proposed treatment: Provider-quote candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
+Candidate Conservative value or range: PHP 8,000
+Candidate Base value or range: PHP 6,000
+Candidate Accelerated value or range: PHP 5,000
 Unit: PHP or engineering hours per bank per month or year
-Range interpretation: Provider tier range or scenario recommendation, once proposed
+Range interpretation: Scenario recommendation
 Rationale: Required to calculate DevOps provider margin and capacity.
 Existing source: Normalized payroll offering model
 Evidence still required: DevOps work breakdown, tooling cost, on-call model, pilot time data
@@ -658,7 +911,8 @@ Affected stakeholder views: DevOps Provider, Rural Bank, Investor
 Outputs affected: DevOps gross margin, staffing capacity
 Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: DevOps provider and finance reviewer
-Recommendation: Prefer DevOps estimate before Level 1; otherwise controlled placeholder.
+Recommendation: Prefer DevOps estimate before Level 1; otherwise controlled placeholder. Candidate excludes `CLD-001`.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ### `CLD-001` Public-Cloud Infrastructure Cost Per Bank
@@ -672,11 +926,11 @@ Calculation method: Direct cost input
 Current status: Blocked
 Evidence status: Provider quote requested
 Proposed treatment: Provider-quote candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
+Candidate Conservative value or range: PHP 4,000
+Candidate Base value or range: PHP 3,000
+Candidate Accelerated value or range: PHP 2,500
 Unit: PHP per bank per month or year
-Range interpretation: Provider tier range or scenario recommendation, once proposed
+Range interpretation: Scenario recommendation
 Rationale: Required to represent external cloud outflow under rural-bank-owned infrastructure.
 Existing source: Normalized payroll offering model
 Evidence still required: Target architecture, cloud-provider quote or calculator output, billing model
@@ -686,7 +940,8 @@ Affected stakeholder views: Rural Bank, DevOps Provider, Consolidated View, Inve
 Outputs affected: External outflows, bank operating cost
 Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: Rural Bank infrastructure owner and DevOps Provider
-Recommendation: Prefer cloud estimate before Level 1; otherwise controlled placeholder.
+Recommendation: Prefer cloud estimate before Level 1; otherwise controlled placeholder. Baseline treats this as a Rural Bank external outflow.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ### `RISK-002` Bad Debt Or Non-Collection
@@ -700,11 +955,11 @@ Calculation method: Direct risk input
 Current status: Blocked
 Evidence status: Accounting review required
 Proposed treatment: Management-estimate candidate
-Candidate Conservative value or range: Open
-Candidate Base value or range: Open
-Candidate Accelerated value or range: Open
-Unit: Percentage, days, reserve, or write-off assumption
-Range interpretation: Scenario recommendation, once proposed
+Candidate Conservative value or range: 5%
+Candidate Base value or range: 2%
+Candidate Accelerated value or range: 1%
+Unit: Non-collection rate on eligible invoiced commercial fees
+Range interpretation: Scenario recommendation
 Rationale: Required so invoiced amounts are not silently treated as collected cash.
 Existing source: Required offering model input
 Evidence still required: Collection policy, accounting review, bad-debt treatment, payment timing
@@ -714,7 +969,8 @@ Affected stakeholder views: Rural Bank, ODTI, 3neti, DevOps Provider, SMS Provid
 Outputs affected: Cash and contribution outputs
 Placeholder eligibility: Eligible for controlled placeholder
 Recommended approval authority: ODTI finance owner with accounting review
-Recommendation: Include only after management policy or controlled placeholder authorization.
+Recommendation: Include only after management policy or controlled placeholder authorization. Do not apply to payroll funding or recipient value.
+Authorization readiness: Ready for internal authorization review.
 ```
 
 ## Additional Inputs For Optional SMS And Timing
@@ -726,9 +982,13 @@ Assumption ID: RISK-001
 Priority: P1
 Assumption role: Primitive input
 Proposed treatment: Controlled-placeholder candidate
-Candidate values: Open
-Unit: Churn definition unresolved
-Recommendation: Useful for Base scenario credibility, but can remain excluded from a narrow initial Level 1 if active banks are directly scenario-controlled.
+Candidate Conservative value or range: 10%
+Candidate Base value or range: 5%
+Candidate Accelerated value or range: 3%
+Unit: Annual active-bank churn or inactivity rate for sensitivity
+Range interpretation: Scenario recommendation
+Recommendation: Useful for Year 2-5 scenario credibility, but can remain excluded from a narrow initial Level 1 if `ADP-002` active banks are directly scenario-controlled.
+Authorization readiness: Ready for internal authorization review as sensitivity input.
 ```
 
 ### `COL-001` Employer Fee Collection Timing
@@ -738,9 +998,13 @@ Assumption ID: COL-001
 Priority: P1
 Assumption role: Primitive input
 Proposed treatment: Controlled-placeholder candidate
-Candidate values: Open
+Candidate Conservative value or range: 45
+Candidate Base value or range: 30
+Candidate Accelerated value or range: 15
 Unit: Days, billing cycle, or collection period
+Range interpretation: Scenario recommendation
 Recommendation: Needed for cash-flow timing. A pre-cash-flow Level 1 may keep collection timing blocked.
+Authorization readiness: Ready for internal authorization review as cash-flow timing input.
 ```
 
 ### `ATT-001` SMS Attachment Rate
@@ -750,9 +1014,13 @@ Assumption ID: ATT-001
 Priority: P1
 Assumption role: Primitive input
 Proposed treatment: Controlled-placeholder candidate
-Candidate values: Open
+Candidate Conservative value or range: 25%
+Candidate Base value or range: 50%
+Candidate Accelerated value or range: 70%
 Unit: Percentage of qualifying transactions
+Range interpretation: Scenario recommendation
 Recommendation: Required only for SMS variant. Prefer employer evidence or controlled placeholder.
+Authorization readiness: Ready for internal authorization review for optional SMS variant.
 ```
 
 ### `VAS-001` SMS Notification Customer-Facing Price
@@ -777,9 +1045,13 @@ Assumption ID: CST-001
 Priority: P1
 Assumption role: Primitive input
 Proposed treatment: Provider-quote candidate
-Candidate values: Open
+Candidate Conservative value or range: PHP 0.70
+Candidate Base value or range: PHP 0.50
+Candidate Accelerated value or range: PHP 0.40
 Unit: PHP per qualifying SMS or approved billable unit
-Recommendation: Do not guess. Required for SMS margin; obtain provider quote or keep SMS provider cost blocked.
+Range interpretation: Scenario recommendation
+Recommendation: Do not guess for external use. Required for SMS margin; obtain provider quote or keep SMS provider cost blocked. Candidate may be used only as internal management candidate if authorized.
+Authorization readiness: Requires evidence before authorization for external-use model; ready only for internal controlled-placeholder review.
 ```
 
 ### `SMS-001` SMS Delivery Success Rate
@@ -789,9 +1061,13 @@ Assumption ID: SMS-001
 Priority: P1
 Assumption role: Primitive input
 Proposed treatment: Stakeholder-evidence candidate
-Candidate values: Open
+Candidate Conservative value or range: 90%
+Candidate Base value or range: 95%
+Candidate Accelerated value or range: 97%
 Unit: Percentage of attempted SMS notifications
+Range interpretation: Scenario recommendation
 Recommendation: Use provider service data or pilot delivery logs. A quote is not delivery-performance evidence.
+Authorization readiness: Requires evidence before authorization for external-use model; ready only for internal controlled-placeholder review.
 ```
 
 ### `SMS-003` SMS Failed-Message Treatment
@@ -801,9 +1077,13 @@ Assumption ID: SMS-003
 Priority: P1
 Assumption role: Primitive input
 Proposed treatment: Stakeholder-evidence candidate
-Candidate values: Open
-Unit: Failure rate, refund rule, credit rule, retry rule, or approved treatment
+Candidate Conservative value or range: Delivered-only billing; failed attempts excluded
+Candidate Base value or range: Delivered-only billing; failed attempts excluded
+Candidate Accelerated value or range: Delivered-only billing; failed attempts excluded
+Unit: Failed-message billing treatment
+Range interpretation: Scenario recommendation
 Recommendation: Keep failed-message adjustments blocked until provider contract or SLA rules exist.
+Authorization readiness: Requires evidence before authorization for external-use model; ready only for internal controlled-placeholder review.
 ```
 
 ### `SMS-004` SMS Privacy And Consent Readiness
@@ -813,9 +1093,13 @@ Assumption ID: SMS-004
 Priority: P1
 Assumption role: Primitive input
 Proposed treatment: Remain blocked
-Candidate values: Open
+Candidate Conservative value or range: Internal modeling only; no external SMS use until privacy review
+Candidate Base value or range: Internal modeling only; no external SMS use until privacy review
+Candidate Accelerated value or range: Internal modeling only; no external SMS use until privacy review
 Unit: Approved readiness status, checklist, or governance indicator
+Range interpretation: Scenario recommendation
 Recommendation: Required before SMS external use. Do not use management guesses for consent and privacy.
+Authorization readiness: Remain blocked for external use.
 ```
 
 ## Blocked Or Excluded Inputs
@@ -835,34 +1119,169 @@ Recommendation: Required before SMS external use. Do not use management guesses 
 
 | Assumption ID | Proposed treatment | Candidate status | Approval needed | Included in Level 1? |
 | --- | --- | --- | --- | --- |
-| `ADP-001` | Controlled-placeholder candidate | Open | ODTI commercial lead and finance reviewer | Yes, if authorized |
-| `ADP-002` | Controlled-placeholder candidate | Open | ODTI commercial lead and finance reviewer | Yes, if authorized |
-| `ADP-003` | Controlled-placeholder candidate | Open | ODTI implementation and finance owners | Yes, if authorized |
-| `CUS-001` | Stakeholder-evidence candidate | Open | ODTI commercial lead after rural-bank/RBAP evidence | Yes, if evidenced or authorized |
-| `CUS-002` | Stakeholder-evidence candidate | Open | ODTI commercial lead after employer evidence | Yes, if evidenced or authorized |
-| `CUS-003` | Stakeholder-evidence candidate | Open | ODTI commercial lead after employer evidence | Yes, if evidenced or authorized |
-| `VOL-002` | Controlled-placeholder candidate | Open | ODTI operations and finance owners | Yes, if authorized |
+| `ADP-001` | Controlled-placeholder candidate | Candidate values proposed | ODTI commercial lead and finance reviewer | Yes, if authorized |
+| `ADP-002` | Controlled-placeholder candidate | Candidate values proposed | ODTI commercial lead and finance reviewer | Yes, if authorized |
+| `ADP-003` | Controlled-placeholder candidate | Candidate values proposed | ODTI implementation and finance owners | Yes, if authorized |
+| `CUS-001` | Stakeholder-evidence candidate | Candidate values proposed | ODTI commercial lead after rural-bank/RBAP evidence | Yes, if evidenced or authorized |
+| `CUS-002` | Stakeholder-evidence candidate | Candidate values proposed | ODTI commercial lead after employer evidence | Yes, if evidenced or authorized |
+| `CUS-003` | Stakeholder-evidence candidate | Candidate values proposed | ODTI commercial lead after employer evidence | Yes, if evidenced or authorized |
+| `VOL-002` | Controlled-placeholder candidate | Candidate values proposed | ODTI operations and finance owners | Yes, if authorized |
 | `VOL-001` | Derived input | Calculated later; not independently authorized | ODTI finance owner for derived-value record | Yes, as derived |
 | `LIC-004` | Existing Active working assumption | Provisional value exists | ODTI commercial lead and finance reviewer | Yes, only as provisional |
 | `LIC-005` | Existing Active working assumption | Provisional value exists | ODTI commercial lead and finance reviewer | Yes, only as provisional |
 | `PRC-001` | Existing Active working assumption | Provisional range exists | ODTI commercial lead and finance reviewer | Yes, only as provisional |
-| `RB-001` | Sensitivity-only candidate | Open | ODTI plus pilot rural bank and finance reviewer | Yes, if sensitivity-only or authorized |
-| `ODTI-001` | Management-estimate candidate | Open | ODTI operations and finance owners | Yes, if authorized |
-| `ODTI-002` | Management-estimate candidate | Open | ODTI implementation and finance owners | Yes, if authorized |
+| `RB-001` | Controlled-placeholder candidate | Candidate values proposed | ODTI plus pilot rural bank and finance reviewer | Yes, if authorized |
+| `ODTI-001` | Management-estimate candidate | Candidate values proposed | ODTI operations and finance owners | Yes, if authorized |
+| `ODTI-002` | Management-estimate candidate | Candidate values proposed | ODTI implementation and finance owners | Yes, if authorized |
 | `OPS-001` | Existing Active working assumption | Provisional value exists | DevOps provider plus ODTI review | Yes, only as provisional |
 | `OPS-002` | Existing Active working assumption | Provisional value exists | DevOps provider plus ODTI review | Yes, only as provisional |
-| `OPS-003` | Provider-quote candidate | Open | DevOps provider and finance reviewer | Yes, if evidenced or authorized |
-| `CLD-001` | Provider-quote candidate | Open | Rural Bank infrastructure owner and DevOps Provider | Yes, if evidenced or authorized |
-| `RISK-002` | Management-estimate candidate | Open | ODTI finance owner with accounting review | Yes, if authorized |
-| `ATT-001` | Controlled-placeholder candidate | Open | ODTI commercial lead | SMS variant only |
+| `OPS-003` | Provider-quote candidate | Candidate values proposed | DevOps provider and finance reviewer | Yes, if evidenced or authorized |
+| `CLD-001` | Provider-quote candidate | Candidate values proposed | Rural Bank infrastructure owner and DevOps Provider | Yes, if evidenced or authorized |
+| `RISK-002` | Management-estimate candidate | Candidate values proposed | ODTI finance owner with accounting review | Yes, if authorized |
+| `ATT-001` | Controlled-placeholder candidate | Candidate values proposed | ODTI commercial lead | SMS variant only |
 | `VAS-001` | Existing Active working assumption | Provisional value exists | ODTI commercial lead | SMS variant only, provisional |
-| `CST-001` | Provider-quote candidate | Open | ODTI commercial owner and SMS provider | SMS variant only, if evidenced |
-| `SMS-001` | Stakeholder-evidence candidate | Open | SMS provider owner and ODTI operations owner | SMS variant only, if evidenced |
-| `SMS-003` | Stakeholder-evidence candidate | Open | SMS provider owner and ODTI operations owner | SMS variant only, if evidenced |
-| `SMS-004` | Remain blocked | Open | ODTI privacy owner and x-legal reviewer | Required before SMS external use |
+| `CST-001` | Provider-quote candidate | Candidate values proposed | ODTI commercial owner and SMS provider | SMS variant only, if evidenced or authorized for internal model |
+| `SMS-001` | Stakeholder-evidence candidate | Candidate values proposed | SMS provider owner and ODTI operations owner | SMS variant only, if evidenced or authorized for internal model |
+| `SMS-003` | Stakeholder-evidence candidate | Candidate values proposed | SMS provider owner and ODTI operations owner | SMS variant only, if evidenced or authorized for internal model |
+| `SMS-004` | Remain blocked | Internal-only candidate treatment proposed | ODTI privacy owner and x-legal reviewer | Required before SMS external use |
 | `TAX-001` | Remain blocked | Open | Tax/accounting/legal reviewers | No, Pre-Tax only |
 | `ROY-001` | Remain blocked | Open | 3neti and ODTI principals with review | No, Pre-Royalty only |
 | `NET-001` | Remain blocked | Open | NetBank relationship owner | No, NetBank-Fee-Blocked only |
+
+## Candidate-Coherence Checks
+
+### Adoption
+
+Status: Pass for candidate review.
+
+- `ADP-001` is newly onboarded banks during the year, not cumulative banks.
+- Cumulative onboarded banks remain greater than or equal to active banks in every scenario year.
+- `ADP-003` is weighted average active months per active bank and remains between 0 and 12.
+- Accelerated onboarding creates materially higher operating load and should require implementation-capacity review before authorization.
+
+### Volume
+
+Status: Pass for candidate review.
+
+- `VOL-001` is derived from `CUS-001`, `CUS-002`, `CUS-003`, and `VOL-002`.
+- `VOL-001` is not independently proposed.
+- Annual activity uses `ADP-002 x ADP-003 x VOL-001`.
+- No independent aggregate volume overrides the derived value.
+
+### Pricing Split
+
+Status: Pass for candidate review.
+
+- `RB-001` does not exceed `PRC-001` in any scenario.
+- Candidate ODTI transaction-platform amount remains non-negative in every scenario.
+- Optional SMS price is separate from payroll transaction fee.
+- Rural-bank retained economics are a derived allocation from customer-paid transaction fee, not a second external inflow.
+
+### DevOps
+
+Status: Pass for candidate review.
+
+- `OPS-001` setup fee is separate from `OPS-002` monthly managed operations fee.
+- `OPS-003` direct DevOps cost is distinct from `CLD-001` cloud cost.
+- `OPS-003` excludes `CLD-001`.
+- The rural bank retains infrastructure ownership under the baseline.
+
+### Costs
+
+Status: Pass for candidate review.
+
+- ODTI implementation cost is separate from DevOps setup cost.
+- ODTI support cost is separate from DevOps managed operations cost.
+- Cloud cost remains an external outflow.
+- SMS wholesale provider price remains visible and separate from SMS customer-facing price.
+
+### Consolidation
+
+Status: Pass for candidate review.
+
+- Internal transfers eliminate.
+- External inflows and outflows are counted once.
+- Payroll funding remains pass-through.
+- Derived contributions are reporting outputs, not new money flows.
+
+### Exclusions
+
+Status: Pass for candidate review.
+
+- Tax remains blocked.
+- Royalty remains blocked.
+- NetBank fee remains blocked.
+- Investor return remains excluded.
+- Business-development partner allocation remains excluded.
+
+## Break-Even Structural Preview
+
+Label:
+
+```text
+Candidate structural preview - not authorized and not a forecast
+```
+
+These formulas may be used after provisional inputs are authorized. They are included to guide review, not to present business conclusions.
+
+### ODTI Transaction Support Recovery
+
+```text
+Transactions required to recover annual ODTI support cost per active bank
+=
+(ODTI-001 x 12)
+/
+(PRC-001 - RB-001)
+```
+
+This preview isolates transaction-platform contribution before activation fees, annual subscription, implementation cost, bad debt, tax, royalty, NetBank fees, and other operating costs.
+
+### Rural Bank Fixed-Cost Recovery
+
+```text
+Transactions required to recover annual rural-bank fixed participation cost
+=
+(LIC-005 + OPS-002 x 12 + CLD-001 x 12)
+/
+RB-001
+```
+
+This preview excludes activation fees, DevOps setup fees, internal bank labor, tax, NetBank fees, customer-retention value, deposits, and operational benefits.
+
+### DevOps Provider Recurring Margin Preview
+
+```text
+Recurring DevOps contribution per bank per month
+=
+OPS-002
+-
+OPS-003
+```
+
+`CLD-001` is excluded under the baseline because the rural bank owns and pays the cloud account.
+
+## Minimum Honest Level 1 Boundary
+
+The first numeric model may include:
+
+- customer-facing activation, subscription, and transaction fees;
+- rural-bank retained economics;
+- ODTI pre-tax and pre-royalty economics;
+- DevOps setup and recurring economics;
+- cloud external outflow;
+- bad debt or collection haircut;
+- optional SMS variant;
+- consolidated external inflows and outflows;
+- payroll value as pass-through.
+
+It must continue to exclude or block:
+
+- tax-adjusted net results;
+- 3neti royalty-adjusted entity results;
+- NetBank fee-adjusted results;
+- investor return;
+- partner allocations;
+- final legal and accounting conclusions.
 
 ## Candidate Approval Recommendations
 
@@ -882,6 +1301,9 @@ No approval is granted by this document.
 ### Ready For Candidate Authorization
 
 - Existing Active working assumptions: `LIC-004`, `LIC-005`, `PRC-001`, `OPS-001`, `OPS-002`, `VAS-001`.
+- Core controlled-placeholder candidates with proposed values: `ADP-001`, `ADP-002`, `ADP-003`, `CUS-001`, `CUS-002`, `CUS-003`, `VOL-002`, `RB-001`, `ODTI-001`, `ODTI-002`, `OPS-003`, `CLD-001`, `RISK-002`.
+- Optional SMS candidates with proposed values: `ATT-001`, `CST-001`, `SMS-001`, `SMS-003`, `SMS-004`.
+- Timing and churn candidates with proposed values: `COL-001`, `RISK-001`.
 - Derived method selection: `VOL-001` as component-derived from `CUS-001`, `CUS-002`, `CUS-003`, and `VOL-002`.
 
 These are still provisional unless authorized through the Provisional Input Register.
