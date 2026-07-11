@@ -2,7 +2,7 @@
 
 ## Status
 
-Current status: Level 1 controlled placeholder model created.
+Current status: Level 1 controlled placeholder model created and normalized for stakeholder-facing summary preparation.
 
 Offering ID: `OFR-RB-PAYROLL-STARTER`
 
@@ -195,7 +195,7 @@ This does not mean the line lacks financial importance. It means the line is exc
 | [provisional-input-candidate-pack.md](provisional-input-candidate-pack.md) | Internal review pack for candidate Level 1 provisional inputs. |
 | [economic-coherence-review.md](economic-coherence-review.md) | Cost-allocation and unit-economics review before provisional-input authorization. |
 | [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Draft internal authorization register for Level 1 controlled placeholder inputs. |
-| [offering-economics-level-1.md](offering-economics-level-1.md) | First numeric Payroll Starter Offering Economics controlled placeholder model. |
+| [offering-economics-level-1.md](offering-economics-level-1.md) | First numeric Payroll Starter Offering Economics controlled placeholder model, normalized into Core Payroll, optional SMS increment, and combined variant views. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |
 | [consolidated-view.md](consolidated-view.md) | Non-numeric consolidation structure and double-counting controls. |
 | [stakeholder-views/customer-view.md](stakeholder-views/customer-view.md) | Employer customer view. |

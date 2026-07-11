@@ -79,6 +79,7 @@ This target may show partial economics while explicitly blocking unresolved outp
 - final tax-adjusted results;
 - 3neti royalty-adjusted net economics;
 - NetBank fee-adjusted net economics;
+- Rural Bank true incremental contribution after internal bank payroll-support cost;
 - investor return;
 - business-development partner allocation;
 - final legal or accounting conclusions;
@@ -1200,6 +1201,7 @@ Authorization readiness: Remain blocked for external use.
 | `TAX-001` | Remain blocked | Tax and withholding require professional review. The first model is explicitly Pre-Tax. |
 | `ROY-001` | Remain blocked | Royalty or license basis requires 3neti-ODTI decision, legal, accounting, tax, and related-party review. The first model is explicitly Pre-Royalty. |
 | `NET-001` | Remain blocked | NetBank fee basis requires NetBank or banking-partner evidence and legal characterization. The first model is NetBank-Fee-Blocked. |
+| `RB-002` | Remain blocked | Rural Bank internal payroll-support cost requires bank operations evidence. Rural Bank outputs must be labeled contribution before internal bank payroll-support cost. |
 | `NET-002` | Not required for initial Level 1 model | NetBank internal operating cost is useful for NetBank view but not required for a NetBank-fee-blocked model. |
 | `SMS-002` | Not required for initial Level 1 model | SMS provider internal delivery cost may be unavailable if provider remains external; provider margin remains unavailable. |
 | `PAR-001` | Not required for initial Level 1 model | Business-development participation is deferred. |

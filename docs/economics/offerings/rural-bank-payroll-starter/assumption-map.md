@@ -58,6 +58,7 @@ Until the component assumptions are Active, Approved, or explicitly controlled p
 | `ROY-001` | 3neti royalty or license basis. | `ODTI-COST-001`, `3NETI-REV-001`, ODTI and 3neti contribution. | ODTI, 3neti, Investor. | Blocked | 3neti-ODTI agreement, legal and accounting review. |
 | `RISK-001` | Churn. | Active-bank continuity, recurring revenue, recurring costs. | Rural Bank, ODTI, DevOps, VASP, Investor. | Blocked | Defined churn subject and scenario basis. |
 | `RISK-002` | Bad debt or non-collection. | Collection timing, payable timing, contribution. | Rural Bank, ODTI, 3neti, DevOps, VASP, Investor. | Blocked | Accounting and collection policy. |
+| `RB-002` | Rural Bank payroll-specific internal support cost. | Rural Bank true incremental contribution, Rural Bank break-even, Rural Bank payback. | Rural Bank, Customer, ODTI, Investor. | Blocked | Pilot bank staffing data, bank operations interview, support tickets, or management estimate. |
 | `TAX-001` | Tax, withholding, and accounting treatment. | Tax lines and final payable lines. | All financial views. | Blocked | Tax and accounting review. |
 | `PUB-001` | Public-interest completion indicator. | `PUBLIC-PI-*`, `CUST-OPVAL-*`. | Customer, Rural Bank, RBAP, Public Interest, Investor. | Blocked | Public-interest measurement definition. |
 
@@ -85,6 +86,7 @@ The following currently block affected line items and downstream totals:
 - `ROY-001`;
 - `RISK-001`;
 - `RISK-002`;
+- `RB-002`;
 - `TAX-001`;
 - `PUB-001`;
 - canonical blocked assumptions listed below.
@@ -118,6 +120,7 @@ The following canonical assumption records were identified during offering insta
 | `ADP-003` | First-year activation timing and active months. | Separate onboarded banks from active offering usage and convert active banks into active model months. | Rural Bank, ODTI, DevOps, Investor. |
 | `COL-001` | Employer collection timing. | Distinguish billing, collection, cash receipt, and downstream payment. | Rural Bank, ODTI, 3neti, DevOps, VASP. |
 | `RB-001` | Rural-bank retained fee amount or formula. | Calculate rural-bank retained economics. | Rural Bank, ODTI, Consolidated View. |
+| `RB-002` | Rural Bank payroll-specific internal support cost. | Calculate true Rural Bank incremental contribution and payback. | Rural Bank, Customer, ODTI, Investor. |
 | `ODTI-001` | ODTI support cost per active bank or active payroll customer. | Model ODTI operating burden. | ODTI, Investor. |
 | `ODTI-002` | Implementation effort. | Separate activation revenue from implementation cost. | ODTI, Rural Bank, Investor. |
 | `CLD-001` | Public cloud cost. | Track external infrastructure outflow under rural-bank-owned environment. | Rural Bank, DevOps, Consolidated View. |

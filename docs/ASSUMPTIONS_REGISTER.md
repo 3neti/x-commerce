@@ -1687,6 +1687,46 @@ Current status: Blocked.
 
 Notes: This is a derived allocation from the employer fee. It is not a second external inflow.
 
+### `RB-002` Rural Bank Payroll-Specific Internal Support Cost
+
+Identifier: `RB-002`
+
+Category: Rural-bank retained economics and bank-specific operating inputs.
+
+Description: Internal Rural Bank labor and operating cost specifically attributable to employer payroll onboarding, employer support, recipient questions, transaction exceptions, reconciliation, reporting, compliance coordination, and customer-service handling for `OFR-RB-PAYROLL-STARTER`.
+
+Unit of measure: Unresolved. Possible bases include PHP per active employer per month, PHP per active bank per month, PHP per payroll run, PHP per exception event, or a mixed fixed-and-variable basis.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Level 1 Payroll Starter model normalization.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: Rural Bank operations owner, ODTI commercial owner, and finance reviewer.
+
+Review date: Before any Rural Bank true incremental contribution, payback, or stakeholder-facing profitability claim.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER`, future rural-bank-operated payroll or payout offerings.
+
+Affected stakeholders: Rural Bank, Employer / Customer, ODTI, Investor.
+
+Affected calculations: Rural Bank true incremental contribution, Rural Bank incremental break-even, Rural Bank payback, full-cost stress test, consolidated incremental contribution where the cost is external to the modeled entity boundary.
+
+Affected line items: `OFR-RB-PAYROLL-STARTER-RB-CONTRIB-001`, future Rural Bank support-cost and payback lines.
+
+Legal or accounting dependency: labor classification, cost allocation, accounting treatment, service-level scope, tax treatment if charged or reimbursed.
+
+Current status: Blocked.
+
+Notes: Until this assumption is resolved, Rural Bank outputs must use the qualified label `Rural Bank Contribution Before Internal Bank Payroll-Support Cost`.
+
 ### `ODTI-001` ODTI Support Cost Per Active Bank
 
 Identifier: `ODTI-001`
