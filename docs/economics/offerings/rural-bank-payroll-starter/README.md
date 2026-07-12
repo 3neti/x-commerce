@@ -196,6 +196,7 @@ This does not mean the line lacks financial importance. It means the line is exc
 | [economic-coherence-review.md](economic-coherence-review.md) | Cost-allocation and unit-economics review before provisional-input authorization. |
 | [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Draft internal authorization register for Level 1 controlled placeholder inputs. |
 | [offering-economics-level-1.md](offering-economics-level-1.md) | First numeric Payroll Starter Offering Economics controlled placeholder model, normalized into Core Payroll, optional SMS increment, and combined variant views. |
+| [five-year-revenue-projection-summary.md](five-year-revenue-projection-summary.md) | Stakeholder-facing five-year revenue projection summary derived from the normalized Level 1 model. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |
 | [consolidated-view.md](consolidated-view.md) | Non-numeric consolidation structure and double-counting controls. |
 | [stakeholder-views/customer-view.md](stakeholder-views/customer-view.md) | Employer customer view. |

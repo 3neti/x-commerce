@@ -281,35 +281,39 @@ x SMS-001
 
 The Level 1 baseline treats SMS provider wholesale cost as an external provider outflow. SMS provider internal margin is excluded because `SMS-002` is not authorized.
 
+Baseline provider-payment assumption: the wholesale SMS provider charge remains payable for qualifying SMS activity regardless of whether the employer's customer-facing SMS fee is collected.
+
+This assumption remains subject to provider-contract evidence and may change if failed-message billing, retry billing, provider credits, refund treatment, or collection-contingent wholesale charges are contractually established. No such contractual term is assumed in this Level 1 model.
+
 ### Conservative SMS Increment
 
-| Year | SMS-Attached Delivered Transactions | SMS Customer-Facing Revenue | Wholesale SMS Provider Cost | Rural Bank SMS Margin After Non-Collection | SMS Provider Revenue | Consolidated SMS Contribution |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Year 1 | 33.1 | PHP 33.12 | PHP 23.18 | PHP 9.44 | PHP 23.18 | PHP 8.28 |
-| Year 2 | 149.0 | PHP 149.04 | PHP 104.33 | PHP 42.48 | PHP 104.33 | PHP 37.26 |
-| Year 3 | 347.8 | PHP 347.76 | PHP 243.43 | PHP 99.11 | PHP 243.43 | PHP 86.94 |
-| Year 4 | 596.2 | PHP 596.16 | PHP 417.31 | PHP 169.91 | PHP 417.31 | PHP 149.04 |
-| Year 5 | 794.9 | PHP 794.88 | PHP 556.42 | PHP 226.54 | PHP 556.42 | PHP 198.72 |
+| Year | SMS-Attached Delivered Transactions | SMS Customer-Facing Revenue | Collected SMS Revenue | Wholesale SMS Provider Cost | Rural Bank SMS Margin After Non-Collection | SMS Provider Revenue | Consolidated SMS Contribution |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Year 1 | 33.1 | PHP 33.12 | PHP 31.46 | PHP 23.18 | PHP 8.28 | PHP 23.18 | PHP 8.28 |
+| Year 2 | 149.0 | PHP 149.04 | PHP 141.59 | PHP 104.33 | PHP 37.26 | PHP 104.33 | PHP 37.26 |
+| Year 3 | 347.8 | PHP 347.76 | PHP 330.37 | PHP 243.43 | PHP 86.94 | PHP 243.43 | PHP 86.94 |
+| Year 4 | 596.2 | PHP 596.16 | PHP 566.35 | PHP 417.31 | PHP 149.04 | PHP 417.31 | PHP 149.04 |
+| Year 5 | 794.9 | PHP 794.88 | PHP 755.14 | PHP 556.42 | PHP 198.72 | PHP 556.42 | PHP 198.72 |
 
 ### Base SMS Increment
 
-| Year | SMS-Attached Delivered Transactions | SMS Customer-Facing Revenue | Wholesale SMS Provider Cost | Rural Bank SMS Margin After Non-Collection | SMS Provider Revenue | Consolidated SMS Contribution |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Year 1 | 1,915.2 | PHP 1,915.20 | PHP 957.60 | PHP 938.45 | PHP 957.60 | PHP 919.30 |
-| Year 2 | 7,150.1 | PHP 7,150.08 | PHP 3,575.04 | PHP 3,503.54 | PHP 3,575.04 | PHP 3,432.04 |
-| Year 3 | 14,300.2 | PHP 14,300.16 | PHP 7,150.08 | PHP 7,007.08 | PHP 7,150.08 | PHP 6,864.08 |
-| Year 4 | 25,280.6 | PHP 25,280.64 | PHP 12,640.32 | PHP 12,387.51 | PHP 12,640.32 | PHP 12,134.71 |
-| Year 5 | 40,857.6 | PHP 40,857.60 | PHP 20,428.80 | PHP 20,020.22 | PHP 20,428.80 | PHP 19,611.65 |
+| Year | SMS-Attached Delivered Transactions | SMS Customer-Facing Revenue | Collected SMS Revenue | Wholesale SMS Provider Cost | Rural Bank SMS Margin After Non-Collection | SMS Provider Revenue | Consolidated SMS Contribution |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Year 1 | 1,915.2 | PHP 1,915.20 | PHP 1,876.90 | PHP 957.60 | PHP 919.30 | PHP 957.60 | PHP 919.30 |
+| Year 2 | 7,150.1 | PHP 7,150.08 | PHP 7,007.08 | PHP 3,575.04 | PHP 3,432.04 | PHP 3,575.04 | PHP 3,432.04 |
+| Year 3 | 14,300.2 | PHP 14,300.16 | PHP 14,014.16 | PHP 7,150.08 | PHP 6,864.08 | PHP 7,150.08 | PHP 6,864.08 |
+| Year 4 | 25,280.6 | PHP 25,280.64 | PHP 24,775.03 | PHP 12,640.32 | PHP 12,134.71 | PHP 12,640.32 | PHP 12,134.71 |
+| Year 5 | 40,857.6 | PHP 40,857.60 | PHP 40,040.45 | PHP 20,428.80 | PHP 19,611.65 | PHP 20,428.80 | PHP 19,611.65 |
 
 ### Accelerated SMS Increment
 
-| Year | SMS-Attached Delivered Transactions | SMS Customer-Facing Revenue | Wholesale SMS Provider Cost | Rural Bank SMS Margin After Non-Collection | SMS Provider Revenue | Consolidated SMS Contribution |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Year 1 | 20,122.3 | PHP 20,122.30 | PHP 8,048.92 | PHP 11,952.65 | PHP 8,048.92 | PHP 11,872.16 |
-| Year 2 | 61,325.1 | PHP 61,325.11 | PHP 24,530.04 | PHP 36,427.11 | PHP 24,530.04 | PHP 36,181.81 |
-| Year 3 | 120,733.8 | PHP 120,733.80 | PHP 48,293.52 | PHP 71,715.88 | PHP 48,293.52 | PHP 71,232.94 |
-| Year 4 | 201,223.0 | PHP 201,223.01 | PHP 80,489.20 | PHP 119,526.47 | PHP 80,489.20 | PHP 118,721.57 |
-| Year 5 | 287,461.4 | PHP 287,461.44 | PHP 114,984.58 | PHP 170,752.10 | PHP 114,984.58 | PHP 169,602.25 |
+| Year | SMS-Attached Delivered Transactions | SMS Customer-Facing Revenue | Collected SMS Revenue | Wholesale SMS Provider Cost | Rural Bank SMS Margin After Non-Collection | SMS Provider Revenue | Consolidated SMS Contribution |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Year 1 | 20,122.3 | PHP 20,122.30 | PHP 19,921.08 | PHP 8,048.92 | PHP 11,872.16 | PHP 8,048.92 | PHP 11,872.16 |
+| Year 2 | 61,325.1 | PHP 61,325.11 | PHP 60,711.86 | PHP 24,530.04 | PHP 36,181.81 | PHP 24,530.04 | PHP 36,181.81 |
+| Year 3 | 120,733.8 | PHP 120,733.80 | PHP 119,526.47 | PHP 48,293.52 | PHP 71,232.94 | PHP 48,293.52 | PHP 71,232.94 |
+| Year 4 | 201,223.0 | PHP 201,223.01 | PHP 199,210.78 | PHP 80,489.20 | PHP 118,721.57 | PHP 80,489.20 | PHP 118,721.57 |
+| Year 5 | 287,461.4 | PHP 287,461.44 | PHP 284,586.83 | PHP 114,984.58 | PHP 169,602.25 | PHP 114,984.58 | PHP 169,602.25 |
 
 ## Combined Variant: Core Payroll Starter + SMS
 
@@ -319,31 +323,31 @@ The following tables are optional combined variants. They should not be treated 
 
 | Year | Combined External Revenue | Rural Bank Contribution Before Internal Bank Payroll-Support Cost | ODTI Contribution | DevOps Contribution | Combined Consolidated Contribution | Combined Full-Cost Stress Result |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Year 1 | PHP 8,580.32 | PHP 3,713.38 | PHP 72,415.90 | PHP 108,000.00 | PHP -43,871.88 | PHP -272,286.62 |
-| Year 2 | PHP 20,611.44 | PHP 9,870.19 | PHP 135,611.57 | PHP 186,000.00 | PHP -94,523.46 | PHP -632,129.81 |
-| Year 3 | PHP 39,093.36 | PHP 19,610.44 | PHP 221,296.99 | PHP 284,000.00 | PHP -169,104.74 | PHP -1,178,389.56 |
-| Year 4 | PHP 58,445.76 | PHP 30,360.75 | PHP 288,766.27 | PHP 344,000.00 | PHP -240,893.84 | PHP -1,737,639.25 |
-| Year 5 | PHP 76,927.68 | PHP 40,101.00 | PHP 374,451.70 | PHP 442,000.00 | PHP -315,475.12 | PHP -2,283,899.00 |
+| Year 1 | PHP 8,580.32 | PHP 3,712.22 | PHP 72,415.90 | PHP 108,000.00 | PHP -43,871.88 | PHP -272,287.78 |
+| Year 2 | PHP 20,611.44 | PHP 9,864.97 | PHP 135,611.57 | PHP 186,000.00 | PHP -94,523.46 | PHP -632,135.03 |
+| Year 3 | PHP 39,093.36 | PHP 19,598.27 | PHP 221,296.99 | PHP 284,000.00 | PHP -169,104.74 | PHP -1,178,401.73 |
+| Year 4 | PHP 58,445.76 | PHP 30,339.89 | PHP 288,766.27 | PHP 344,000.00 | PHP -240,893.84 | PHP -1,737,660.11 |
+| Year 5 | PHP 76,927.68 | PHP 40,073.18 | PHP 374,451.70 | PHP 442,000.00 | PHP -315,475.12 | PHP -2,283,926.82 |
 
 ### Base Combined Variant
 
 | Year | Combined External Revenue | Rural Bank Contribution Before Internal Bank Payroll-Support Cost | ODTI Contribution | DevOps Contribution | Combined Consolidated Contribution | Combined Full-Cost Stress Result |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Year 1 | PHP 112,963.20 | PHP 52,894.13 | PHP 269,371.36 | PHP 310,000.00 | PHP -2,753.66 | PHP -717,105.87 |
-| Year 2 | PHP 281,729.28 | PHP 142,591.41 | PHP 514,999.74 | PHP 574,000.00 | PHP 27,519.65 | PHP -1,565,408.59 |
-| Year 3 | PHP 491,458.56 | PHP 256,958.82 | PHP 777,663.49 | PHP 848,000.00 | PHP 74,479.31 | PHP -2,559,041.18 |
-| Year 4 | PHP 819,114.24 | PHP 434,778.49 | PHP 1,200,565.95 | PHP 1,292,000.00 | PHP 145,091.64 | PHP -4,129,221.51 |
-| Year 5 | PHP 1,249,881.60 | PHP 673,688.06 | PHP 1,681,175.68 | PHP 1,780,000.00 | PHP 254,455.17 | PHP -6,086,311.94 |
+| Year 1 | PHP 112,963.20 | PHP 52,874.98 | PHP 269,371.36 | PHP 310,000.00 | PHP -2,753.66 | PHP -717,125.02 |
+| Year 2 | PHP 281,729.28 | PHP 142,519.91 | PHP 514,999.74 | PHP 574,000.00 | PHP 27,519.65 | PHP -1,565,480.09 |
+| Year 3 | PHP 491,458.56 | PHP 256,815.82 | PHP 777,663.49 | PHP 848,000.00 | PHP 74,479.31 | PHP -2,559,184.18 |
+| Year 4 | PHP 819,114.24 | PHP 434,525.68 | PHP 1,200,565.95 | PHP 1,292,000.00 | PHP 145,091.64 | PHP -4,129,474.32 |
+| Year 5 | PHP 1,249,881.60 | PHP 673,279.49 | PHP 1,681,175.68 | PHP 1,780,000.00 | PHP 254,455.17 | PHP -6,086,720.51 |
 
 ### Accelerated Combined Variant
 
 | Year | Combined External Revenue | Rural Bank Contribution Before Internal Bank Payroll-Support Cost | ODTI Contribution | DevOps Contribution | Combined Consolidated Contribution | Combined Full-Cost Stress Result |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Year 1 | PHP 694,392.70 | PHP 335,465.96 | PHP 850,014.39 | PHP 710,000.00 | PHP 475,399.85 | PHP -1,399,534.04 |
-| Year 2 | PHP 1,561,958.71 | PHP 802,875.29 | PHP 1,559,179.08 | PHP 1,240,000.00 | PHP 1,121,809.08 | PHP -2,637,124.71 |
-| Year 3 | PHP 2,816,356.20 | PHP 1,478,195.73 | PHP 2,588,186.32 | PHP 2,010,000.00 | PHP 2,055,899.12 | PHP -4,431,804.27 |
-| Year 4 | PHP 4,483,927.01 | PHP 2,380,499.55 | PHP 3,922,903.87 | PHP 3,000,000.00 | PHP 3,302,598.53 | PHP -6,769,500.45 |
-| Year 5 | PHP 6,234,181.44 | PHP 3,332,827.94 | PHP 5,285,176.96 | PHP 4,000,000.00 | PHP 4,616,855.05 | PHP -9,167,172.06 |
+| Year 1 | PHP 694,392.70 | PHP 335,385.47 | PHP 850,014.39 | PHP 710,000.00 | PHP 475,399.85 | PHP -1,399,614.53 |
+| Year 2 | PHP 1,561,958.71 | PHP 802,629.99 | PHP 1,559,179.08 | PHP 1,240,000.00 | PHP 1,121,809.08 | PHP -2,637,370.01 |
+| Year 3 | PHP 2,816,356.20 | PHP 1,477,712.80 | PHP 2,588,186.32 | PHP 2,010,000.00 | PHP 2,055,899.12 | PHP -4,432,287.20 |
+| Year 4 | PHP 4,483,927.01 | PHP 2,379,694.66 | PHP 3,922,903.87 | PHP 3,000,000.00 | PHP 3,302,598.53 | PHP -6,770,305.34 |
+| Year 5 | PHP 6,234,181.44 | PHP 3,331,678.09 | PHP 5,285,176.96 | PHP 4,000,000.00 | PHP 4,616,855.05 | PHP -9,168,321.91 |
 
 ## Break-Even Results
 
