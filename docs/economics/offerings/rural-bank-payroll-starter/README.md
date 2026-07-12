@@ -150,7 +150,9 @@ Not included in baseline:
 
 ## Readiness Status
 
-The offering is structurally instantiated but not numerically ready.
+The offering is structurally instantiated and numerically modeled at Level 1 using draft-authorized provisional inputs.
+
+The Level 1 model remains not evidence-supported, not forecast-grade, not contract-grade, and not investment-grade. Its current limitations come from evidence maturity and unresolved blocked items, not from the absence of calculations.
 
 Line-item readiness values used in this directory:
 
@@ -215,4 +217,4 @@ No Channel Partner view is created. Channel Partner remains deferred.
 
 ## Next Step
 
-After this Level 1 model is accepted, produce a stakeholder-facing Five-Year Revenue Projection Summary derived from the controlled model, preserving the same provisional warnings and blocked exclusions.
+After this Level 1 model and stakeholder-facing summary are accepted, produce stakeholder-specific financial briefs derived from the normalized Level 1 model. The briefs should consume the canonical model without creating separate calculations.

@@ -196,10 +196,12 @@ Provider-payment terms remain subject to provider-contract evidence. Failed-mess
 | Employer commercial fees | External inflow |
 | Rural Bank to ODTI | Internal transfer |
 | Rural Bank to DevOps Provider | Internal transfer |
-| Rural Bank to SMS Provider | Internal transfer when SMS Provider is inside the modeled boundary; provider outflow when treated outside the boundary |
+| Rural Bank to SMS Provider | External provider outflow under the current Level 1 model boundary |
 | Payroll funding | Pass-through |
 
 Consolidated external revenue counts employer commercial fees once and does not add internal stakeholder revenue columns together.
+
+Future ecosystem models may choose to include the SMS Provider inside the modeled commercial boundary, but that is not the current Level 1 treatment.
 
 ## What The Model Says
 
