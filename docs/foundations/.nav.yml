@@ -1,0 +1,9 @@
+nav:
+  - 00-why-x-commerce.md
+  - 01-the-transaction-is-the-product.md
+  - 02-the-customer-purchases-an-outcome.md
+  - 03-commercial-architecture.md
+  - 04-boundary-with-x-change.md
+  - commercial-waterfall.md
+  - glob: "*"
+    ignore_no_matches: true

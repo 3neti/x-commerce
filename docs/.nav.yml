@@ -1,0 +1,29 @@
+ignore: "*.hidden.md"
+sort:
+  type: natural
+  by: filename
+  sections: mixed
+nav:
+  - Home: index.md
+  - Start Here:
+      - COMPASS.md
+      - ARCHITECTURE.md
+      - GRAMMAR.md
+      - IMPLEMENTATION_STATUS.md
+      - ROADMAP.md
+      - MkDocs Support: MKDOCS.md
+  - Foundations: foundations
+  - Stakeholders: stakeholders
+  - Economics: economics
+  - Products: products
+  - Ecosystems: ecosystems
+  - Governance:
+      - ASSUMPTIONS_REGISTER.md
+      - COMMERCIAL_MODEL_REGISTER.md
+      - RISK_REGISTER.md
+      - DECISION_REGISTER.md
+  - Decisions: decisions
+  - Operations: operations
+  - Legal Handoffs: legal
+  - Partners: partners
+  - Templates: templates

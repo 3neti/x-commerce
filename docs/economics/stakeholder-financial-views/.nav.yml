@@ -1,0 +1,11 @@
+title: Stakeholder Financial Views
+nav:
+  - README.md
+  - rural-bank-view.md
+  - netbank-view.md
+  - odti-view.md
+  - 3neti-view.md
+  - investor-view.md
+  - public-interest-view.md
+  - glob: "*"
+    ignore_no_matches: true

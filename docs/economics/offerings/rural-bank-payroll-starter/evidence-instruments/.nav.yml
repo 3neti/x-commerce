@@ -1,0 +1,5 @@
+title: Evidence Instruments
+nav:
+  - README.md
+  - glob: "*"
+    ignore_no_matches: true

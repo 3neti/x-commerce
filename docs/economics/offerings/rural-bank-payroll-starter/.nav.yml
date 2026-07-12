@@ -1,0 +1,17 @@
+title: Payroll Starter
+nav:
+  - README.md
+  - commercial-model.md
+  - assumption-map.md
+  - Economic Treatment Decision: decisions/0003-payroll-starter-economic-treatment.md
+  - economic-coherence-review.md
+  - evidence-acquisition-plan.md
+  - evidence-instruments
+  - provisional-input-candidate-pack.md
+  - provisional-input-register-level-1.md
+  - offering-economics-level-1.md
+  - five-year-revenue-projection-summary.md
+  - stakeholder-financial-briefs
+  - stakeholder-views
+  - glob: "*"
+    ignore_no_matches: true

@@ -1,0 +1,13 @@
+nav:
+  - README.md
+  - commercial-model.md
+  - unit-economics.md
+  - five-year-projections.md
+  - sensitivity-analysis.md
+  - break-even.md
+  - revenue-sharing.md
+  - provider-costs-and-markups.md
+  - offerings
+  - stakeholder-financial-views
+  - glob: "*"
+    ignore_no_matches: true

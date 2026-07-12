@@ -1,0 +1,5 @@
+title: Offerings
+nav:
+  - rural-bank-payroll-starter
+  - glob: "*"
+    ignore_no_matches: true

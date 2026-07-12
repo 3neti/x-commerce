@@ -23,9 +23,16 @@
 # Frontend build artifacts
 /public/build/
 /public/hot
+/site/
 /npm-debug.log
 /yarn-error.log
 /pnpm-debug.log
+
+# Local documentation tooling
+/.venv-docs/
+/.mkdocs_cache/
+__pycache__/
+*.py[cod]
 
 # Local tooling and IDE state
 /.idea/

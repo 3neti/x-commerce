@@ -1,0 +1,18 @@
+title: RBAP Digital Banking Program
+nav:
+  - README.md
+  - 00-program-overview.md
+  - 01-executive-thesis.md
+  - 02-current-problem.md
+  - 03-program-opportunity.md
+  - 04-productization.md
+  - 05-stakeholder-map.md
+  - 06-money-flow.md
+  - 07-commercial-models.md
+  - 08-five-year-projection-framework.md
+  - 09-adoption-scenarios.md
+  - 10-risks-and-dependencies.md
+  - 11-if-we-do-nothing.md
+  - 12-next-decisions.md
+  - glob: "*"
+    ignore_no_matches: true

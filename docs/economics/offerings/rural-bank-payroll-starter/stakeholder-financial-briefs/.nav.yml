@@ -1,0 +1,5 @@
+title: Stakeholder Financial Briefs
+nav:
+  - README.md
+  - glob: "*"
+    ignore_no_matches: true

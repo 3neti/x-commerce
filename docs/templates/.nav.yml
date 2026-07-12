@@ -1,0 +1,10 @@
+nav:
+  - assumption-record.md
+  - commercial-model.md
+  - decision-record.md
+  - five-year-projection.md
+  - money-flow.md
+  - pricing-model.md
+  - stakeholder-business-case.md
+  - glob: "*"
+    ignore_no_matches: true
