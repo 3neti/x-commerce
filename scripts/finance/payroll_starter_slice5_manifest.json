@@ -1,0 +1,106 @@
+{
+  "model": {
+    "offering": "OFR-RB-PAYROLL-STARTER",
+    "level": "Level 1",
+    "maturity": "Controlled Placeholder Model",
+    "status": "Provisional, Non-Forecast, Not Investment-Grade, Not Contract-Grade"
+  },
+  "output": {
+    "workbook": "artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_payroll_starter_model.mjs"
+  },
+  "sources": {
+    "provisionalInputs": "docs/economics/offerings/rural-bank-payroll-starter/provisional-input-register-level-1.md",
+    "level1Model": "docs/economics/offerings/rural-bank-payroll-starter/offering-economics-level-1.md",
+    "summary": "docs/economics/offerings/rural-bank-payroll-starter/five-year-revenue-projection-summary.md",
+    "specification": "docs/economics/offerings/rural-bank-payroll-starter/spreadsheet-financial-model.md"
+  },
+  "slice5Sheets": [
+    "17_Capital_Budgeting",
+    "18_Sensitivity",
+    "21_Checks"
+  ],
+  "capitalBudgetingPrerequisites": [
+    "Authorized cash-flow timing through COL-001 or equivalent",
+    "Beginning cash, investment, or financing basis",
+    "Discount-rate assumption FIN-001 or equivalent",
+    "Valid cash-flow series for each evaluated stakeholder",
+    "Tax treatment if after-tax cash flows are requested",
+    "Explicit exclusion of royalty and NetBank fees where still blocked"
+  ],
+  "blockedReturnOutputs": [
+    "Rural Bank NPV",
+    "Rural Bank IRR",
+    "ODTI NPV",
+    "ODTI IRR",
+    "Consolidated NPV",
+    "Consolidated IRR",
+    "Discounted payback",
+    "Discount-rate sensitivity",
+    "Terminal value"
+  ],
+  "sensitivityPlan": [
+    {
+      "grid": "Active banks versus active employers per bank",
+      "drivers": ["ADP-002", "CUS-001"],
+      "targetOutput": "Consolidated Core Contribution Before Blocked Items",
+      "status": "Formula-based operating sensitivity"
+    },
+    {
+      "grid": "Employer monthly fee versus active employers",
+      "drivers": ["EMP-002", "Active employers"],
+      "targetOutput": "Core external revenue and Rural Bank/ODTI contribution",
+      "status": "Formula-based operating sensitivity"
+    },
+    {
+      "grid": "Recipient fee versus transaction volume",
+      "drivers": ["PRC-001", "Annual successful payroll transactions"],
+      "targetOutput": "Core external revenue and ODTI transaction-platform revenue",
+      "status": "Formula-based operating sensitivity"
+    },
+    {
+      "grid": "Rural Bank retained amount versus volume",
+      "drivers": ["RB-001", "Annual successful payroll transactions"],
+      "targetOutput": "Rural Bank contribution before RB-002 and ODTI transaction revenue",
+      "status": "Formula-based operating sensitivity"
+    },
+    {
+      "grid": "ODTI support cost versus active banks",
+      "drivers": ["ODTI-001", "ADP-002"],
+      "targetOutput": "ODTI Pre-Tax/Pre-Royalty/NetBank-Fee-Blocked Contribution",
+      "status": "Formula-based operating sensitivity"
+    },
+    {
+      "grid": "DevOps direct cost versus bank count",
+      "drivers": ["OPS-003", "ADP-002"],
+      "targetOutput": "DevOps contribution before unresolved setup direct cost and overhead",
+      "status": "Formula-based operating sensitivity"
+    },
+    {
+      "grid": "Discount rate versus NPV",
+      "drivers": ["FIN-001", "Cash-flow series"],
+      "targetOutput": "NPV",
+      "status": "Blocked until FIN-001 and cash-flow prerequisites are governed"
+    }
+  ],
+  "requiredChecks": [
+    "NPV uses cash flows only",
+    "NPV blocked until FIN-001 exists",
+    "IRR blocked or Not meaningful until a valid cash-flow sign pattern exists",
+    "Payback uses investment cash flow rather than accounting revenue",
+    "Terminal value disabled by default",
+    "Sensitivity grids reference driver cells and model outputs",
+    "No pasted static sensitivity outputs",
+    "Discount-rate sensitivity remains blocked while NPV is blocked",
+    "Blocked return outputs display Blocked rather than zero"
+  ],
+  "runtimeChecks": [
+    "Build or open Slice 4 workbook first",
+    "Add Slice 5 capital-budgeting and sensitivity sheets",
+    "Confirm all Slice 5 sheets exist",
+    "Confirm blocked return outputs display Blocked where prerequisites remain unavailable",
+    "Confirm sensitivity grids consume driver cells and model-output references",
+    "Scan for formula errors",
+    "Render all Slice 5 sheets for visual QA"
+  ]
+}

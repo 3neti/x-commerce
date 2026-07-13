@@ -1,0 +1,109 @@
+{
+  "model": {
+    "offering": "OFR-RB-PAYROLL-STARTER",
+    "level": "Level 1",
+    "maturity": "Controlled Placeholder Model",
+    "status": "Provisional, Non-Forecast, Not Investment-Grade, Not Contract-Grade"
+  },
+  "output": {
+    "workbook": "artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_payroll_starter_model.mjs"
+  },
+  "sources": {
+    "provisionalInputs": "docs/economics/offerings/rural-bank-payroll-starter/provisional-input-register-level-1.md",
+    "level1Model": "docs/economics/offerings/rural-bank-payroll-starter/offering-economics-level-1.md",
+    "summary": "docs/economics/offerings/rural-bank-payroll-starter/five-year-revenue-projection-summary.md",
+    "specification": "docs/economics/offerings/rural-bank-payroll-starter/spreadsheet-financial-model.md"
+  },
+  "slice3Sheets": [
+    "06_Pricing",
+    "07_Revenue",
+    "10_Rural_Bank_View",
+    "11_ODTI_View",
+    "12_DevOps_View",
+    "13_SMS_Variant",
+    "14_Consolidated_View",
+    "21_Checks"
+  ],
+  "canonicalParitySamples": {
+    "Conservative": {
+      "Year 1": {
+        "coreExternalRevenue": 8547.2,
+        "ruralBankCoreRevenue": 3703.94,
+        "odtiCoreRevenue": 124415.9,
+        "devOpsRevenue": 140000,
+        "consolidatedCoreContribution": -43880.16,
+        "smsMargin": 8.28
+      },
+      "Year 5": {
+        "coreExternalRevenue": 76132.8,
+        "ruralBankCoreRevenue": 39874.46,
+        "odtiCoreRevenue": 762451.7,
+        "devOpsRevenue": 1210000,
+        "consolidatedCoreContribution": -315673.84,
+        "smsMargin": 198.72
+      }
+    },
+    "Base": {
+      "Year 1": {
+        "coreExternalRevenue": 111048,
+        "ruralBankCoreRevenue": 51955.68,
+        "odtiCoreRevenue": 381871.36,
+        "devOpsRevenue": 400000,
+        "consolidatedCoreContribution": -3672.96,
+        "smsMargin": 919.3
+      },
+      "Year 5": {
+        "coreExternalRevenue": 1209024,
+        "ruralBankCoreRevenue": 653667.84,
+        "odtiCoreRevenue": 2631175.68,
+        "devOpsRevenue": 3700000,
+        "consolidatedCoreContribution": 234843.52,
+        "smsMargin": 19611.65
+      }
+    },
+    "Accelerated": {
+      "Year 1": {
+        "coreExternalRevenue": 674270.4,
+        "ruralBankCoreRevenue": 323513.31,
+        "odtiCoreRevenue": 1054014.39,
+        "devOpsRevenue": 920000,
+        "consolidatedCoreContribution": 463527.7,
+        "smsMargin": 11872.16
+      },
+      "Year 5": {
+        "coreExternalRevenue": 5946720,
+        "ruralBankCoreRevenue": 3162075.84,
+        "odtiCoreRevenue": 6725176.96,
+        "devOpsRevenue": 7000000,
+        "consolidatedCoreContribution": 4447252.8,
+        "smsMargin": 169602.25
+      }
+    }
+  },
+  "requiredChecks": [
+    "RB-001 <= PRC-001",
+    "EMP-001 split sums to 100%",
+    "EMP-002 split sums to 100%",
+    "External revenue counts employer fees once",
+    "Stakeholder revenue is non-additive",
+    "Core Payroll excludes SMS",
+    "SMS remains optional",
+    "SMS margin equals collected SMS revenue less wholesale SMS provider cost",
+    "ODTI contribution remains pre-tax, pre-royalty, and NetBank-fee-blocked",
+    "Cloud cost remains outside DevOps under the bank-owned cloud model",
+    "Rural Bank contribution remains before RB-002 internal support cost",
+    "Internal transfers eliminate in consolidated view",
+    "Payroll funding remains pass-through and excluded from revenue",
+    "Tax, royalty, NetBank, investor return, and partner allocation remain blocked or excluded"
+  ],
+  "runtimeChecks": [
+    "Build or open Slice 2 workbook first",
+    "Add Slice 3 pricing and revenue sheets",
+    "Confirm all Slice 3 sheets exist",
+    "Confirm Slice 3 formulas consume Slice 2 assumptions and activity outputs",
+    "Confirm canonical parity samples match",
+    "Scan for formula errors",
+    "Render all Slice 3 sheets for visual QA"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "x-commerce-finance-artifacts",
+  "private": true,
+  "type": "module",
+  "description": "Repository-local workbook generation tools for x-commerce finance artifacts.",
+  "scripts": {
+    "finance:payroll:check": "node scripts/finance/build_payroll_starter_model.mjs --dry-run",
+    "finance:payroll:check-slice-3-export": "node scripts/finance/build_payroll_starter_model.mjs --slice-3-export-manifest-check",
+    "finance:payroll:build-slice-2": "node scripts/finance/build_payroll_starter_model.mjs --build-slice-2-exceljs --output artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "finance:payroll:validate-slice-2": "node scripts/finance/build_payroll_starter_model.mjs --validate-slice-2-exceljs --input artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "finance:payroll:build-slice-3": "node scripts/finance/build_payroll_starter_model.mjs --build-slice-3-exceljs --output artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "finance:payroll:validate-slice-3": "node scripts/finance/build_payroll_starter_model.mjs --validate-slice-3-exceljs --input artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "finance:payroll:build-slice-4": "node scripts/finance/build_payroll_starter_model.mjs --build-slice-4-exceljs --output artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "finance:payroll:validate-slice-4": "node scripts/finance/build_payroll_starter_model.mjs --validate-slice-4-exceljs --input artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "finance:payroll:build-slice-5": "node scripts/finance/build_payroll_starter_model.mjs --build-slice-5-exceljs --output artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "finance:payroll:validate-slice-5": "node scripts/finance/build_payroll_starter_model.mjs --validate-slice-5-exceljs --input artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "finance:payroll:build-slice-6": "node scripts/finance/build_payroll_starter_model.mjs --build-slice-6-exceljs --output artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "finance:payroll:validate-slice-6": "node scripts/finance/build_payroll_starter_model.mjs --validate-slice-6-exceljs --input artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "finance:payroll:build-slice-7": "node scripts/finance/build_payroll_starter_model.mjs --build-slice-7-exceljs --output artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "finance:payroll:validate-slice-7": "node scripts/finance/build_payroll_starter_model.mjs --validate-slice-7-exceljs --input artifacts/x-commerce-payroll-starter-financial-model.xlsx"
+  },
+  "devDependencies": {
+    "exceljs": "^4.4.0"
+  }
+}

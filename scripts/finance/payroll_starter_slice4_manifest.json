@@ -1,0 +1,69 @@
+{
+  "model": {
+    "offering": "OFR-RB-PAYROLL-STARTER",
+    "level": "Level 1",
+    "maturity": "Controlled Placeholder Model",
+    "status": "Provisional, Non-Forecast, Not Investment-Grade, Not Contract-Grade"
+  },
+  "output": {
+    "workbook": "artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_payroll_starter_model.mjs"
+  },
+  "sources": {
+    "provisionalInputs": "docs/economics/offerings/rural-bank-payroll-starter/provisional-input-register-level-1.md",
+    "level1Model": "docs/economics/offerings/rural-bank-payroll-starter/offering-economics-level-1.md",
+    "summary": "docs/economics/offerings/rural-bank-payroll-starter/five-year-revenue-projection-summary.md",
+    "specification": "docs/economics/offerings/rural-bank-payroll-starter/spreadsheet-financial-model.md"
+  },
+  "slice4Sheets": [
+    "08_Cost_of_Sales",
+    "09_Operating_Expenses",
+    "15_Profit_and_Loss",
+    "16_Cash_Flow",
+    "21_Checks"
+  ],
+  "blockedOutputs": [
+    "Rural Bank true incremental net contribution after RB-002",
+    "Tax-adjusted net income",
+    "Post-royalty ODTI contribution",
+    "NetBank-fee-adjusted results",
+    "Formal GAAP/PFRS financial statements",
+    "Full balance sheet",
+    "Ending cash",
+    "Working-capital roll-forward",
+    "NPV and IRR"
+  ],
+  "costClassificationRules": [
+    "Payroll funding and recipient payroll value are pass-through and excluded from revenue and cost of sales.",
+    "SMS wholesale provider cost is a direct external provider cost under the Level 1 boundary.",
+    "ODTI-001 and ODTI-002 are payroll-specific ODTI operating costs.",
+    "OPS-003 is DevOps direct recurring cost and excludes CLD-001.",
+    "CLD-001 is a Rural Bank external modernization outflow under the bank-owned cloud model.",
+    "RB-002 remains blocked and must not be treated as zero.",
+    "TAX-001 remains blocked and must not be treated as zero."
+  ],
+  "requiredChecks": [
+    "Payroll funding excluded from cost of sales",
+    "SMS wholesale cost remains unreduced by non-collection",
+    "Incremental and modernization costs remain separate",
+    "CLD-001 remains outside DevOps",
+    "RB-002 remains blocked",
+    "TAX-001 remains blocked",
+    "ROY-001 remains blocked",
+    "NET-001 remains blocked",
+    "Management P&L is not labeled as GAAP/PFRS",
+    "Revenue is not assumed to equal cash receipt",
+    "COL-001 blocks cash timing where no authorized timing input exists",
+    "Ending cash remains blocked without beginning cash and financing assumptions",
+    "NPV and IRR remain outside Slice 4"
+  ],
+  "runtimeChecks": [
+    "Build or open Slice 3 workbook first",
+    "Add Slice 4 cost, operating expense, P&L, and cash-flow sheets",
+    "Confirm all Slice 4 sheets exist",
+    "Confirm Slice 4 formulas consume prior revenue and stakeholder sheets",
+    "Confirm blocked outputs display Blocked rather than zero",
+    "Scan for formula errors",
+    "Render all Slice 4 sheets for visual QA"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "model": {
+    "offering": "OFR-RB-PAYROLL-STARTER",
+    "level": "Level 1",
+    "maturity": "Controlled Placeholder Model",
+    "status": "Provisional, Non-Forecast, Not Investment-Grade, Not Contract-Grade"
+  },
+  "output": {
+    "workbook": "artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_payroll_starter_model.mjs"
+  },
+  "sources": {
+    "provisionalInputs": "docs/economics/offerings/rural-bank-payroll-starter/provisional-input-register-level-1.md",
+    "level1Model": "docs/economics/offerings/rural-bank-payroll-starter/offering-economics-level-1.md",
+    "summary": "docs/economics/offerings/rural-bank-payroll-starter/five-year-revenue-projection-summary.md",
+    "specification": "docs/economics/offerings/rural-bank-payroll-starter/spreadsheet-financial-model.md"
+  },
+  "slice6Sheets": [
+    "19_Scenarios",
+    "20_Dashboard",
+    "21_Checks",
+    "22_Source_Lineage"
+  ],
+  "dashboardMetrics": [
+    "Selected scenario",
+    "Active banks",
+    "Active employers",
+    "Annual successful payroll transactions",
+    "Consolidated Core External Revenue",
+    "Consolidated Core Contribution Before Blocked Items",
+    "Rural Bank Contribution Before Internal Bank Payroll-Support Cost",
+    "ODTI Pre-Tax/Pre-Royalty/NetBank-Fee-Blocked Contribution",
+    "DevOps Contribution",
+    "Optional SMS Increment",
+    "Full-Cost Stand-Alone Stress Result",
+    "Blocked-input count",
+    "ERROR count"
+  ],
+  "lineageCategories": [
+    "Adoption and activation",
+    "Payroll activity",
+    "Pricing and employer fees",
+    "Stakeholder revenue splits",
+    "Rural Bank contribution",
+    "ODTI contribution",
+    "DevOps economics",
+    "Optional SMS economics",
+    "Consolidated external revenue",
+    "Cost classification",
+    "Management P&L",
+    "Cash-flow limitations",
+    "Capital-budgeting gates",
+    "Sensitivity grids",
+    "Blocked assumptions and exclusions"
+  ],
+  "scenarioComparisonRules": [
+    "Conservative, Base, and Accelerated must remain coherent operating states.",
+    "Scenario tables consume workbook outputs rather than recalculating independent numbers.",
+    "Blocked return metrics remain blocked in scenario comparison.",
+    "Core Payroll and optional SMS remain separated."
+  ],
+  "dashboardRules": [
+    "Dashboard values must link to model output sheets.",
+    "Dashboard must display the controlled-placeholder warning.",
+    "Dashboard must display stakeholder revenue non-additivity warning.",
+    "Dashboard must display ERROR count and blocked-input count.",
+    "Dashboard must not add entity-level stakeholder revenues into external revenue."
+  ],
+  "sourceLineageRules": [
+    "Every material workbook output must map to a source document.",
+    "Every numeric input must map to a canonical assumption ID or provisional input ID.",
+    "Every blocked output must identify the blocking assumption or dependency.",
+    "The workbook must never be listed as the commercial source of truth.",
+    "Decision records must be cited for economic treatment and revenue split decisions."
+  ],
+  "requiredChecks": [
+    "Scenario selector points to a valid scenario",
+    "Scenario outputs consume model sheets",
+    "Dashboard values are linked outputs",
+    "Dashboard ERROR count ties to 21_Checks",
+    "Stakeholder revenues remain non-additive",
+    "Consolidated external revenue counts external inflows once",
+    "Core Payroll and optional SMS remain separated",
+    "Blocked outputs remain blocked",
+    "Source lineage covers every material output",
+    "No source-lineage row uses workbook as source of truth",
+    "No unsupported values are introduced in presentation sheets"
+  ],
+  "runtimeChecks": [
+    "Build or open Slice 5 workbook first",
+    "Add Slice 6 scenario, dashboard, checks, and source-lineage sheets",
+    "Confirm all Slice 6 sheets exist",
+    "Confirm dashboard formulas link to workbook outputs",
+    "Confirm source-lineage table covers material outputs",
+    "Scan for formula errors",
+    "Render dashboard, scenarios, checks, and source-lineage sheets for visual QA"
+  ]
+}

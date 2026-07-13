@@ -1,0 +1,155 @@
+{
+  "model": {
+    "offering": "OFR-RB-PAYROLL-STARTER",
+    "level": "Level 1",
+    "maturity": "Controlled Placeholder Model",
+    "status": "Provisional, Non-Forecast, Not Investment-Grade, Not Contract-Grade"
+  },
+  "output": {
+    "workbook": "artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_payroll_starter_model.mjs"
+  },
+  "sources": {
+    "provisionalInputs": "docs/economics/offerings/rural-bank-payroll-starter/provisional-input-register-level-1.md",
+    "level1Model": "docs/economics/offerings/rural-bank-payroll-starter/offering-economics-level-1.md",
+    "summary": "docs/economics/offerings/rural-bank-payroll-starter/five-year-revenue-projection-summary.md",
+    "specification": "docs/economics/offerings/rural-bank-payroll-starter/spreadsheet-financial-model.md"
+  },
+  "workbookDependencies": [
+    "02_Assumptions",
+    "04_Adoption",
+    "05_Payroll_Activity",
+    "21_Checks"
+  ],
+  "sheetLayouts": [
+    {
+      "sheet": "06_Pricing",
+      "tableAnchor": "A1",
+      "layout": "Customer-facing prices, stakeholder splits, provider prices, and pricing checks."
+    },
+    {
+      "sheet": "07_Revenue",
+      "tableAnchor": "A1",
+      "layout": "Core external revenue and non-additive entity revenue views by scenario and year."
+    },
+    {
+      "sheet": "10_Rural_Bank_View",
+      "tableAnchor": "A1",
+      "layout": "Rural Bank core revenue, optional SMS margin reference, and qualified contribution labels."
+    },
+    {
+      "sheet": "11_ODTI_View",
+      "tableAnchor": "A1",
+      "layout": "ODTI access, employer-service, transaction-platform revenue, support cost, and contribution."
+    },
+    {
+      "sheet": "12_DevOps_View",
+      "tableAnchor": "A1",
+      "layout": "DevOps setup revenue, recurring managed-operations revenue, direct cost, and contribution."
+    },
+    {
+      "sheet": "13_SMS_Variant",
+      "tableAnchor": "A1",
+      "layout": "Optional SMS delivered volume, customer-facing revenue, collected revenue, wholesale cost, and SMS margin."
+    },
+    {
+      "sheet": "14_Consolidated_View",
+      "tableAnchor": "A1",
+      "layout": "Consolidated core external revenue, internal eliminations, SMS increment, and blocked exclusions."
+    },
+    {
+      "sheet": "21_Checks",
+      "tableAnchor": "A20",
+      "layout": "Append Slice 3 revenue, stakeholder-view, SMS, and consolidation checks below Slice 2 checks."
+    }
+  ],
+  "formulaBlueprints": [
+    "Employer onboarding revenue = newly onboarded employer relationships x EMP-001.",
+    "Employer monthly service revenue = active employers x weighted active months x EMP-002.",
+    "Recipient disbursement fee revenue = annual successful transactions x PRC-001.",
+    "Core external revenue = employer onboarding revenue + employer monthly service revenue + recipient disbursement fee revenue.",
+    "Rural Bank core revenue = Rural Bank share of employer fees and RB-001 transaction retention, after RISK-002 non-collection.",
+    "ODTI core revenue = activation revenue + annual subscription revenue + ODTI share of employer fees and transaction-platform revenue, after RISK-002 where applicable.",
+    "DevOps revenue = OPS-001 setup revenue + OPS-002 recurring managed-operations revenue.",
+    "SMS margin = SMS customer-facing revenue x (1 - RISK-002) - CST-001 wholesale SMS provider cost.",
+    "Consolidated core contribution excludes internal transfers and keeps tax, royalty, NetBank, investor, and partner outputs blocked."
+  ],
+  "visualQaTargets": [
+    "06_Pricing!A1:H30",
+    "07_Revenue!A1:H35",
+    "10_Rural_Bank_View!A1:H35",
+    "11_ODTI_View!A1:H35",
+    "12_DevOps_View!A1:H30",
+    "13_SMS_Variant!A1:H35",
+    "14_Consolidated_View!A1:H35",
+    "21_Checks!A1:F40"
+  ],
+  "canonicalParitySamples": {
+    "Conservative": {
+      "Year 1": {
+        "coreExternalRevenue": 8547.2,
+        "ruralBankCoreRevenue": 3703.94,
+        "odtiCoreRevenue": 124415.9,
+        "devOpsRevenue": 140000,
+        "consolidatedCoreContribution": -43880.16,
+        "smsMargin": 8.28
+      },
+      "Year 5": {
+        "coreExternalRevenue": 76132.8,
+        "ruralBankCoreRevenue": 39874.46,
+        "odtiCoreRevenue": 762451.7,
+        "devOpsRevenue": 1210000,
+        "consolidatedCoreContribution": -315673.84,
+        "smsMargin": 198.72
+      }
+    },
+    "Base": {
+      "Year 1": {
+        "coreExternalRevenue": 111048,
+        "ruralBankCoreRevenue": 51955.68,
+        "odtiCoreRevenue": 381871.36,
+        "devOpsRevenue": 400000,
+        "consolidatedCoreContribution": -3672.96,
+        "smsMargin": 919.3
+      },
+      "Year 5": {
+        "coreExternalRevenue": 1209024,
+        "ruralBankCoreRevenue": 653667.84,
+        "odtiCoreRevenue": 2631175.68,
+        "devOpsRevenue": 3700000,
+        "consolidatedCoreContribution": 234843.52,
+        "smsMargin": 19611.65
+      }
+    },
+    "Accelerated": {
+      "Year 1": {
+        "coreExternalRevenue": 674270.4,
+        "ruralBankCoreRevenue": 323513.31,
+        "odtiCoreRevenue": 1054014.39,
+        "devOpsRevenue": 920000,
+        "consolidatedCoreContribution": 463527.7,
+        "smsMargin": 11872.16
+      },
+      "Year 5": {
+        "coreExternalRevenue": 5946720,
+        "ruralBankCoreRevenue": 3162075.84,
+        "odtiCoreRevenue": 6725176.96,
+        "devOpsRevenue": 7000000,
+        "consolidatedCoreContribution": 4447252.8,
+        "smsMargin": 169602.25
+      }
+    }
+  },
+  "runtimeChecks": [
+    "Open or build Slice 2 workbook first",
+    "Add Slice 3 worksheets without recalculating adoption or activity independently",
+    "Confirm all Slice 3 sheets exist",
+    "Confirm Slice 3 formulas consume 02_Assumptions, 04_Adoption, and 05_Payroll_Activity",
+    "Confirm canonical parity samples match",
+    "Confirm stakeholder revenue warning remains visible",
+    "Confirm Core Payroll excludes SMS",
+    "Confirm SMS margin formula uses collected SMS revenue less wholesale cost",
+    "Scan for formula errors",
+    "Render Slice 3 visual QA targets"
+  ]
+}

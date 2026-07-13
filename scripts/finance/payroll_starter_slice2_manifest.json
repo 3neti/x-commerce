@@ -1,0 +1,73 @@
+{
+  "model": {
+    "offering": "OFR-RB-PAYROLL-STARTER",
+    "level": "Level 1",
+    "maturity": "Controlled Placeholder Model",
+    "status": "Provisional, Non-Forecast, Not Investment-Grade, Not Contract-Grade"
+  },
+  "output": {
+    "workbook": "artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_payroll_starter_model.mjs"
+  },
+  "sources": {
+    "provisionalInputs": "docs/economics/offerings/rural-bank-payroll-starter/provisional-input-register-level-1.md",
+    "level1Model": "docs/economics/offerings/rural-bank-payroll-starter/offering-economics-level-1.md",
+    "summary": "docs/economics/offerings/rural-bank-payroll-starter/five-year-revenue-projection-summary.md",
+    "specification": "docs/economics/offerings/rural-bank-payroll-starter/spreadsheet-financial-model.md"
+  },
+  "slice2Sheets": [
+    "00_Read_Me",
+    "01_Control",
+    "02_Assumptions",
+    "03_Assumption_Map",
+    "04_Adoption",
+    "05_Payroll_Activity",
+    "21_Checks"
+  ],
+  "canonicalActivity": {
+    "Conservative": {
+      "vol001": 36.8,
+      "annualTransactions": [147.2, 662.4, 1545.6, 2649.6, 3532.8]
+    },
+    "Base": {
+      "vol001": 268.8,
+      "annualTransactions": [4032.0, 15052.8, 30105.6, 53222.4, 86016.0]
+    },
+    "Accelerated": {
+      "vol001": 705.6,
+      "annualTransactions": [29635.2, 90316.8, 177811.2, 296352.0, 423360.0]
+    }
+  },
+  "blockedOrExcludedInputs": [
+    "TAX-001",
+    "ROY-001",
+    "NET-001",
+    "NET-002",
+    "PAR-001",
+    "RB-002",
+    "SMS-002",
+    "BAT-001",
+    "ALLOC-001",
+    "ALLOC-002",
+    "PLT-001"
+  ],
+  "requiredChecks": [
+    "Active banks <= cumulative onboarded banks",
+    "Weighted active months between 0 and 12",
+    "Active employers reconcile",
+    "Newly onboarded employer relationships reconcile",
+    "VOL-001 equals component-derived formula",
+    "No independent VOL-001 input in component-derived mode",
+    "Annual successful transactions match canonical model",
+    "RB-001 <= PRC-001",
+    "Blocked assumptions visibly blocked"
+  ],
+  "runtimeChecks": [
+    "Confirm @oai/artifact-tool is available",
+    "Build Slice 2 workbook",
+    "Open generated workbook through artifact-tool",
+    "Confirm all Slice 2 sheets exist",
+    "Scan for formula errors",
+    "Render all Slice 2 sheets for visual QA"
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "model": {
+    "offering": "OFR-RB-PAYROLL-STARTER",
+    "level": "Level 1",
+    "maturity": "Controlled Placeholder Model",
+    "status": "Provisional, Non-Forecast, Not Investment-Grade, Not Contract-Grade"
+  },
+  "output": {
+    "workbook": "artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_payroll_starter_model.mjs"
+  },
+  "sources": {
+    "provisionalInputs": "docs/economics/offerings/rural-bank-payroll-starter/provisional-input-register-level-1.md",
+    "level1Model": "docs/economics/offerings/rural-bank-payroll-starter/offering-economics-level-1.md",
+    "summary": "docs/economics/offerings/rural-bank-payroll-starter/five-year-revenue-projection-summary.md",
+    "specification": "docs/economics/offerings/rural-bank-payroll-starter/spreadsheet-financial-model.md"
+  },
+  "reviewPlan": [
+    {
+      "step": "Runtime dependency confirmation",
+      "purpose": "Confirm the approved workbook-generation runtime is available before any workbook export is attempted.",
+      "evidence": ["--exceljs-runtime-check output"],
+      "gate": "Workbook generation remains blocked if the approved workbook runtime is unavailable."
+    },
+    {
+      "step": "Manifest parity checks",
+      "purpose": "Confirm all scaffold manifests match the builder before generation or review.",
+      "evidence": [
+        "--manifest-check",
+        "--slice-3-manifest-check",
+        "--slice-4-manifest-check",
+        "--slice-5-manifest-check",
+        "--slice-6-manifest-check",
+        "--slice-7-manifest-check"
+      ],
+      "gate": "All manifest checks must pass."
+    },
+    {
+      "step": "Workbook generation",
+      "purpose": "Generate the workbook only through the approved repository-local workbook builder.",
+      "evidence": ["artifacts/x-commerce-payroll-starter-financial-model.xlsx"],
+      "gate": "No manual binary workbook editing is permitted."
+    },
+    {
+      "step": "Workbook structural validation",
+      "purpose": "Open the generated workbook, confirm required sheets, scan formulas, and check blocked-output presentation.",
+      "evidence": ["workbook validation log", "formula error scan"],
+      "gate": "Formula-error scan must be clean except explicitly blocked outputs."
+    },
+    {
+      "step": "Canonical parity review",
+      "purpose": "Compare workbook outputs to the canonical Level 1 Markdown model and five-year summary.",
+      "evidence": ["parity table", "source-lineage rows"],
+      "gate": "Core external revenue, contribution, ODTI, DevOps, and SMS sample points must tie."
+    },
+    {
+      "step": "Visual QA",
+      "purpose": "Render workbook sheets or representative ranges to confirm readability, warnings, and dashboard layout.",
+      "evidence": ["rendered sheet previews", "visual QA notes"],
+      "gate": "Warnings, key outputs, source notes, and check statuses must be visible and unclipped."
+    },
+    {
+      "step": "Review ZIP",
+      "purpose": "Package the workbook, builder, manifests, and design document for review.",
+      "evidence": ["~/Downloads review ZIP"],
+      "gate": "Review ZIP must be created in ~/Downloads."
+    },
+    {
+      "step": "Freeze boundary",
+      "purpose": "Separate generated workbook review from future commercial-documentation changes.",
+      "evidence": ["git status", "commit boundary note"],
+      "gate": "No canonical commercial source document changes are hidden inside workbook freeze."
+    }
+  ],
+  "requiredArtifacts": [
+    "artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "docs/economics/offerings/rural-bank-payroll-starter/spreadsheet-financial-model.md",
+    "scripts/finance/build_payroll_starter_model.mjs",
+    "scripts/finance/payroll_starter_slice2_manifest.json",
+    "scripts/finance/payroll_starter_slice2_export_manifest.json",
+    "scripts/finance/payroll_starter_slice3_manifest.json",
+    "scripts/finance/payroll_starter_slice3_export_manifest.json",
+    "scripts/finance/payroll_starter_slice4_manifest.json",
+    "scripts/finance/payroll_starter_slice5_manifest.json",
+    "scripts/finance/payroll_starter_slice6_manifest.json",
+    "scripts/finance/payroll_starter_slice7_manifest.json",
+    "~/Downloads/x-commerce-payroll-starter-financial-model-review-<date>.zip"
+  ],
+  "freezeChecks": [
+    "All scaffold manifest validations pass",
+    "Workbook generated only through the approved workbook builder",
+    "All required sheets exist",
+    "Formula-error scan is clean",
+    "Dashboard ERROR count is zero except explicitly blocked checks",
+    "Canonical parity table ties to Markdown model",
+    "Stakeholder revenue remains non-additive",
+    "Core Payroll and optional SMS remain separated",
+    "Payroll funding remains pass-through",
+    "Blocked tax, royalty, NetBank, investor, and partner outputs remain blocked or excluded",
+    "Visual QA confirms warnings and key outputs are visible",
+    "Review ZIP is placed in ~/Downloads",
+    "No generated temporary files or office-suite metadata are committed"
+  ],
+  "runtimeChecks": [
+    "Confirm approved workbook runtime availability",
+    "Run all manifest checks before export",
+    "Generate workbook through scripts/finance/build_payroll_starter_model.mjs only",
+    "Open the generated workbook programmatically",
+    "Confirm all required sheets exist",
+    "Scan for formula errors and invalid references",
+    "Confirm canonical parity table matches source Markdown figures",
+    "Render dashboard and representative sheets for visual QA",
+    "Create review ZIP in ~/Downloads",
+    "Confirm git status excludes temporary office metadata"
+  ]
+}

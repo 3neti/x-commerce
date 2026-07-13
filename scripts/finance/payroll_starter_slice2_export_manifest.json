@@ -1,0 +1,111 @@
+{
+  "model": {
+    "offering": "OFR-RB-PAYROLL-STARTER",
+    "level": "Level 1",
+    "maturity": "Controlled Placeholder Model",
+    "status": "Provisional, Non-Forecast, Not Investment-Grade, Not Contract-Grade"
+  },
+  "output": {
+    "workbook": "artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_payroll_starter_model.mjs"
+  },
+  "sources": {
+    "provisionalInputs": "docs/economics/offerings/rural-bank-payroll-starter/provisional-input-register-level-1.md",
+    "level1Model": "docs/economics/offerings/rural-bank-payroll-starter/offering-economics-level-1.md",
+    "summary": "docs/economics/offerings/rural-bank-payroll-starter/five-year-revenue-projection-summary.md",
+    "specification": "docs/economics/offerings/rural-bank-payroll-starter/spreadsheet-financial-model.md"
+  },
+  "sheetLayouts": [
+    {
+      "sheet": "00_Read_Me",
+      "tableAnchor": "A1",
+      "layout": "Title, warnings, source documents, style legend, permitted use, and prohibited use."
+    },
+    {
+      "sheet": "01_Control",
+      "tableAnchor": "A1",
+      "layout": "Controlled scenario, model status, optional SMS, cost view, volume method, and runtime dependency rows."
+    },
+    {
+      "sheet": "02_Assumptions",
+      "tableAnchor": "A1",
+      "layout": "Canonical assumption rows with scenario columns, selected value, current status, evidence status, provisional input ID, and source."
+    },
+    {
+      "sheet": "03_Assumption_Map",
+      "tableAnchor": "A1",
+      "layout": "Dependency map from assumptions to formulas, stakeholder tabs, outputs, and status."
+    },
+    {
+      "sheet": "04_Adoption",
+      "tableAnchor": "A1",
+      "layout": "Scenario-by-year adoption engine with bank cohorts and employer relationships."
+    },
+    {
+      "sheet": "05_Payroll_Activity",
+      "tableAnchor": "A1",
+      "layout": "Component-derived payroll activity and optional SMS activity."
+    },
+    {
+      "sheet": "21_Checks",
+      "tableAnchor": "A1",
+      "layout": "Check register with actual, expected, difference, status, and notes columns."
+    }
+  ],
+  "namedRangeStrategy": [
+    {
+      "name": "ScenarioSelected",
+      "target": "01_Control!B2",
+      "purpose": "Selected scenario control"
+    },
+    {
+      "name": "VolumeMethod",
+      "target": "01_Control!B7",
+      "purpose": "Must remain Component-derived in Level 1"
+    },
+    {
+      "name": "AssumptionTable",
+      "target": "02_Assumptions!A1:Q200",
+      "purpose": "Governed assumption rows"
+    },
+    {
+      "name": "VOL_001_Derived",
+      "target": "05_Payroll_Activity derived row",
+      "purpose": "Machine-safe name for VOL-001"
+    },
+    {
+      "name": "AnnualSuccessfulTransactions",
+      "target": "05_Payroll_Activity annual transaction row",
+      "purpose": "Derived activity output"
+    }
+  ],
+  "formulaBlueprints": [
+    "Selected assumption values must reference the scenario selected on 01_Control.",
+    "Cumulative onboarded banks must be a running sum of ADP-001.",
+    "Active employers must equal active banks multiplied by CUS-001.",
+    "Newly onboarded employer relationships must equal newly onboarded banks multiplied by CUS-001.",
+    "VOL-001 must equal CUS-001 multiplied by CUS-002, CUS-003, and VOL-002.",
+    "Annual successful payroll transactions must equal ADP-002 multiplied by ADP-003 and derived VOL-001.",
+    "SMS-attached delivered transactions must equal annual successful payroll transactions multiplied by ATT-001 and SMS-001.",
+    "Checks must surface OK, Blocked, or ERROR rather than silently treating unavailable values as zero."
+  ],
+  "visualQaTargets": [
+    "00_Read_Me!A1:H25",
+    "01_Control!A1:D12",
+    "02_Assumptions!A1:Q45",
+    "03_Assumption_Map!A1:E20",
+    "04_Adoption!A1:G20",
+    "05_Payroll_Activity!A1:G12",
+    "21_Checks!A1:F20"
+  ],
+  "runtimeChecks": [
+    "Confirm @oai/artifact-tool is available",
+    "Build Slice 2 workbook through guarded builder",
+    "Open generated workbook through artifact-tool",
+    "Confirm all Slice 2 sheets exist",
+    "Inspect formulas on 02_Assumptions, 04_Adoption, 05_Payroll_Activity, and 21_Checks",
+    "Scan for formula errors",
+    "Render visual QA targets",
+    "Confirm workbook output remains artifacts/x-commerce-payroll-starter-financial-model.xlsx"
+  ]
+}
