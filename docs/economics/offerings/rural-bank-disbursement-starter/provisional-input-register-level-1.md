@@ -2,7 +2,7 @@
 
 ## Status
 
-Current status: scaffold.
+Current status: scaffold aligned to canonical assumptions and accepted economic treatment.
 
 Offering: `OFR-RB-DISBURSEMENT-STARTER`
 
@@ -11,6 +11,10 @@ Authorization status: Not authorized.
 No values are authorized in this document.
 
 This register will eventually record the controlled placeholder inputs used for the first numeric Disbursement Starter model. It does not create projections, update assumptions, or approve pricing.
+
+Canonical assumption status: Disbursement-specific `DSP-*` assumptions now exist in [../../../ASSUMPTIONS_REGISTER.md](../../../ASSUMPTIONS_REGISTER.md).
+
+Economic treatment: [Decision 0006](../../../decisions/0006-disbursement-starter-economic-treatment.md) is accepted as the modeling hierarchy for future Level 1 work.
 
 ## Standard Warning
 
@@ -27,6 +31,18 @@ This register will eventually record the controlled placeholder inputs used for 
 | Volume method | Component-derived by default |
 | Projection status | Not created |
 | Workbook status | Not created |
+
+## Authorization Scope
+
+This register is the only permitted authorization source for Disbursement workbook placeholder values.
+
+When values are later authorized, every record must state:
+
+- whether it is approved for internal Level 1 modeling only;
+- whether it is a controlled placeholder, active working assumption, evidence-supported provisional input, or sensitivity-only input;
+- whether it belongs to Core Disbursement or the optional notification variant;
+- whether it is used in the workbook, excluded from the workbook, or blocked;
+- its expiry or evidence-replacement trigger.
 
 ## Volume Method
 
@@ -80,6 +96,19 @@ x DSP-VOL-002
 | To be issued | `CLD-001` | Primitive cost input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
 | To be issued | `RISK-002` | Primitive risk input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
 
+## P1 Or Presentation Register Slots
+
+| Provisional Input ID | Assumption ID | Assumption role | Scenario values | Unit | Input classification | Authorization status |
+| --- | --- | --- | --- | --- | --- | --- |
+| To be issued | `DSP-FUND-001` | Primitive pass-through value input | Not authorized | To be defined | Presentation-only or controlled placeholder candidate | Not authorized |
+| To be issued | `DSP-EXC-001` | Primitive exception-cost input | Not authorized | To be defined | Controlled placeholder candidate or blocked | Not authorized |
+| To be issued | `DSP-ATT-001` | Primitive optional input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
+| To be issued | `DSP-VAS-001` | Primitive optional price input | Not authorized | To be defined | Sensitivity-only or controlled placeholder candidate | Not authorized |
+| To be issued | `DSP-CST-001` | Primitive optional provider-price input | Not authorized | To be defined | Provider-quote candidate | Not authorized |
+| To be issued | `SMS-001` | Primitive performance input | Not authorized | To be defined | Evidence-supported or placeholder candidate | Not authorized |
+| To be issued | `SMS-003` | Contract treatment input | Not authorized | To be defined | Blocked unless provider terms exist | Not authorized |
+| To be issued | `SMS-004` | Legal/privacy input | Not authorized | To be defined | Blocked unless review exists | Not authorized |
+
 ## Blocked Exclusions
 
 | Assumption ID | Treatment | Reason |
@@ -101,7 +130,15 @@ No Level 1 Disbursement model may be calculated until:
 4. blocked outputs are visible;
 5. no value is silently inferred from Payroll Starter.
 
+## Workbook Gate
+
+No Disbursement `.xlsx` artifact may be generated until this register contains either:
+
+- authorized scenario values for every workbook P0 input; or
+- an explicit blocked/excluded treatment that the workbook can display without substituting zero.
+
+The workbook generator must fail or remain in dry-run mode if a required workbook value is missing from this register.
+
 ## Next Slice
 
 Produce the first Level 1 numeric offering economics only after this register is completed and authorized.
-
