@@ -2,7 +2,7 @@
 
 ## Status
 
-Proposed
+Accepted
 
 ## Date
 
@@ -12,7 +12,7 @@ Proposed
 
 How should the first numeric `OFR-RB-DISBURSEMENT-STARTER` model treat offering-specific economics, shared rural-bank platform costs, modernization costs, and optional notification economics?
 
-This decision is scaffolded for review. It does not approve pricing, forecasts, legal characterization, accounting treatment, tax treatment, NetBank fees, 3neti royalties, investor returns, contracts, public claims, or software implementation.
+This decision accepts the Disbursement Starter economic-view hierarchy for future Level 1 modeling. It does not approve pricing, forecasts, legal characterization, accounting treatment, tax treatment, NetBank fees, 3neti royalties, investor returns, contracts, public claims, or software implementation.
 
 ## Context
 
@@ -31,9 +31,9 @@ The non-numeric offering model now defines:
 
 Payroll Starter showed that forcing a narrow first offering to carry full modernization cost can be commercially misleading. Disbursement should be evaluated carefully before numeric modeling begins.
 
-## Proposed Decision
+## Decision
 
-Use the same economic-view hierarchy as Payroll Starter unless the Disbursement economic-coherence review proves a different treatment is required:
+Use the same economic-view hierarchy as Payroll Starter unless a later Disbursement economic-coherence review proves a different treatment is required:
 
 ```text
 Primary operating view:
@@ -49,9 +49,9 @@ Stress-test view:
 Full-Cost Stand-Alone Disbursement
 ```
 
-This proposed treatment recognizes that Disbursement Starter may operate on the same rural-bank-owned digital platform as Payroll Starter and future offerings.
+This treatment recognizes that Disbursement Starter may operate on the same rural-bank-owned digital platform as Payroll Starter and future offerings.
 
-## Proposed Commercial Units
+## Commercial Units For First Candidate Model
 
 The first Level 1 candidate model should test:
 
@@ -63,7 +63,7 @@ The first Level 1 candidate model should test:
 | Optional notification | Separate optional attachment; not part of Core Disbursement headline economics. |
 | Batch fee | Deferred unless the economic-coherence review shows batch-level work is not covered by the sponsor service fee. |
 
-## Proposed Cost Treatment
+## Cost Treatment
 
 ### Incremental Disbursement Costs
 
@@ -118,9 +118,9 @@ The first model should remain visibly blocked for:
 - `FIN-001` discount rate and capital-budgeting input if NPV is attempted;
 - legal characterization of pass-through disbursement value and provider roles.
 
-## Acceptance Criteria
+## Acceptance Basis
 
-This decision should not become `Accepted` until the economic-coherence review confirms:
+This decision is accepted as a modeling treatment, not as numeric authorization. The economic-coherence review and future candidate pack must still confirm:
 
 - whether Incremental Disbursement Economics is the primary operating view;
 - whether sponsor monthly/program-service fees are required;
@@ -129,7 +129,7 @@ This decision should not become `Accepted` until the economic-coherence review c
 - how optional notification is separated from Core Disbursement;
 - which outputs must remain blocked in Level 1.
 
-## Consequences If Accepted Later
+## Consequences
 
 - Disbursement can proceed to Level 1 provisional-input authorization.
 - Sponsor-facing commercial units become the first numeric candidate structure.
@@ -138,5 +138,4 @@ This decision should not become `Accepted` until the economic-coherence review c
 
 ## Recommended Next Task
 
-Complete the Disbursement provisional-input candidate pack with management candidates only after this proposed treatment is reviewed. Do not authorize values or create projections until a separate provisional-input register exists.
-
+Complete the Disbursement provisional-input candidate pack with management candidates. Do not authorize values or create projections until a separate provisional-input register exists.

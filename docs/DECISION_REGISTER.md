@@ -7,7 +7,7 @@
 | 0003 | Payroll Starter economic treatment | Accepted | [0003-payroll-starter-economic-treatment.md](decisions/0003-payroll-starter-economic-treatment.md) |
 | 0004 | Repo-local workbook generation | Accepted | [0004-repo-local-workbook-generation.md](decisions/0004-repo-local-workbook-generation.md) |
 | 0005 | Select second modeled offering | Accepted | [0005-select-second-modeled-offering.md](decisions/0005-select-second-modeled-offering.md) |
-| 0006 | Disbursement Starter economic treatment | Proposed | [0006-disbursement-starter-economic-treatment.md](decisions/0006-disbursement-starter-economic-treatment.md) |
+| 0006 | Disbursement Starter economic treatment | Accepted | [0006-disbursement-starter-economic-treatment.md](decisions/0006-disbursement-starter-economic-treatment.md) |
 
 ## Pending Decisions
 
