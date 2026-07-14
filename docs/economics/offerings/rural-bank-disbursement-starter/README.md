@@ -199,6 +199,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Blank future authorization register for Level 1 Disbursement controlled placeholders. |
 | [offering-economics-level-1.md](offering-economics-level-1.md) | Scaffold for the future Level 1 numeric Disbursement model; all outputs remain blocked. |
 | [level-1-normalization-plan.md](level-1-normalization-plan.md) | Future normalization gate for Level 1 numeric outputs before summaries or briefs. |
+| [five-year-revenue-projection-summary.md](five-year-revenue-projection-summary.md) | Future stakeholder-facing summary scaffold; no numbers until Level 1 is authorized and normalized. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |
 | [consolidated-view.md](consolidated-view.md) | Non-numeric consolidation structure and double-counting controls. |
 | [stakeholder-views/sponsor-view.md](stakeholder-views/sponsor-view.md) | Sponsor customer view. |
