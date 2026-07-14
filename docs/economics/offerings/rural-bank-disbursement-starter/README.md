@@ -196,6 +196,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [evidence-instruments/README.md](evidence-instruments/README.md) | Blank evidence questionnaires, information requests, handoff templates, and controlled-placeholder worksheet. |
 | [provisional-input-candidate-pack.md](provisional-input-candidate-pack.md) | Internal scaffold for future Disbursement Level 1 provisional input candidates. |
 | [economic-coherence-review.md](economic-coherence-review.md) | Cost-allocation and commercial-unit review scaffold before provisional-input authorization. |
+| [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Blank future authorization register for Level 1 Disbursement controlled placeholders. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |
 | [consolidated-view.md](consolidated-view.md) | Non-numeric consolidation structure and double-counting controls. |
 | [stakeholder-views/sponsor-view.md](stakeholder-views/sponsor-view.md) | Sponsor customer view. |
