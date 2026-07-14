@@ -194,6 +194,9 @@ This does not mean the line lacks financial importance. It means the line is exc
 | [assumption-map.md](assumption-map.md) | Required, optional, blocked, not-applicable, and missing assumptions. |
 | [evidence-acquisition-plan.md](evidence-acquisition-plan.md) | Evidence sources, placeholder governance, and readiness gates for blocked assumptions. |
 | [evidence-instruments/README.md](evidence-instruments/README.md) | Evidence questionnaires, information requests, handoff templates, and provisional-input authorization worksheet. |
+| [evidence-to-model-update-plan.md](evidence-to-model-update-plan.md) | Scaffold for replacing provisional workbook inputs with governed evidence while preserving repository source-of-truth control. |
+| [evidence-packets/README.md](evidence-packets/README.md) | Evidence packet index for staged evidence collection and workbook update preparation. |
+| [evidence-maturation-status-report.md](evidence-maturation-status-report.md) | Current evidence maturity, collection gaps, blocked outputs, and recommended next evidence packet. |
 | [provisional-input-candidate-pack.md](provisional-input-candidate-pack.md) | Internal review pack for candidate Level 1 provisional inputs. |
 | [economic-coherence-review.md](economic-coherence-review.md) | Cost-allocation and unit-economics review before provisional-input authorization. |
 | [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Draft internal authorization register for Level 1 controlled placeholder inputs. |
@@ -217,4 +220,4 @@ No Channel Partner view is created. Channel Partner remains deferred.
 
 ## Next Step
 
-After this Level 1 model and stakeholder-facing summary are accepted, produce stakeholder-specific financial briefs derived from the normalized Level 1 model. The briefs should consume the canonical model without creating separate calculations.
+Review [evidence-packets/evidence-packet-001-core-model-inputs.md](evidence-packets/evidence-packet-001-core-model-inputs.md), then collect responses using the mapped evidence instruments. Evidence-backed changes should update canonical records first, then regenerate the workbook through the Slice 7 builder.

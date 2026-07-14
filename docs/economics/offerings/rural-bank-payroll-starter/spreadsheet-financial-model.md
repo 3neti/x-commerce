@@ -4,9 +4,9 @@
 
 Offering: `OFR-RB-PAYROLL-STARTER`
 
-Slice: 1 - Workbook Specification
+Slice: 7 - Review and Freeze completed
 
-Workbook status: Not yet generated.
+Workbook status: Generated through the repo-local `exceljs` path accepted in Decision 0004.
 
 Target workbook path: `artifacts/x-commerce-payroll-starter-financial-model.xlsx`
 
