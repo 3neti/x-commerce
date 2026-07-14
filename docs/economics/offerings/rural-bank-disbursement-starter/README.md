@@ -190,6 +190,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [normalization-review.md](normalization-review.md) | First normalization gate for consolidation, counterparty, blocked-output, and no-numeric discipline. |
 | [assumption-map.md](assumption-map.md) | Required, optional, blocked, not-applicable, and missing assumptions discovered during instantiation. |
 | [assumptions-register-expansion-plan.md](assumptions-register-expansion-plan.md) | Scaffold for the governed Assumptions Register update required before numeric modeling. |
+| [evidence-acquisition-plan.md](evidence-acquisition-plan.md) | Evidence sources, priorities, owners, placeholder eligibility, and maturity gates for Disbursement assumptions. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |
 | [consolidated-view.md](consolidated-view.md) | Non-numeric consolidation structure and double-counting controls. |
 | [stakeholder-views/sponsor-view.md](stakeholder-views/sponsor-view.md) | Sponsor customer view. |
