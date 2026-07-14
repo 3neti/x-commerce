@@ -180,6 +180,24 @@ function parityPlan() {
   });
 }
 
+function parityValidation() {
+  printObject({
+    offering: offeringId,
+    status: "blocked",
+    reason: "canonical numeric Level 1 Disbursement model is not yet populated",
+    workbook: defaultWorkbookPath,
+    currentArtifactStatus: "not generated",
+    requiredBeforeValidation: [
+      "authorized provisional input register",
+      "populated offering-economics-level-1.md",
+      "normalized five-year summary",
+      "generated workbook",
+      "source-lineage rows",
+    ],
+    blockedOutputs: ["DSP-RB-002", "NET-001", "NET-002", "TAX-001", "ROY-001", "FIN-001"],
+  });
+}
+
 function blockedBuild() {
   console.error("Disbursement workbook build is blocked.");
   console.error("Reason: no authorized Disbursement Level 1 numeric model or provisional input register exists yet.");
@@ -194,6 +212,7 @@ function help() {
   console.log("  --dry-run");
   console.log("  --manifest-check");
   console.log("  --parity-plan");
+  console.log("  --parity-validation");
   for (const command of Object.keys(slicePlans)) {
     console.log(`  ${command}`);
   }
@@ -224,6 +243,11 @@ if (args.has("--manifest-check")) {
 
 if (args.has("--parity-plan")) {
   parityPlan();
+  process.exit(0);
+}
+
+if (args.has("--parity-validation")) {
+  parityValidation();
   process.exit(0);
 }
 

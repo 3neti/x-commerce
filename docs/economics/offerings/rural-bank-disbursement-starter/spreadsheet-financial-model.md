@@ -38,6 +38,7 @@ The workbook must consume canonical sources. It must not become an independent c
 | [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Future Level 1 provisional input register. |
 | [offering-economics-level-1.md](offering-economics-level-1.md) | Future canonical Level 1 calculations and outputs. |
 | [five-year-revenue-projection-summary.md](five-year-revenue-projection-summary.md) | Future stakeholder-facing summary. |
+| [workbook-parity-validation.md](workbook-parity-validation.md) | Future parity validation rows and artifact gate. |
 
 ## Required Workbook Warning
 
@@ -179,6 +180,7 @@ The generator should support these modes before it writes any `.xlsx` artifact:
 --slice-7-plan
 --manifest-check
 --parity-plan
+--parity-validation
 ```
 
 Build commands should remain guarded until numeric authorization exists.
