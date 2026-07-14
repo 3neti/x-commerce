@@ -2,7 +2,7 @@
 
 ## Status
 
-Current status: scaffold.
+Current status: scaffold aligned to canonical assumptions.
 
 Offering: `OFR-RB-DISBURSEMENT-STARTER`
 
@@ -11,6 +11,8 @@ Approval status: Not authorized.
 Model maturity target: Level 1 controlled placeholder model, later.
 
 This pack is an internal review artifact. It does not authorize inputs, change assumption statuses, create projections, update the workbook, or approve prices.
+
+Canonical assumption status: the Disbursement-specific `DSP-*` records have been promoted into [../../../ASSUMPTIONS_REGISTER.md](../../../ASSUMPTIONS_REGISTER.md). This pack now consumes those identifiers rather than treating them as candidate IDs.
 
 ## Purpose
 
@@ -109,6 +111,19 @@ Recommendation:
 
 Use `Open` where no responsible candidate can yet be proposed.
 
+## Candidate-Pack Completion Gate
+
+Before the first Disbursement workbook can be generated, this pack must be completed with management candidates or explicit blocked treatments for each P0 input.
+
+Completion requires:
+
+- every P0 assumption listed below has a proposed treatment;
+- every proposed treatment names whether it is a primitive input, derived input, or validation-only input;
+- `DSP-VOL-001` remains derived under component-derived mode;
+- Core Disbursement inputs are separated from optional notification inputs;
+- blocked NetBank, tax, royalty, and true Rural Bank support-cost outputs remain visible;
+- no value is copied from Payroll Starter without a documented reuse decision.
+
 ## Core P0 Inputs To Review
 
 | Assumption ID | Role | Proposed treatment | Candidate status |
@@ -151,6 +166,8 @@ Use `Open` where no responsible candidate can yet be proposed.
 | `NET-002` | Not required for initial Level 1 model | NetBank internal cost only matters if NetBank view is modeled financially. |
 | `FIN-001` | Not required until capital budgeting | Discount-rate assumption must be governed before NPV. |
 | `DSP-RB-002` | Remain blocked or P1 | True Rural Bank contribution needs bank support evidence. |
+| `DSP-FUND-001` | Presentation-only or blocked | Pass-through funding value can be shown separately but must not become revenue. |
+| `DSP-EXC-001` | P1 or blocked | Needed for exception-adjusted contribution; not required for the first structural workbook if excluded visibly. |
 
 ## Scenario Coherence Rules
 
@@ -186,6 +203,14 @@ First Level 1 model may include:
 - optional notification as a separate variant;
 - pass-through disbursement value shown separately.
 
+First Level 1 model must distinguish:
+
+- newly onboarded sponsor relationships from active sponsors;
+- sponsor onboarding revenue from recurring service revenue;
+- sponsor-paid commercial fees from pass-through disbursement value;
+- Core Disbursement from optional notification;
+- Rural Bank contribution before internal bank disbursement-support cost from true Rural Bank contribution.
+
 It must continue to exclude or block:
 
 - tax-adjusted results;
@@ -197,5 +222,4 @@ It must continue to exclude or block:
 
 ## Next Slice
 
-Perform an economic-coherence review before authorizing provisional inputs.
-
+Review or accept the economic-treatment decision before authorizing provisional inputs.
