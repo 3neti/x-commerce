@@ -6,11 +6,13 @@ Subtitle: Controlled Placeholder Model, future internal stakeholder discussion d
 
 ## Status
 
-Current status: scaffold.
+Current status: scaffold; blocked until normalized Level 1 outputs exist.
 
 No five-year numeric projection exists yet.
 
 This summary must remain empty of numbers until [offering-economics-level-1.md](offering-economics-level-1.md) contains an authorized and normalized Level 1 model.
+
+Normalization dependency: [level-1-normalization-plan.md](level-1-normalization-plan.md) must be satisfied before this summary becomes a populated stakeholder-facing artifact.
 
 ## Required Warning
 
@@ -138,7 +140,19 @@ This summary must not create independent calculations. Every number must come fr
 - [assumption-map.md](assumption-map.md);
 - the future Disbursement workbook, if generated from canonical sources.
 
+## Workbook Relationship
+
+The future Disbursement workbook may consume this summary for presentation references, but it must not treat this summary as an independent calculation engine.
+
+Workbook parity must be checked against:
+
+- the authorized provisional input register;
+- the Level 1 offering economics;
+- source-lineage rows in the workbook;
+- blocked-output controls.
+
+If workbook values differ from this summary after the summary is populated, the canonical Level 1 model must be reviewed. The brief or workbook must not silently override the model.
+
 ## Next Slice
 
 Create stakeholder-specific financial brief scaffolds that consume this summary and the Level 1 model without creating separate calculations.
-

@@ -2,11 +2,13 @@
 
 ## Status
 
-Current status: scaffold.
+Current status: scaffold aligned to Level 1 calculation contract.
 
 Offering: `OFR-RB-DISBURSEMENT-STARTER`
 
 This plan defines the normalization pass that must occur after the first numeric Level 1 Disbursement model is created. It does not create numbers or modify the current non-numeric model.
+
+Canonical dependency: [offering-economics-level-1.md](offering-economics-level-1.md) is the only permitted source of future normalized Disbursement figures.
 
 ## Purpose
 
@@ -23,6 +25,15 @@ The normalization pass should make numeric outputs safe to read by distinguishin
 - modernization costs versus incremental offering costs.
 
 ## Required Corrections To Check
+
+### Numeric Source Control
+
+Before normalization begins, confirm:
+
+- provisional inputs are authorized in [provisional-input-register-level-1.md](provisional-input-register-level-1.md);
+- every numeric row in [offering-economics-level-1.md](offering-economics-level-1.md) cites an assumption ID, provisional input ID, or formula;
+- no normalization table creates independent calculations;
+- workbook parity checks can identify the same canonical outputs.
 
 ### Core Versus Optional Notification
 
@@ -104,7 +115,19 @@ Future numeric model must verify:
 - consolidated external revenue matches sponsor commercial fees only;
 - pass-through funding value is excluded from revenue.
 
+## Summary Gate
+
+[five-year-revenue-projection-summary.md](five-year-revenue-projection-summary.md) may be populated only after:
+
+1. Core Disbursement is separated from optional notification;
+2. non-additive stakeholder revenue warnings are present;
+3. newly onboarded sponsor relationships and active sponsors are distinct;
+4. Rural Bank contribution uses the qualified label;
+5. `DSP-RB-002`, `NET-001`, `TAX-001`, and `ROY-001` remain blocked or visibly qualified;
+6. pass-through sponsor funding remains excluded from revenue;
+7. arithmetic and internal-elimination checks pass;
+8. workbook parity requirements are defined.
+
 ## Next Slice
 
 Create the stakeholder-facing five-year summary only after numeric Level 1 outputs have been normalized.
-
