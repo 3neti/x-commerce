@@ -1,0 +1,30 @@
+{
+  "model": {
+    "offering": "OFR-RB-DISBURSEMENT-STARTER",
+    "slice": 6,
+    "name": "Dashboard And Lineage",
+    "status": "scaffold",
+    "workbook": "artifacts/x-commerce-disbursement-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_disbursement_starter_model.mjs"
+  },
+  "sheets": [
+    "19_Scenarios",
+    "20_Dashboard",
+    "22_Source_Lineage"
+  ],
+  "requiredLineageSources": [
+    "docs/ASSUMPTIONS_REGISTER.md",
+    "docs/decisions/0005-select-second-modeled-offering.md",
+    "docs/decisions/0006-disbursement-starter-economic-treatment.md",
+    "docs/economics/offerings/rural-bank-disbursement-starter/provisional-input-register-level-1.md",
+    "docs/economics/offerings/rural-bank-disbursement-starter/offering-economics-level-1.md"
+  ],
+  "requiredDashboardControls": [
+    "blocked-input count",
+    "check error count",
+    "Core Disbursement versus optional notification",
+    "entity revenue non-additive warning",
+    "pass-through funding exclusion"
+  ],
+  "buildGate": "Blocked until scenario outputs and source-lineage rows exist."
+}

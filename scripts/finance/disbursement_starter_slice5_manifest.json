@@ -1,0 +1,23 @@
+{
+  "model": {
+    "offering": "OFR-RB-DISBURSEMENT-STARTER",
+    "slice": 5,
+    "name": "Capital Budgeting And Sensitivity",
+    "status": "scaffold",
+    "workbook": "artifacts/x-commerce-disbursement-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_disbursement_starter_model.mjs"
+  },
+  "sheets": [
+    "17_Capital_Budgeting",
+    "18_Sensitivity"
+  ],
+  "requiredCanonicalInputs": [
+    "FIN-001"
+  ],
+  "requiredBlocks": [
+    "NPV until cash-flow and discount-rate assumptions are governed",
+    "IRR until a valid cash-flow series exists",
+    "discounted payback until investment basis is authorized"
+  ],
+  "buildGate": "Capital-budgeting outputs remain blocked unless FIN-001 and cash-flow inputs are authorized."
+}

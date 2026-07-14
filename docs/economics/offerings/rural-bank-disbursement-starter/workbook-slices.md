@@ -2,7 +2,7 @@
 
 ## Status
 
-Current status: scaffold.
+Current status: scaffold with manifest run commands.
 
 Offering: `OFR-RB-DISBURSEMENT-STARTER`
 
@@ -45,6 +45,13 @@ Required parity checks:
 - active sponsors derive from active banks and sponsors per bank;
 - annual successful disbursements derive from active banks, active months, and `DSP-VOL-001`.
 
+Scaffold command:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --slice-2-plan
+node scripts/finance/build_disbursement_starter_model.mjs --slice-2-manifest-check
+```
+
 ## Slice 3: Revenue And Stakeholder Views
 
 Future scope:
@@ -66,6 +73,13 @@ Required parity checks:
 - Rural Bank-to-DevOps transfers eliminated;
 - optional notification separate from Core Disbursement.
 
+Scaffold command:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --slice-3-plan
+node scripts/finance/build_disbursement_starter_model.mjs --slice-3-manifest-check
+```
+
 ## Slice 4: P&L And Cash Flow
 
 Future scope:
@@ -83,6 +97,13 @@ Required blocks:
 - NetBank-fee-adjusted results;
 - true Rural Bank contribution after `DSP-RB-002`;
 - cash timing while collection timing is unresolved.
+
+Scaffold command:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --slice-4-plan
+node scripts/finance/build_disbursement_starter_model.mjs --slice-4-manifest-check
+```
 
 ## Slice 5: Capital Budgeting And Sensitivity
 
@@ -108,6 +129,13 @@ Potential sensitivity grids:
 - DevOps cost versus bank count;
 - notification attachment versus notification margin.
 
+Scaffold command:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --slice-5-plan
+node scripts/finance/build_disbursement_starter_model.mjs --slice-5-manifest-check
+```
+
 ## Slice 6: Dashboard And Lineage
 
 Future scope:
@@ -131,6 +159,13 @@ Dashboard must show:
 - blocked-input count;
 - check `ERROR` count.
 
+Scaffold command:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --slice-6-plan
+node scripts/finance/build_disbursement_starter_model.mjs --slice-6-manifest-check
+```
+
 ## Slice 7: Review And Freeze
 
 Future scope:
@@ -142,6 +177,28 @@ Future scope:
 - visual or structural QA;
 - review ZIP in `~/Downloads`;
 - freeze boundary before commit.
+
+Scaffold command:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --slice-7-plan
+node scripts/finance/build_disbursement_starter_model.mjs --slice-7-manifest-check
+```
+
+## Current Manifest Scaffold
+
+The current manifest family is:
+
+```text
+scripts/finance/disbursement_starter_slice2_manifest.json
+scripts/finance/disbursement_starter_slice3_manifest.json
+scripts/finance/disbursement_starter_slice4_manifest.json
+scripts/finance/disbursement_starter_slice5_manifest.json
+scripts/finance/disbursement_starter_slice6_manifest.json
+scripts/finance/disbursement_starter_slice7_manifest.json
+```
+
+All manifests remain build-gated. They are not authorization to generate an `.xlsx` artifact.
 
 ## Non-Goals
 
@@ -157,4 +214,3 @@ Do not:
 ## Next Slice
 
 Create the Disbursement evidence-to-model update plan.
-

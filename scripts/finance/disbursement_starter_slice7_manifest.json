@@ -1,0 +1,19 @@
+{
+  "model": {
+    "offering": "OFR-RB-DISBURSEMENT-STARTER",
+    "slice": 7,
+    "name": "Review And Freeze",
+    "status": "scaffold",
+    "workbook": "artifacts/x-commerce-disbursement-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_disbursement_starter_model.mjs"
+  },
+  "requiredFreezeChecks": [
+    "all manifest checks pass",
+    "workbook validates structurally",
+    "canonical parity rows match Level 1 model",
+    "blocked outputs remain blocked",
+    "no external links or macros",
+    "review ZIP is created in ~/Downloads"
+  ],
+  "buildGate": "Blocked until the workbook exists and parity can be tested."
+}

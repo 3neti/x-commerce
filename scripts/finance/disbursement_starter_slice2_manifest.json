@@ -1,0 +1,35 @@
+{
+  "model": {
+    "offering": "OFR-RB-DISBURSEMENT-STARTER",
+    "slice": 2,
+    "name": "Assumptions And Activity Engine",
+    "status": "scaffold",
+    "workbook": "artifacts/x-commerce-disbursement-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_disbursement_starter_model.mjs"
+  },
+  "sheets": [
+    "00_Read_Me",
+    "01_Control",
+    "02_Assumptions",
+    "03_Assumption_Map",
+    "04_Adoption",
+    "05_Disbursement_Activity",
+    "21_Checks"
+  ],
+  "requiredCanonicalInputs": [
+    "ADP-002",
+    "ADP-003",
+    "DSP-CUS-001",
+    "DSP-CUS-002",
+    "DSP-CUS-003",
+    "DSP-VOL-002",
+    "DSP-VOL-001"
+  ],
+  "requiredChecks": [
+    "DSP-VOL-001 derives from component assumptions",
+    "annual successful disbursements derive from ADP-002 x ADP-003 x DSP-VOL-001",
+    "active sponsor counts derive from active banks and DSP-CUS-001",
+    "pass-through disbursement funding is excluded from revenue"
+  ],
+  "buildGate": "Blocked until provisional input register contains authorized scenario values."
+}

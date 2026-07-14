@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import fs from "node:fs";
+
 const offeringId = "OFR-RB-DISBURSEMENT-STARTER";
 const defaultWorkbookPath = "artifacts/x-commerce-disbursement-starter-financial-model.xlsx";
 
@@ -88,6 +90,15 @@ const slicePlans = {
   },
 };
 
+const sliceManifestPaths = {
+  "--slice-2-manifest-check": "scripts/finance/disbursement_starter_slice2_manifest.json",
+  "--slice-3-manifest-check": "scripts/finance/disbursement_starter_slice3_manifest.json",
+  "--slice-4-manifest-check": "scripts/finance/disbursement_starter_slice4_manifest.json",
+  "--slice-5-manifest-check": "scripts/finance/disbursement_starter_slice5_manifest.json",
+  "--slice-6-manifest-check": "scripts/finance/disbursement_starter_slice6_manifest.json",
+  "--slice-7-manifest-check": "scripts/finance/disbursement_starter_slice7_manifest.json",
+};
+
 function printObject(value) {
   console.log(JSON.stringify(value, null, 2));
 }
@@ -104,12 +115,47 @@ function dryRun() {
 }
 
 function manifestCheck() {
+  const manifests = Object.values(sliceManifestPaths).map((path) => JSON.parse(fs.readFileSync(path, "utf8")));
+  for (const manifest of manifests) {
+    if (manifest.model.offering !== offeringId) {
+      throw new Error(`Manifest offering mismatch: ${manifest.model.offering}`);
+    }
+    if (manifest.model.builder !== "scripts/finance/build_disbursement_starter_model.mjs") {
+      throw new Error(`Manifest builder mismatch: ${manifest.model.builder}`);
+    }
+    if (manifest.model.workbook !== defaultWorkbookPath) {
+      throw new Error(`Manifest workbook mismatch: ${manifest.model.workbook}`);
+    }
+  }
   printObject({
     offering: offeringId,
     status: "manifest scaffold OK",
+    manifestCount: manifests.length,
     plannedSheetCount: plannedSheets.length,
     requiredSources: sourceDocuments.length,
     blockedBuildReason: "No authorized Disbursement Level 1 numeric model exists yet.",
+  });
+}
+
+function sliceManifestCheck(command) {
+  const path = sliceManifestPaths[command];
+  const manifest = JSON.parse(fs.readFileSync(path, "utf8"));
+  if (manifest.model.offering !== offeringId) {
+    throw new Error(`Manifest offering mismatch: ${manifest.model.offering}`);
+  }
+  if (manifest.model.builder !== "scripts/finance/build_disbursement_starter_model.mjs") {
+    throw new Error(`Manifest builder mismatch: ${manifest.model.builder}`);
+  }
+  if (manifest.model.workbook !== defaultWorkbookPath) {
+    throw new Error(`Manifest workbook mismatch: ${manifest.model.workbook}`);
+  }
+  printObject({
+    offering: offeringId,
+    status: "slice manifest scaffold OK",
+    manifest: path,
+    slice: manifest.model.slice,
+    name: manifest.model.name,
+    buildGate: manifest.buildGate,
   });
 }
 
@@ -151,6 +197,9 @@ function help() {
   for (const command of Object.keys(slicePlans)) {
     console.log(`  ${command}`);
   }
+  for (const command of Object.keys(sliceManifestPaths)) {
+    console.log(`  ${command}`);
+  }
   console.log("  --build");
   console.log("");
   console.log("--build is intentionally blocked until canonical numeric inputs are authorized.");
@@ -184,6 +233,13 @@ for (const [command, plan] of Object.entries(slicePlans)) {
       offering: offeringId,
       ...plan,
     });
+    process.exit(0);
+  }
+}
+
+for (const command of Object.keys(sliceManifestPaths)) {
+  if (args.has(command)) {
+    sliceManifestCheck(command);
     process.exit(0);
   }
 }

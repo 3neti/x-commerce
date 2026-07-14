@@ -1,0 +1,36 @@
+{
+  "model": {
+    "offering": "OFR-RB-DISBURSEMENT-STARTER",
+    "slice": 3,
+    "name": "Revenue And Stakeholder Views",
+    "status": "scaffold",
+    "workbook": "artifacts/x-commerce-disbursement-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_disbursement_starter_model.mjs"
+  },
+  "sheets": [
+    "06_Pricing",
+    "07_Revenue",
+    "10_Rural_Bank_View",
+    "11_ODTI_View",
+    "12_DevOps_View",
+    "13_Notification_Variant",
+    "14_Consolidated_View"
+  ],
+  "requiredCanonicalInputs": [
+    "DSP-PRICE-001",
+    "DSP-PRICE-002",
+    "DSP-PRICE-003",
+    "DSP-RB-001",
+    "DSP-ATT-001",
+    "DSP-VAS-001",
+    "DSP-CST-001",
+    "RISK-002"
+  ],
+  "requiredChecks": [
+    "sponsor commercial fees are counted once as external inflows",
+    "stakeholder revenue views are not additive",
+    "Rural Bank-to-ODTI transfers eliminate",
+    "optional notification remains separate from Core Disbursement"
+  ],
+  "buildGate": "Blocked until Level 1 revenue outputs exist."
+}

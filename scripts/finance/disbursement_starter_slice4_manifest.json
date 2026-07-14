@@ -1,0 +1,32 @@
+{
+  "model": {
+    "offering": "OFR-RB-DISBURSEMENT-STARTER",
+    "slice": 4,
+    "name": "P&L And Cash Flow",
+    "status": "scaffold",
+    "workbook": "artifacts/x-commerce-disbursement-starter-financial-model.xlsx",
+    "builder": "scripts/finance/build_disbursement_starter_model.mjs"
+  },
+  "sheets": [
+    "08_Cost_of_Sales",
+    "09_Operating_Expenses",
+    "15_Profit_and_Loss",
+    "16_Cash_Flow"
+  ],
+  "requiredCanonicalInputs": [
+    "DSP-ODTI-001",
+    "DSP-ODTI-002",
+    "DSP-RB-002",
+    "DSP-EXC-001",
+    "OPS-003",
+    "CLD-001",
+    "COL-001"
+  ],
+  "requiredBlocks": [
+    "tax-adjusted net income",
+    "post-royalty ODTI results",
+    "NetBank-fee-adjusted results",
+    "true Rural Bank contribution after DSP-RB-002 until support cost is authorized"
+  ],
+  "buildGate": "Blocked until cost and cash-timing treatments are authorized or explicitly excluded."
+}
