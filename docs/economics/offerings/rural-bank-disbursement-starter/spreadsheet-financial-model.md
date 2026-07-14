@@ -4,7 +4,7 @@
 
 Offering: `OFR-RB-DISBURSEMENT-STARTER`
 
-Slice: 1 - Workbook Specification scaffold.
+Slice: 1 - Workbook Specification scaffold, separate Disbursement workbook path.
 
 Workbook status: Not generated.
 
@@ -15,6 +15,10 @@ artifacts/x-commerce-disbursement-starter-financial-model.xlsx
 ```
 
 This document specifies a future workbook. It does not create a workbook, change the canonical model, authorize values, or introduce assumptions.
+
+Architecture decision for this track:
+
+> Build a separate Disbursement workbook first. Do not merge Disbursement into the Payroll workbook until Disbursement has its own canonical Level 1 model and workbook parity checks.
 
 ## Governing Principle
 
@@ -73,6 +77,23 @@ Every stakeholder revenue sheet must also include:
 | 21 | `21_Checks` | Model integrity controls. |
 | 22 | `22_Source_Lineage` | Workbook outputs traced to repository documents. |
 
+## Separate-Workbook Boundary
+
+The first Disbursement `.xlsx` artifact must be independent from:
+
+- `artifacts/x-commerce-payroll-starter-financial-model.xlsx`;
+- Payroll workbook manifests;
+- Payroll provisional input IDs;
+- Payroll scenario values.
+
+The Disbursement workbook may reuse workbook architecture patterns from Payroll, including sheet order, checks, warnings, and `exceljs` generation conventions, but it must not reuse Payroll values unless a source document explicitly authorizes a shared assumption.
+
+Future multi-offering portfolio workbook:
+
+```text
+Deferred until Payroll and Disbursement each have stable, independently validated workbook outputs.
+```
+
 ## Formula Conventions
 
 Future formulas must:
@@ -116,11 +137,52 @@ Do not force an IRR result.
 
 ## Generation Approach
 
-No generator is created in this slice.
+The future generator should use the repo-local workbook-generation approach accepted for Payroll when the spreadsheet artifact runtime is unavailable.
+
+Suggested script path:
+
+```text
+scripts/finance/build_disbursement_starter_model.mjs
+```
+
+Suggested manifest family:
+
+```text
+scripts/finance/disbursement_starter_slice2_manifest.json
+scripts/finance/disbursement_starter_slice3_manifest.json
+scripts/finance/disbursement_starter_slice4_manifest.json
+scripts/finance/disbursement_starter_slice5_manifest.json
+scripts/finance/disbursement_starter_slice6_manifest.json
+scripts/finance/disbursement_starter_slice7_manifest.json
+```
+
+Generation remains blocked until:
+
+- provisional inputs are authorized;
+- Level 1 economics are populated;
+- parity rows exist;
+- blocked outputs are represented explicitly.
 
 A future Disbursement workbook generator should be deterministic, repository-local where possible, macro-free, and subordinate to canonical documents.
+
+## Initial Workbook Modes
+
+The generator should support these modes before it writes any `.xlsx` artifact:
+
+```text
+--dry-run
+--slice-2-plan
+--slice-3-plan
+--slice-4-plan
+--slice-5-plan
+--slice-6-plan
+--slice-7-plan
+--manifest-check
+--parity-plan
+```
+
+Build commands should remain guarded until numeric authorization exists.
 
 ## Next Slice
 
 Scaffold workbook implementation slices before generating any `.xlsx` artifact.
-
