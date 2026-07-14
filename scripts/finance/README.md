@@ -268,3 +268,40 @@ node scripts/finance/build_payroll_starter_model.mjs --validate-slice-2-exceljs 
 `--validate-slice-2` is also guarded by `@oai/artifact-tool`. It is intended to run after the workbook exists and should confirm required Slice 2 sheets and scan for formula errors.
 
 The next implementation action that actually creates an `.xlsx` artifact is either the runtime-backed `--build-slice-2` command or the accepted repo-local `--build-slice-2-exceljs` command. The ExcelJS path is the repository-local route when `@oai/artifact-tool` is unavailable.
+
+## Disbursement Starter
+
+Planned separate workbook:
+
+```text
+artifacts/x-commerce-disbursement-starter-financial-model.xlsx
+```
+
+Builder scaffold:
+
+```text
+scripts/finance/build_disbursement_starter_model.mjs
+```
+
+The Disbursement builder is currently a guarded scaffold. It exposes planning and parity commands, but it intentionally refuses to build an `.xlsx` artifact until:
+
+- Disbursement provisional inputs are authorized;
+- `offering-economics-level-1.md` contains canonical numeric outputs;
+- five-year summary parity rows exist;
+- blocked outputs are represented explicitly.
+
+Review the current Disbursement scaffold with:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --dry-run
+node scripts/finance/build_disbursement_starter_model.mjs --manifest-check
+node scripts/finance/build_disbursement_starter_model.mjs --parity-plan
+node scripts/finance/build_disbursement_starter_model.mjs --slice-2-plan
+node scripts/finance/build_disbursement_starter_model.mjs --slice-3-plan
+node scripts/finance/build_disbursement_starter_model.mjs --slice-4-plan
+node scripts/finance/build_disbursement_starter_model.mjs --slice-5-plan
+node scripts/finance/build_disbursement_starter_model.mjs --slice-6-plan
+node scripts/finance/build_disbursement_starter_model.mjs --slice-7-plan
+```
+
+Do not merge Disbursement into the Payroll workbook until Disbursement has its own generated and validated workbook.
