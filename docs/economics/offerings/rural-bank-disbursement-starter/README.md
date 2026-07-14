@@ -192,6 +192,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [assumptions-register-expansion-plan.md](assumptions-register-expansion-plan.md) | Scaffold for the governed Assumptions Register update required before numeric modeling. |
 | [evidence-acquisition-plan.md](evidence-acquisition-plan.md) | Evidence sources, priorities, owners, placeholder eligibility, and maturity gates for Disbursement assumptions. |
 | [evidence-instruments/README.md](evidence-instruments/README.md) | Blank evidence questionnaires, information requests, handoff templates, and controlled-placeholder worksheet. |
+| [provisional-input-candidate-pack.md](provisional-input-candidate-pack.md) | Internal scaffold for future Disbursement Level 1 provisional input candidates. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |
 | [consolidated-view.md](consolidated-view.md) | Non-numeric consolidation structure and double-counting controls. |
 | [stakeholder-views/sponsor-view.md](stakeholder-views/sponsor-view.md) | Sponsor customer view. |
