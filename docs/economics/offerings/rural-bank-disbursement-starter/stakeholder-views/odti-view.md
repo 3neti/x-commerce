@@ -1,0 +1,20 @@
+# ODTI View: Rural Bank Digital Disbursement Starter
+
+## Status
+
+Current status: non-numeric stakeholder view.
+
+Stakeholder: ODTI.
+
+## Line Items
+
+| Line-item ID | Line-item name | View type | Category | Formula | Input assumption IDs | Counterparty stakeholder | Counterparty line-item reference | Consolidation treatment | Commercial Event | Billable Event | Legal/accounting/tax dependency | Blocked inputs | Line-item readiness | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `OFR-RB-DISBURSEMENT-STARTER-ODTI-REV-001` | ODTI onboarding revenue | Financial | Revenue | Approved ODTI share of sponsor onboarding economics | `DSP-PRICE-001` candidate | Rural Bank | `OFR-RB-DISBURSEMENT-STARTER-RB-COST-001` | Internal elimination | Sponsor onboarded | Sponsor onboarding | Contract, tax, accounting, collection timing unresolved | `DSP-PRICE-001`, `RISK-002`, `TAX-001` | Structurally Ready; value blocked | Mirrors Rural Bank obligation. |
+| `OFR-RB-DISBURSEMENT-STARTER-ODTI-REV-002` | ODTI monthly or program-service revenue | Financial | Revenue | Approved ODTI share of sponsor service economics | `DSP-PRICE-002` candidate | Rural Bank | `OFR-RB-DISBURSEMENT-STARTER-RB-COST-002` | Internal elimination | Sponsor active service period | Sponsor service period | Contract, tax, accounting, collection timing unresolved | `DSP-PRICE-002`, `RISK-002`, `TAX-001` | Structurally Ready; value blocked | Mirrors Rural Bank obligation. |
+| `OFR-RB-DISBURSEMENT-STARTER-ODTI-REV-003` | ODTI transaction-platform revenue | Financial | Revenue | Sponsor recipient-disbursement fee less approved Rural Bank retained economics | `DSP-PRICE-003`, `DSP-RB-001`, `DSP-VOL-001` candidates | Rural Bank | `OFR-RB-DISBURSEMENT-STARTER-RB-COST-003` | Internal elimination | Successful recipient disbursement | Successful recipient disbursement | Event definition, tax, accounting, collection timing unresolved | `DSP-PRICE-003`, `DSP-RB-001`, `DSP-VOL-001`, `TAX-001` | Structurally Ready; value blocked | Mirrors Rural Bank transaction-platform obligation. |
+| `OFR-RB-DISBURSEMENT-STARTER-ODTI-COST-001` | 3neti royalty or license expense | Financial | Cost or payable | Approved royalty or license basis | `ROY-001` | 3neti | `OFR-RB-DISBURSEMENT-STARTER-3NETI-REV-001` | Internal elimination | Royalty-triggering offering event, if approved | Commercial Waterfall or license event, if approved | Related-party, tax, accounting, royalty basis unresolved | `ROY-001`, `TAX-001` | Blocked | No royalty is modeled until approved. |
+| `OFR-RB-DISBURSEMENT-STARTER-ODTI-COST-002` | ODTI disbursement support cost | Financial | Operating cost view | Support, reporting, reconciliation, and commercial administration effort | `DSP-ODTI-001` candidate | Not applicable | Not applicable | Non-financial | Active disbursement service period | Not applicable | Labor, contractor, accounting, tax treatment unresolved | `DSP-ODTI-001`, `TAX-001` | Structurally Ready; value blocked | Internal operating-cost view; not an inter-stakeholder transfer. |
+| `OFR-RB-DISBURSEMENT-STARTER-ODTI-COST-003` | ODTI disbursement implementation cost | Financial | Operating cost view | Implementation, configuration, training, and launch effort | `DSP-ODTI-002` candidate | Not applicable | Not applicable | Non-financial | Sponsor or bank implementation | Not applicable | Accounting and tax treatment unresolved | `DSP-ODTI-002`, `TAX-001` | Structurally Ready; value blocked | Separate from customer-facing onboarding fee. |
+| `OFR-RB-DISBURSEMENT-STARTER-ODTI-CONTRIB-001` | ODTI contribution view | Contribution | Derived reporting output | ODTI revenue less ODTI costs and blocked obligations | `DSP-ODTI-001`, `DSP-ODTI-002`, `ROY-001`, `TAX-001`, `NET-001` | Not applicable | Not applicable | Non-financial | Aggregate offering events | Not applicable | Tax, royalty, NetBank, and accounting treatment unresolved | `DSP-ODTI-001`, `DSP-ODTI-002`, `ROY-001`, `TAX-001`, `NET-001` | Blocked | Pre-tax, pre-royalty, NetBank-fee-blocked until assumptions exist. |
+

@@ -17,3 +17,4 @@ Decision records preserve commercial architecture choices, assumptions, and defe
 | 0002 | [Select first modeled offering](0002-select-first-modeled-offering.md) | Accepted |
 | 0003 | [Payroll Starter economic treatment](0003-payroll-starter-economic-treatment.md) | Accepted |
 | 0004 | [Repo-local workbook generation](0004-repo-local-workbook-generation.md) | Accepted |
+| 0005 | [Select second modeled offering](0005-select-second-modeled-offering.md) | Accepted |

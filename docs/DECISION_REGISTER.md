@@ -6,6 +6,7 @@
 | 0002 | Select first modeled offering | Accepted | [0002-select-first-modeled-offering.md](decisions/0002-select-first-modeled-offering.md) |
 | 0003 | Payroll Starter economic treatment | Accepted | [0003-payroll-starter-economic-treatment.md](decisions/0003-payroll-starter-economic-treatment.md) |
 | 0004 | Repo-local workbook generation | Accepted | [0004-repo-local-workbook-generation.md](decisions/0004-repo-local-workbook-generation.md) |
+| 0005 | Select second modeled offering | Accepted | [0005-select-second-modeled-offering.md](decisions/0005-select-second-modeled-offering.md) |
 
 ## Pending Decisions
 
