@@ -130,6 +130,7 @@ Recommended identifier prefixes:
 | `ADP` | Adoption and onboarding |
 | `VOL` | Transaction volume and activity |
 | `CUS` | Customer, employer, payroll-account, and recipient-structure assumptions |
+| `DSP` | Disbursement-specific sponsor, activity, pricing, funding, exception, and support assumptions |
 | `COL` | Billing, invoicing, collection, and payment timing |
 | `PRC` | Pricing |
 | `EMP` | Employer payroll commercial pricing |
@@ -2566,6 +2567,656 @@ Legal or accounting dependency: none unless tied to regulated reporting, public-
 Current status: Blocked.
 
 Notes: May use `VOL-002` operationally but should remain a public-interest output definition rather than a duplicate volume assumption.
+
+## Disbursement Starter Assumptions
+
+The following assumptions are canonical records for `OFR-RB-DISBURSEMENT-STARTER`. They promote the non-numeric Disbursement Starter assumption map into the governed register without assigning values or authorizing placeholders.
+
+### `DSP-CUS-001` Sponsors Per Active Rural Bank
+
+Identifier: `DSP-CUS-001`
+
+Category: Disbursement sponsor structure.
+
+Description: Average number of active disbursement sponsors served by one active participating rural bank.
+
+Unit of measure: Active sponsors per active bank.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Rural Bank, RBAP, sponsor pipeline, and ODTI management evidence required.
+
+Evidence status: Institutional data required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner with Rural Bank or RBAP validation.
+
+Review date: Before Disbursement Level 1 provisional inputs are authorized.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Sponsor, Rural Bank, ODTI, NetBank, DevOps Provider, Investor, Public Interest.
+
+Affected calculations: active sponsor count, sponsor onboarding revenue, recurring service revenue, disbursement activity, support load, infrastructure load, public reach, and workbook activity parity.
+
+Legal or accounting dependency: Sponsor eligibility, contracting role, data-sharing, and billing characterization.
+
+Current status: Blocked.
+
+Notes: Do not reuse Payroll employer counts as a substitute.
+
+### `DSP-CUS-002` Disbursement Batches Per Sponsor Per Month
+
+Identifier: `DSP-CUS-002`
+
+Category: Disbursement activity.
+
+Description: Average number of approved disbursement batches initiated by one active sponsor per month.
+
+Unit of measure: Batches per active sponsor per month.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Sponsor interviews, program records, pilot data, or ODTI management estimate required.
+
+Evidence status: Institutional data required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner with sponsor evidence.
+
+Review date: Before Disbursement Level 1 activity model is authorized.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Sponsor, Rural Bank, ODTI, NetBank, Public Interest.
+
+Affected calculations: `DSP-VOL-001` derivation, batch support load, reporting, reconciliation, notification usage, and infrastructure activity.
+
+Legal or accounting dependency: Definition of approved sponsor batch and billable event.
+
+Current status: Blocked.
+
+Notes: This is a primitive activity input under the component-derived volume method.
+
+### `DSP-CUS-003` Average Recipients Per Disbursement Batch
+
+Identifier: `DSP-CUS-003`
+
+Category: Disbursement recipient structure.
+
+Description: Average number of approved recipients included in one disbursement batch.
+
+Unit of measure: Recipients per disbursement batch.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Sponsor program records, pilot sponsor profiles, Rural Bank portfolio data, or management estimate required.
+
+Evidence status: Institutional data required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner with sponsor and Rural Bank validation.
+
+Review date: Before Disbursement Level 1 activity model is authorized.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Sponsor, Rural Bank, ODTI, NetBank, Value-Added Provider, Public Interest.
+
+Affected calculations: `DSP-VOL-001`, transaction fees, recipient reach, notification volume, infrastructure activity, exception load, and public-interest reach.
+
+Legal or accounting dependency: Recipient eligibility, data-sharing, privacy, and sponsor authorization.
+
+Current status: Blocked.
+
+Notes: This is not average disbursement value; pass-through funding value is governed by `DSP-FUND-001`.
+
+### `DSP-VOL-001` Successful Disbursements Per Active Bank Per Month
+
+Identifier: `DSP-VOL-001`
+
+Category: Disbursement activity.
+
+Description: Derived canonical activity value representing successful qualifying recipient disbursements per active rural bank per month.
+
+Unit of measure: Successful recipient disbursements per active bank per month.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Derived from component assumptions unless an aggregate-volume method is explicitly approved.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner with finance model reviewer.
+
+Review date: Before any Disbursement workbook activity parity check is accepted.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Sponsor, Rural Bank, ODTI, NetBank, Value-Added Provider, Investor, Public Interest.
+
+Affected calculations: transaction revenue, sponsor transaction fees, ODTI transaction-platform revenue, Rural Bank retained economics, notification attachment volume, NetBank activity, public-interest completion indicators, and workbook annual disbursement activity.
+
+Legal or accounting dependency: Definition of attempted, successful, failed, reversed, and qualifying disbursement events.
+
+Current status: Blocked.
+
+Notes: Preferred derivation is `DSP-CUS-001 x DSP-CUS-002 x DSP-CUS-003 x DSP-VOL-002 = DSP-VOL-001`. Do not authorize independently under component-derived mode.
+
+### `DSP-VOL-002` Disbursement Completion Rate
+
+Identifier: `DSP-VOL-002`
+
+Category: Disbursement completion and exception behavior.
+
+Description: Percentage of attempted recipient disbursements that become successful qualifying disbursement events.
+
+Unit of measure: Percentage of attempted recipient disbursements.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Pilot execution data, sponsor records, Rural Bank exception logs, NetBank or rail evidence, or controlled management estimate required.
+
+Evidence status: Observed cost required.
+
+Confidence level: Low.
+
+Owner: ODTI operations owner with Rural Bank and NetBank validation where applicable.
+
+Review date: Before Disbursement transaction revenue or public-completion outputs are authorized.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Sponsor, Rural Bank, ODTI, NetBank, Public Interest.
+
+Affected calculations: `DSP-VOL-001`, successful billable events, exception handling, notification usage, sponsor value, and public-interest completion indicators.
+
+Legal or accounting dependency: Event definition, failed-event treatment, reversal treatment, reconciliation logic, and x-change execution evidence.
+
+Current status: Blocked.
+
+Notes: Do not assume 100 percent completion.
+
+### `DSP-PRICE-001` Sponsor Onboarding Fee
+
+Identifier: `DSP-PRICE-001`
+
+Category: Disbursement sponsor commercial pricing.
+
+Description: Customer-facing one-time fee charged for establishing and configuring a sponsor disbursement relationship.
+
+Unit of measure: PHP per newly onboarded sponsor.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: ODTI management pricing decision, sponsor willingness-to-pay evidence, and Rural Bank commercial review required.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner.
+
+Review date: Before Disbursement provisional input authorization.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Sponsor, Rural Bank, ODTI, Investor.
+
+Affected calculations: sponsor first-year cost, Rural Bank revenue, ODTI revenue, onboarding payback, implementation recovery, and consolidated external revenue.
+
+Legal or accounting dependency: Billing, revenue recognition, tax, sponsor contract, and disclosure.
+
+Current status: Blocked.
+
+Notes: This is separate from pass-through disbursement funding.
+
+### `DSP-PRICE-002` Sponsor Monthly Or Program-Service Fee
+
+Identifier: `DSP-PRICE-002`
+
+Category: Disbursement sponsor commercial pricing.
+
+Description: Customer-facing recurring sponsor-level fee for access to disbursement service availability, reporting, reconciliation, and support.
+
+Unit of measure: PHP per active sponsor per month or approved program-service period.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: ODTI management pricing decision, sponsor evidence, Rural Bank commercial review, and collection-policy review required.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner.
+
+Review date: Before Disbursement provisional input authorization.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Sponsor, Rural Bank, ODTI, Investor.
+
+Affected calculations: sponsor recurring cost, Rural Bank recurring revenue, ODTI recurring revenue, contribution per active sponsor, and consolidated external revenue.
+
+Legal or accounting dependency: Contract term, billing period, revenue recognition, principal-agent treatment, and tax.
+
+Current status: Blocked.
+
+Notes: Recurring service fees should be driven by active sponsors, not merely configured sponsor relationships.
+
+### `DSP-PRICE-003` Recipient Disbursement Fee
+
+Identifier: `DSP-PRICE-003`
+
+Category: Disbursement transaction pricing.
+
+Description: Customer-facing fee charged per successful qualifying recipient disbursement.
+
+Unit of measure: PHP per successful recipient disbursement.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: ODTI management pricing decision, sponsor evidence, Rural Bank commercial review, and affordability review required.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner.
+
+Review date: Before Disbursement transaction economics are authorized.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Sponsor, Rural Bank, ODTI, NetBank, Public Interest.
+
+Affected calculations: sponsor transaction fees, Rural Bank retained transaction economics, ODTI transaction-platform revenue, consolidated external revenue, and transaction break-even.
+
+Legal or accounting dependency: Billable-event definition, refund/reversal treatment, tax, and sponsor disclosure.
+
+Current status: Blocked.
+
+Notes: Recipient disbursement value is pass-through and must not be treated as revenue.
+
+### `DSP-RB-001` Rural Bank Retained Disbursement Economics
+
+Identifier: `DSP-RB-001`
+
+Category: Rural-bank retained disbursement economics.
+
+Description: Approved basis by which the Rural Bank retains commercial value from sponsor-facing disbursement fees.
+
+Unit of measure: Fixed amount, percentage, residual formula, or another approved basis.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: ODTI and Rural Bank commercial decision required.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner with Rural Bank approver.
+
+Review date: Before Rural Bank or ODTI Disbursement economics are authorized.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Rural Bank, ODTI, Sponsor, Investor.
+
+Affected calculations: Rural Bank retained contribution, ODTI transaction revenue, sponsor-facing fee allocation, consolidated eliminations, and break-even analysis.
+
+Legal or accounting dependency: Commercial terms, tax, disclosure, principal-agent treatment, and accounting review.
+
+Current status: Blocked.
+
+Notes: This is a derived allocation from sponsor-paid fees, not a second external inflow.
+
+### `DSP-RB-002` Rural Bank Disbursement-Specific Internal Support Cost
+
+Identifier: `DSP-RB-002`
+
+Category: Rural-bank operating input.
+
+Description: Rural Bank labor and operating cost specifically attributable to sponsor onboarding, sponsor support, recipient questions, disbursement exceptions, reconciliation, reporting, compliance coordination, and customer-service handling.
+
+Unit of measure: Unresolved; possible bases include PHP per active sponsor per month, PHP per active bank per month, PHP per batch, PHP per exception, or mixed fixed-and-variable basis.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Rural Bank operations interview, support tickets, pilot observations, time-and-motion study, or management estimate required.
+
+Evidence status: Institutional data required.
+
+Confidence level: Low.
+
+Owner: Rural Bank operations owner with ODTI model reviewer.
+
+Review date: Before true Rural Bank Disbursement contribution is presented.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Rural Bank, Investor, Public Interest.
+
+Affected calculations: Rural Bank true incremental contribution, Rural Bank break-even, full-cost stress test, consolidated contribution where cost is inside the modeled boundary, and operational-readiness indicators.
+
+Legal or accounting dependency: Cost attribution, shared-service allocation, accounting treatment, and staffing policy.
+
+Current status: Blocked.
+
+Notes: Until this is resolved, Rural Bank contribution must be qualified as before internal bank disbursement-support cost.
+
+### `DSP-ODTI-001` ODTI Disbursement Support Cost
+
+Identifier: `DSP-ODTI-001`
+
+Category: ODTI operating-cost assumption.
+
+Description: Recurring ODTI support, commercial administration, sponsor coordination, reporting, reconciliation, exception handling, and program-operations cost attributable to Disbursement Starter.
+
+Unit of measure: PHP or effort per active bank, active sponsor, batch, month, or approved mixed basis.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: ODTI support design, staffing plan, pilot effort, observed cost, or management estimate required.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI operations owner.
+
+Review date: Before ODTI Disbursement contribution is authorized.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: ODTI, Rural Bank, Investor.
+
+Affected calculations: ODTI operating cost, ODTI contribution, staffing needs, support capacity, and investor view.
+
+Legal or accounting dependency: Cost attribution, accounting treatment, and service-level commitments.
+
+Current status: Blocked.
+
+Notes: Keep separate from DevOps managed-operations fees.
+
+### `DSP-ODTI-002` ODTI Disbursement Implementation Cost
+
+Identifier: `DSP-ODTI-002`
+
+Category: ODTI implementation-cost assumption.
+
+Description: ODTI implementation, configuration, sponsor onboarding, training, coordination, and launch effort required for Disbursement Starter.
+
+Unit of measure: Hours, person-days, or PHP per bank, sponsor, program, or approved implementation unit.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: ODTI implementation work breakdown, pilot effort, management estimate, or observed cost required.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI implementation owner.
+
+Review date: Before activation or onboarding economics are authorized.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: ODTI, Rural Bank, Sponsor, Investor.
+
+Affected calculations: implementation margin, launch cost, payback, first-year contribution, and capacity planning.
+
+Legal or accounting dependency: Implementation scope, accounting treatment, contract term, and capitalization or expense policy.
+
+Current status: Blocked.
+
+Notes: Keep separate from common platform activation and DevOps setup costs.
+
+### `DSP-EXC-001` Exception, Reversal, And Failed-Disbursement Handling Cost
+
+Identifier: `DSP-EXC-001`
+
+Category: Disbursement exception cost.
+
+Description: Incremental effort or cost associated with one failed, reversed, corrected, disputed, or exception disbursement event.
+
+Unit of measure: PHP or labor hours per failed, reversed, disputed, or exception event.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Rural Bank exception logs, sponsor support data, NetBank or rail status records, pilot observations, or management estimate required.
+
+Evidence status: Observed cost required.
+
+Confidence level: Low.
+
+Owner: ODTI operations owner with Rural Bank validation.
+
+Review date: Before exception-adjusted contribution or public outcome views are authorized.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Sponsor, Rural Bank, ODTI, NetBank, Public Interest.
+
+Affected calculations: sponsor operational cost, Rural Bank support cost, ODTI support burden, failed-disbursement value, completion-rate sensitivity, and public-interest reliability.
+
+Legal or accounting dependency: Reversal rules, refund treatment, dispute handling, settlement timing, and customer-support responsibilities.
+
+Current status: Blocked.
+
+Notes: Do not merge this with completion rate; this assumption prices or measures the burden of exceptions.
+
+### `DSP-FUND-001` Average Disbursement Funding Value
+
+Identifier: `DSP-FUND-001`
+
+Category: Disbursement pass-through funding value.
+
+Description: Average pass-through sponsor-funded amount delivered or attempted per recipient disbursement or batch.
+
+Unit of measure: PHP per recipient disbursement, PHP per batch, or approved funding unit.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Sponsor program records, pilot data, institutional data, or management estimate required.
+
+Evidence status: Institutional data required.
+
+Confidence level: Low.
+
+Owner: Sponsor program owner with ODTI model reviewer.
+
+Review date: Before pass-through value scale or public-interest value-reach outputs are presented.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Sponsor, Rural Bank, Recipients, Public Interest, NetBank.
+
+Affected calculations: pass-through funding value, recipient value, settlement activity, public-interest reach, and fund-flow visibility.
+
+Legal or accounting dependency: Custody, settlement, account structure, recipient eligibility, and pass-through accounting treatment.
+
+Current status: Blocked.
+
+Notes: This is not revenue, not Rural Bank income, not ODTI income, and not NetBank revenue.
+
+### `DSP-ATT-001` Optional Notification Attachment Rate
+
+Identifier: `DSP-ATT-001`
+
+Category: Optional disbursement notification attachment.
+
+Description: Share of qualifying successful or attempted disbursement events for which the optional notification attachment is selected or billable.
+
+Unit of measure: Percentage of qualifying disbursement events.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Sponsor evidence, product decision, provider data, pilot usage, or management estimate required.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner.
+
+Review date: Before optional notification variant is included in Disbursement Level 1 outputs.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Sponsor, Rural Bank, ODTI, Value-Added Provider, Public Interest.
+
+Affected calculations: notification volume, sponsor notification fees, provider revenue, provider cost, notification margin, and public communication indicators.
+
+Legal or accounting dependency: Consent, privacy, message definition, billing event, failed-message treatment, and provider contract.
+
+Current status: Blocked.
+
+Notes: Core Disbursement must remain calculable without this optional attachment.
+
+### `DSP-VAS-001` Optional Notification Customer-Facing Price
+
+Identifier: `DSP-VAS-001`
+
+Category: Optional disbursement notification pricing.
+
+Description: Customer-facing price charged to the sponsor for one qualifying optional disbursement notification or approved notification billable unit.
+
+Unit of measure: PHP per qualifying notification or approved billable unit.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: ODTI management pricing decision, sponsor evidence, provider quote, and legal/privacy review required.
+
+Evidence status: Management estimate required.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner.
+
+Review date: Before optional notification variant is authorized.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Sponsor, Rural Bank, ODTI, Value-Added Provider.
+
+Affected calculations: sponsor notification fee, Rural Bank or ODTI notification margin, consolidated external revenue, and optional notification contribution.
+
+Legal or accounting dependency: Billing unit, consent, privacy, tax, provider contract, and customer disclosure.
+
+Current status: Blocked.
+
+Notes: This is customer-facing price, not provider wholesale price.
+
+### `DSP-CST-001` Optional Notification Wholesale Provider Price
+
+Identifier: `DSP-CST-001`
+
+Category: Optional disbursement notification provider price.
+
+Description: Amount charged by the notification provider to the Rural Bank, ODTI, or another approved contracting participant for one qualifying notification or approved billable unit.
+
+Unit of measure: PHP per qualifying notification or approved billable unit.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Provider quotation, pricing schedule, approved commercial proposal, or signed provider agreement required.
+
+Evidence status: Provider quote requested.
+
+Confidence level: Low.
+
+Owner: ODTI commercial owner with provider-contract reviewer.
+
+Review date: Before optional notification provider economics are authorized.
+
+Affected offerings: `OFR-RB-DISBURSEMENT-STARTER`.
+
+Affected stakeholders: Rural Bank, ODTI, Value-Added Provider, Sponsor.
+
+Affected calculations: notification provider revenue, Rural Bank or ODTI notification margin, consolidated external outflow if provider is outside boundary, and optional notification contribution.
+
+Legal or accounting dependency: Contracting party, billing unit, failed-message billing, refund treatment, tax, and privacy obligations.
+
+Current status: Blocked.
+
+Notes: This is wholesale provider price, not provider internal delivery cost.
 
 ## Assumption Dependency Example
 
