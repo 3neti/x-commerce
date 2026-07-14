@@ -8,6 +8,8 @@ Offering ID: `OFR-RB-DISBURSEMENT-STARTER`
 
 Decision source: [0005: Select Second Modeled Offering](../../../decisions/0005-select-second-modeled-offering.md)
 
+Economic-treatment proposal: [0006: Disbursement Starter Economic Treatment](../../../decisions/0006-disbursement-starter-economic-treatment.md)
+
 This directory instantiates the second selected offering as a non-numeric, stakeholder-reconciled commercial model. It does not approve pricing, projections, legal characterization, accounting treatment, tax treatment, provider costs, NetBank fees, royalties, partner allocations, or software implementation.
 
 ## Purpose
