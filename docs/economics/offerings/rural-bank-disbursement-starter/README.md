@@ -203,6 +203,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [stakeholder-financial-briefs/README.md](stakeholder-financial-briefs/README.md) | Future stakeholder-specific financial brief scaffolds; no independent calculations. |
 | [spreadsheet-financial-model.md](spreadsheet-financial-model.md) | Future workbook specification scaffold; no `.xlsx` generated. |
 | [workbook-slices.md](workbook-slices.md) | Future workbook implementation slice plan; no generator or workbook artifact. |
+| [evidence-to-model-update-plan.md](evidence-to-model-update-plan.md) | Scaffold for replacing future provisional Disbursement inputs with governed evidence. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |
 | [consolidated-view.md](consolidated-view.md) | Non-numeric consolidation structure and double-counting controls. |
 | [stakeholder-views/sponsor-view.md](stakeholder-views/sponsor-view.md) | Sponsor customer view. |
