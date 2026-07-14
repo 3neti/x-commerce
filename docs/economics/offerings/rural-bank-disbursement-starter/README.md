@@ -201,6 +201,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [level-1-normalization-plan.md](level-1-normalization-plan.md) | Future normalization gate for Level 1 numeric outputs before summaries or briefs. |
 | [five-year-revenue-projection-summary.md](five-year-revenue-projection-summary.md) | Future stakeholder-facing summary scaffold; no numbers until Level 1 is authorized and normalized. |
 | [stakeholder-financial-briefs/README.md](stakeholder-financial-briefs/README.md) | Future stakeholder-specific financial brief scaffolds; no independent calculations. |
+| [spreadsheet-financial-model.md](spreadsheet-financial-model.md) | Future workbook specification scaffold; no `.xlsx` generated. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |
 | [consolidated-view.md](consolidated-view.md) | Non-numeric consolidation structure and double-counting controls. |
 | [stakeholder-views/sponsor-view.md](stakeholder-views/sponsor-view.md) | Sponsor customer view. |
