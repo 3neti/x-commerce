@@ -240,6 +240,12 @@ Inspect the blocked numeric workbook gate with:
 node scripts/finance/build_disbursement_starter_model.mjs --numeric-readiness-check
 ```
 
+Review the formula-backed workbook implementation plan with:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --workbook-formula-plan
+```
+
 The future numeric workbook commands are intentionally guarded until the canonical Level 1 model exists:
 
 ```text

@@ -478,6 +478,24 @@ function numericReadinessCheck() {
   });
 }
 
+function workbookFormulaPlan() {
+  printObject({
+    offering: offeringId,
+    status: "formula implementation plan scaffold",
+    plan: "docs/economics/offerings/rural-bank-disbursement-starter/workbook-formula-implementation-plan.md",
+    currentWorkbook: defaultWorkbookPath,
+    currentWorkbookMode: "structural scaffold",
+    futureCommands: ["--build-level-1-xlsx", "--validate-level-1-xlsx"],
+    blockedUntil: [
+      "provisional input register populated",
+      "offering-economics-level-1.md populated",
+      "five-year summary normalized",
+      "workbook parity rows populated",
+      "formula-backed generator implemented",
+    ],
+  });
+}
+
 function blockedLevel1WorkbookBuild() {
   console.error("Disbursement Level 1 numeric workbook build is blocked.");
   console.error("Reason: no populated Disbursement Level 1 Markdown model and authorized provisional input register exist yet.");
@@ -613,6 +631,7 @@ function help() {
   console.log("  --level-1-manifest-check");
   console.log("  --numeric-workbook-manifest-check");
   console.log("  --numeric-readiness-check");
+  console.log("  --workbook-formula-plan");
   console.log("  --build-scaffold-xlsx [--output artifacts/x-commerce-disbursement-starter-financial-model.xlsx]");
   console.log("  --validate-scaffold-xlsx [--input artifacts/x-commerce-disbursement-starter-financial-model.xlsx]");
   console.log("  --build-level-1-xlsx [--output artifacts/x-commerce-disbursement-starter-financial-model.xlsx]");
@@ -658,6 +677,11 @@ if (args.has("--numeric-workbook-manifest-check")) {
 
 if (args.has("--numeric-readiness-check")) {
   numericReadinessCheck();
+  process.exit(0);
+}
+
+if (args.has("--workbook-formula-plan")) {
+  workbookFormulaPlan();
   process.exit(0);
 }
 
