@@ -2,7 +2,7 @@
 
 ## Status
 
-Current status: non-numeric offering model instantiated.
+Current status: Level 1 draft controlled-placeholder model generated.
 
 Offering ID: `OFR-RB-DISBURSEMENT-STARTER`
 
@@ -10,7 +10,7 @@ Decision source: [0005: Select Second Modeled Offering](../../../decisions/0005-
 
 Accepted economic treatment: [0006: Disbursement Starter Economic Treatment](../../../decisions/0006-disbursement-starter-economic-treatment.md)
 
-This directory instantiates the second selected offering as a non-numeric, stakeholder-reconciled commercial model. It does not approve pricing, projections, legal characterization, accounting treatment, tax treatment, provider costs, NetBank fees, royalties, partner allocations, or software implementation.
+This directory instantiates the second selected offering as a stakeholder-reconciled commercial model and now includes a draft Level 1 controlled-placeholder workbook. It does not approve pricing, forecasts, legal characterization, accounting treatment, tax treatment, provider costs, NetBank fees, royalties, partner allocations, or software implementation.
 
 ## Purpose
 
@@ -148,9 +148,9 @@ Not included in baseline:
 
 ## Readiness Status
 
-The offering is structurally instantiated and not numerically modeled.
+The offering is structurally instantiated and numerically modeled at Level 1 using draft-authorized controlled placeholders.
 
-It is line-item ready for a future assumption-map and evidence pass, but it is not model-ready for projections. Required assumptions, provider costs, fee bases, legal characterization, tax treatment, NetBank treatment, and royalty treatment remain unresolved.
+The model remains not evidence-supported, not forecast-grade, not contract-grade, and not investment-grade. Required evidence, provider costs, legal characterization, tax treatment, NetBank treatment, royalty treatment, financing basis, and true Rural Bank internal support cost remain unresolved.
 
 Line-item readiness values used in this directory:
 
@@ -213,17 +213,17 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [level-1-build-runbook.md](level-1-build-runbook.md) | Operating runbook from candidate values through Level 1 workbook generation. |
 | [numeric-model-handoff-checklist.md](numeric-model-handoff-checklist.md) | Final handoff gate from canonical Level 1 Markdown outputs to formula-backed workbook implementation. |
 | [economic-coherence-review.md](economic-coherence-review.md) | Cost-allocation and commercial-unit review scaffold before provisional-input authorization. |
-| [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Blank future authorization register for Level 1 Disbursement controlled placeholders. |
-| [offering-economics-level-1.md](offering-economics-level-1.md) | Scaffold for the future Level 1 numeric Disbursement model; all outputs remain blocked. |
+| [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Draft-authorized provisional input register for Level 1 Disbursement controlled placeholders. |
+| [offering-economics-level-1.md](offering-economics-level-1.md) | Draft Level 1 numeric Disbursement model using controlled placeholders. |
 | [level-1-normalization-plan.md](level-1-normalization-plan.md) | Future normalization gate for Level 1 numeric outputs before summaries or briefs. |
-| [five-year-revenue-projection-summary.md](five-year-revenue-projection-summary.md) | Future stakeholder-facing summary scaffold; no numbers until Level 1 is authorized and normalized. |
+| [five-year-revenue-projection-summary.md](five-year-revenue-projection-summary.md) | Draft five-year revenue summary derived from the Level 1 controlled-placeholder model. |
 | [stakeholder-financial-briefs/README.md](stakeholder-financial-briefs/README.md) | Future stakeholder-specific financial brief scaffolds; no independent calculations. |
-| [spreadsheet-financial-model.md](spreadsheet-financial-model.md) | Future workbook specification scaffold; no `.xlsx` generated. |
+| [spreadsheet-financial-model.md](spreadsheet-financial-model.md) | Workbook specification for the generated Disbursement `.xlsx`. |
 | [scaffold-workbook-generation-policy.md](scaffold-workbook-generation-policy.md) | Narrow policy allowing a structural `.xlsx` scaffold before numeric Level 1 authorization. |
 | [workbook-formula-implementation-plan.md](workbook-formula-implementation-plan.md) | Formula-backed workbook implementation plan for the future populated `.xlsx`. |
 | [workbook-implementation-backlog.md](workbook-implementation-backlog.md) | Coding backlog for implementing the future formula-backed Disbursement workbook. |
 | [workbook-slices.md](workbook-slices.md) | Future workbook implementation slice plan; no generator or workbook artifact. |
-| [workbook-parity-validation.md](workbook-parity-validation.md) | Future workbook parity validation scaffold; blocked until numeric Level 1 outputs exist. |
+| [workbook-parity-validation.md](workbook-parity-validation.md) | Workbook parity validation rows for the draft Level 1 workbook. |
 | [workbook-parity-entry-template.md](workbook-parity-entry-template.md) | Template for entering canonical Markdown-to-workbook parity rows after Level 1 outputs exist. |
 | [evidence-to-model-update-plan.md](evidence-to-model-update-plan.md) | Scaffold for replacing future provisional Disbursement inputs with governed evidence. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |

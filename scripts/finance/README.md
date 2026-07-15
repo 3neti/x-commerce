@@ -246,11 +246,18 @@ Review the formula-backed workbook implementation plan with:
 node scripts/finance/build_disbursement_starter_model.mjs --workbook-formula-plan
 ```
 
-The future numeric workbook commands are intentionally guarded until the canonical Level 1 model exists:
+The draft numeric workbook commands are available for the current Level 1 controlled-placeholder model:
 
 ```text
 node scripts/finance/build_disbursement_starter_model.mjs --build-level-1-xlsx --output artifacts/x-commerce-disbursement-starter-financial-model.xlsx
 node scripts/finance/build_disbursement_starter_model.mjs --validate-level-1-xlsx --input artifacts/x-commerce-disbursement-starter-financial-model.xlsx
+```
+
+Equivalent npm scripts for the current draft Level 1 controlled-placeholder workbook:
+
+```text
+npm run finance:disbursement:build-level-1
+npm run finance:disbursement:validate-level-1
 ```
 
 Build and validate the Slice 4 workbook with:

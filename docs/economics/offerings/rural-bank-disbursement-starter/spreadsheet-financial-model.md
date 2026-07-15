@@ -6,7 +6,7 @@ Offering: `OFR-RB-DISBURSEMENT-STARTER`
 
 Slice: 1 - Workbook Specification scaffold, separate Disbursement workbook path.
 
-Workbook status: Numeric workbook not generated. A structural scaffold workbook is permitted by [scaffold-workbook-generation-policy.md](scaffold-workbook-generation-policy.md).
+Workbook status: Draft Level 1 controlled-placeholder workbook generated.
 
 Target workbook path:
 
@@ -16,7 +16,7 @@ artifacts/x-commerce-disbursement-starter-financial-model.xlsx
 
 This document specifies the workbook architecture. It does not change the canonical model, authorize values, or introduce assumptions.
 
-The only `.xlsx` allowed before Level 1 numeric authorization is a structural scaffold workbook. That scaffold may show workbook layout, warnings, source lineage, blocked outputs, and validation controls, but it must not populate Disbursement projections.
+The generated `.xlsx` now contains draft-authorized Level 1 controlled-placeholder projections. These remain not evidence-supported, not forecast-grade, not contract-grade, and not investment-grade.
 
 Architecture decision for this track:
 
@@ -159,18 +159,25 @@ scripts/finance/disbursement_starter_slice6_manifest.json
 scripts/finance/disbursement_starter_slice7_manifest.json
 ```
 
-Numeric workbook generation remains blocked until:
+Numeric workbook generation is available through draft Level 1 commands. Final evidence-supported workbook generation remains blocked until:
 
 - provisional inputs are authorized;
 - Level 1 economics are populated;
 - parity rows exist;
 - blocked outputs are represented explicitly.
 
-Structural scaffold workbook generation is allowed under [scaffold-workbook-generation-policy.md](scaffold-workbook-generation-policy.md) with:
+Structural scaffold workbook generation remains available under [scaffold-workbook-generation-policy.md](scaffold-workbook-generation-policy.md) with:
 
 ```text
 node scripts/finance/build_disbursement_starter_model.mjs --build-scaffold-xlsx --output artifacts/x-commerce-disbursement-starter-financial-model.xlsx
 node scripts/finance/build_disbursement_starter_model.mjs --validate-scaffold-xlsx --input artifacts/x-commerce-disbursement-starter-financial-model.xlsx
+```
+
+The draft Level 1 workbook is generated with:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --build-level-1-xlsx --output artifacts/x-commerce-disbursement-starter-financial-model.xlsx
+node scripts/finance/build_disbursement_starter_model.mjs --validate-level-1-xlsx --input artifacts/x-commerce-disbursement-starter-financial-model.xlsx
 ```
 
 The Disbursement workbook generator should be deterministic, repository-local where possible, macro-free, and subordinate to canonical documents.

@@ -2,144 +2,97 @@
 
 ## Status
 
-Current status: calculation scaffold only.
-
 Offering: `OFR-RB-DISBURSEMENT-STARTER`
 
-Model maturity: Level 1, not yet authorized.
+Model maturity: Level 1 draft controlled-placeholder model.
 
-No numeric projections exist in this document.
+Authorization status: Draft internal authorization.
 
-Workbook readiness: not ready for `.xlsx` generation because the [provisional input register](provisional-input-register-level-1.md) contains no authorized scenario values.
+Workbook path: `artifacts/x-commerce-disbursement-starter-financial-model.xlsx`
 
 ## Required Warning
 
-> This model scaffold is not a forecast, approved budget, provider quote, institutional commitment, contract, investment representation, or factual operating result. Numeric outputs remain blocked until provisional inputs are formally authorized.
+> This model uses draft-authorized management candidates and controlled placeholders. It is not a forecast, approved budget, provider quote, institutional commitment, contract, investment representation, public claim, or factual operating result.
 
 ## Model Boundary
 
-Core Disbursement should be shown separately from optional notification.
+Core Disbursement is shown separately from the optional notification variant.
 
-Required future views:
+The primary operating view is Incremental Disbursement Economics. Shared modernization, NetBank, tax, royalty, financing, investor, and partner outputs remain blocked or excluded as stated below.
 
-- Core Disbursement;
-- Optional Notification Increment;
-- Core Disbursement + Notification Variant.
+## Derived Activity
 
-Economic treatment follows [Decision 0006](../../../decisions/0006-disbursement-starter-economic-treatment.md):
-
-- primary operating view: Incremental Disbursement Economics;
-- companion investment view: Rural Bank Modernization Portfolio;
-- later allocation view: Shared Platform Allocation;
-- stress-test view: Full-Cost Stand-Alone Disbursement.
-
-## Projection Shell
-
-When authorized, the model must present:
-
-| Dimension | Required values | Current status |
-| --- | --- | --- |
-| Years | Year 1 through Year 5 | Scaffold only |
-| Scenarios | Conservative, Base, Accelerated | Scaffold only |
-| Core offering | Disbursement without optional notification | Scaffold only |
-| Optional variant | Notification increment | Scaffold only |
-| Combined variant | Core Disbursement + Notification | Scaffold only |
-
-No row in this document may contain a numeric value unless it cites:
-
-- canonical assumption ID;
-- provisional input ID;
-- derived formula; or
-- blocked/excluded treatment.
-
-## Activity Tables
-
-Future tables must show:
-
-| Driver | Formula or source | Status |
-| --- | --- | --- |
-| Active banks | `ADP-002` | Blocked |
-| Weighted active months | `ADP-003` | Blocked |
-| Sponsors per active bank | `DSP-CUS-001` | Blocked |
-| Batches per sponsor per month | `DSP-CUS-002` | Blocked |
-| Recipients per batch | `DSP-CUS-003` | Blocked |
-| Completion rate | `DSP-VOL-002` | Blocked |
-| Successful disbursements per active bank per month | `DSP-CUS-001 x DSP-CUS-002 x DSP-CUS-003 x DSP-VOL-002` | Derived; blocked |
-| Annual successful disbursements | `ADP-002 x ADP-003 x DSP-VOL-001` | Derived; blocked |
-
-Workbook parity key:
+Formula:
 
 ```text
-DSP-VOL-001 = DSP-CUS-001 x DSP-CUS-002 x DSP-CUS-003 x DSP-VOL-002
-Annual successful disbursements = ADP-002 x ADP-003 x DSP-VOL-001
+DSP-VOL-001
+=
+DSP-CUS-001
+x DSP-CUS-002
+x DSP-CUS-003
+x DSP-VOL-002
 ```
 
-`DSP-VOL-001` must not be entered independently while component-derived mode is active.
+| Scenario | Sponsors per bank | Batches per sponsor/month | Recipients per batch | Completion rate | `DSP-VOL-001` |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Conservative | 2 | 1.0 | 75 | 92% | 138.0 |
+| Base | 3 | 1.5 | 150 | 96% | 648.0 |
+| Accelerated | 5 | 2.0 | 250 | 98% | 2450.0 |
 
-## Sponsor Revenue Tables
+## Core Disbursement Activity
 
-Future Core Disbursement revenue should include:
+Annual successful disbursements:
 
-| Revenue source | Formula | Status |
-| --- | --- | --- |
-| Sponsor onboarding fees | Newly onboarded sponsors x `DSP-PRICE-001` | Blocked |
-| Sponsor monthly or program-service fees | Active sponsors x active months x `DSP-PRICE-002` | Blocked |
-| Recipient disbursement fees | Successful disbursements x `DSP-PRICE-003` | Blocked |
-| Disbursement funding value | Pass-through; `DSP-FUND-001` | Blocked and excluded from revenue |
+```text
+ADP-002 x ADP-003 x DSP-VOL-001
+```
 
-Optional notification revenue should remain separate:
+| Scenario | Metric | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Conservative | Active banks | 1 | 2 | 3 | 4 | 5 |
+| Conservative | Active sponsors | 2 | 4 | 6 | 8 | 10 |
+| Conservative | Annual successful disbursements | 414 | 1656 | 3312 | 4968 | 6900 |
+| Base | Active banks | 2 | 4 | 6 | 8 | 10 |
+| Base | Active sponsors | 6 | 12 | 18 | 24 | 30 |
+| Base | Annual successful disbursements | 6480 | 20736 | 34992 | 51840 | 71280 |
+| Accelerated | Active banks | 3 | 6 | 10 | 14 | 18 |
+| Accelerated | Active sponsors | 15 | 30 | 50 | 70 | 90 |
+| Accelerated | Annual successful disbursements | 44100 | 132300 | 245000 | 377300 | 485100 |
 
-| Revenue source | Formula | Status |
-| --- | --- | --- |
-| Notification customer-facing fees | Attached notifications x `DSP-VAS-001` | Blocked |
-| Notification wholesale provider cost | Attached notifications x `DSP-CST-001` | Blocked |
-| Notification margin | Collected notification revenue less wholesale provider cost | Blocked |
+## Core External Revenue And Contribution
 
-## Required Five-Year Output Tables
+`Core Disbursement External Revenue` is gross sponsor commercial fees before non-collection. Pass-through disbursement funding is excluded.
 
-The future numeric version must include these exact output families so the workbook can validate parity:
+`Consolidated Contribution Before Blocked Items` is collected sponsor commercial fees less ODTI implementation/support cost, DevOps direct cost, and cloud cost. It excludes NetBank fees, tax, royalty, financing, investor returns, partner allocations, and true Rural Bank internal support cost.
 
-| Output family | Core Disbursement | Optional notification | Combined variant | Current status |
-| --- | --- | --- | --- | --- |
-| Activity | Required | Required as attached notification count | Required | Blocked |
-| Sponsor commercial fees | Required | Required separately | Required | Blocked |
-| Rural Bank entity revenue | Required | Required separately if retained by Rural Bank | Required | Blocked |
-| ODTI entity revenue | Required | Required separately if ODTI participates | Required | Blocked |
-| DevOps entity revenue | Required where allocated | No default SMS effect | Required where allocated | Blocked |
-| Consolidated external revenue | Required | Required separately | Required | Blocked |
-| Consolidated contribution before blocked items | Required | Required separately | Required | Blocked |
+| Scenario | Metric | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Conservative | Core Disbursement External Revenue | 11621 | 31484 | 57968 | 84452 | 115350 |
+| Conservative | Consolidated Contribution Before Blocked Items | -45960 | -153090 | -295930 | -438771 | -605417 |
+| Base | Core Disbursement External Revenue | 102960 | 263472 | 423984 | 613680 | 832560 |
+| Base | Consolidated Contribution Before Blocked Items | -89099 | -261797 | -434496 | -638594 | -874091 |
+| Accelerated | Core Disbursement External Revenue | 492750 | 1253250 | 2262500 | 3403250 | 4332750 |
+| Accelerated | Consolidated Contribution Before Blocked Items | 106823 | 247718 | 439875 | 651218 | 823423 |
 
 ## Rural Bank View
 
-Future Rural Bank tables should show:
-
-- sponsor onboarding share;
-- sponsor monthly or program-service share;
-- retained recipient-disbursement economics;
-- optional notification margin, if retained by Rural Bank;
-- contribution before internal Rural Bank disbursement support cost;
-- blocked `DSP-RB-002`;
-- modernization costs separately;
-- full-cost stand-alone stress test.
-
-Required label:
+Label:
 
 ```text
 Rural Bank Contribution Before Internal Bank Disbursement-Support Cost
 ```
 
+| Scenario | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Conservative | 4947 | 14087 | 26273 | 38460 | 52678 |
+| Base | 45923 | 121081 | 196239 | 285062 | 387551 |
+| Accelerated | 221859 | 576477 | 1044450 | 1576377 | 2009799 |
+
+True Rural Bank net contribution remains blocked until `DSP-RB-002` is evidenced or separately authorized.
+
 ## ODTI View
 
-Future ODTI tables should show:
-
-- ODTI share of sponsor onboarding;
-- ODTI share of sponsor monthly or program-service fee;
-- ODTI transaction-platform revenue;
-- implementation cost;
-- support cost;
-- contribution.
-
-Required qualifier:
+Qualifier:
 
 ```text
 Pre-Tax
@@ -147,77 +100,60 @@ Pre-Royalty
 NetBank-Fee-Blocked
 ```
 
+| Scenario | Metric | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Conservative | ODTI Revenue | 6093 | 15823 | 28796 | 41770 | 56905 |
+| Conservative | ODTI Contribution | -23907 | -59177 | -106204 | -153230 | -208095 |
+| Base | ODTI Revenue | 54978 | 137122 | 219265 | 316344 | 428358 |
+| Base | ODTI Contribution | -55022 | -126878 | -198735 | -283656 | -381642 |
+| Accelerated | ODTI Revenue | 265964 | 664241 | 1195425 | 1792841 | 2279624 |
+| Accelerated | ODTI Contribution | 28964 | 103241 | 195425 | 306841 | 397624 |
+
 ## DevOps View
 
-Future DevOps tables should show:
+Cloud cost remains outside DevOps under the bank-owned cloud boundary.
 
-- setup or allocated revenue, if any;
-- recurring managed-operations revenue, if allocated;
-- direct DevOps cost;
-- contribution;
-- banks supported.
+| Scenario | Metric | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Conservative | DevOps Revenue | 80000 | 170000 | 290000 | 410000 | 550000 |
+| Conservative | DevOps Contribution Before Tax And Overhead | 62000 | 98000 | 146000 | 194000 | 250000 |
+| Base | DevOps Revenue | 200000 | 420000 | 640000 | 900000 | 1200000 |
+| Base | DevOps Contribution Before Tax And Overhead | 150000 | 260000 | 370000 | 500000 | 650000 |
+| Accelerated | DevOps Revenue | 330000 | 690000 | 1200000 | 1740000 | 2180000 |
+| Accelerated | DevOps Contribution Before Tax And Overhead | 249000 | 447000 | 750000 | 1047000 | 1289000 |
 
-Cloud cost remains outside DevOps under the bank-owned infrastructure baseline unless a later approved variant changes the payer.
+## Optional Notification Increment
 
-## Consolidated View
+Optional notification is not part of Core Disbursement headline economics.
 
-Future consolidated tables must separate:
-
-- external sponsor commercial fees;
-- pass-through disbursement funding value;
-- external cloud and provider outflows;
-- internal eliminations;
-- blocked taxes;
-- blocked royalties;
-- blocked NetBank fees;
-- financing items.
-
-## Break-Even Tables
-
-Future break-even tables should include:
-
-- Rural Bank incremental break-even;
-- Rural Bank full-cost stress-test break-even;
-- ODTI break-even;
-- DevOps break-even;
-- sponsor value test where operational-value assumptions exist.
+| Scenario | Metric | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Conservative | Attached notifications | 104 | 414 | 828 | 1242 | 1725 |
+| Conservative | Notification margin | 47 | 186 | 373 | 559 | 776 |
+| Base | Attached notifications | 2592 | 8294 | 13997 | 20736 | 28512 |
+| Base | Notification margin | 1244 | 3981 | 6718 | 9953 | 13686 |
+| Accelerated | Attached notifications | 26460 | 79380 | 147000 | 226380 | 291060 |
+| Accelerated | Notification margin | 12965 | 38896 | 72030 | 110926 | 142619 |
 
 ## Blocked Outputs
 
-The following remain blocked:
-
-- all five-year scenario outputs;
-- Rural Bank true net contribution after `DSP-RB-002`;
-- ODTI post-tax and post-royalty economics;
-- NetBank-fee-adjusted results;
-- tax-adjusted results;
-- NPV, IRR, discounted payback;
-- investor returns;
-- partner allocations.
-
-## Workbook Parity Requirements
-
-The future workbook must match this document for:
-
-| Canonical output | Required parity status |
+| Output | Treatment |
 | --- | --- |
-| Active banks by scenario and year | Exact match after values are authorized |
-| Active sponsors by scenario and year | Exact match after values are authorized |
-| `DSP-VOL-001` by scenario | Exact formula match |
-| Annual successful disbursements by scenario and year | Exact formula match |
-| Core sponsor commercial fees | Exact match after values are authorized |
-| Optional notification increment | Exact match after values are authorized |
-| Rural Bank qualified contribution | Exact match after values are authorized |
-| ODTI qualified contribution | Exact match after values are authorized |
-| DevOps contribution | Exact match after values are authorized |
-| Consolidated external revenue | Exact match after values are authorized |
+| Rural Bank true net contribution after `DSP-RB-002` | Blocked |
+| NetBank-fee-adjusted results | Blocked |
+| Tax-adjusted results | Blocked |
+| 3neti royalty-adjusted results | Blocked |
+| NPV, IRR, discounted payback | Blocked pending `FIN-001` and cash-flow basis |
+| Investor returns | Excluded |
+| Business-development partner allocations | Excluded |
 
-Until this document contains authorized numeric outputs, workbook parity checks must report:
+## Interpretation
 
-```text
-Blocked: canonical numeric model not yet populated.
-```
+The draft placeholder model suggests:
 
-## Next Slice
-
-Normalize the Level 1 model after numeric outputs exist. Until then, this document remains a calculation scaffold.
+- Conservative and Base remain weak before blocked items.
+- Accelerated becomes positive on consolidated contribution before blocked items.
+- Sponsor-level fees drive more revenue than the per-recipient fee alone.
+- DevOps appears positive before tax and overhead, but direct costs require evidence.
+- ODTI remains negative in Conservative and Base under the current draft placeholders.
+- Core Disbursement remains separate from optional notification.

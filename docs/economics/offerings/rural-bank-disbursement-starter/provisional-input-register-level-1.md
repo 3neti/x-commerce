@@ -2,143 +2,100 @@
 
 ## Status
 
-Current status: scaffold aligned to canonical assumptions and accepted economic treatment.
-
 Offering: `OFR-RB-DISBURSEMENT-STARTER`
 
-Authorization status: Not authorized.
+Authorization status: Draft internal authorization.
 
-No values are authorized in this document.
+Permitted use: Level 1 internal controlled-placeholder model only.
 
-This register will eventually record the controlled placeholder inputs used for the first numeric Disbursement Starter model. It does not create projections, update assumptions, or approve pricing.
-
-Canonical assumption status: Disbursement-specific `DSP-*` assumptions now exist in [../../../ASSUMPTIONS_REGISTER.md](../../../ASSUMPTIONS_REGISTER.md).
-
-Economic treatment: [Decision 0006](../../../decisions/0006-disbursement-starter-economic-treatment.md) is accepted as the modeling hierarchy for future Level 1 work.
+This register authorizes draft placeholder inputs for the first Disbursement Starter workbook and Markdown Level 1 model. These inputs are not evidence-supported, not approved prices, not provider quotes, not institutional commitments, not contracts, not forecasts, and not investment-grade.
 
 ## Standard Warning
 
-> This register may contain provisional inputs used only to test commercial-model structure, scenario behavior, affordability, or sensitivity. Provisional inputs are not approved prices, provider quotes, institutional commitments, contracts, factual operating results, budgets, or forecasts unless explicitly stated otherwise.
+> This input is provisional and is used only to test commercial-model structure, scenario behavior, affordability, or sensitivity. It is not an approved price, provider quote, institutional commitment, contract, factual operating result, budget, forecast, investment representation, or public claim.
 
 ## Model Context
 
-| Field | Current scaffold value |
+| Field | Value |
 | --- | --- |
 | Offering | `OFR-RB-DISBURSEMENT-STARTER` |
-| Model version | Level 1, future |
-| Model status | Not yet authorized |
-| Scenario set | Conservative, Base, Accelerated, future |
-| Volume method | Component-derived by default |
-| Projection status | Not created |
-| Workbook status | Not created |
+| Model version | Level 1 draft |
+| Scenario set | Conservative, Base, Accelerated |
+| Volume method | Component-derived |
+| Authorization basis | Draft internal management-model authorization |
+| Approving reviewer | Management-model authorization pending formal sign-off |
+| Expiry trigger | Replace or reapprove after sponsor, rural-bank, DevOps, cloud, provider, legal, accounting, tax, or pilot evidence is obtained. |
+| Workbook path | `artifacts/x-commerce-disbursement-starter-financial-model.xlsx` |
 
-## Authorization Scope
+## Draft-Authorized Scenario Inputs
 
-This register is the only permitted authorization source for Disbursement workbook placeholder values.
+| Provisional Input ID | Assumption ID | Assumption role | Conservative | Base | Accelerated | Unit | Input classification | Authorization status |
+| --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
+| `DSP-PI-L1-001` | `ADP-002` | Primitive input | See annual table | See annual table | See annual table | Active banks | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-002` | `ADP-003` | Primitive input | See annual table | See annual table | See annual table | Weighted active months per active bank | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-003` | `DSP-CUS-001` | Primitive input | 2 | 3 | 5 | Active sponsors per active bank | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-004` | `DSP-CUS-002` | Primitive input | 1.0 | 1.5 | 2.0 | Disbursement batches per active sponsor per month | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-005` | `DSP-CUS-003` | Primitive input | 75 | 150 | 250 | Recipients per batch | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-006` | `DSP-VOL-002` | Primitive input | 92% | 96% | 98% | Successful completion rate | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-007` | `DSP-VOL-001` | Derived input | 138.0 | 648.0 | 2450.0 | Successful disbursements per active bank per month | Derived input | Calculated; not independently authorized |
+| `DSP-PI-L1-008` | `DSP-PRICE-001` | Primitive pricing input | 2500 | 5000 | 7500 | PHP per newly onboarded sponsor | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-009` | `DSP-PRICE-002` | Primitive pricing input | 1000 | 2000 | 3000 | PHP per active sponsor per active month | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-010` | `DSP-PRICE-003` | Primitive pricing input | 1.50 | 2.00 | 2.50 | PHP per successful recipient disbursement | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-011` | `DSP-RB-001` | Primitive allocation input | 0.50 | 0.75 | 1.00 | PHP retained by Rural Bank per successful disbursement | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-012` | `DSP-ODTI-001` | Primitive cost input | 5000 | 7000 | 9000 | PHP ODTI support cost per active bank-month | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-013` | `DSP-ODTI-002` | Primitive cost input | 15000 | 20000 | 25000 | PHP ODTI implementation cost per newly active bank | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-014` | `OPS-003` | Primitive cost input | 6000 | 5000 | 4500 | PHP DevOps direct cost per active bank-month | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-015` | `CLD-001` | Primitive cost input | 3000 | 3000 | 3500 | PHP cloud cost per active bank-month | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-016` | `RISK-002` | Primitive risk input | 5% | 2% | 1% | Non-collection rate on commercial fees | Controlled placeholder | Draft internal authorization |
+| `DSP-PI-L1-017` | `OPS-001` | Primitive revenue input | 50000 | 50000 | 50000 | PHP DevOps setup fee per newly active bank | Active working assumption reused provisionally | Draft internal authorization |
+| `DSP-PI-L1-018` | `OPS-002` | Primitive revenue input | 10000 | 10000 | 10000 | PHP DevOps recurring fee per active bank-month | Active working assumption reused provisionally | Draft internal authorization |
 
-When values are later authorized, every record must state:
+## Annual Adoption Inputs
 
-- whether it is approved for internal Level 1 modeling only;
-- whether it is a controlled placeholder, active working assumption, evidence-supported provisional input, or sensitivity-only input;
-- whether it belongs to Core Disbursement or the optional notification variant;
-- whether it is used in the workbook, excluded from the workbook, or blocked;
-- its expiry or evidence-replacement trigger.
+| Scenario | Metric | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Conservative | Newly active banks | 1 | 1 | 1 | 1 | 1 |
+| Conservative | Active banks | 1 | 2 | 3 | 4 | 5 |
+| Conservative | Weighted active months | 3 | 6 | 8 | 9 | 10 |
+| Base | Newly active banks | 2 | 2 | 2 | 2 | 2 |
+| Base | Active banks | 2 | 4 | 6 | 8 | 10 |
+| Base | Weighted active months | 5 | 8 | 9 | 10 | 11 |
+| Accelerated | Newly active banks | 3 | 3 | 4 | 4 | 4 |
+| Accelerated | Active banks | 3 | 6 | 10 | 14 | 18 |
+| Accelerated | Weighted active months | 6 | 9 | 10 | 11 | 11 |
 
-## Volume Method
+## Optional Notification Draft Inputs
 
-Preferred formula:
+| Provisional Input ID | Assumption ID | Conservative | Base | Accelerated | Unit | Authorization status |
+| --- | --- | ---: | ---: | ---: | --- | --- |
+| `DSP-PI-L1-019` | `DSP-ATT-001` | 25% | 40% | 60% | Share of successful disbursements receiving notification | Draft internal authorization for optional variant only |
+| `DSP-PI-L1-020` | `DSP-VAS-001` | 1.00 | 1.00 | 1.00 | PHP customer-facing notification fee | Draft internal authorization for optional variant only |
+| `DSP-PI-L1-021` | `DSP-CST-001` | 0.50 | 0.50 | 0.50 | PHP wholesale notification provider price | Draft internal authorization for optional variant only |
+| `DSP-PI-L1-022` | `SMS-001` | 95% | 96% | 97% | Delivery-success indicator | Draft internal authorization for optional variant only |
 
-```text
-DSP-CUS-001
-x DSP-CUS-002
-x DSP-CUS-003
-x DSP-VOL-002
-= DSP-VOL-001
-```
+`SMS-003` failed-message billing and `SMS-004` consent/privacy remain blocked until provider and legal/privacy review exist.
 
-`DSP-VOL-001` must not receive an independent provisional value while component-derived volume is selected.
+## Revenue Split Rules
 
-## Provisional Input Record Template
+Draft split for Level 1 internal modeling only:
 
-| Field | Description |
-| --- | --- |
-| Provisional Input ID | Unique record ID, to be issued later. |
-| Assumption ID | Canonical assumption ID. |
-| Assumption role | Primitive input, derived input, or validation-only input. |
-| Scenario values | Conservative, Base, and Accelerated values if approved. |
-| Unit | Approved unit. |
-| Input classification | Active working assumption, controlled placeholder, sensitivity-only input, or evidence-supported provisional input. |
-| Source | Evidence, management rationale, provider quote, or decision record. |
-| Evidence limitation | Why the value remains provisional. |
-| Approval | Reviewer and status. |
-| Expiry or review trigger | When the input must be replaced or reapproved. |
-| Affected outputs | Views and formulas affected. |
-| Warning | Required warning for outputs using the input. |
-
-## P0 Register Slots
-
-| Provisional Input ID | Assumption ID | Assumption role | Scenario values | Unit | Input classification | Authorization status |
-| --- | --- | --- | --- | --- | --- | --- |
-| To be issued | `ADP-002` | Primitive input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-| To be issued | `ADP-003` | Primitive input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-CUS-001` | Primitive input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-CUS-002` | Primitive input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-CUS-003` | Primitive input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-VOL-002` | Primitive input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-VOL-001` | Derived input | Calculated later only | Successful disbursements per active bank per month | Derived input | Not independently authorized |
-| To be issued | `DSP-PRICE-001` | Primitive input | Not authorized | To be defined | Sensitivity-only or controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-PRICE-002` | Primitive input | Not authorized | To be defined | Sensitivity-only or controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-PRICE-003` | Primitive input | Not authorized | To be defined | Sensitivity-only or controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-RB-001` | Primitive allocation input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-ODTI-001` | Primitive cost input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-ODTI-002` | Primitive cost input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-| To be issued | `OPS-003` | Primitive cost input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-| To be issued | `CLD-001` | Primitive cost input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-| To be issued | `RISK-002` | Primitive risk input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-
-## P1 Or Presentation Register Slots
-
-| Provisional Input ID | Assumption ID | Assumption role | Scenario values | Unit | Input classification | Authorization status |
-| --- | --- | --- | --- | --- | --- | --- |
-| To be issued | `DSP-FUND-001` | Primitive pass-through value input | Not authorized | To be defined | Presentation-only or controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-EXC-001` | Primitive exception-cost input | Not authorized | To be defined | Controlled placeholder candidate or blocked | Not authorized |
-| To be issued | `DSP-ATT-001` | Primitive optional input | Not authorized | To be defined | Controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-VAS-001` | Primitive optional price input | Not authorized | To be defined | Sensitivity-only or controlled placeholder candidate | Not authorized |
-| To be issued | `DSP-CST-001` | Primitive optional provider-price input | Not authorized | To be defined | Provider-quote candidate | Not authorized |
-| To be issued | `SMS-001` | Primitive performance input | Not authorized | To be defined | Evidence-supported or placeholder candidate | Not authorized |
-| To be issued | `SMS-003` | Contract treatment input | Not authorized | To be defined | Blocked unless provider terms exist | Not authorized |
-| To be issued | `SMS-004` | Legal/privacy input | Not authorized | To be defined | Blocked unless review exists | Not authorized |
+- Rural Bank retains 40% of sponsor onboarding fees.
+- ODTI receives 60% of sponsor onboarding fees.
+- Rural Bank retains 50% of sponsor monthly or program-service fees.
+- ODTI receives 50% of sponsor monthly or program-service fees.
+- Rural Bank retained recipient-disbursement economics are governed by `DSP-RB-001`.
+- ODTI receives the remainder of the sponsor-facing recipient-disbursement fee.
+- Rural Bank retains optional notification margin in this draft.
 
 ## Blocked Exclusions
 
 | Assumption ID | Treatment | Reason |
 | --- | --- | --- |
-| `TAX-001` | Blocked | Tax review required. |
-| `ROY-001` | Blocked | Royalty or license decision required. |
+| `DSP-RB-002` | Blocked | Rural Bank internal support cost evidence required. |
 | `NET-001` | Blocked | NetBank or rail role and fee basis required. |
 | `NET-002` | Blocked | NetBank internal cost evidence required if modeled. |
-| `DSP-RB-002` | Blocked | Rural Bank internal support cost evidence required. |
+| `TAX-001` | Blocked | Tax review required. |
+| `ROY-001` | Blocked | Royalty or license decision required. |
 | `FIN-001` | Blocked | Discount rate and capital-budgeting assumption not governed. |
-
-## Authorization Gate
-
-No Level 1 Disbursement model may be calculated until:
-
-1. P0 inputs have authorized values or explicitly approved exclusions;
-2. derived-volume method is selected;
-3. placeholder warnings are attached;
-4. blocked outputs are visible;
-5. no value is silently inferred from Payroll Starter.
-
-## Workbook Gate
-
-No Disbursement `.xlsx` artifact may be generated until this register contains either:
-
-- authorized scenario values for every workbook P0 input; or
-- an explicit blocked/excluded treatment that the workbook can display without substituting zero.
-
-The workbook generator must fail or remain in dry-run mode if a required workbook value is missing from this register.
-
-## Next Slice
-
-Produce the first Level 1 numeric offering economics only after this register is completed and authorized.
+| Investor returns | Excluded | No investor-return mechanism in Level 1. |
+| Business-development partner allocations | Excluded | Partner participation remains deferred. |

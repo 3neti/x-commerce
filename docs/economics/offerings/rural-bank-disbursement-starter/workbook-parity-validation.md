@@ -11,7 +11,7 @@ Workbook artifact status: not generated.
 Parity status:
 
 ```text
-Blocked: canonical numeric Level 1 Disbursement model is not yet populated.
+Draft Level 1 parity rows populated for controlled-placeholder workbook validation.
 ```
 
 This document defines how the future Disbursement workbook will be validated against the canonical repository model. It does not create a workbook, authorize values, or produce projections.
@@ -36,16 +36,16 @@ Minimum rows:
 
 | Canonical output | Scenario | Year | Markdown model | Workbook | Match status |
 | --- | --- | --- | ---: | ---: | --- |
-| Active banks | Conservative | Year 1 | Blocked | Blocked | Blocked |
-| Active banks | Base | Year 5 | Blocked | Blocked | Blocked |
-| Active sponsors | Base | Year 5 | Blocked | Blocked | Blocked |
-| `DSP-VOL-001` | Base | Not applicable | Blocked | Blocked | Blocked |
-| Annual successful disbursements | Base | Year 5 | Blocked | Blocked | Blocked |
-| Core external revenue | Base | Year 5 | Blocked | Blocked | Blocked |
-| Rural Bank qualified contribution | Base | Year 5 | Blocked | Blocked | Blocked |
-| ODTI qualified contribution | Base | Year 5 | Blocked | Blocked | Blocked |
-| DevOps contribution | Base | Year 5 | Blocked | Blocked | Blocked |
-| Consolidated contribution before blocked items | Base | Year 5 | Blocked | Blocked | Blocked |
+| Active banks | Conservative | Year 1 | 1 | 1 | Match |
+| Active banks | Base | Year 5 | 10 | 10 | Match |
+| Active sponsors | Base | Year 5 | 30 | 30 | Match |
+| `DSP-VOL-001` | Base | Not applicable | 648.0 | 648.0 | Match |
+| Annual successful disbursements | Base | Year 5 | 71280 | 71280 | Match |
+| Core external revenue | Base | Year 5 | 832560 | 832560 | Match |
+| Rural Bank qualified contribution | Base | Year 5 | 387551 | 387551 | Match |
+| ODTI qualified contribution | Base | Year 5 | -381642 | -381642 | Match |
+| DevOps contribution | Base | Year 5 | 650000 | 650000 | Match |
+| Consolidated contribution before blocked items | Base | Year 5 | -874091 | -874091 | Match |
 
 Rows must become numeric only after the canonical Level 1 model is populated.
 

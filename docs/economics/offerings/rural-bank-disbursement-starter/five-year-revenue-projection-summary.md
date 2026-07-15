@@ -1,158 +1,84 @@
-# Rural Bank Digital Disbursement Starter
+# Rural Bank Digital Disbursement Starter Five-Year Revenue Projection Summary
 
-## Five-Year Revenue Projection Summary
+Subtitle: Controlled Placeholder Model, Internal Stakeholder Discussion Draft
 
-Subtitle: Controlled Placeholder Model, future internal stakeholder discussion draft.
+## Warning
 
-## Status
+> This summary uses draft-authorized management candidates and controlled placeholders. It is not a forecast, approved budget, provider quote, institutional commitment, investment representation, contract, public claim, or factual operating result.
 
-Current status: scaffold; blocked until normalized Level 1 outputs exist.
+> Stakeholder revenue figures are entity-level views and include internal ecosystem transfers. They are not additive. Consolidated External Revenue counts external sponsor commercial inflows once and eliminates internal transfers.
 
-No five-year numeric projection exists yet.
+## Executive Summary
 
-This summary must remain empty of numbers until [offering-economics-level-1.md](offering-economics-level-1.md) contains an authorized and normalized Level 1 model.
+This first draft Level 1 model shows Core Disbursement as a sponsor-funded offering operating on rural-bank-owned infrastructure.
 
-Normalization dependency: [level-1-normalization-plan.md](level-1-normalization-plan.md) must be satisfied before this summary becomes a populated stakeholder-facing artifact.
+The model suggests:
 
-## Required Warning
+- Conservative and Base remain economically weak before blocked items.
+- Accelerated becomes positive on consolidated contribution before blocked items.
+- Sponsor onboarding and recurring service fees are the main revenue engine.
+- Recipient-disbursement fees are secondary.
+- ODTI requires higher activity, better pricing, lower support cost, or broader shared-platform recovery to become attractive in Base.
+- DevOps appears positive before tax and overhead, subject to cost validation.
+- True Rural Bank profitability remains blocked by `DSP-RB-002`.
+- NetBank, tax, royalty, financing, investor, and partner economics remain unresolved.
 
-> This summary may only use provisional management candidates and controlled placeholders after they are authorized. It is not a forecast, approved budget, provider quote, institutional commitment, investment representation, contract, or factual operating result.
+## Scenario Summary
 
-## Non-Additive Revenue Warning
+| Scenario | Year 1 active banks | Year 5 active banks | Year 1 active sponsors | Year 5 active sponsors | Year 1 successful disbursements | Year 5 successful disbursements | Interpretation |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| Conservative | 1 | 5 | 2 | 10 | 414 | 6900 | Too small to carry meaningful economics. |
+| Base | 2 | 10 | 6 | 30 | 6480 | 71280 | Still weak before blocked items under current placeholders. |
+| Accelerated | 3 | 18 | 15 | 90 | 44100 | 485100 | Becomes positive before blocked items. |
 
-> Stakeholder revenue figures are entity-level views and include internal ecosystem transfers. They are not additive. Consolidated External Revenue counts external customer inflows once and eliminates internal transfers.
+## Core Disbursement External Revenue
 
-## Intended Purpose
+| Scenario | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Conservative | 11621 | 31484 | 57968 | 84452 | 115350 |
+| Base | 102960 | 263472 | 423984 | 613680 | 832560 |
+| Accelerated | 492750 | 1253250 | 2262500 | 3403250 | 4332750 |
 
-When numeric outputs exist, this summary should answer:
+## Consolidated Contribution Before Blocked Items
 
-- what the current model suggests;
-- where sponsor revenue comes from;
-- who receives revenue;
-- which economics are incremental;
-- which costs belong to rural-bank modernization;
-- what remains unresolved;
-- which scenario becomes positive, if any;
-- what each stakeholder should care about.
+| Scenario | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Conservative | -45960 | -153090 | -295930 | -438771 | -605417 |
+| Base | -89099 | -261797 | -434496 | -638594 | -874091 |
+| Accelerated | 106823 | 247718 | 439875 | 651218 | 823423 |
 
-## Required Structure
+## Stakeholder Revenue Views
 
-### 1. Executive Summary
+Stakeholder revenue figures are not additive.
 
-Summarize the main findings from the normalized Level 1 model.
+| Scenario | Metric | Year 1 | Year 5 |
+| --- | --- | ---: | ---: |
+| Conservative | Rural Bank qualified contribution | 4947 | 52678 |
+| Conservative | ODTI revenue | 6093 | 56905 |
+| Conservative | DevOps revenue | 80000 | 550000 |
+| Base | Rural Bank qualified contribution | 45923 | 387551 |
+| Base | ODTI revenue | 54978 | 428358 |
+| Base | DevOps revenue | 200000 | 1200000 |
+| Accelerated | Rural Bank qualified contribution | 221859 | 2009799 |
+| Accelerated | ODTI revenue | 265964 | 2279624 |
+| Accelerated | DevOps revenue | 330000 | 2180000 |
 
-Status: Blocked until numeric model exists.
+## Optional Notification Increment
 
-### 2. Revenue Architecture
+Notification is optional and excluded from Core Disbursement headline economics.
 
-Explain:
+| Scenario | Metric | Year 1 | Year 5 |
+| --- | --- | ---: | ---: |
+| Conservative | Notification margin | 47 | 776 |
+| Base | Notification margin | 1244 | 13686 |
+| Accelerated | Notification margin | 12965 | 142619 |
 
-```text
-Rural Bank platform access, if allocated
-+
-Sponsor onboarding
-+
-Sponsor monthly or program-service
-+
-Per-successful-recipient disbursement
-+
-Optional notification
-```
+## What Remains Blocked
 
-Also explain that sponsor-funded disbursement value is pass-through.
-
-### 3. Scenario Summary
-
-Future table:
-
-| Scenario | Year 1 active banks | Year 5 active banks | Year 1 active sponsors | Year 5 active sponsors | First positive Core contribution year | Interpretation |
-| --- | --- | --- | --- | --- | --- | --- |
-| Conservative | Blocked | Blocked | Blocked | Blocked | Blocked | Blocked |
-| Base | Blocked | Blocked | Blocked | Blocked | Blocked | Blocked |
-| Accelerated | Blocked | Blocked | Blocked | Blocked | Blocked | Blocked |
-
-### 4. Core Disbursement Five-Year Revenue
-
-Future table:
-
-| Year | Consolidated Core External Revenue | Consolidated Core Contribution Before Blocked Items |
-| --- | --- | --- |
-| Year 1 | Blocked | Blocked |
-| Year 2 | Blocked | Blocked |
-| Year 3 | Blocked | Blocked |
-| Year 4 | Blocked | Blocked |
-| Year 5 | Blocked | Blocked |
-
-### 5. Sponsor View
-
-Show sponsor onboarding, recurring service, transaction fees, optional notification, and pass-through funding value separately.
-
-### 6. Rural Bank View
-
-Use this label until support cost is resolved:
-
-```text
-Rural Bank Contribution Before Internal Bank Disbursement-Support Cost
-```
-
-### 7. ODTI View
-
-Use this qualifier:
-
-```text
-Pre-Tax
-Pre-Royalty
-NetBank-Fee-Blocked
-```
-
-### 8. DevOps Provider View
-
-Keep cloud cost separate under the bank-owned infrastructure baseline.
-
-### 9. Optional Notification Increment
-
-Show separately from Core Disbursement.
-
-### 10. What The Model Says
-
-Future interpretation section.
-
-### 11. What The Model Does Not Yet Say
-
-Must preserve unresolved items:
-
-- true Rural Bank net contribution after `DSP-RB-002`;
-- tax-adjusted results;
-- 3neti royalty;
-- NetBank fees;
-- investor return;
-- partner allocations;
-- final provider contracts;
-- actual pilot performance;
-- final legal and accounting treatment.
-
-## Source Rule
-
-This summary must not create independent calculations. Every number must come from:
-
-- [offering-economics-level-1.md](offering-economics-level-1.md);
-- [provisional-input-register-level-1.md](provisional-input-register-level-1.md);
-- [assumption-map.md](assumption-map.md);
-- the future Disbursement workbook, if generated from canonical sources.
-
-## Workbook Relationship
-
-The future Disbursement workbook may consume this summary for presentation references, but it must not treat this summary as an independent calculation engine.
-
-Workbook parity must be checked against:
-
-- the authorized provisional input register;
-- the Level 1 offering economics;
-- source-lineage rows in the workbook;
-- blocked-output controls.
-
-If workbook values differ from this summary after the summary is populated, the canonical Level 1 model must be reviewed. The brief or workbook must not silently override the model.
-
-## Next Slice
-
-Create stakeholder-specific financial brief scaffolds that consume this summary and the Level 1 model without creating separate calculations.
+- `DSP-RB-002`: Rural Bank internal support cost.
+- `NET-001` and `NET-002`: NetBank or infrastructure fee and cost basis.
+- `TAX-001`: tax and withholding.
+- `ROY-001`: 3neti royalty or license basis.
+- `FIN-001`: discount rate and capital-budgeting basis.
+- Investor return.
+- Business-development partner allocation.
