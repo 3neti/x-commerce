@@ -211,6 +211,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [level-1-output-table-map.md](level-1-output-table-map.md) | Required Level 1 output tables and workbook consumer mapping. |
 | [numeric-workbook-readiness-roadmap.md](numeric-workbook-readiness-roadmap.md) | Gate sequence from structural scaffold workbook to formula-backed numeric workbook. |
 | [level-1-build-runbook.md](level-1-build-runbook.md) | Operating runbook from candidate values through Level 1 workbook generation. |
+| [numeric-model-handoff-checklist.md](numeric-model-handoff-checklist.md) | Final handoff gate from canonical Level 1 Markdown outputs to formula-backed workbook implementation. |
 | [economic-coherence-review.md](economic-coherence-review.md) | Cost-allocation and commercial-unit review scaffold before provisional-input authorization. |
 | [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Blank future authorization register for Level 1 Disbursement controlled placeholders. |
 | [offering-economics-level-1.md](offering-economics-level-1.md) | Scaffold for the future Level 1 numeric Disbursement model; all outputs remain blocked. |
