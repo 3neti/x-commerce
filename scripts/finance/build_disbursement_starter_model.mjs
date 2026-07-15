@@ -198,6 +198,36 @@ function parityValidation() {
   });
 }
 
+function candidateCompletionPlan() {
+  printObject({
+    offering: offeringId,
+    status: "candidate completion required",
+    plan: "docs/economics/offerings/rural-bank-disbursement-starter/management-candidate-completion-plan.md",
+    target: "Complete Conservative, Base, and Accelerated management candidates before provisional input authorization.",
+    requiredCoreInputs: [
+      "ADP-002",
+      "ADP-003",
+      "DSP-CUS-001",
+      "DSP-CUS-002",
+      "DSP-CUS-003",
+      "DSP-VOL-002",
+      "DSP-PRICE-001",
+      "DSP-PRICE-002",
+      "DSP-PRICE-003",
+      "DSP-RB-001",
+      "DSP-ODTI-001",
+      "DSP-ODTI-002",
+      "OPS-003",
+      "CLD-001",
+      "RISK-002",
+    ],
+    derivedInputs: ["DSP-VOL-001"],
+    optionalNotificationInputs: ["DSP-ATT-001", "DSP-VAS-001", "DSP-CST-001", "SMS-001", "SMS-003", "SMS-004"],
+    blockedOrExcluded: ["NET-001", "NET-002", "TAX-001", "ROY-001", "DSP-RB-002", "DSP-FUND-001", "FIN-001"],
+    nextCommandAfterCompletion: "No build command yet; authorize provisional inputs and populate offering-economics-level-1.md first.",
+  });
+}
+
 function blockedBuild() {
   console.error("Disbursement workbook build is blocked.");
   console.error("Reason: no authorized Disbursement Level 1 numeric model or provisional input register exists yet.");
@@ -213,6 +243,7 @@ function help() {
   console.log("  --manifest-check");
   console.log("  --parity-plan");
   console.log("  --parity-validation");
+  console.log("  --candidate-completion-plan");
   for (const command of Object.keys(slicePlans)) {
     console.log(`  ${command}`);
   }
@@ -248,6 +279,11 @@ if (args.has("--parity-plan")) {
 
 if (args.has("--parity-validation")) {
   parityValidation();
+  process.exit(0);
+}
+
+if (args.has("--candidate-completion-plan")) {
+  candidateCompletionPlan();
   process.exit(0);
 }
 

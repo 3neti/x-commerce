@@ -222,4 +222,4 @@ It must continue to exclude or block:
 
 ## Next Slice
 
-Review or accept the economic-treatment decision before authorizing provisional inputs.
+Complete [management-candidate-completion-plan.md](management-candidate-completion-plan.md), then populate this candidate pack with Conservative, Base, and Accelerated management candidates for review. Do not authorize values in this candidate-pack slice.
