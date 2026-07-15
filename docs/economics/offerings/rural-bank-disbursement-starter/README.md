@@ -200,6 +200,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [candidate-value-population-workplan.md](candidate-value-population-workplan.md) | Execution workplan for populating management candidates without authorization. |
 | [candidate-value-entry-ledger.md](candidate-value-entry-ledger.md) | Status ledger for tracking candidate-value entry and review readiness. |
 | [candidate-value-reuse-decision-log.md](candidate-value-reuse-decision-log.md) | Controls whether Payroll or shared assumption methods may be reused for Disbursement candidates. |
+| [scenario-coherence-checklist.md](scenario-coherence-checklist.md) | Coherence checks for Conservative, Base, and Accelerated candidate scenarios. |
 | [management-candidate-review-worksheet.md](management-candidate-review-worksheet.md) | Review scaffold for deciding which management candidates are ready for authorization review. |
 | [authorization-readiness-report.md](authorization-readiness-report.md) | Readiness report scaffold before completing provisional authorization records. |
 | [candidate-value-import-contract.md](candidate-value-import-contract.md) | Required field and import contract for moving reviewed candidates toward workbook-ready inputs. |
