@@ -1,0 +1,88 @@
+{
+  "model": {
+    "offering": "OFR-RB-DISBURSEMENT-STARTER",
+    "name": "Disbursement Starter Numeric Workbook Export Manifest",
+    "status": "blocked until Level 1 model is populated",
+    "builder": "scripts/finance/build_disbursement_starter_model.mjs",
+    "workbook": "artifacts/x-commerce-disbursement-starter-financial-model.xlsx",
+    "scaffoldPolicy": "docs/economics/offerings/rural-bank-disbursement-starter/scaffold-workbook-generation-policy.md",
+    "readinessRoadmap": "docs/economics/offerings/rural-bank-disbursement-starter/numeric-workbook-readiness-roadmap.md"
+  },
+  "requiredSources": [
+    "docs/ASSUMPTIONS_REGISTER.md",
+    "docs/decisions/0005-select-second-modeled-offering.md",
+    "docs/decisions/0006-disbursement-starter-economic-treatment.md",
+    "docs/economics/offerings/rural-bank-disbursement-starter/provisional-input-register-level-1.md",
+    "docs/economics/offerings/rural-bank-disbursement-starter/offering-economics-level-1.md",
+    "docs/economics/offerings/rural-bank-disbursement-starter/five-year-revenue-projection-summary.md",
+    "docs/economics/offerings/rural-bank-disbursement-starter/workbook-parity-validation.md"
+  ],
+  "requiredSheets": [
+    "00_Read_Me",
+    "01_Control",
+    "02_Assumptions",
+    "03_Assumption_Map",
+    "04_Adoption",
+    "05_Disbursement_Activity",
+    "06_Pricing",
+    "07_Revenue",
+    "08_Cost_of_Sales",
+    "09_Operating_Expenses",
+    "10_Rural_Bank_View",
+    "11_ODTI_View",
+    "12_DevOps_View",
+    "13_Notification_Variant",
+    "14_Consolidated_View",
+    "15_Profit_and_Loss",
+    "16_Cash_Flow",
+    "17_Capital_Budgeting",
+    "18_Sensitivity",
+    "19_Scenarios",
+    "20_Dashboard",
+    "21_Checks",
+    "22_Source_Lineage"
+  ],
+  "numericExportPrerequisites": [
+    "Management candidate values completed",
+    "Provisional input register populated with IDs, units, values, evidence status, authorization status, and expiry triggers",
+    "Level 1 offering economics populated in Markdown",
+    "Five-year revenue summary normalized",
+    "Workbook parity rows populated",
+    "Blocked exclusions represented explicitly",
+    "Numeric workbook formulas implemented"
+  ],
+  "mustRemainBlockedUntilGoverned": [
+    "DSP-RB-002",
+    "NET-001",
+    "NET-002",
+    "TAX-001",
+    "ROY-001",
+    "FIN-001",
+    "Investor returns",
+    "Business-development partner allocations"
+  ],
+  "paritySamplesRequired": [
+    "Year 1 Base active banks",
+    "Year 5 Base active banks",
+    "Year 1 Base annual successful disbursements",
+    "Year 5 Base annual successful disbursements",
+    "Year 1 Base core external revenue",
+    "Year 5 Base core external revenue",
+    "Year 5 Base Rural Bank qualified contribution",
+    "Year 5 Base ODTI qualified contribution",
+    "Year 5 Base consolidated contribution before blocked items"
+  ],
+  "validationChecks": [
+    "All required sheets exist",
+    "No unauthorized Open input is used in numeric formulas",
+    "DSP-VOL-001 is derived under component-derived mode",
+    "Core Disbursement excludes optional notification",
+    "Optional notification is separately presented",
+    "Pass-through funding is excluded from revenue",
+    "Stakeholder revenue is non-additive",
+    "Internal transfers eliminate",
+    "Blocked values are visible and not zero-substituted",
+    "No formula errors",
+    "Canonical parity table matches populated Markdown outputs"
+  ]
+}

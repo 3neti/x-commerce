@@ -151,6 +151,7 @@ const sliceManifestPaths = {
 };
 
 const level1ManifestPath = "scripts/finance/disbursement_starter_level1_manifest.json";
+const numericWorkbookManifestPath = "scripts/finance/disbursement_starter_numeric_workbook_manifest.json";
 
 function printObject(value) {
   console.log(JSON.stringify(value, null, 2));
@@ -435,6 +436,55 @@ function level1ManifestCheck() {
   });
 }
 
+function numericWorkbookManifestCheck() {
+  const manifest = JSON.parse(fs.readFileSync(numericWorkbookManifestPath, "utf8"));
+  if (manifest.model.offering !== offeringId) {
+    throw new Error(`Numeric workbook manifest offering mismatch: ${manifest.model.offering}`);
+  }
+  if (manifest.model.builder !== "scripts/finance/build_disbursement_starter_model.mjs") {
+    throw new Error(`Numeric workbook manifest builder mismatch: ${manifest.model.builder}`);
+  }
+  if (manifest.model.workbook !== defaultWorkbookPath) {
+    throw new Error(`Numeric workbook manifest workbook mismatch: ${manifest.model.workbook}`);
+  }
+  const missingSheets = plannedSheets.filter((sheet) => !manifest.requiredSheets.includes(sheet));
+  if (missingSheets.length > 0) {
+    throw new Error(`Numeric workbook manifest missing required sheets: ${missingSheets.join(", ")}`);
+  }
+  printObject({
+    offering: offeringId,
+    status: "numeric workbook manifest OK",
+    manifest: numericWorkbookManifestPath,
+    requiredSources: manifest.requiredSources.length,
+    requiredSheets: manifest.requiredSheets.length,
+    prerequisites: manifest.numericExportPrerequisites.length,
+    blockedItems: manifest.mustRemainBlockedUntilGoverned.length,
+    paritySamplesRequired: manifest.paritySamplesRequired.length,
+    validationChecks: manifest.validationChecks.length,
+  });
+}
+
+function numericReadinessCheck() {
+  const manifest = JSON.parse(fs.readFileSync(numericWorkbookManifestPath, "utf8"));
+  printObject({
+    offering: offeringId,
+    status: "blocked",
+    workbook: defaultWorkbookPath,
+    reason: "Disbursement Level 1 numeric sources are not populated yet.",
+    currentAllowedArtifact: "structural scaffold workbook only",
+    prerequisites: manifest.numericExportPrerequisites,
+    mustRemainBlockedUntilGoverned: manifest.mustRemainBlockedUntilGoverned,
+    nextHumanAction: "Complete management candidates, authorize provisional inputs, and populate offering-economics-level-1.md before numeric workbook export.",
+  });
+}
+
+function blockedLevel1WorkbookBuild() {
+  console.error("Disbursement Level 1 numeric workbook build is blocked.");
+  console.error("Reason: no populated Disbursement Level 1 Markdown model and authorized provisional input register exist yet.");
+  console.error("Use --build-scaffold-xlsx for the current structural workbook, or --numeric-readiness-check to inspect remaining gates.");
+  process.exit(2);
+}
+
 function sliceManifestCheck(command) {
   const path = sliceManifestPaths[command];
   const manifest = JSON.parse(fs.readFileSync(path, "utf8"));
@@ -561,8 +611,12 @@ function help() {
   console.log("  --candidate-completion-plan");
   console.log("  --candidate-value-entry-plan");
   console.log("  --level-1-manifest-check");
+  console.log("  --numeric-workbook-manifest-check");
+  console.log("  --numeric-readiness-check");
   console.log("  --build-scaffold-xlsx [--output artifacts/x-commerce-disbursement-starter-financial-model.xlsx]");
   console.log("  --validate-scaffold-xlsx [--input artifacts/x-commerce-disbursement-starter-financial-model.xlsx]");
+  console.log("  --build-level-1-xlsx [--output artifacts/x-commerce-disbursement-starter-financial-model.xlsx]");
+  console.log("  --validate-level-1-xlsx [--input artifacts/x-commerce-disbursement-starter-financial-model.xlsx]");
   for (const command of Object.keys(slicePlans)) {
     console.log(`  ${command}`);
   }
@@ -594,6 +648,16 @@ if (args.has("--manifest-check")) {
 
 if (args.has("--level-1-manifest-check")) {
   level1ManifestCheck();
+  process.exit(0);
+}
+
+if (args.has("--numeric-workbook-manifest-check")) {
+  numericWorkbookManifestCheck();
+  process.exit(0);
+}
+
+if (args.has("--numeric-readiness-check")) {
+  numericReadinessCheck();
   process.exit(0);
 }
 
@@ -633,6 +697,14 @@ if (args.has("--validate-scaffold-xlsx")) {
     ...result,
   });
   process.exit(0);
+}
+
+if (args.has("--build-level-1-xlsx")) {
+  blockedLevel1WorkbookBuild();
+}
+
+if (args.has("--validate-level-1-xlsx")) {
+  blockedLevel1WorkbookBuild();
 }
 
 for (const [command, plan] of Object.entries(slicePlans)) {

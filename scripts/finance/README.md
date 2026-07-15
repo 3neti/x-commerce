@@ -228,6 +228,25 @@ The manifest is:
 scripts/finance/disbursement_starter_level1_manifest.json
 ```
 
+Validate the future numeric workbook export manifest with:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --numeric-workbook-manifest-check
+```
+
+Inspect the blocked numeric workbook gate with:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --numeric-readiness-check
+```
+
+The future numeric workbook commands are intentionally guarded until the canonical Level 1 model exists:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --build-level-1-xlsx --output artifacts/x-commerce-disbursement-starter-financial-model.xlsx
+node scripts/finance/build_disbursement_starter_model.mjs --validate-level-1-xlsx --input artifacts/x-commerce-disbursement-starter-financial-model.xlsx
+```
+
 Build and validate the Slice 4 workbook with:
 
 ```text
