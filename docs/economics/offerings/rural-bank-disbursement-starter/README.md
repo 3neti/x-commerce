@@ -219,6 +219,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [workbook-implementation-backlog.md](workbook-implementation-backlog.md) | Coding backlog for implementing the future formula-backed Disbursement workbook. |
 | [workbook-slices.md](workbook-slices.md) | Future workbook implementation slice plan; no generator or workbook artifact. |
 | [workbook-parity-validation.md](workbook-parity-validation.md) | Future workbook parity validation scaffold; blocked until numeric Level 1 outputs exist. |
+| [workbook-parity-entry-template.md](workbook-parity-entry-template.md) | Template for entering canonical Markdown-to-workbook parity rows after Level 1 outputs exist. |
 | [evidence-to-model-update-plan.md](evidence-to-model-update-plan.md) | Scaffold for replacing future provisional Disbursement inputs with governed evidence. |
 | [reconciliation-schedule.md](reconciliation-schedule.md) | Exact mirrored relationships between line items. |
 | [consolidated-view.md](consolidated-view.md) | Non-numeric consolidation structure and double-counting controls. |

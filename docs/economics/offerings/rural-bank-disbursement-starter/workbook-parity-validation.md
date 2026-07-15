@@ -30,6 +30,8 @@ This document defines how the future Disbursement workbook will be validated aga
 
 The future workbook must include a parity table comparing workbook outputs to canonical Markdown outputs.
 
+Use [workbook-parity-entry-template.md](workbook-parity-entry-template.md) when replacing blocked scaffold rows with populated parity rows.
+
 Minimum rows:
 
 | Canonical output | Scenario | Year | Markdown model | Workbook | Match status |
