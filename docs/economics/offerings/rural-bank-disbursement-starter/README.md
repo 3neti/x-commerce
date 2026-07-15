@@ -202,6 +202,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [candidate-value-reuse-decision-log.md](candidate-value-reuse-decision-log.md) | Controls whether Payroll or shared assumption methods may be reused for Disbursement candidates. |
 | [scenario-coherence-checklist.md](scenario-coherence-checklist.md) | Coherence checks for Conservative, Base, and Accelerated candidate scenarios. |
 | [management-candidate-review-worksheet.md](management-candidate-review-worksheet.md) | Review scaffold for deciding which management candidates are ready for authorization review. |
+| [management-candidate-review-brief.md](management-candidate-review-brief.md) | Executive-style brief scaffold for reviewing populated management candidates. |
 | [authorization-readiness-report.md](authorization-readiness-report.md) | Readiness report scaffold before completing provisional authorization records. |
 | [candidate-value-import-contract.md](candidate-value-import-contract.md) | Required field and import contract for moving reviewed candidates toward workbook-ready inputs. |
 | [provisional-authorization-packet.md](provisional-authorization-packet.md) | Authorization packet scaffold for future Disbursement Level 1 provisional inputs. |
