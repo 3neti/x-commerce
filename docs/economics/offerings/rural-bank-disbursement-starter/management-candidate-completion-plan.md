@@ -2,7 +2,7 @@
 
 ## Status
 
-Current status: scaffold.
+Current status: scaffold; candidate-pack worksheet added.
 
 Offering: `OFR-RB-DISBURSEMENT-STARTER`
 
@@ -23,6 +23,8 @@ Candidate values, when added later, must be recorded first in:
 - [offering-economics-level-1.md](offering-economics-level-1.md), only after authorization.
 
 The workbook must not become the place where Disbursement assumptions are invented.
+
+Candidate-pack scaffold status: [provisional-input-candidate-pack.md](provisional-input-candidate-pack.md) now contains Open scenario worksheets for core inputs, optional notification inputs, pass-through items, derived candidates, and coherence checks.
 
 ## Candidate Completion Objective
 
@@ -147,4 +149,4 @@ The workbook generator remains blocked until:
 
 ## Next Slice
 
-Complete [provisional-input-candidate-pack.md](provisional-input-candidate-pack.md) with Conservative, Base, and Accelerated management candidates. Do not authorize them in that slice.
+Populate the Open scenario worksheet cells in [provisional-input-candidate-pack.md](provisional-input-candidate-pack.md) with Conservative, Base, and Accelerated management candidates. Do not authorize them in that slice.
