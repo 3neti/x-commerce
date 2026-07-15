@@ -199,6 +199,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [candidate-value-entry-plan.md](candidate-value-entry-plan.md) | Entry protocol for populating Conservative, Base, and Accelerated candidate values without authorization. |
 | [management-candidate-review-worksheet.md](management-candidate-review-worksheet.md) | Review scaffold for deciding which management candidates are ready for authorization review. |
 | [candidate-value-import-contract.md](candidate-value-import-contract.md) | Required field and import contract for moving reviewed candidates toward workbook-ready inputs. |
+| [provisional-authorization-packet.md](provisional-authorization-packet.md) | Authorization packet scaffold for future Disbursement Level 1 provisional inputs. |
 | [numeric-workbook-readiness-roadmap.md](numeric-workbook-readiness-roadmap.md) | Gate sequence from structural scaffold workbook to formula-backed numeric workbook. |
 | [economic-coherence-review.md](economic-coherence-review.md) | Cost-allocation and commercial-unit review scaffold before provisional-input authorization. |
 | [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Blank future authorization register for Level 1 Disbursement controlled placeholders. |
