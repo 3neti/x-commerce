@@ -216,6 +216,18 @@ npm run finance:disbursement:validate-scaffold
 
 This scaffold contains workbook layout, warnings, source lineage, blocked placeholders, and validation controls. It contains no authorized values and no Level 1 numeric projections.
 
+Validate the Disbursement Level 1 calculation manifest with:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --level-1-manifest-check
+```
+
+The manifest is:
+
+```text
+scripts/finance/disbursement_starter_level1_manifest.json
+```
+
 Build and validate the Slice 4 workbook with:
 
 ```text

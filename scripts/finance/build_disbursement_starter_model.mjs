@@ -150,6 +150,8 @@ const sliceManifestPaths = {
   "--slice-7-manifest-check": "scripts/finance/disbursement_starter_slice7_manifest.json",
 };
 
+const level1ManifestPath = "scripts/finance/disbursement_starter_level1_manifest.json";
+
 function printObject(value) {
   console.log(JSON.stringify(value, null, 2));
 }
@@ -407,6 +409,32 @@ function manifestCheck() {
   });
 }
 
+function level1ManifestCheck() {
+  const manifest = JSON.parse(fs.readFileSync(level1ManifestPath, "utf8"));
+  if (manifest.model.offering !== offeringId) {
+    throw new Error(`Level 1 manifest offering mismatch: ${manifest.model.offering}`);
+  }
+  if (manifest.volumeMethod.derivedAssumption !== "DSP-VOL-001") {
+    throw new Error("Level 1 manifest must preserve DSP-VOL-001 as the derived volume assumption.");
+  }
+  if (!manifest.formulaFamilies.some((formula) => formula.id === "DSP-L1-ACTIVITY-001")) {
+    throw new Error("Level 1 manifest missing component-derived activity formula.");
+  }
+  if (!manifest.blockedOutputs.includes("NetBank-fee-adjusted results")) {
+    throw new Error("Level 1 manifest missing NetBank blocked-output treatment.");
+  }
+  printObject({
+    offering: offeringId,
+    status: "Level 1 calculation manifest OK",
+    manifest: level1ManifestPath,
+    formulaFamilies: manifest.formulaFamilies.length,
+    requiredInputGroups: manifest.requiredInputGroups.length,
+    requiredOutputFamilies: manifest.requiredOutputFamilies.length,
+    blockedOutputs: manifest.blockedOutputs.length,
+    checks: manifest.checks.length,
+  });
+}
+
 function sliceManifestCheck(command) {
   const path = sliceManifestPaths[command];
   const manifest = JSON.parse(fs.readFileSync(path, "utf8"));
@@ -532,6 +560,7 @@ function help() {
   console.log("  --parity-validation");
   console.log("  --candidate-completion-plan");
   console.log("  --candidate-value-entry-plan");
+  console.log("  --level-1-manifest-check");
   console.log("  --build-scaffold-xlsx [--output artifacts/x-commerce-disbursement-starter-financial-model.xlsx]");
   console.log("  --validate-scaffold-xlsx [--input artifacts/x-commerce-disbursement-starter-financial-model.xlsx]");
   for (const command of Object.keys(slicePlans)) {
@@ -560,6 +589,11 @@ if (args.has("--dry-run")) {
 
 if (args.has("--manifest-check")) {
   manifestCheck();
+  process.exit(0);
+}
+
+if (args.has("--level-1-manifest-check")) {
+  level1ManifestCheck();
   process.exit(0);
 }
 

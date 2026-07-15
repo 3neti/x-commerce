@@ -1,0 +1,132 @@
+{
+  "model": {
+    "offering": "OFR-RB-DISBURSEMENT-STARTER",
+    "name": "Disbursement Starter Level 1 Calculation Manifest",
+    "status": "scaffold",
+    "canonicalModel": "docs/economics/offerings/rural-bank-disbursement-starter/offering-economics-level-1.md",
+    "inputRegister": "docs/economics/offerings/rural-bank-disbursement-starter/provisional-input-register-level-1.md",
+    "candidateContract": "docs/economics/offerings/rural-bank-disbursement-starter/candidate-value-import-contract.md"
+  },
+  "scenarioSet": ["Conservative", "Base", "Accelerated"],
+  "years": ["Year 1", "Year 2", "Year 3", "Year 4", "Year 5"],
+  "volumeMethod": {
+    "selected": "Component-derived",
+    "derivedAssumption": "DSP-VOL-001",
+    "formula": "DSP-CUS-001 x DSP-CUS-002 x DSP-CUS-003 x DSP-VOL-002",
+    "independentOverride": "Blocked unless an aggregate-volume method decision is accepted"
+  },
+  "requiredInputGroups": [
+    {
+      "group": "Adoption",
+      "assumptions": ["ADP-002", "ADP-003"],
+      "requiredForCore": true
+    },
+    {
+      "group": "Sponsor and recipient activity",
+      "assumptions": ["DSP-CUS-001", "DSP-CUS-002", "DSP-CUS-003", "DSP-VOL-002"],
+      "requiredForCore": true
+    },
+    {
+      "group": "Sponsor pricing and allocation",
+      "assumptions": ["DSP-PRICE-001", "DSP-PRICE-002", "DSP-PRICE-003", "DSP-RB-001"],
+      "requiredForCore": true
+    },
+    {
+      "group": "ODTI, DevOps, cloud, and risk",
+      "assumptions": ["DSP-ODTI-001", "DSP-ODTI-002", "OPS-003", "CLD-001", "RISK-002"],
+      "requiredForCore": true
+    },
+    {
+      "group": "Optional notification",
+      "assumptions": ["DSP-ATT-001", "DSP-VAS-001", "DSP-CST-001", "SMS-001", "SMS-003", "SMS-004"],
+      "requiredForCore": false
+    }
+  ],
+  "formulaFamilies": [
+    {
+      "id": "DSP-L1-ACTIVITY-001",
+      "name": "Successful disbursements per active bank per month",
+      "formula": "DSP-CUS-001 x DSP-CUS-002 x DSP-CUS-003 x DSP-VOL-002",
+      "output": "DSP-VOL-001",
+      "workbookSheet": "05_Disbursement_Activity"
+    },
+    {
+      "id": "DSP-L1-ACTIVITY-002",
+      "name": "Annual successful disbursements",
+      "formula": "ADP-002 x ADP-003 x DSP-VOL-001",
+      "output": "Annual successful disbursements",
+      "workbookSheet": "05_Disbursement_Activity"
+    },
+    {
+      "id": "DSP-L1-REVENUE-001",
+      "name": "Sponsor onboarding fees",
+      "formula": "Newly onboarded sponsors x DSP-PRICE-001",
+      "output": "Core sponsor onboarding revenue",
+      "workbookSheet": "07_Revenue"
+    },
+    {
+      "id": "DSP-L1-REVENUE-002",
+      "name": "Sponsor monthly or program-service fees",
+      "formula": "Active sponsors x active months x DSP-PRICE-002",
+      "output": "Core recurring sponsor-service revenue",
+      "workbookSheet": "07_Revenue"
+    },
+    {
+      "id": "DSP-L1-REVENUE-003",
+      "name": "Recipient disbursement fees",
+      "formula": "Annual successful disbursements x DSP-PRICE-003",
+      "output": "Core recipient-disbursement revenue",
+      "workbookSheet": "07_Revenue"
+    },
+    {
+      "id": "DSP-L1-RB-001",
+      "name": "Rural Bank retained disbursement economics",
+      "formula": "Annual successful disbursements x DSP-RB-001 or approved split formula",
+      "output": "Rural Bank retained transaction revenue",
+      "workbookSheet": "10_Rural_Bank_View"
+    },
+    {
+      "id": "DSP-L1-ODTI-001",
+      "name": "ODTI transaction-platform revenue",
+      "formula": "Recipient disbursement revenue less Rural Bank retained economics",
+      "output": "ODTI disbursement transaction revenue",
+      "workbookSheet": "11_ODTI_View"
+    },
+    {
+      "id": "DSP-L1-NOTIF-001",
+      "name": "Optional notification increment",
+      "formula": "Attached notification count x customer-facing notification price less wholesale provider price",
+      "output": "Optional notification contribution",
+      "workbookSheet": "13_Notification_Variant"
+    }
+  ],
+  "requiredOutputFamilies": [
+    "Activity tables",
+    "Sponsor commercial fee tables",
+    "Rural Bank qualified contribution tables",
+    "ODTI pre-tax pre-royalty NetBank-fee-blocked tables",
+    "DevOps contribution tables",
+    "Optional notification increment tables",
+    "Consolidated external revenue tables",
+    "Consolidated contribution before blocked items",
+    "Blocked exclusion tables",
+    "Parity table"
+  ],
+  "blockedOutputs": [
+    "Rural Bank true net contribution after DSP-RB-002",
+    "NetBank-fee-adjusted results",
+    "Tax-adjusted results",
+    "3neti royalty-adjusted results",
+    "NPV and IRR until FIN-001 and cash-flow basis are governed",
+    "Investor returns",
+    "Business-development partner allocations"
+  ],
+  "checks": [
+    "DSP-VOL-001 is derived, not independently entered",
+    "Pass-through disbursement funding is excluded from revenue",
+    "Core Disbursement and optional notification remain separate",
+    "Stakeholder revenue views are not additive",
+    "Internal transfers eliminate in consolidated view",
+    "Blocked outputs remain blocked instead of zero"
+  ]
+}
