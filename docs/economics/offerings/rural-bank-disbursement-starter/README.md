@@ -196,6 +196,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [evidence-instruments/README.md](evidence-instruments/README.md) | Blank evidence questionnaires, information requests, handoff templates, and controlled-placeholder worksheet. |
 | [provisional-input-candidate-pack.md](provisional-input-candidate-pack.md) | Internal scaffold for future Disbursement Level 1 provisional input candidates. |
 | [management-candidate-completion-plan.md](management-candidate-completion-plan.md) | Next-step plan for completing management candidate values before authorization. |
+| [candidate-value-entry-plan.md](candidate-value-entry-plan.md) | Entry protocol for populating Conservative, Base, and Accelerated candidate values without authorization. |
 | [economic-coherence-review.md](economic-coherence-review.md) | Cost-allocation and commercial-unit review scaffold before provisional-input authorization. |
 | [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Blank future authorization register for Level 1 Disbursement controlled placeholders. |
 | [offering-economics-level-1.md](offering-economics-level-1.md) | Scaffold for the future Level 1 numeric Disbursement model; all outputs remain blocked. |
@@ -224,4 +225,4 @@ No Channel Partner view is created. Channel Partner remains deferred.
 
 ## Next Step
 
-Complete [management-candidate-completion-plan.md](management-candidate-completion-plan.md), then update [provisional-input-candidate-pack.md](provisional-input-candidate-pack.md) with Conservative, Base, and Accelerated management candidates. Do not authorize inputs, create projections, or generate a workbook until candidate values are reviewed and the provisional input register is completed.
+Use [candidate-value-entry-plan.md](candidate-value-entry-plan.md) to populate [provisional-input-candidate-pack.md](provisional-input-candidate-pack.md) with Conservative, Base, and Accelerated management candidates. Do not authorize inputs, create projections, or generate a workbook until candidate values are reviewed and the provisional input register is completed.

@@ -228,6 +228,23 @@ function candidateCompletionPlan() {
   });
 }
 
+function candidateValueEntryPlan() {
+  printObject({
+    offering: offeringId,
+    status: "candidate value entry required",
+    plan: "docs/economics/offerings/rural-bank-disbursement-starter/candidate-value-entry-plan.md",
+    target: "Populate Open Conservative, Base, and Accelerated candidate cells for management review only.",
+    permittedOutput: "Updated provisional-input-candidate-pack.md with internal management candidates.",
+    prohibitedOutputs: [
+      "authorized provisional inputs",
+      "Level 1 projections",
+      "workbook artifact",
+      "tax, royalty, NetBank, investor, or partner economics",
+    ],
+    requiredWarning: "Internal management candidate; not authorized; not evidence-supported; not a forecast.",
+  });
+}
+
 function blockedBuild() {
   console.error("Disbursement workbook build is blocked.");
   console.error("Reason: no authorized Disbursement Level 1 numeric model or provisional input register exists yet.");
@@ -244,6 +261,7 @@ function help() {
   console.log("  --parity-plan");
   console.log("  --parity-validation");
   console.log("  --candidate-completion-plan");
+  console.log("  --candidate-value-entry-plan");
   for (const command of Object.keys(slicePlans)) {
     console.log(`  ${command}`);
   }
@@ -284,6 +302,11 @@ if (args.has("--parity-validation")) {
 
 if (args.has("--candidate-completion-plan")) {
   candidateCompletionPlan();
+  process.exit(0);
+}
+
+if (args.has("--candidate-value-entry-plan")) {
+  candidateValueEntryPlan();
   process.exit(0);
 }
 

@@ -295,6 +295,7 @@ Review the current Disbursement scaffold with:
 ```text
 node scripts/finance/build_disbursement_starter_model.mjs --dry-run
 node scripts/finance/build_disbursement_starter_model.mjs --candidate-completion-plan
+node scripts/finance/build_disbursement_starter_model.mjs --candidate-value-entry-plan
 node scripts/finance/build_disbursement_starter_model.mjs --manifest-check
 node scripts/finance/build_disbursement_starter_model.mjs --parity-plan
 node scripts/finance/build_disbursement_starter_model.mjs --slice-2-plan

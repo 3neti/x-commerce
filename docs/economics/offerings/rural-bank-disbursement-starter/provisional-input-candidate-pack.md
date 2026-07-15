@@ -353,4 +353,4 @@ It must continue to exclude or block:
 
 ## Next Slice
 
-Populate the `Open` cells above with Conservative, Base, and Accelerated management candidates for review. Do not authorize values in that slice.
+Use [candidate-value-entry-plan.md](candidate-value-entry-plan.md) to populate the `Open` cells above with Conservative, Base, and Accelerated management candidates for review. Do not authorize values in that slice.
