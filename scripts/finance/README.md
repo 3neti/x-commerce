@@ -207,6 +207,13 @@ node scripts/finance/build_disbursement_starter_model.mjs --build-scaffold-xlsx 
 node scripts/finance/build_disbursement_starter_model.mjs --validate-scaffold-xlsx --input artifacts/x-commerce-disbursement-starter-financial-model.xlsx
 ```
 
+Equivalent npm scripts:
+
+```text
+npm run finance:disbursement:build-scaffold
+npm run finance:disbursement:validate-scaffold
+```
+
 This scaffold contains workbook layout, warnings, source lineage, blocked placeholders, and validation controls. It contains no authorized values and no Level 1 numeric projections.
 
 Build and validate the Slice 4 workbook with:

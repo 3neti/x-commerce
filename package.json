@@ -17,7 +17,9 @@
     "finance:payroll:build-slice-6": "node scripts/finance/build_payroll_starter_model.mjs --build-slice-6-exceljs --output artifacts/x-commerce-payroll-starter-financial-model.xlsx",
     "finance:payroll:validate-slice-6": "node scripts/finance/build_payroll_starter_model.mjs --validate-slice-6-exceljs --input artifacts/x-commerce-payroll-starter-financial-model.xlsx",
     "finance:payroll:build-slice-7": "node scripts/finance/build_payroll_starter_model.mjs --build-slice-7-exceljs --output artifacts/x-commerce-payroll-starter-financial-model.xlsx",
-    "finance:payroll:validate-slice-7": "node scripts/finance/build_payroll_starter_model.mjs --validate-slice-7-exceljs --input artifacts/x-commerce-payroll-starter-financial-model.xlsx"
+    "finance:payroll:validate-slice-7": "node scripts/finance/build_payroll_starter_model.mjs --validate-slice-7-exceljs --input artifacts/x-commerce-payroll-starter-financial-model.xlsx",
+    "finance:disbursement:build-scaffold": "node scripts/finance/build_disbursement_starter_model.mjs --build-scaffold-xlsx --output artifacts/x-commerce-disbursement-starter-financial-model.xlsx",
+    "finance:disbursement:validate-scaffold": "node scripts/finance/build_disbursement_starter_model.mjs --validate-scaffold-xlsx --input artifacts/x-commerce-disbursement-starter-financial-model.xlsx"
   },
   "devDependencies": {
     "exceljs": "^4.4.0"
