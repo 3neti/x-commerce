@@ -48,11 +48,12 @@ The populated workbook may be generated only after the canonical Disbursement mo
 | --- | --- | --- | --- |
 | 1 | [provisional-input-candidate-pack.md](provisional-input-candidate-pack.md) | Populate management candidates for Conservative, Base, and Accelerated scenarios. | Still no numeric workbook. |
 | 2 | [candidate-value-entry-plan.md](candidate-value-entry-plan.md) | Control how candidate values are entered without authorization. | Enables review of proposed values only. |
-| 3 | [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Authorize or draft-authorize Level 1 inputs. | Creates the input source the workbook may consume. |
-| 4 | [offering-economics-level-1.md](offering-economics-level-1.md) | Produce canonical numeric outputs in Markdown. | Creates the parity source for workbook calculations. |
-| 5 | [five-year-revenue-projection-summary.md](five-year-revenue-projection-summary.md) | Normalize the stakeholder-facing summary. | Creates executive output labels and interpretation. |
-| 6 | [workbook-parity-validation.md](workbook-parity-validation.md) | Define canonical-to-workbook parity checks. | Allows formula-backed workbook export validation. |
-| 7 | `artifacts/x-commerce-disbursement-starter-financial-model.xlsx` | Generate the formula-backed workbook. | Replaces scaffold workbook with a populated workbook. |
+| 3 | [candidate-value-import-contract.md](candidate-value-import-contract.md) | Define the records required to import reviewed candidates into governed inputs. | Prevents ad hoc Excel-only values. |
+| 4 | [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Authorize or draft-authorize Level 1 inputs. | Creates the input source the workbook may consume. |
+| 5 | [offering-economics-level-1.md](offering-economics-level-1.md) | Produce canonical numeric outputs in Markdown. | Creates the parity source for workbook calculations. |
+| 6 | [five-year-revenue-projection-summary.md](five-year-revenue-projection-summary.md) | Normalize the stakeholder-facing summary. | Creates executive output labels and interpretation. |
+| 7 | [workbook-parity-validation.md](workbook-parity-validation.md) | Define canonical-to-workbook parity checks. | Allows formula-backed workbook export validation. |
+| 8 | `artifacts/x-commerce-disbursement-starter-financial-model.xlsx` | Generate the formula-backed workbook. | Replaces scaffold workbook with a populated workbook. |
 
 ## Numeric Workbook Entry Criteria
 
@@ -102,4 +103,3 @@ The populated workbook must continue to block or qualify:
 ## Next Slice
 
 Define the candidate-value import contract so future management candidates can be converted into authorized provisional input records and workbook-ready inputs without ad hoc spreadsheet edits.
-
