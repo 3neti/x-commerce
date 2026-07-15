@@ -214,6 +214,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [spreadsheet-financial-model.md](spreadsheet-financial-model.md) | Future workbook specification scaffold; no `.xlsx` generated. |
 | [scaffold-workbook-generation-policy.md](scaffold-workbook-generation-policy.md) | Narrow policy allowing a structural `.xlsx` scaffold before numeric Level 1 authorization. |
 | [workbook-formula-implementation-plan.md](workbook-formula-implementation-plan.md) | Formula-backed workbook implementation plan for the future populated `.xlsx`. |
+| [workbook-implementation-backlog.md](workbook-implementation-backlog.md) | Coding backlog for implementing the future formula-backed Disbursement workbook. |
 | [workbook-slices.md](workbook-slices.md) | Future workbook implementation slice plan; no generator or workbook artifact. |
 | [workbook-parity-validation.md](workbook-parity-validation.md) | Future workbook parity validation scaffold; blocked until numeric Level 1 outputs exist. |
 | [evidence-to-model-update-plan.md](evidence-to-model-update-plan.md) | Scaffold for replacing future provisional Disbursement inputs with governed evidence. |
