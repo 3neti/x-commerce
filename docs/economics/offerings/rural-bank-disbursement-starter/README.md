@@ -200,6 +200,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [candidate-value-population-workplan.md](candidate-value-population-workplan.md) | Execution workplan for populating management candidates without authorization. |
 | [candidate-value-entry-ledger.md](candidate-value-entry-ledger.md) | Status ledger for tracking candidate-value entry and review readiness. |
 | [management-candidate-review-worksheet.md](management-candidate-review-worksheet.md) | Review scaffold for deciding which management candidates are ready for authorization review. |
+| [authorization-readiness-report.md](authorization-readiness-report.md) | Readiness report scaffold before completing provisional authorization records. |
 | [candidate-value-import-contract.md](candidate-value-import-contract.md) | Required field and import contract for moving reviewed candidates toward workbook-ready inputs. |
 | [provisional-authorization-packet.md](provisional-authorization-packet.md) | Authorization packet scaffold for future Disbursement Level 1 provisional inputs. |
 | [provisional-register-completion-checklist.md](provisional-register-completion-checklist.md) | Completion gate for making the provisional input register model-ready. |
