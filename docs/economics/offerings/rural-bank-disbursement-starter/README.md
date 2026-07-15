@@ -203,6 +203,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [provisional-authorization-packet.md](provisional-authorization-packet.md) | Authorization packet scaffold for future Disbursement Level 1 provisional inputs. |
 | [provisional-register-completion-checklist.md](provisional-register-completion-checklist.md) | Completion gate for making the provisional input register model-ready. |
 | [level-1-model-population-plan.md](level-1-model-population-plan.md) | Population sequence for the future canonical Level 1 Markdown model. |
+| [level-1-output-table-map.md](level-1-output-table-map.md) | Required Level 1 output tables and workbook consumer mapping. |
 | [numeric-workbook-readiness-roadmap.md](numeric-workbook-readiness-roadmap.md) | Gate sequence from structural scaffold workbook to formula-backed numeric workbook. |
 | [economic-coherence-review.md](economic-coherence-review.md) | Cost-allocation and commercial-unit review scaffold before provisional-input authorization. |
 | [provisional-input-register-level-1.md](provisional-input-register-level-1.md) | Blank future authorization register for Level 1 Disbursement controlled placeholders. |
