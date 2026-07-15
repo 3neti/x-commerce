@@ -204,6 +204,7 @@ This prevents double counting. A future vocabulary pass may consider adding `Der
 | [five-year-revenue-projection-summary.md](five-year-revenue-projection-summary.md) | Future stakeholder-facing summary scaffold; no numbers until Level 1 is authorized and normalized. |
 | [stakeholder-financial-briefs/README.md](stakeholder-financial-briefs/README.md) | Future stakeholder-specific financial brief scaffolds; no independent calculations. |
 | [spreadsheet-financial-model.md](spreadsheet-financial-model.md) | Future workbook specification scaffold; no `.xlsx` generated. |
+| [scaffold-workbook-generation-policy.md](scaffold-workbook-generation-policy.md) | Narrow policy allowing a structural `.xlsx` scaffold before numeric Level 1 authorization. |
 | [workbook-slices.md](workbook-slices.md) | Future workbook implementation slice plan; no generator or workbook artifact. |
 | [workbook-parity-validation.md](workbook-parity-validation.md) | Future workbook parity validation scaffold; blocked until numeric Level 1 outputs exist. |
 | [evidence-to-model-update-plan.md](evidence-to-model-update-plan.md) | Scaffold for replacing future provisional Disbursement inputs with governed evidence. |

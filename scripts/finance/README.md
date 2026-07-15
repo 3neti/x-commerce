@@ -178,6 +178,37 @@ node scripts/finance/build_payroll_starter_model.mjs --slice-4-manifest-check
 
 Slice 4 covers cost of sales, operating expenses, management P&L views, cash-flow limitations, and extended checks. It preserves blocked outputs for `RB-002`, `TAX-001`, `ROY-001`, `NET-001`, `COL-001`, balance-sheet prerequisites, NPV, and IRR.
 
+## Disbursement Starter
+
+Planned workbook:
+
+```text
+artifacts/x-commerce-disbursement-starter-financial-model.xlsx
+```
+
+Builder scaffold:
+
+```text
+scripts/finance/build_disbursement_starter_model.mjs
+```
+
+The Disbursement workbook remains subordinate to the canonical Disbursement offering documents. Numeric workbook generation is blocked until Disbursement provisional inputs and Level 1 outputs are authorized.
+
+A structural scaffold workbook may be generated before numeric authorization under the policy in:
+
+```text
+docs/economics/offerings/rural-bank-disbursement-starter/scaffold-workbook-generation-policy.md
+```
+
+Build and validate the structural scaffold workbook with:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --build-scaffold-xlsx --output artifacts/x-commerce-disbursement-starter-financial-model.xlsx
+node scripts/finance/build_disbursement_starter_model.mjs --validate-scaffold-xlsx --input artifacts/x-commerce-disbursement-starter-financial-model.xlsx
+```
+
+This scaffold contains workbook layout, warnings, source lineage, blocked placeholders, and validation controls. It contains no authorized values and no Level 1 numeric projections.
+
 Build and validate the Slice 4 workbook with:
 
 ```text

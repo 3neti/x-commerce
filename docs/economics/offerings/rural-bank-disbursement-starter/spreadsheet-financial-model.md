@@ -6,15 +6,17 @@ Offering: `OFR-RB-DISBURSEMENT-STARTER`
 
 Slice: 1 - Workbook Specification scaffold, separate Disbursement workbook path.
 
-Workbook status: Not generated.
+Workbook status: Numeric workbook not generated. A structural scaffold workbook is permitted by [scaffold-workbook-generation-policy.md](scaffold-workbook-generation-policy.md).
 
-Target workbook path, if later approved:
+Target workbook path:
 
 ```text
 artifacts/x-commerce-disbursement-starter-financial-model.xlsx
 ```
 
-This document specifies a future workbook. It does not create a workbook, change the canonical model, authorize values, or introduce assumptions.
+This document specifies the workbook architecture. It does not change the canonical model, authorize values, or introduce assumptions.
+
+The only `.xlsx` allowed before Level 1 numeric authorization is a structural scaffold workbook. That scaffold may show workbook layout, warnings, source lineage, blocked outputs, and validation controls, but it must not populate Disbursement projections.
 
 Architecture decision for this track:
 
@@ -157,14 +159,21 @@ scripts/finance/disbursement_starter_slice6_manifest.json
 scripts/finance/disbursement_starter_slice7_manifest.json
 ```
 
-Generation remains blocked until:
+Numeric workbook generation remains blocked until:
 
 - provisional inputs are authorized;
 - Level 1 economics are populated;
 - parity rows exist;
 - blocked outputs are represented explicitly.
 
-A future Disbursement workbook generator should be deterministic, repository-local where possible, macro-free, and subordinate to canonical documents.
+Structural scaffold workbook generation is allowed under [scaffold-workbook-generation-policy.md](scaffold-workbook-generation-policy.md) with:
+
+```text
+node scripts/finance/build_disbursement_starter_model.mjs --build-scaffold-xlsx --output artifacts/x-commerce-disbursement-starter-financial-model.xlsx
+node scripts/finance/build_disbursement_starter_model.mjs --validate-scaffold-xlsx --input artifacts/x-commerce-disbursement-starter-financial-model.xlsx
+```
+
+The Disbursement workbook generator should be deterministic, repository-local where possible, macro-free, and subordinate to canonical documents.
 
 ## Initial Workbook Modes
 
@@ -183,7 +192,7 @@ The generator should support these modes before it writes any `.xlsx` artifact:
 --parity-validation
 ```
 
-Build commands should remain guarded until numeric authorization exists.
+Numeric build commands should remain guarded until numeric authorization exists. Scaffold workbook commands may run before numeric authorization because they do not calculate economics.
 
 ## Next Slice
 
