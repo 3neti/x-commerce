@@ -15,12 +15,17 @@ return [
     'catalogs' => [
         'pay_code' => [
             'reference' => 'pay-code',
-            'version' => 1,
+            'version' => 2,
             'currency' => 'PHP',
             'items' => [
                 'cash.amount' => [
                     'unit_price_minor' => 1_500,
                     'label' => 'Transaction Fee',
+                    'category' => 'base',
+                ],
+                'flow_type.collectible' => [
+                    'unit_price_minor' => 1_500,
+                    'label' => 'Collection Instruction Fee',
                     'category' => 'base',
                 ],
                 'voucher_type.payable' => [

@@ -23,6 +23,7 @@ final class CommercialCatalogQuoteTest extends TestCase
         $catalog = $this->catalog();
 
         $this->assertSame(1_500, $catalog->item('cash.amount')->unitPriceMinor);
+        $this->assertSame(1_500, $catalog->item('flow_type.collectible')->unitPriceMinor);
         $this->assertSame(1_800, $catalog->item('inputs.fields.kyc')->unitPriceMinor);
         $this->assertSame(120, $catalog->item('feedback.mobile')->unitPriceMinor);
         $this->assertSame(5_000, $catalog->item('rider.url')->unitPriceMinor);
@@ -52,7 +53,7 @@ final class CommercialCatalogQuoteTest extends TestCase
         $this->assertSame(1_560, $quote->totalPriceMinor);
         $this->assertSame(1_560, $quote->allocationPlan->totalAllocatedMinor());
         $this->assertSame(1_560, $quote->allocationPlan->residualMinor());
-        $this->assertSame(1, $quote->catalogSnapshot->version);
+        $this->assertSame(2, $quote->catalogSnapshot->version);
         $this->assertSame(1, $quote->waterfallPolicySnapshot->version);
         $this->assertSame('partner:approved-42', $quote->attributionSnapshot->participants['originator']);
         $this->assertStringStartsWith('commercial-quote:', $quote->reference);
@@ -78,7 +79,7 @@ final class CommercialCatalogQuoteTest extends TestCase
     public function test_catalog_price_changes_require_a_new_version_to_change_the_quote_reference(): void
     {
         $catalogSnapshot = $this->catalog()->toArray();
-        $catalogSnapshot['version'] = 2;
+        $catalogSnapshot['version'] = 3;
         $catalogSnapshot['items'] = array_column(
             $catalogSnapshot['items'],
             null,
