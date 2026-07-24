@@ -11,10 +11,15 @@
 - The calculator supports integer-minor-unit fixed priority lines and one exact residual line.
 - The versioned Pay Code catalog is the canonical source for rationalized instruction prices.
 - Deterministic quote and accepted-sale snapshots preserve catalog, waterfall, attribution, line, and allocation-plan provenance.
+- x-change consumes the catalog for both Pay Code estimates and accepted sales.
+- x-change persists the immutable accepted-sale snapshot and posts its exact plan through purpose-bound `3neti/wallet` Treasury Positions.
+- Commercial charge, allocation, replay protection, and append-only compensating reversal are covered by package tests.
 
-## Intentionally Empty
+## Package Boundary
 
-The service provider has no bootstrapping behavior because the Commercial Waterfall calculator is framework-independent and this package currently has no config, routes, migrations, commands, event listeners, views, translations, or integrations to register.
+The x-commerce service provider publishes the canonical catalog configuration. The calculator, catalog, quote, sale, attribution, and allocation-plan contracts remain framework-light and perform no ledger or provider I/O.
+
+Durable sales and accounting operations belong to the consuming settlement product. x-change currently owns the persistence adapter and `3neti/wallet` owns the purpose-bound Treasury runtime.
 
 ## Not Implemented
 
@@ -28,18 +33,17 @@ The service provider has no bootstrapping behavior because the Commercial Waterf
 - subscriptions;
 - licensing enforcement;
 - usage metering;
-- transaction billing;
-- commissions;
+- percentage, tiered, capped, or time-limited pricing rules;
+- payable-discharge and partner-payment workflows;
 - referrals;
 - royalties;
 - revenue sharing;
 - marketplace items;
-- x-change integration;
 - bank integration;
 - NetBank integration.
 
 ## Commercial Waterfall Boundary
 
-The current calculator produces a deterministic allocation plan only. It does not persist an approved policy, establish legal entitlement, recognize revenue, create a payable, debit an account, credit a participant, execute a transfer, or settle an external provider obligation.
+The calculator still produces a deterministic allocation plan only. In the current x-change adapter, an accepted Pay Code sale snapshots that plan and posts it to classified Treasury Positions. This technical posting does not by itself establish a legal entitlement, settle a partner payable, execute an external bank transfer, or decide tax treatment.
 
-Durable policy publication, effective dating, attribution persistence, percentage rules, caps, lifecycle states, reversals, payables, Treasury posting, and x-change execution remain separate future slices.
+Durable policy publication, effective dating, percentage rules, caps, participant master data, payable discharge, and external settlement remain separate future slices. Existing version 1 snapshots are immutable.

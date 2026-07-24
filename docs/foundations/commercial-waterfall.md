@@ -2,9 +2,9 @@
 
 ## Status
 
-Current status: foundational concept.
+Current status: implemented fixed-and-residual calculation contract with an x-change Treasury adapter.
 
-This document records an emerging x-commerce commercial-governance model. It is not a software design, ledger design, settlement design, legal opinion, tax opinion, accounting standard, or approved compensation plan.
+This document records the commercial-governance model and the implemented calculation boundary. It is not a legal opinion, tax opinion, accounting standard, or blanket approval of any compensation plan.
 
 The Business Development Partner stakeholder business case revealed the need for this concept, but the Commercial Waterfall is broader than business development. It may apply to royalties, platform participation, provider charges, managed operations, referral arrangements, institutional participation, marketplace participation, and other approved ecosystem relationships.
 
@@ -26,7 +26,40 @@ The purpose of a Commercial Waterfall is to replace informal expectations with e
 - reviewable;
 - and eventually executable, if future legal, accounting, commercial, and technical decisions approve execution.
 
-The waterfall should make compensation explainable before it becomes executable.
+The waterfall should make compensation explainable before it becomes executable. The implemented adapter executes only an explicitly versioned Pay Code policy and preserves its accepted snapshot.
+
+## Implemented Runtime Boundary
+
+The first runtime supports:
+
+- immutable versioned catalogs;
+- immutable quote, attribution, policy, and accepted-sale snapshots;
+- integer-minor-unit fixed priority lines;
+- exactly one final residual line;
+- exact conservation of the quoted total;
+- deterministic references;
+- one atomic Client Funds charge and ordered Treasury allocation in x-change;
+- replay protection; and
+- append-only exact compensating reversals.
+
+The runtime deliberately separates calculation from money movement:
+
+```text
+x-commerce catalog + policy + attribution
+                 │
+                 ▼
+       immutable allocation plan
+                 │
+                 ▼
+      x-change accepted sale record
+                 │
+                 ▼
+  3neti/wallet Treasury Position operations
+```
+
+x-commerce never calls a provider and never receives bank credentials. A provider-cost allocation creates a classified payable Position; it is not evidence that the provider has already taken funds. A partner allocation records a payable and its snapshotted recipient reference; it is not an uncontrolled payment instruction.
+
+Percentages, caps, tiers, taxes, royalties, participant master data, invoice collection, and payable discharge are not inferred from the version 1 policy. They require new versioned contracts and acceptance tests.
 
 ## Foundational Principles
 
