@@ -21,6 +21,8 @@ Current: x-commerce owns the knowledge structure and architectural definitions f
 
 Current: x-commerce owns a framework-independent deterministic Commercial Waterfall calculator. It consumes an immutable in-memory policy and allocation base, then produces an immutable allocation plan using integer minor units, fixed priority lines, and one exact residual line. The plan is a calculation artifact only; it is not a ledger entry, payable, account credit, transfer, or accounting conclusion.
 
+Current: x-commerce owns the versioned Pay Code commercial catalog and pure deterministic quote and sale-snapshot factories. An accepted sale snapshot freezes the buyer reference, catalog version and prices, Waterfall policy version, attribution version, selected instruction references, allocation plan, and explicit acceptance timestamp. These immutable objects are not durable database records until a later persistence slice stores them.
+
 ## Documentation Sources And Projections
 
 Current source artifacts include assumptions, model registers, stakeholder documents, decision records, and program documents.
@@ -113,6 +115,9 @@ CommercialWaterfallCalculatorContract
 CommercialWaterfallPolicyData
 CommercialWaterfallInputData
 CommercialAllocationPlanData
+CommercialCatalogData
+CommercialQuoteData
+CommercialSaleSnapshotData
 ```
 
 Future and exploratory reusable software primitives may include:

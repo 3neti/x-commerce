@@ -21,7 +21,7 @@ and made commercially sustainable?
 
 Current: documentation-first Laravel package with one approved pure commercial calculation primitive.
 
-Current: package identity, documentation architecture, commercial vocabulary, registers, templates, and initial RBAP ecosystem map.
+Current: package identity, documentation architecture, commercial vocabulary, registers, templates, initial RBAP ecosystem map, canonical Pay Code catalog, and deterministic quote and accepted-sale snapshots.
 
 Current: no production billing, payment, ledger, or settlement engine. A deterministic Commercial Waterfall calculator can produce a non-executing allocation plan from an immutable in-memory policy.
 
@@ -39,7 +39,7 @@ Current: no production commercial logic has yet been extracted from x-change.
 
 x-change owns representation, authorization, execution, lifecycle, settlement, redemption or disbursement, execution state, and evidence for value-bearing instructions.
 
-x-commerce currently owns the commercial knowledge and architectural definitions for offerings, prices, rate cards, licensing plans, maintenance, subscriptions, usage billing, transaction charges, value-added service economics, marketplace participation, commissions, royalties, referrals, revenue sharing, and stakeholder business cases. It also owns the pure Commercial Waterfall calculation contract approved by Decision 0007.
+x-commerce currently owns the commercial knowledge and architectural definitions for offerings, prices, rate cards, licensing plans, maintenance, subscriptions, usage billing, transaction charges, value-added service economics, marketplace participation, commissions, royalties, referrals, revenue sharing, and stakeholder business cases. It also owns the pure Commercial Waterfall calculation contract approved by Decision 0007 and the canonical catalog and immutable quote/sale snapshot contracts approved by Decision 0008.
 
 x-legal owns legal characterization, regulatory dependencies, legal traceability, and legal handoffs.
 

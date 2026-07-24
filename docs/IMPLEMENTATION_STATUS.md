@@ -9,6 +9,8 @@
 - A pure deterministic Commercial Waterfall calculator exists.
 - Immutable in-memory policy, rule, input, allocation-line, and allocation-plan contracts exist.
 - The calculator supports integer-minor-unit fixed priority lines and one exact residual line.
+- The versioned Pay Code catalog is the canonical source for rationalized instruction prices.
+- Deterministic quote and accepted-sale snapshots preserve catalog, waterfall, attribution, line, and allocation-plan provenance.
 
 ## Intentionally Empty
 
@@ -16,8 +18,8 @@ The service provider has no bootstrapping behavior because the Commercial Waterf
 
 ## Not Implemented
 
-- pricing engine;
-- catalogs;
+- persisted or tenant-managed pricing engine;
+- persisted catalog publication;
 - categories;
 - carts;
 - checkout;
@@ -40,4 +42,4 @@ The service provider has no bootstrapping behavior because the Commercial Waterf
 
 The current calculator produces a deterministic allocation plan only. It does not persist an approved policy, establish legal entitlement, recognize revenue, create a payable, debit an account, credit a participant, execute a transfer, or settle an external provider obligation.
 
-Durable policy publication, effective dating, attribution, percentage rules, caps, lifecycle states, reversals, payables, Treasury posting, and x-change execution remain separate future slices.
+Durable policy publication, effective dating, attribution persistence, percentage rules, caps, lifecycle states, reversals, payables, Treasury posting, and x-change execution remain separate future slices.

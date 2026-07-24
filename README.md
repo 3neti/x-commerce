@@ -2,7 +2,7 @@
 
 **x-commerce is the commercial architecture and knowledge system for packaging, pricing, licensing, metering, and sustaining outcomes delivered through the x-change ecosystem.**
 
-This package is currently a documentation-first Laravel package. It names the commercial vocabulary, stakeholder incentives, pricing assumptions, money-flow categories, and future software boundaries needed to turn value-bearing executions into sustainable commercial offerings.
+This package is a documentation-first Laravel package with a narrow set of approved, framework-independent commercial primitives. It names the commercial vocabulary, stakeholder incentives, pricing assumptions, money-flow categories, and software boundaries needed to turn value-bearing executions into sustainable commercial offerings.
 
 ## Foundational Axioms
 
@@ -59,9 +59,9 @@ Applications such as x-Payout assemble execution capabilities and approved comme
 
 ## Current Status
 
-Current: documentation and commercial knowledge system.
+Current: documentation and commercial knowledge system, canonical Pay Code catalog, deterministic quote and sale snapshots, and pure Commercial Waterfall calculation.
 
-Deferred: production commerce abstractions, x-change extraction, billing engines, licensing enforcement, bank integrations, routes, migrations, models, and UI.
+Deferred: persisted commerce aggregates, x-change extraction, billing engines, account posting, licensing enforcement, bank integrations, routes, migrations, models, and UI.
 
 No production commercial logic has yet been extracted from x-change.
 

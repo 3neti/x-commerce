@@ -20,3 +20,4 @@ Decision records preserve commercial architecture choices, assumptions, and defe
 | 0005 | [Select second modeled offering](0005-select-second-modeled-offering.md) | Accepted |
 | 0006 | [Disbursement Starter economic treatment](0006-disbursement-starter-economic-treatment.md) | Accepted |
 | 0007 | [Introduce the pure Commercial Waterfall calculator](0007-pure-commercial-waterfall-calculator.md) | Accepted |
+| 0008 | [Make x-commerce the catalog and quote source of truth](0008-canonical-catalog-and-quote-snapshots.md) | Accepted |

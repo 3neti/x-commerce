@@ -27,6 +27,15 @@ class PackageBoundaryTest extends TestCase
         $this->assertTrue(class_exists(XCommerceServiceProvider::class));
     }
 
+    public function test_service_provider_registers_the_package_owned_catalog_config(): void
+    {
+        $source = file_get_contents($this->packageRoot('src/XCommerceServiceProvider.php'));
+
+        $this->assertStringContainsString('mergeConfigFrom(', $source);
+        $this->assertStringContainsString('config/x-commerce.php', $source);
+        $this->assertFileExists($this->packageRoot('config/x-commerce.php'));
+    }
+
     public function test_foundational_documentation_exists(): void
     {
         foreach ([
