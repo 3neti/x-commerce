@@ -4,7 +4,7 @@ This document separates current knowledge architecture from future software arch
 
 ## Current Knowledge Architecture
 
-Current: x-commerce is a documentation-first package organized around commercial reasoning artifacts:
+Current: x-commerce is a documentation-first package with one approved pure calculation primitive. Its knowledge architecture is organized around commercial reasoning artifacts:
 
 - foundations for philosophy and package boundary;
 - ecosystems for program-specific analysis;
@@ -18,6 +18,8 @@ Current: x-commerce is a documentation-first package organized around commercial
 - templates for repeatable analysis.
 
 Current: x-commerce owns the knowledge structure and architectural definitions for commercial concepts. It does not yet own production software implementations of pricing, catalogs, checkout, subscriptions, invoices, metering, commissions, royalties, or revenue sharing.
+
+Current: x-commerce owns a framework-independent deterministic Commercial Waterfall calculator. It consumes an immutable in-memory policy and allocation base, then produces an immutable allocation plan using integer minor units, fixed priority lines, and one exact residual line. The plan is a calculation artifact only; it is not a ledger entry, payable, account credit, transfer, or accounting conclusion.
 
 ## Documentation Sources And Projections
 
@@ -80,7 +82,7 @@ Proposed model dimensions:
 
 Required scenario labels: Conservative, Base, and Accelerated.
 
-Deferred: executable spreadsheet, database schema, billing engine, or projection API.
+Deferred: database-backed commercial policy publication, billing engine, execution adapter, or projection API.
 
 ## Pricing And Revenue Model Concepts
 
@@ -104,6 +106,15 @@ Third-party service selling prices must not be treated as ODTI revenue without s
 
 ## Future Software Architecture
 
+Approved reusable software primitives currently include:
+
+```php
+CommercialWaterfallCalculatorContract
+CommercialWaterfallPolicyData
+CommercialWaterfallInputData
+CommercialAllocationPlanData
+```
+
 Future and exploratory reusable software primitives may include:
 
 ```php
@@ -125,7 +136,7 @@ Subscription
 Entitlement
 ```
 
-These names are exploratory. They are not implemented in this scaffold and do not represent current production ownership.
+Except for the approved Commercial Waterfall contracts named above, these names are exploratory. They are not implemented in this scaffold and do not represent current production ownership.
 
 ## Integration Boundaries
 

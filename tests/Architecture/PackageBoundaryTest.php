@@ -2,6 +2,8 @@
 
 namespace LBHurtado\XCommerce\Tests\Architecture;
 
+use LBHurtado\XCommerce\Contracts\CommercialWaterfallCalculatorContract;
+use LBHurtado\XCommerce\Services\DeterministicCommercialWaterfallCalculator;
 use LBHurtado\XCommerce\Tests\TestCase;
 use LBHurtado\XCommerce\XCommerceServiceProvider;
 
@@ -48,6 +50,28 @@ class PackageBoundaryTest extends TestCase
 
         $this->assertArrayNotHasKey('3neti/x-change', $requires);
         $this->assertArrayNotHasKey('lbhurtado/x-change', $requires);
+        $this->assertArrayNotHasKey('3neti/wallet', $requires);
+        $this->assertArrayNotHasKey('bavix/laravel-wallet', $requires);
+    }
+
+    public function test_commercial_waterfall_calculator_is_a_pure_public_contract(): void
+    {
+        $calculator = new DeterministicCommercialWaterfallCalculator;
+        $source = file_get_contents($this->packageRoot('src/Services/DeterministicCommercialWaterfallCalculator.php'));
+
+        $this->assertInstanceOf(CommercialWaterfallCalculatorContract::class, $calculator);
+
+        foreach ([
+            'Illuminate\\',
+            'Bavix\\',
+            'LBHurtado\\Wallet\\',
+            'LBHurtado\\XChange\\',
+            'config(',
+            'app(',
+            'resolve(',
+        ] as $forbiddenReference) {
+            $this->assertStringNotContainsString($forbiddenReference, $source);
+        }
     }
 
     public function test_documentation_preserves_package_boundary(): void
@@ -56,6 +80,6 @@ class PackageBoundaryTest extends TestCase
 
         $this->assertStringContainsString('no production commercial logic has yet been extracted from x-change', $compass);
         $this->assertStringContainsString('An idea is not an assumption', $compass);
+        $this->assertStringContainsString('deterministic Commercial Waterfall calculator', $compass);
     }
 }
-

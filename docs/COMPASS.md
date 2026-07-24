@@ -19,11 +19,11 @@ and made commercially sustainable?
 
 ## Current State
 
-Current: documentation-first Laravel package.
+Current: documentation-first Laravel package with one approved pure commercial calculation primitive.
 
 Current: package identity, documentation architecture, commercial vocabulary, registers, templates, and initial RBAP ecosystem map.
 
-Current: no production commerce engine.
+Current: no production billing, payment, ledger, or settlement engine. A deterministic Commercial Waterfall calculator can produce a non-executing allocation plan from an immutable in-memory policy.
 
 Current: no production commercial logic has yet been extracted from x-change.
 
@@ -39,7 +39,7 @@ Current: no production commercial logic has yet been extracted from x-change.
 
 x-change owns representation, authorization, execution, lifecycle, settlement, redemption or disbursement, execution state, and evidence for value-bearing instructions.
 
-x-commerce currently owns the commercial knowledge and architectural definitions for offerings, prices, rate cards, licensing plans, maintenance, subscriptions, usage billing, transaction charges, value-added service economics, marketplace participation, commissions, royalties, referrals, revenue sharing, and stakeholder business cases. It may later own approved reusable software primitives for these concepts.
+x-commerce currently owns the commercial knowledge and architectural definitions for offerings, prices, rate cards, licensing plans, maintenance, subscriptions, usage billing, transaction charges, value-added service economics, marketplace participation, commissions, royalties, referrals, revenue sharing, and stakeholder business cases. It also owns the pure Commercial Waterfall calculation contract approved by Decision 0007.
 
 x-legal owns legal characterization, regulatory dependencies, legal traceability, and legal handoffs.
 
@@ -90,7 +90,7 @@ The package is organized into foundations, ecosystems, stakeholders, economics, 
 
 ## Non-Goals
 
-This slice does not implement pricing, quotations, catalogs, carts, checkout, orders, invoices, licensing enforcement, transaction billing, bank integrations, NetBank integrations, routes, migrations, models, UI, or x-change extraction.
+This slice does not implement pricing, quotations, catalogs, carts, checkout, orders, invoices, licensing enforcement, transaction billing, bank integrations, NetBank integrations, routes, migrations, models, UI, or x-change extraction. The Commercial Waterfall calculator does not execute or persist its allocation plan.
 
 ## Risks
 
@@ -122,7 +122,7 @@ Phase 4: characterized extraction of commercial logic from x-change, if separate
 
 ## Implementation Status
 
-The PHP implementation is intentionally minimal. The package currently exposes only a Laravel service provider so it can be discovered as a package while the commercial architecture is documented.
+The PHP implementation remains intentionally narrow. The package exposes a discoverable Laravel service provider and a framework-independent Commercial Waterfall calculator. Persistence, policy approval, attribution, payables, account credits, and x-change execution remain deferred.
 
 ## Recommended Next Task
 

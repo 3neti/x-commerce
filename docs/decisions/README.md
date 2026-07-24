@@ -19,3 +19,4 @@ Decision records preserve commercial architecture choices, assumptions, and defe
 | 0004 | [Repo-local workbook generation](0004-repo-local-workbook-generation.md) | Accepted |
 | 0005 | [Select second modeled offering](0005-select-second-modeled-offering.md) | Accepted |
 | 0006 | [Disbursement Starter economic treatment](0006-disbursement-starter-economic-treatment.md) | Accepted |
+| 0007 | [Introduce the pure Commercial Waterfall calculator](0007-pure-commercial-waterfall-calculator.md) | Accepted |
