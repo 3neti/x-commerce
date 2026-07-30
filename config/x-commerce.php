@@ -15,7 +15,7 @@ return [
     'catalogs' => [
         'pay_code' => [
             'reference' => 'pay-code',
-            'version' => 2,
+            'version' => 3,
             'currency' => 'PHP',
             'items' => [
                 'cash.amount' => [
@@ -37,6 +37,11 @@ return [
                     'unit_price_minor' => 800,
                     'label' => 'Settlement Voucher',
                     'category' => 'base',
+                ],
+                'onboarding.enabled' => [
+                    'unit_price_minor' => 1_000,
+                    'label' => 'Account Onboarding',
+                    'category' => 'onboarding',
                 ],
                 'inputs.fields.kyc' => [
                     'unit_price_minor' => 1_800,
