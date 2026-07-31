@@ -10,7 +10,6 @@ abstract class TestCase extends BaseTestCase
     {
         $root = dirname(__DIR__);
 
-        return $path === '' ? $root : $root . DIRECTORY_SEPARATOR . ltrim($path, DIRECTORY_SEPARATOR);
+        return $path === '' ? $root : $root.DIRECTORY_SEPARATOR.ltrim($path, DIRECTORY_SEPARATOR);
     }
 }
-

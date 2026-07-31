@@ -1,0 +1,57 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  php:
+    name: PHP ${{ matrix.php }} / Illuminate ${{ matrix.illuminate }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php: '8.2'
+            illuminate: '11'
+          - php: '8.3'
+            illuminate: '12'
+          - php: '8.4'
+            illuminate: '13'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - run: composer require "illuminate/support:^${{ matrix.illuminate }}.0" --no-update --no-interaction
+      - run: composer install --no-interaction --prefer-dist
+      - run: composer validate --strict
+      - run: composer test
+      - run: composer format:check
+
+  finance:
+    name: Finance artifacts / Node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['20', '22']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - run: npm ci
+      - run: npm run finance:payroll:check
+      - run: npm run finance:payroll:check-slice-3-export

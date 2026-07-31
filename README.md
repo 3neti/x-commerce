@@ -2,7 +2,7 @@
 
 **x-commerce is the commercial architecture and knowledge system for packaging, pricing, licensing, metering, and sustaining outcomes delivered through the x-change ecosystem.**
 
-This package is a documentation-first Laravel package with a narrow set of approved, framework-independent commercial primitives. It names the commercial vocabulary, stakeholder incentives, pricing assumptions, money-flow categories, and software boundaries needed to turn value-bearing executions into sustainable commercial offerings.
+This package is the source of truth for versioned Pay Code pricing and deterministic commercial allocation. It also owns the commercial vocabulary, stakeholder incentives, projection assumptions, money-flow categories, and software boundaries needed to turn value-bearing executions into sustainable commercial offerings.
 
 ## Foundational Axioms
 
@@ -14,7 +14,7 @@ The customer is purchasing an outcome, not a software feature.
 
 ## What This Package Is
 
-x-commerce is a reusable package for commercial architecture. It currently owns the commercial knowledge and architectural definitions for how outcomes delivered through x-change can be packaged, priced, licensed, sold, metered, commissioned, shared, and maintained. It may later own approved reusable software primitives for those concepts.
+x-commerce is a reusable package for commercial architecture. Its runtime primitives quote instruction items, capture immutable sale snapshots, and calculate a first-class Commercial Waterfall. Consuming applications remain responsible for authorization, persistence, accounting entries, and money movement.
 
 The first documented ecosystem is the proposed **RBAP Digital Banking Program**, a rural-bank digital services program introduced through the Rural Bankers Association of the Philippines. RBAP is the first subject, not the package boundary.
 
@@ -23,7 +23,6 @@ The first documented ecosystem is the proposed **RBAP Digital Banking Program**,
 x-commerce is not:
 
 - a deployable customer application;
-- a production pricing engine;
 - a catalog, cart, checkout, order, invoice, or billing system;
 - a bank integration package;
 - a NetBank integration package;
@@ -57,13 +56,45 @@ x-legal owns legal characterization, regulatory dependencies, legal traceability
 
 Applications such as x-Payout assemble execution capabilities and approved commercial primitives, once they exist, into deployable products for specific customers.
 
-## Current Status
+## Runtime Boundary
 
-Current: documentation and commercial knowledge system, canonical Pay Code catalog, deterministic quote and sale snapshots, and pure Commercial Waterfall calculation.
+The package owns:
 
-Deferred: persisted commerce aggregates, x-change extraction, billing engines, account posting, licensing enforcement, bank integrations, routes, migrations, models, and UI.
+- the versioned Pay Code commercial catalog;
+- deterministic instruction quotes;
+- immutable commercial sale snapshots; and
+- pure allocation plans for provider cost, product revenue, partner commission, commercial revenue, and beneficiary principal.
 
-No production commercial logic has yet been extracted from x-change.
+The package does not own:
+
+- Account or Treasury Position posting;
+- provider calls or settlement;
+- mutable balances;
+- issuance authorization; or
+- delivery orchestration.
+
+Those effects belong to the consuming settlement system. This keeps the same quote reproducible without allowing a pricing package to move money.
+
+## Installation
+
+```bash
+composer require 3neti/x-commerce:^1.0
+```
+
+Laravel discovers `XCommerceServiceProvider` automatically. Publish the catalog only when the application intentionally needs to override it:
+
+```bash
+php artisan vendor:publish --tag=x-commerce-config
+```
+
+Catalog versions become immutable once referenced by an accepted sale snapshot. Create a new catalog version instead of rewriting historical prices.
+
+## Compatibility
+
+- PHP 8.2, 8.3, and 8.4
+- Illuminate 11, 12, and 13
+
+The calculation layer is framework-independent. Laravel integration is limited to package discovery and configuration.
 
 ## Documentation Map
 
@@ -81,7 +112,3 @@ No production commercial logic has yet been extracted from x-change.
 - [Partner Participation](docs/partners/README.md): non-binding participation models.
 - [Decisions](docs/decisions/README.md): commercial architecture decision records.
 - [Templates](docs/templates): reusable drafting formats.
-
-## Recommended Next Task
-
-Draft the complete RBAP program overview in `docs/ecosystems/rbap-digital-banking-program/00-program-overview.md`, using the scaffolded registers and stakeholder questions as constraints.
