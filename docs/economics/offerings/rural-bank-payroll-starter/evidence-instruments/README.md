@@ -66,13 +66,14 @@ This prevents a negotiated price range from being mistaken for observed operatin
 
 | Instrument | Primary assumptions | Primary respondent | Purpose |
 | --- | --- | --- | --- |
-| [rural-bank-and-rbap-questionnaire.md](rural-bank-and-rbap-questionnaire.md) | `ADP-001`, `ADP-002`, `ADP-003`, `CUS-001`, `RISK-001` | Rural Bank or RBAP | Adoption, payroll portfolio, readiness, infrastructure, and commercial appetite evidence. |
-| [employer-payroll-questionnaire.md](employer-payroll-questionnaire.md) | `CUS-002`, `CUS-003`, `CUS-004`, `CUS-005`, `CUS-006`, `COL-001`, `ATT-001`, `PUB-002`, `PUB-003` | Employer or Outcome Sponsor | Payroll activity, current workflow, administrative burden, collection timing, and willingness-to-pay evidence. |
+| [rural-bank-and-rbap-questionnaire.md](rural-bank-and-rbap-questionnaire.md) | `ADP-001`, `ADP-002`, `ADP-003`, `CUS-001`, `RB-002`, `RISK-001` | Rural Bank or RBAP | Adoption, payroll portfolio, readiness, payroll-specific support cost, infrastructure, and commercial appetite evidence. |
+| [employer-payroll-questionnaire.md](employer-payroll-questionnaire.md) | `CUS-002`, `CUS-003`, `CUS-004`, `CUS-005`, `CUS-006`, `EMP-001`, `EMP-002`, `COL-001`, `ATT-001`, `PUB-002`, `PUB-003` | Employer or Outcome Sponsor | Payroll activity, current workflow, administrative burden, employer pricing, collection timing, and willingness-to-pay evidence. |
 | [netbank-information-request.md](netbank-information-request.md) | `NET-001`, `NET-002`, `VOL-002` | NetBank or banking partner | Role, fees, settlement, API, reconciliation, service levels, and regulated responsibility evidence. |
 | [devops-and-cloud-estimate-request.md](devops-and-cloud-estimate-request.md) | `OPS-001`, `OPS-002`, `OPS-003`, `OPS-004`, `OPS-005`, `CLD-001` | DevOps Provider and cloud-cost owner | Setup, recurring operations, internal cost, tooling, cloud cost, readiness, and ownership evidence. |
 | [sms-provider-information-request.md](sms-provider-information-request.md) | `VAS-001`, `CST-001`, `ATT-001`, `SMS-001`, `SMS-002`, `SMS-003`, `SMS-004` | SMS Provider | Wholesale pricing, delivery semantics, performance, failed-message treatment, privacy, and internal cost evidence. |
-| [odti-3neti-commercial-decision-worksheet.md](odti-3neti-commercial-decision-worksheet.md) | `LIC-004`, `LIC-005`, `PRC-001`, `RB-001`, `ODTI-001`, `ODTI-002`, `ROY-001`, `RISK-001`, `RISK-002` | ODTI and 3neti management | Commercial decisions, retained economics, ODTI cost structure, 3neti economics, and model-boundary decisions. |
+| [odti-3neti-commercial-decision-worksheet.md](odti-3neti-commercial-decision-worksheet.md) | `EMP-001`, `EMP-002`, `LIC-004`, `LIC-005`, `PRC-001`, `RB-001`, `ODTI-001`, `ODTI-002`, `ROY-001`, `RISK-001`, `RISK-002` | ODTI and 3neti management | Employer pricing, commercial decisions, retained economics, ODTI cost structure, 3neti economics, and model-boundary decisions. |
 | [legal-accounting-tax-privacy-handoff.md](legal-accounting-tax-privacy-handoff.md) | `TAX-001`, `ROY-001`, `COL-001`, `RB-001`, `NET-001`, `SMS-004`, `INV-002` | x-legal, accounting, tax, privacy, and security reviewers | Specific handoff questions for characterization, tax, accounting, privacy, security, and operations. |
+| [finance-capital-budgeting-assumption-request.md](finance-capital-budgeting-assumption-request.md) | `FIN-001` | Finance and capital-allocation reviewers | Discount-rate evidence, cash-flow consistency, permitted use, approval, and review trigger. |
 | [controlled-placeholder-authorization-worksheet.md](controlled-placeholder-authorization-worksheet.md) | All P0 assumptions without Approved or evidence-supported Active inputs | Internal reviewer | Governed provisional-input records for Active working assumptions and Blocked assumptions with controlled placeholders. |
 
 ## Traceability Matrix
@@ -85,12 +86,15 @@ This prevents a negotiated price range from being mistaken for observed operatin
 | `CUS-001` | Rural Bank and RBAP Questionnaire; Controlled-Placeholder Authorization Worksheet | Payroll Portfolio | ODTI commercial owner and rural-bank relationship owner | P0 |
 | `CUS-002` | Employer Payroll Questionnaire; Controlled-Placeholder Authorization Worksheet | Payroll Activity | ODTI commercial owner | P0 |
 | `CUS-003` | Employer Payroll Questionnaire; Controlled-Placeholder Authorization Worksheet | Payroll Activity | ODTI commercial owner | P0 |
+| `EMP-001` | Employer Payroll Questionnaire; ODTI and 3neti Commercial Decision Worksheet; Controlled-Placeholder Authorization Worksheet | Commercial Willingness; Offering Economics | ODTI commercial owner and rural-bank commercial owner | P0 |
+| `EMP-002` | Employer Payroll Questionnaire; ODTI and 3neti Commercial Decision Worksheet; Controlled-Placeholder Authorization Worksheet | Commercial Willingness; Offering Economics | ODTI commercial owner and rural-bank commercial owner | P0 |
 | `VOL-001` | Derived from `CUS-001`, `CUS-002`, `CUS-003`, and `VOL-002`; Controlled-Placeholder Authorization Worksheet only if aggregate method is explicitly selected | Derived-value record; not independently eligible under component-derived method | ODTI finance owner | P0 |
 | `VOL-002` | NetBank Information Request; Employer Payroll Questionnaire; Pilot Measurement via Evidence Plan | Operational Information; Payroll Activity | ODTI operations owner | P0 |
 | `LIC-004` | ODTI and 3neti Commercial Decision Worksheet; Controlled-Placeholder Authorization Worksheet | Offering Economics | ODTI commercial owner | P0 |
 | `LIC-005` | ODTI and 3neti Commercial Decision Worksheet; Controlled-Placeholder Authorization Worksheet | Offering Economics | ODTI commercial owner | P0 |
 | `PRC-001` | ODTI and 3neti Commercial Decision Worksheet; Employer Payroll Questionnaire; Controlled-Placeholder Authorization Worksheet | Offering Economics; Commercial Willingness | ODTI commercial owner | P0 |
 | `RB-001` | ODTI and 3neti Commercial Decision Worksheet; Rural Bank and RBAP Questionnaire; Legal Handoff; Controlled-Placeholder Authorization Worksheet | Offering Economics; Commercial Appetite; Accounting | ODTI commercial owner and rural-bank commercial owner | P0 |
+| `RB-002` | Rural Bank and RBAP Questionnaire; Controlled-Placeholder Authorization Worksheet | Payroll Support Work And Cost | Rural Bank operations owner and finance reviewer | P1 |
 | `ODTI-001` | ODTI and 3neti Commercial Decision Worksheet; Controlled-Placeholder Authorization Worksheet | ODTI Cost Structure | ODTI operations owner | P0 |
 | `ODTI-002` | ODTI and 3neti Commercial Decision Worksheet; Controlled-Placeholder Authorization Worksheet | ODTI Cost Structure | ODTI implementation owner | P0 |
 | `OPS-001` | DevOps and Cloud Estimate Request; Controlled-Placeholder Authorization Worksheet | Setup Estimate | DevOps provider owner | P0 |
@@ -102,6 +106,7 @@ This prevents a negotiated price range from being mistaken for observed operatin
 | `NET-001` | NetBank Information Request; Legal Handoff | Commercial Information; Legal and Regulatory Information | NetBank relationship owner | P1 |
 | `ROY-001` | ODTI and 3neti Commercial Decision Worksheet; Legal Handoff | 3neti Economics; Legal Characterization | 3neti and ODTI commercial owners | P1 |
 | `TAX-001` | Legal Handoff | Tax | Finance and x-legal reviewers | P1 |
+| `FIN-001` | Finance Capital-Budgeting Assumption Request | Capital-Budgeting Boundary; Evidence Basis; Recommended Treatment | Finance and capital-allocation owner | P2 |
 | `ATT-001` | Employer Payroll Questionnaire; SMS Provider Information Request | Commercial Willingness; Pricing | ODTI commercial owner | P1 |
 | `VAS-001` | SMS Provider Information Request; ODTI and 3neti Commercial Decision Worksheet | Pricing; Offering Economics | ODTI commercial owner | P1 |
 | `CST-001` | SMS Provider Information Request | Pricing | SMS provider owner and ODTI commercial owner | P1 |

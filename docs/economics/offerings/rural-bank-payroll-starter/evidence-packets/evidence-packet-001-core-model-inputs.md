@@ -1,6 +1,6 @@
 # Evidence Packet 001: Core Model Inputs
 
-Status: Scaffolded
+Status: Ready for issuance; no evidence responses received
 
 Offering: `OFR-RB-PAYROLL-STARTER`
 
@@ -13,6 +13,8 @@ This packet covers adoption, activity, employer pricing, ODTI cost, DevOps cost,
 This packet does not authorize values, update assumptions, update the workbook, or create a forecast.
 
 Any evidence collected through this packet must pass through the governed update path in [../evidence-to-model-update-plan.md](../evidence-to-model-update-plan.md) before the workbook can be regenerated.
+
+Dispatch and response status are tracked in [evidence-packet-001-issuance-register.md](evidence-packet-001-issuance-register.md). A request is not `Sent` until a named respondent, named reviewer, dispatch date, and response due date are recorded.
 
 ## Target Outcome
 
@@ -77,7 +79,7 @@ Excluded:
 | Instrument | Packet use |
 | --- | --- |
 | [../evidence-instruments/rural-bank-and-rbap-questionnaire.md](../evidence-instruments/rural-bank-and-rbap-questionnaire.md) | Collect `ADP-002`, `ADP-003`, and `CUS-001` evidence. |
-| [../evidence-instruments/employer-payroll-questionnaire.md](../evidence-instruments/employer-payroll-questionnaire.md) | Collect `CUS-002`, `CUS-003`, `EMP-001`, and `EMP-002` evidence. |
+| [../evidence-instruments/employer-payroll-questionnaire.md](../evidence-instruments/employer-payroll-questionnaire.md) | Collect `CUS-002`, `CUS-003`, `VOL-002`, `EMP-001`, and `EMP-002` evidence, including explicit onboarding-fee and monthly-service-fee ranges. |
 | [../evidence-instruments/odti-3neti-commercial-decision-worksheet.md](../evidence-instruments/odti-3neti-commercial-decision-worksheet.md) | Collect `EMP-001`, `EMP-002`, `RB-001`, `ODTI-001`, `ODTI-002`, and `RISK-002` management evidence. |
 | [../evidence-instruments/devops-and-cloud-estimate-request.md](../evidence-instruments/devops-and-cloud-estimate-request.md) | Collect `OPS-003` and `CLD-001` evidence. |
 | [../evidence-instruments/netbank-information-request.md](../evidence-instruments/netbank-information-request.md) | Collect event-definition and execution evidence relevant to `VOL-002` where NetBank or a banking partner participates. |

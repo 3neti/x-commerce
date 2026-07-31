@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Obtain evidence for `ADP-001`, `ADP-002`, `ADP-003`, `CUS-001`, possible employer-pipeline inputs, support readiness, implementation readiness, Public Value, and Institutional Readiness indicators.
+Obtain evidence for `ADP-001`, `ADP-002`, `ADP-003`, `CUS-001`, `RB-002`, possible employer-pipeline inputs, support readiness, implementation readiness, Public Value, and Institutional Readiness indicators.
 
 Use the shared provenance block in [README.md](README.md).
 
@@ -47,6 +47,22 @@ Related assumptions: `CUS-001`, `CUS-002`, `CUS-003`, `VOL-002`, `CUS-006`.
 - What could delay activation?
 
 Related assumptions: `ADP-001`, `ADP-002`, `ADP-003`, `RISK-001`, `OPS-005`.
+
+## Payroll Support Work And Cost
+
+Do not treat general bank overhead as payroll-specific cost. Ask for incremental work, allocation logic, and evidence.
+
+- Which bank roles perform employer onboarding, employer support, recipient support, exception handling, reconciliation, reporting, and compliance coordination?
+- How much staff time is required for one employer onboarding, one active employer-month, one payroll run, and one exception event?
+- Which activities are fixed per active bank and which vary by employer, payroll run, recipient, or exception?
+- What loaded labor-cost basis, contractor rate, or approved internal cost rate applies to each role?
+- What non-labor operating costs are specifically attributable to Payroll Starter?
+- Which costs already exist and which would be incremental after launch?
+- What allocation method would finance accept for mixed payroll and non-payroll work?
+- Which answers are observed, estimated, budgeted, or management judgment?
+- What staffing records, support tickets, exception logs, reconciliation samples, time records, or finance schedules support the response?
+
+Related assumption: `RB-002`.
 
 ## Commercial Appetite
 
@@ -94,6 +110,9 @@ Related assumptions: `PUB-001`, `PUB-003`, `PUB-004`, `INV-003`.
 - Technical architecture:
 - Readiness checklist:
 - Support-ticket or exception samples:
+- Payroll support time-and-motion evidence:
+- Staffing and loaded-cost schedule:
+- Finance-approved allocation method:
 
 ## Reviewer Notes
 

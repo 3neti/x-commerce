@@ -95,15 +95,15 @@ All 14 target assumptions have an acquisition path and a controlled placeholder,
 - **Canonical status:** all 14 remain `Blocked` in the Assumptions Register until governed evidence and authority support a status change.
 - **Derived value:** `VOL-001` remains component-derived from `CUS-001 x CUS-002 x CUS-003 x VOL-002`; it is not independently eligible for evidence replacement under the selected method.
 
-## Instrument Coverage Findings
+## Instrument Coverage Status
 
-The evidence instrument set is usable, but three coverage gaps should be corrected before relying on it as complete.
+The three identified acquisition-governance gaps were closed on 2026-07-14 without assigning assumption values.
 
-| Gap | Current condition | Required correction before evidence acceptance |
+| Gap | Resolution | Remaining evidence requirement |
 | --- | --- | --- |
-| `EMP-001` and `EMP-002` | Evidence Packet 001 maps both assumptions to the Employer Payroll Questionnaire and ODTI worksheet, but neither instrument explicitly records an onboarding fee and a monthly payroll-service fee under these IDs | Add explicit `EMP-001` onboarding-fee and `EMP-002` monthly-fee questions, including range semantics, affordability, exclusions, and permitted use |
-| `RB-002` | The Rural Bank questionnaire asks about staffing readiness and support expectations but does not collect time, labor, exception, reconciliation, reporting, or compliance cost under `RB-002` | Add a payroll-support time-and-motion and cost-allocation section tied to the existing `RB-002` ID; do not create a substitute assumption |
-| `FIN-001` | The workbook specification proposes `FIN-001`, but the Assumptions Register has no canonical `FIN-001` record and no evidence instrument assigns its owner, basis, or approval route | Create the canonical assumption record and finance approval route before collecting or entering a discount rate; do not introduce an alternate ID |
+| `EMP-001` and `EMP-002` | Explicit onboarding-fee and monthly-service-fee questions, range semantics, scope, affordability, and evidence-basis fields were added to the Employer Payroll Questionnaire and ODTI worksheet | Employer responses and management review remain outstanding |
+| `RB-002` | A payroll-support work, time, cost, and allocation section was added to the Rural Bank and RBAP questionnaire under the existing ID | Bank operations evidence and finance review remain outstanding |
+| `FIN-001` | The canonical Blocked assumption and the Finance Capital-Budgeting Assumption Request were added without assigning a value | Finance evidence, cash-flow consistency, review, and approval remain outstanding |
 
 These are evidence-governance gaps, not reasons to redesign the commercial model.
 
@@ -116,7 +116,7 @@ These are evidence-governance gaps, not reasons to redesign the commercial model
 | `NET-002` | Canonical, Blocked, no Level 1 value | NetBank operating-burden estimate or disclosed cost basis, with scope and limitations | NetBank cost and contribution view |
 | `TAX-001` | Canonical, Blocked, no Level 1 value | Professional tax treatment by revenue, provider payment, royalty, withholding, timing, and entity | Tax-adjusted revenue, tax payable, and final net income |
 | `ROY-001` | Canonical, Blocked, no Level 1 value | 3neti-ODTI decision paper or agreement, related-party review, accounting review, and tax review | 3neti royalty revenue and ODTI post-royalty contribution |
-| `FIN-001` | Proposed future assumption only; not yet canonical | Canonical assumption record, finance owner, approved capital-budgeting basis, review trigger, and permitted use | NPV, discounted payback, profitability index, and discount-rate sensitivity; capital-budgeting outputs also require valid cash flows |
+| `FIN-001` | Canonical, Blocked, no Level 1 value | Finance evidence, approved capital-budgeting basis, review trigger, and permitted use | NPV, discounted payback, profitability index, and discount-rate sensitivity; capital-budgeting outputs also require valid cash flows |
 
 `NET-*` currently means `NET-001` and `NET-002`. No additional NetBank assumption should be created merely to represent the same fee or operating-cost concepts.
 
@@ -145,7 +145,7 @@ Every response must carry the shared provenance block. Responses without populat
 
 No assumption value or canonical evidence status can be updated now.
 
-The repository currently contains acquisition scaffolds and provisional-input lineage, not completed evidence that passes the acceptance gate. The only immediate permissible updates are evidence-process records, such as marking an instrument `Sent` or `Received`, recording a respondent and reviewer, correcting the instrument coverage gaps, or adding the missing canonical `FIN-001` record without assigning a value.
+The repository currently contains acquisition scaffolds and provisional-input lineage, not completed evidence that passes the acceptance gate. Instrument coverage was corrected and the missing canonical `FIN-001` record was added without a value. Future process records may be updated only when dispatch, receipt, review, or approval actually occurs.
 
 After evidence is received, each assumption must be reviewed independently. Acceptance of one input does not authorize related inputs, and acceptance of a range does not automatically authorize its midpoint.
 
@@ -184,9 +184,9 @@ Evidence Packet 001 can improve operating credibility without producing final ne
 
 Blocked cells must remain visibly blocked. They must not be populated with zero to make a result appear complete.
 
-## Recommended Next Evidence Packet
+## Next Evidence Packet
 
-After Evidence Packet 001 responses have been received and reviewed, create `Evidence Packet 002: Blocked Net-Economics And Capital-Budgeting Preconditions`.
+`Evidence Packet 002: Blocked Net-Economics And Capital-Budgeting Preconditions` is now prepared but not issued. Evidence Packet 001 factual responses should be available where they affect support scope, pricing, collection, or transaction semantics.
 
 Recommended scope:
 
@@ -197,7 +197,7 @@ Recommended scope:
 | Collection timing dependency | `COL-001` | Establish billing, collection, remittance, and provider-payment timing needed for cash flow |
 | Tax and withholding | `TAX-001` | Obtain professional treatment by fee, entity, provider payment, royalty, and timing |
 | 3neti consideration | `ROY-001` | Record the management decision and obtain legal, accounting, tax, and related-party review |
-| Capital-budgeting rate | `FIN-001` | Canonicalize and approve the discount-rate basis and permitted use without inventing a rate |
+| Capital-budgeting rate | `FIN-001` | Approve the discount-rate basis and permitted use without inventing a rate |
 
 Packet 002 should not begin by selecting values. It should first close the instrument gaps, assign owners and reviewers, collect factual evidence, and preserve unresolved items as blocked.
 
@@ -206,10 +206,10 @@ Packet 002 should not begin by selecting values. It should first close the instr
 | Verification | Result |
 | --- | --- |
 | No architecture was redesigned | Confirmed. This report uses the accepted offering boundary, stakeholder views, component-derived volume method, pass-through treatment, and workbook structure. |
-| No assumptions were duplicated | Confirmed. Existing canonical IDs are used. `VOL-001` remains derived, `NET-*` remains `NET-001` and `NET-002`, and no substitute for missing `FIN-001` was created. |
-| No workbook values were edited directly | Confirmed. This report does not modify the `.xlsx` or workbook generator inputs. |
+| No assumptions were duplicated | Confirmed. Existing canonical IDs are used. `VOL-001` remains derived, `NET-*` remains `NET-001` and `NET-002`, and `FIN-001` was added once under its previously reserved ID. |
+| No workbook values were edited directly | Confirmed. The `.xlsx` and numeric generator inputs remain unchanged; only blocked-state metadata was aligned to canonical `FIN-001`. |
 | Evidence provenance is captured | Confirmed for this repository review. The shared provenance standard remains mandatory for every future response; no assumption-level respondent provenance exists yet. |
-| Blocked assumptions remain visible | Confirmed. `RB-002`, `NET-001`, `NET-002`, `TAX-001`, `ROY-001`, and proposed `FIN-001` remain explicitly blocked or unavailable. |
+| Blocked assumptions remain visible | Confirmed. `RB-002`, `NET-001`, `NET-002`, `TAX-001`, `ROY-001`, and canonical `FIN-001` remain explicitly Blocked. |
 | Payroll remains the canonical Level 1 model | Confirmed. The current Payroll Starter Level 1 controlled-placeholder model remains canonical until a governed evidence update is accepted and propagated through the approved update lifecycle. |
 
 The required update path remains:

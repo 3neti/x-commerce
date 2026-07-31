@@ -1212,6 +1212,44 @@ Current status: Blocked.
 
 Notes: Commercial allocations should define whether payment waits for collection.
 
+### `FIN-001` Discount Rate For Level 1 Capital Budgeting
+
+Identifier: `FIN-001`
+
+Category: Finance and capital budgeting.
+
+Description: Annual discount rate used to convert governed offering-level cash flows into present values for Level 1 capital-budgeting analysis.
+
+Unit of measure: Annual percentage rate with nominal or real and pre-tax or post-tax basis explicitly stated.
+
+Conservative value: Open.
+
+Base value: Open.
+
+Accelerated value: Open.
+
+Source: Finance and capital-allocation approval required.
+
+Evidence status: Finance approval required.
+
+Confidence level: Low.
+
+Owner: Finance and capital-allocation owner, with the relevant Rural Bank or ODTI investment approver.
+
+Review date: Before NPV, discounted payback, profitability index, or discount-rate sensitivity is produced.
+
+Affected offerings: `OFR-RB-PAYROLL-STARTER` and future offerings with governed capital-budgeting views.
+
+Affected stakeholders: Rural Bank, ODTI, 3neti, Investor.
+
+Affected calculations: NPV, discounted payback, profitability index, present-value cash-flow schedules, discount-rate sensitivity, and capital-allocation comparisons.
+
+Legal or accounting dependency: Consistency with modeled cash flows, currency, inflation basis, tax basis, financing exclusions, evaluation period, and capital-allocation policy.
+
+Current status: Blocked.
+
+Notes: Do not select a rate merely to produce a favorable NPV. This assumption does not define an investor return, financing instrument, borrowing rate, or royalty basis. No workbook value is authorized until evidence, permitted use, owner, reviewer, and approval are recorded.
+
 ### `TAX-001` Tax Treatment
 
 Identifier: `TAX-001`
@@ -3338,6 +3376,7 @@ For a likely first modeled offering such as `OFR-RB-PAYROLL-STARTER`, the minimu
 ### Risk And Finance
 
 - bad debt or collection timing: `RISK-002`, `COL-001`;
+- capital-budgeting discount rate: `FIN-001`;
 - taxes and withholding: `TAX-001`;
 - refund or reversal assumptions;
 - contingency;
@@ -3363,6 +3402,7 @@ For a likely first modeled offering such as `OFR-RB-PAYROLL-STARTER`, the minimu
 - cloud costs: `CLD-001`;
 - ODTI support and implementation costs: `ODTI-001`, `ODTI-002`;
 - DevOps direct costs and readiness: `OPS-003`, `OPS-004`, `OPS-005`;
+- capital-budgeting discount rate: `FIN-001`;
 - tax: `TAX-001`;
 - bad debt and collection timing: `RISK-002`, `COL-001`;
 - royalty and 3neti stewardship costs: `ROY-001`, `3NETI-001`, `3NETI-002`, `3NETI-003`;

@@ -80,12 +80,12 @@
       "grid": "Discount rate versus NPV",
       "drivers": ["FIN-001", "Cash-flow series"],
       "targetOutput": "NPV",
-      "status": "Blocked until FIN-001 and cash-flow prerequisites are governed"
+      "status": "Blocked until FIN-001 has an approved value and cash-flow prerequisites are governed"
     }
   ],
   "requiredChecks": [
     "NPV uses cash flows only",
-    "NPV blocked until FIN-001 exists",
+    "NPV blocked until FIN-001 has an approved value",
     "IRR blocked or Not meaningful until a valid cash-flow sign pattern exists",
     "Payback uses investment cash flow rather than accounting revenue",
     "Terminal value disabled by default",

@@ -59,6 +59,7 @@ Until the component assumptions are Active, Approved, or explicitly controlled p
 | `RISK-001` | Churn. | Active-bank continuity, recurring revenue, recurring costs. | Rural Bank, ODTI, DevOps, VASP, Investor. | Blocked | Defined churn subject and scenario basis. |
 | `RISK-002` | Bad debt or non-collection. | Collection timing, payable timing, contribution. | Rural Bank, ODTI, 3neti, DevOps, VASP, Investor. | Blocked | Accounting and collection policy. |
 | `RB-002` | Rural Bank payroll-specific internal support cost. | Rural Bank true incremental contribution, Rural Bank break-even, Rural Bank payback. | Rural Bank, Customer, ODTI, Investor. | Blocked | Pilot bank staffing data, bank operations interview, support tickets, or management estimate. |
+| `FIN-001` | Discount rate for Level 1 capital budgeting. | NPV, discounted payback, profitability index, discount-rate sensitivity. | Rural Bank, ODTI, 3neti, Investor. | Blocked | Finance evidence, cash-flow consistency, permitted use, and capital-allocation approval. |
 | `TAX-001` | Tax, withholding, and accounting treatment. | Tax lines and final payable lines. | All financial views. | Blocked | Tax and accounting review. |
 | `PUB-001` | Public-interest completion indicator. | `PUBLIC-PI-*`, `CUST-OPVAL-*`. | Customer, Rural Bank, RBAP, Public Interest, Investor. | Blocked | Public-interest measurement definition. |
 
@@ -87,6 +88,7 @@ The following currently block affected line items and downstream totals:
 - `RISK-001`;
 - `RISK-002`;
 - `RB-002`;
+- `FIN-001`;
 - `TAX-001`;
 - `PUB-001`;
 - canonical blocked assumptions listed below.

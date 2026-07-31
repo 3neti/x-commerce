@@ -67,6 +67,7 @@ No assumption value may be changed directly in the workbook as a source-of-truth
 | SMS Provider | `ATT-001`, `VAS-001`, `CST-001`, `SMS-001`, `SMS-002`, `SMS-003`, `SMS-004` | Provider quotation, billing unit, delivery reports, SLA definitions, retry and failed-message rules, privacy terms. |
 | NetBank or Banking Partner | `NET-001`, `NET-002`, `VOL-002` where relevant | Role confirmation, fee schedule, API and settlement terms, account structure, reconciliation responsibilities. |
 | Legal, Accounting, Tax, Privacy | `TAX-001`, `COL-001`, `NET-*`, `ROY-001`, `RB-001`, messaging consent dependencies | Legal characterization, revenue-recognition review, tax and withholding treatment, privacy review, customer-fund separation. |
+| Finance and Capital Budgeting | `FIN-001` | Capital-allocation policy, approved hurdle-rate basis, cash-flow consistency, permitted use, and review trigger. |
 
 ## Evidence Acceptance Gate
 
@@ -167,7 +168,7 @@ This packet should make the Level 1 workbook substantially more evidence-grounde
 | `NET-001` and `NET-002` | Requires NetBank or banking-partner role and fee evidence. |
 | `TAX-001` | Requires tax review; should not be guessed. |
 | `ROY-001` | Requires 3neti and ODTI commercial decision and related review. |
-| `FIN-001` | Required for NPV, discounted payback, and discount-rate sensitivity; should be added through a governed assumptions slice. |
+| `FIN-001` | Canonical but Blocked. Required for NPV, discounted payback, profitability index, and discount-rate sensitivity; requires finance evidence and approval before any value is used. |
 | SMS internal provider economics | `SMS-002` may remain outside the first model if the SMS provider is treated as an external provider and does not disclose internal cost. |
 
 ## Non-Goals

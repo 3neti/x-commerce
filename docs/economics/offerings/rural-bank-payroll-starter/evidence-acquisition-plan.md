@@ -177,6 +177,7 @@ The table compresses repeated fields, but every assumption is governed by the fu
 | `RISK-001` | Churn | Blocked | Rural Bank or RBAP; ODTI Management; Observed Pilot Data | ODTI commercial owner | Definition and rate of churn | Management churn scenario | Pilot renewal and inactivity evidence | Rural Bank, ODTI, DevOps, VASP, Investor | Recurring revenue and active-bank continuity | Contract and cancellation terms | Eligible for controlled placeholder | ODTI commercial lead | Before base scenario | Overstates recurring relationships | P1 |
 | `ROY-001` | 3neti royalty or license basis | Blocked | 3neti Management; ODTI Management; Legal Review; Accounting Review; Tax Review | 3neti and ODTI commercial owners | Royalty or license basis | Draft decision paper | Approved 3neti-ODTI license agreement and related-party review | ODTI, 3neti, Investor; `ODTI-COST-001`, `3NETI-REV-001` | ODTI after-royalty contribution, 3neti income, consolidated eliminations | Legal, tax, accounting, related-party review | Not eligible before external evidence | 3neti and ODTI principals | Before final net economics | Mischaracterizes ownership economics | P1 |
 | `TAX-001` | Tax, withholding, and accounting treatment | Blocked | Tax Review; Accounting Review; Legal Review | Finance and x-legal reviewers | Tax and accounting treatment | Professional question set and provisional issue list | Professional review or approved treatment | All financial views; tax lines and final payable lines | Tax-adjusted totals and final payables | Tax, accounting, legal | Not eligible before external evidence | Finance reviewer and x-legal reviewer | Before final net economics | Produces misleading final net results | P1 |
+| `FIN-001` | Discount rate for Level 1 capital budgeting | Blocked | Finance Review; Capital-Allocation Approval | Finance and capital-allocation owner | Governed discount-rate basis consistent with the modeled cash flows | Finance recommendation with basis, permitted use, and reviewer | Approved capital-allocation policy or documented rate analysis with review trigger | Rural Bank, ODTI, Investor; capital-budgeting and sensitivity views | NPV, discounted payback, profitability index, discount-rate sensitivity | Cash-flow basis, tax basis, currency, inflation, evaluation period | Not eligible before finance approval | Finance and relevant investment approver | Before capital-budgeting outputs | Produces arbitrary present values or favorable-result bias | P2 |
 | `NET-001` | NetBank or infrastructure fee basis | Blocked | NetBank or Banking Partner; Legal Review | NetBank relationship owner and ODTI commercial owner | Approved infrastructure fee basis | NetBank proposal or information response | Approved fee schedule or contract | Rural Bank, NetBank, ODTI, Consolidated View; `RB-COST-007`, `NETBANK-REV-001` | NetBank revenue, bank rail cost, final contribution | NetBank role, settlement structure, legal characterization | Not eligible before external evidence | NetBank relationship owner | Before final infrastructure-inclusive model | Invents banking revenue or cost | P1 |
 | `NET-002` | NetBank or infrastructure operating cost basis | Blocked | NetBank or Banking Partner | NetBank relationship owner | Infrastructure operating burden | NetBank estimate | NetBank operating-cost basis, if disclosed | NetBank, Rural Bank, ODTI, Investor; `NETBANK-COST-001` | NetBank contribution | NetBank internal-cost disclosure | Not required for first provisional model | NetBank relationship owner | Before NetBank margin view | May be unavailable or outside boundary | P2 |
 | `ATT-001` | SMS attachment rate | Blocked | Employer Interview or Employer Data; ODTI Management; Observed Pilot Data | ODTI commercial owner | Employer willingness to attach SMS | Management attachment scenario | Employer interviews and pilot attachment data | Customer, Rural Bank, VASP, ODTI, Investor; SMS lines | SMS fees, provider usage, SMS public indicators | Consent and service design | Eligible for controlled placeholder | ODTI commercial lead | Before SMS variant model | Overstates optional capability value | P1 |
@@ -308,6 +309,7 @@ Examples:
 - legal characterization;
 - messaging consent requirements;
 - provider contract terms;
+- capital-budgeting discount rate without finance approval and cash-flow consistency;
 - investor return mechanism.
 
 Management guesses must not be used for these in factual projections.
@@ -657,6 +659,20 @@ Primary instruments:
 - SMS delivery-log extraction request.
 
 Pilot instruments remain recommended follow-up artifacts. They are not required before the Level 1 controlled-placeholder model.
+
+### Workstream I: Finance And Capital Budgeting
+
+Define the discount-rate basis only after the applicable cash-flow boundary is clear.
+
+Primary assumptions:
+
+- `FIN-001`.
+
+Primary instruments:
+
+- [finance-capital-budgeting-assumption-request.md](evidence-instruments/finance-capital-budgeting-assumption-request.md).
+
+This workstream may establish a governed assumption and permitted use. It must not select a rate merely to unblock NPV or improve investment results.
 
 ## Evidence Provenance Requirement
 

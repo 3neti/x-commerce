@@ -25,4 +25,6 @@ No workbook value may be changed directly from an evidence packet.
 
 | Packet | Purpose | Status |
 | --- | --- | --- |
-| [evidence-packet-001-core-model-inputs.md](evidence-packet-001-core-model-inputs.md) | First evidence packet for adoption, activity, employer pricing, ODTI cost, DevOps cost, cloud cost, and collection risk. | Scaffolded |
+| [evidence-packet-001-core-model-inputs.md](evidence-packet-001-core-model-inputs.md) | First evidence packet for adoption, activity, employer pricing, ODTI cost, DevOps cost, cloud cost, and collection risk. | Ready for issuance; no evidence received |
+| [evidence-packet-001-issuance-register.md](evidence-packet-001-issuance-register.md) | Dispatch and response control for Packet 001. | Prepared; blocked pending named recipients and reviewers |
+| [evidence-packet-002-blocked-net-economics.md](evidence-packet-002-blocked-net-economics.md) | Evidence packet for Rural Bank internal support cost, NetBank role and fees, collection timing, tax, royalty, and capital budgeting. | Prepared; not issued |

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Obtain evidence for `CUS-002`, `CUS-003`, `CUS-004`, `CUS-005`, `CUS-006`, `COL-001`, `ATT-001`, `PUB-002`, `PUB-003`, willingness-to-pay, and workflow evidence.
+Obtain evidence for `CUS-002`, `CUS-003`, `CUS-004`, `CUS-005`, `CUS-006`, `EMP-001`, `EMP-002`, `COL-001`, `ATT-001`, `PUB-002`, `PUB-003`, willingness-to-pay, and workflow evidence.
 
 Use the shared provenance block in [README.md](README.md).
 
@@ -71,6 +71,12 @@ Related assumptions: `CUS-002`, `CUS-003`, `VOL-002`, `CUS-006`.
 
 ## Commercial Willingness
 
+- Would the employer consider a one-time onboarding and payroll-configuration fee distinct from a rural-bank platform activation fee?
+- What one-time employer onboarding-fee range would be acceptable, and what work must it include?
+- Would the employer consider a recurring monthly payroll-service fee distinct from annual platform or per-recipient charges?
+- What monthly employer payroll-service fee range would be acceptable, and what service, support, reporting, or reconciliation must it include?
+- For each range, is it an observed budget constraint, expected operating range, negotiation range, rough estimate, or another range type?
+- What exclusions, approval thresholds, contract terms, or service levels would change willingness to pay?
 - Would the employer consider a setup fee?
 - Would the employer consider an annual fee?
 - Would the employer consider a per-recipient fee?
@@ -80,7 +86,7 @@ Related assumptions: `CUS-002`, `CUS-003`, `VOL-002`, `CUS-006`.
 - What conditions are required for adoption?
 - What current-process alternative would the employer choose if nothing changes?
 
-Related assumptions: `LIC-004`, `LIC-005`, `PRC-001`, `VAS-001`, `COL-001`, `ATT-001`.
+Related assumptions: `EMP-001`, `EMP-002`, `LIC-004`, `LIC-005`, `PRC-001`, `VAS-001`, `COL-001`, `ATT-001`.
 
 ## Outcome Value
 

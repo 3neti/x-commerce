@@ -116,6 +116,7 @@ Expiry or review trigger: expires when replaced by provider quote, employer evid
 | `NET-002` | Blocked. No NetBank cost or contribution view is produced. |
 | `PAR-001` | Excluded. No business-development partner allocation is included. |
 | `RB-002` | Blocked. Rural Bank true incremental contribution after internal bank payroll-support cost is not produced. |
+| `FIN-001` | Blocked. No discount-rate value, NPV, discounted payback, profitability index, or discount-rate sensitivity is produced. |
 | `SMS-002` | Excluded. SMS provider internal margin is not calculated. |
 | `BAT-001` | Deferred candidate concept. No payroll batch fee is included. |
 | `ALLOC-001`, `ALLOC-002`, `PLT-001` | Deferred until shared platform allocation is mature enough to govern. |

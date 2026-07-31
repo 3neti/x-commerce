@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Obtain governed management decisions for `LIC-004`, `LIC-005`, `PRC-001`, `RB-001`, `ODTI-001`, `ODTI-002`, `ROY-001`, risk and collection assumptions, and model-boundary decisions.
+Obtain governed management decisions for `EMP-001`, `EMP-002`, `LIC-004`, `LIC-005`, `PRC-001`, `RB-001`, `ODTI-001`, `ODTI-002`, `ROY-001`, risk and collection assumptions, and model-boundary decisions.
 
 Use the shared provenance block in [README.md](README.md).
 
@@ -10,6 +10,10 @@ This worksheet does not create a binding commercial agreement.
 
 ## Offering Economics
 
+- Employer onboarding fee under `EMP-001`:
+- Employer onboarding scope and evidence basis:
+- Employer monthly payroll-service fee under `EMP-002`:
+- Employer monthly service scope and evidence basis:
 - Activation architecture:
 - Annual subscription:
 - Transaction-fee basis:
@@ -22,7 +26,7 @@ This worksheet does not create a binding commercial agreement.
 - Treatment of failed or reversed events:
 - Treatment of refunds:
 
-Related assumptions: `LIC-004`, `LIC-005`, `PRC-001`, `VAS-001`, `RB-001`, `RISK-001`, `RISK-002`, `COL-001`.
+Related assumptions: `EMP-001`, `EMP-002`, `LIC-004`, `LIC-005`, `PRC-001`, `VAS-001`, `RB-001`, `RISK-001`, `RISK-002`, `COL-001`.
 
 ## ODTI Cost Structure
 

@@ -1,6 +1,7 @@
 # Dependencies
 /vendor/
 /node_modules/
+/composer.lock
 
 # Environment and local secrets
 .env
@@ -47,3 +48,6 @@ Thumbs.db
 
 # Local review archives
 *.zip
+
+# Microsoft Office temporary lock files
+~$*.xlsx

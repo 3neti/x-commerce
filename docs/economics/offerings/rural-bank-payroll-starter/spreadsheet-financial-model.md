@@ -592,7 +592,7 @@ Governance:
 
 - NPV must use cash flows, not accounting revenue.
 - IRR must show `Not meaningful` if the cash-flow pattern lacks at least one negative and one positive flow.
-- Discount rate is blocked until a canonical assumption exists. Proposed future assumption: `FIN-001 - Discount Rate For Level 1 Capital Budgeting`.
+- Discount rate remains blocked under canonical `FIN-001 - Discount Rate For Level 1 Capital Budgeting` until finance evidence and approval authorize a value.
 - Terminal value is disabled by default.
 
 ### `18_Sensitivity`
@@ -800,11 +800,11 @@ or:
 IRR: Not meaningful
 ```
 
-Proposed future assumption:
+Canonical blocked assumption:
 
-| Proposed ID | Name | Purpose | Register action |
+| Assumption ID | Name | Purpose | Current treatment |
 | --- | --- | --- | --- |
-| `FIN-001` | Discount Rate For Level 1 Capital Budgeting | Required for NPV and discounted payback. | Add to Assumptions Register in a later governed assumptions slice. |
+| `FIN-001` | Discount Rate For Level 1 Capital Budgeting | Required for NPV and discounted payback. | Canonical and Blocked; no value is authorized. |
 
 ## Balance Sheet Scope
 
@@ -1068,7 +1068,7 @@ Slice 5 must not convert provisional operating contribution into investment retu
 - IRR must be blocked or marked `Not meaningful` unless the cash-flow series contains at least one negative and one positive cash flow;
 - discounted payback requires a governed discount rate;
 - terminal value remains disabled by default;
-- discount-rate sensitivity remains blocked while `FIN-001` or an equivalent governed discount-rate assumption is absent.
+- discount-rate sensitivity remains blocked while canonical `FIN-001` has no approved value and governed cash-flow basis.
 
 The Slice 5 sensitivity layer may define formula-based operating sensitivities using existing drivers such as `ADP-002`, `CUS-001`, `EMP-002`, `PRC-001`, `RB-001`, `ODTI-001`, and `OPS-003`. It must not paste static sensitivity outputs or introduce new assumptions.
 

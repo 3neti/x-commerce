@@ -480,7 +480,7 @@ const slice5SheetPlan = [
     purpose: "Define NPV, IRR, payback, and investment cash-flow gates without calculating returns from incomplete cash-flow support.",
     inputs: ["16_Cash_Flow", "COL-001", "FIN-001", "TAX-001", "RB-002", "Beginning cash and financing assumptions"],
     outputs: ["Rural Bank Modernization Investment gate", "ODTI Program Investment gate", "NPV status", "IRR status", "Payback status"],
-    validation: ["NPV uses cash flows only", "IRR requires at least one negative and one positive cash flow", "Discount rate remains blocked until FIN-001 exists"],
+    validation: ["NPV uses cash flows only", "IRR requires at least one negative and one positive cash flow", "Discount rate remains blocked until FIN-001 has an approved value"],
   },
   {
     sheet: "18_Sensitivity",
@@ -817,6 +817,7 @@ const blockedInputs = [
   ["NET-002", "Blocked. No NetBank cost or contribution view is produced."],
   ["PAR-001", "Excluded. No business-development partner allocation is included."],
   ["RB-002", "Blocked. Rural Bank true incremental contribution after internal bank payroll-support cost is not produced."],
+  ["FIN-001", "Blocked. No discount-rate value, NPV, discounted payback, profitability index, or discount-rate sensitivity is produced."],
   ["SMS-002", "Excluded. SMS provider internal margin is not calculated."],
   ["BAT-001", "Deferred. No payroll batch fee is included."],
   ["ALLOC-001", "Deferred until shared platform allocation is mature enough to govern."],
@@ -2036,7 +2037,7 @@ function controlRows() {
     ["Include optional SMS", "No", "Yes, No", "Core Payroll remains primary."],
     ["Cost view", "Incremental Payroll", "Incremental Payroll, Full-Cost Stress Test", "Shared allocation deferred."],
     ["Volume method", "Component-derived", "Component-derived", "Aggregate volume disabled until authorized."],
-    ["Discount rate", "Blocked", "Blocked", "Future FIN-001 needed."],
+    ["Discount rate", "Blocked", "Blocked", "FIN-001 is canonical but has no approved value."],
     ["Model version", "Level 1", "Level 1", "Must match canonical documents."],
   ];
 }
@@ -2976,7 +2977,7 @@ function buildExceljsCapitalBudgetingRows() {
     },
     {
       name: "Discount rate",
-      value: () => "Blocked - FIN-001 not canonicalized",
+      value: () => "Blocked - FIN-001 has no approved value",
     },
     {
       name: "NPV",
@@ -3062,7 +3063,7 @@ function buildExceljsSensitivityRows() {
       "NPV",
       "Blocked",
       "Blocked",
-      "FIN-001 and valid cash-flow basis are missing.",
+      "An approved FIN-001 value and valid cash-flow basis are missing.",
     ],
     [
       "Shared modernization allocation versus Rural Bank contribution",
@@ -3122,7 +3123,7 @@ function buildExceljsScenarioRows() {
   addRow("ODTI Pre-Tax/Pre-Royalty/NetBank-Fee-Blocked Contribution", "11_ODTI_View", 3, 1, (scenario, yearIndex) => slice3Metrics(scenario, yearIndex).odtiContribution, "Final ODTI net result blocked.");
   addRow("DevOps Contribution", "12_DevOps_View", 2, 1, (scenario, yearIndex) => slice3Metrics(scenario, yearIndex).devOpsContribution, "Cloud remains outside DevOps.");
   addRow("Optional SMS Increment", "13_SMS_Variant", 5, 4, (scenario, yearIndex) => slice3Metrics(scenario, yearIndex).smsMargin, "Optional enhancement, excluded from Core Payroll headline.");
-  rows.push(["NPV / IRR", "Blocked", "Blocked", "Blocked", "Blocked", "Blocked", "Blocked", "FIN-001, cash-flow timing, tax, RB-002, royalty, and NetBank prerequisites unresolved."]);
+  rows.push(["NPV / IRR", "Blocked", "Blocked", "Blocked", "Blocked", "Blocked", "Blocked", "FIN-001 approval, cash-flow timing, tax, RB-002, royalty, and NetBank prerequisites unresolved."]);
   return rows;
 }
 
@@ -3148,7 +3149,7 @@ function buildExceljsDashboardRows() {
     ],
     ["Blocked-input count", blockedInputs.length, "02_Assumptions / blocked input register", "Blocked visible", "Blocked items are visible rather than treated as zero."],
     ["ERROR count", formulaCell('COUNTIF(\'21_Checks\'!$E$2:$E$200,"ERROR")', 0), "21_Checks", "OK", "Dashboard surfaces model check failures."],
-    ["NPV / IRR", "Blocked", "17_Capital_Budgeting", "Blocked", "FIN-001 and valid cash-flow series are unavailable."],
+    ["NPV / IRR", "Blocked", "17_Capital_Budgeting", "Blocked", "An approved FIN-001 value and valid cash-flow series are unavailable."],
   ];
 }
 
@@ -3167,7 +3168,7 @@ function buildExceljsSourceLineageRows() {
     ["Cost classification", "CST-001; CLD-001; NET-001; TAX-001", sourceDocuments.specification, "08_Cost_of_Sales; 09_Operating_Expenses", "PI-L1-026; PI-L1-022; NET-001 blocked; TAX-001 blocked", "Qualified / blocked"],
     ["Management P&L", "RB-002; TAX-001; ROY-001; NET-001", sourceDocuments.specification, "15_Profit_and_Loss", "Blocked exclusions", "Management view only"],
     ["Cash-flow limitations", "COL-001; RISK-002", sourceDocuments.specification, "16_Cash_Flow", "COL-001 blocked; PI-L1-023", "Blocked where timing is required"],
-    ["Capital-budgeting gates", "FIN-001; COL-001; TAX-001; RB-002", sourceDocuments.specification, "17_Capital_Budgeting", "Future FIN-001 required", "Blocked"],
+    ["Capital-budgeting gates", "FIN-001; COL-001; TAX-001; RB-002", sourceDocuments.specification, "17_Capital_Budgeting", "FIN-001 canonical but value unapproved", "Blocked"],
     ["Sensitivity grids", "ADP-002; CUS-001; EMP-002; PRC-001; RB-001; ODTI-001; OPS-003", sourceDocuments.specification, "18_Sensitivity", "Existing provisional inputs", "Formula target scaffold"],
     ["Blocked assumptions and exclusions", blockedInputs.map(([assumptionId]) => assumptionId).join("; "), sourceDocuments.provisionalInputs, "02_Assumptions; 21_Checks; 22_Source_Lineage", "Blocked/excluded rows", "Blocked or excluded"],
   ];
@@ -3190,14 +3191,14 @@ function slice6CheckRows() {
 
 function slice5CheckRows() {
   return [
-    ["NPV uses cash flows only", "No NPV calculated", "Blocked", "", "Blocked", "FIN-001 and cash-flow prerequisites are unavailable."],
+    ["NPV uses cash flows only", "No NPV calculated", "Blocked", "", "Blocked", "An approved FIN-001 value and cash-flow prerequisites are unavailable."],
     ["IRR sign pattern valid", "No IRR calculated", "Blocked", "", "Blocked", "No governed investment cash-flow series exists."],
-    ["Discount rate assumption exists", "FIN-001 missing", "Blocked", "", "Blocked", "Future assumptions-register update required."],
+    ["Discount rate assumption approved", "FIN-001 value unapproved", "Blocked", "", "Blocked", "Finance evidence and approval are required."],
     ["Sensitivity targets link to model outputs", "18_Sensitivity", "Linked", 0, "OK", "Formula targets reference workbook outputs."],
     ["No pasted valuation outputs", "17_Capital_Budgeting", "Blocked rows", 0, "OK", "NPV and IRR are not hardcoded or forced."],
     ["Rural Bank NPV blocked", "RB-002; cash timing; FIN-001", "Blocked", "", "Blocked", "True Rural Bank cash flow remains unavailable."],
     ["ODTI NPV blocked", "Tax; royalty; NetBank; cash timing", "Blocked", "", "Blocked", "Final ODTI cash flow remains unavailable."],
-    ["Discount-rate sensitivity blocked", "FIN-001 missing", "Blocked", "", "Blocked", "No discount-rate matrix is produced."],
+    ["Discount-rate sensitivity blocked", "FIN-001 value unapproved", "Blocked", "", "Blocked", "No discount-rate matrix is produced."],
   ];
 }
 
