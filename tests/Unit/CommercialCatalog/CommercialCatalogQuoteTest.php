@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LBHurtado\XCommerce\Tests\Unit\CommercialCatalog;
 
+use LBHurtado\XCommerce\Data\CommercialAccountingContextData;
 use LBHurtado\XCommerce\Data\CommercialAttributionSnapshotData;
 use LBHurtado\XCommerce\Data\CommercialCatalogData;
 use LBHurtado\XCommerce\Data\CommercialQuoteLineInputData;
@@ -153,6 +154,58 @@ final class CommercialCatalogQuoteTest extends TestCase
             'partner:approved-42',
             $first->quoteSnapshot->attributionSnapshot->participants['originator'],
         );
+        $this->assertArrayNotHasKey('accounting_context', $first->toArray());
+    }
+
+    public function test_accepting_a_version_two_sale_freezes_its_operational_accounting_context(): void
+    {
+        $quote = $this->builder()->build(
+            'pay-code:PC-123:generation:v2',
+            $this->catalog(),
+            $this->residualPolicy(),
+            $this->attribution(),
+            [new CommercialQuoteLineInputData('cash.amount')],
+        );
+        $context = new CommercialAccountingContextData(
+            schemaVersion: 2,
+            provider: 'NetBank',
+            connectionReference: 'netbank-primary',
+            settlementRail: 'instapay',
+            currency: 'php',
+            productReference: 'product:pay-code',
+            recognitionPolicyReference: 'recognition:pay-code-issuance:v1',
+            expectedProviderCostMinor: 1_000,
+            partnerReference: 'partner:approved-42',
+        );
+        $factory = new DeterministicCommercialSaleFactory;
+
+        $sale = $factory->accept(
+            quote: $quote,
+            acceptanceEventReference: 'pay-code:PC-123:generated:v2',
+            buyerReference: 'principal:account:issuer-5',
+            acceptedAt: '2026-07-25T10:00:00+08:00',
+            accountingContext: $context,
+        );
+        $replay = $factory->accept(
+            quote: $quote,
+            acceptanceEventReference: 'pay-code:PC-123:generated:v2',
+            buyerReference: 'principal:account:issuer-5',
+            acceptedAt: '2026-07-25T10:00:00+08:00',
+            accountingContext: $context,
+        );
+
+        $this->assertSame($sale->reference, $replay->reference);
+        $this->assertSame([
+            'schema_version' => 2,
+            'provider' => 'netbank',
+            'connection_reference' => 'netbank-primary',
+            'settlement_rail' => 'INSTAPAY',
+            'currency' => 'PHP',
+            'product_reference' => 'product:pay-code',
+            'recognition_policy_reference' => 'recognition:pay-code-issuance:v1',
+            'expected_provider_cost_minor' => 1_000,
+            'partner_reference' => 'partner:approved-42',
+        ], $sale->toArray()['accounting_context']);
     }
 
     private function builder(): DeterministicCommercialQuoteBuilder

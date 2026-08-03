@@ -12,6 +12,7 @@ final readonly class CommercialSaleSnapshotData
         public string $buyerReference,
         public string $acceptedAt,
         public CommercialQuoteData $quoteSnapshot,
+        public ?CommercialAccountingContextData $accountingContext = null,
     ) {}
 
     /**
@@ -19,12 +20,18 @@ final readonly class CommercialSaleSnapshotData
      */
     public function toArray(): array
     {
-        return [
+        $snapshot = [
             'reference' => $this->reference,
             'acceptance_event_reference' => $this->acceptanceEventReference,
             'buyer_reference' => $this->buyerReference,
             'accepted_at' => $this->acceptedAt,
             'quote_snapshot' => $this->quoteSnapshot->toArray(),
         ];
+
+        if ($this->accountingContext !== null) {
+            $snapshot['accounting_context'] = $this->accountingContext->toArray();
+        }
+
+        return $snapshot;
     }
 }

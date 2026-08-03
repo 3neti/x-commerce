@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LBHurtado\XCommerce\Services;
 
 use JsonException;
+use LBHurtado\XCommerce\Data\CommercialAccountingContextData;
 use LBHurtado\XCommerce\Data\CommercialQuoteData;
 use LBHurtado\XCommerce\Data\CommercialSaleSnapshotData;
 use LBHurtado\XCommerce\Exceptions\CommercialWaterfallInvariantViolation;
@@ -19,6 +20,7 @@ final class DeterministicCommercialSaleFactory
         string $acceptanceEventReference,
         string $buyerReference,
         string $acceptedAt,
+        ?CommercialAccountingContextData $accountingContext = null,
     ): CommercialSaleSnapshotData {
         foreach ([
             'acceptance event reference' => $acceptanceEventReference,
@@ -37,6 +39,10 @@ final class DeterministicCommercialSaleFactory
             'quote_snapshot' => $quote->toArray(),
         ];
 
+        if ($accountingContext !== null) {
+            $snapshot['accounting_context'] = $accountingContext->toArray();
+        }
+
         return new CommercialSaleSnapshotData(
             reference: 'commercial-sale:'.hash(
                 'sha256',
@@ -46,6 +52,7 @@ final class DeterministicCommercialSaleFactory
             buyerReference: $buyerReference,
             acceptedAt: $acceptedAt,
             quoteSnapshot: $quote,
+            accountingContext: $accountingContext,
         );
     }
 }
