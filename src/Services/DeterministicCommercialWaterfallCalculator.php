@@ -9,6 +9,7 @@ use LBHurtado\XCommerce\Data\CommercialAllocationLineData;
 use LBHurtado\XCommerce\Data\CommercialAllocationPlanData;
 use LBHurtado\XCommerce\Data\CommercialWaterfallInputData;
 use LBHurtado\XCommerce\Data\CommercialWaterfallPolicyData;
+use LBHurtado\XCommerce\Data\CommercialWaterfallRuleData;
 use LBHurtado\XCommerce\Enums\CommercialWaterfallLineType;
 use LBHurtado\XCommerce\Exceptions\CommercialWaterfallInvariantViolation;
 
@@ -22,9 +23,19 @@ final class DeterministicCommercialWaterfallCalculator implements CommercialWate
         $lines = [];
 
         foreach ($policy->orderedRules() as $rule) {
-            $amountMinor = $rule->lineType === CommercialWaterfallLineType::Residual
-                ? $remainingMinor
-                : (int) $rule->fixedAmountMinor;
+            $recipientReference = $rule->recipientReference;
+
+            if ($rule->participantRole !== null) {
+                $participantReference = $input->participants[$rule->participantRole] ?? null;
+
+                if (! is_string($participantReference) || trim($participantReference) === '') {
+                    continue;
+                }
+
+                $recipientReference = $participantReference;
+            }
+
+            $amountMinor = $this->amount($rule, $input->allocationBaseMinor, $remainingMinor);
 
             if ($amountMinor > $remainingMinor) {
                 throw new CommercialWaterfallInvariantViolation(
@@ -39,7 +50,7 @@ final class DeterministicCommercialWaterfallCalculator implements CommercialWate
                 sequence: $rule->sequence,
                 lineType: $rule->lineType,
                 category: $rule->category,
-                recipientReference: $rule->recipientReference,
+                recipientReference: $recipientReference,
                 amountMinor: $amountMinor,
                 currency: $policy->currency,
             );
@@ -59,5 +70,28 @@ final class DeterministicCommercialWaterfallCalculator implements CommercialWate
             allocationBaseMinor: $input->allocationBaseMinor,
             lines: $lines,
         );
+    }
+
+    private function amount(
+        CommercialWaterfallRuleData $rule,
+        int $allocationBaseMinor,
+        int $remainingMinor,
+    ): int {
+        if ($rule->lineType === CommercialWaterfallLineType::Residual) {
+            return $remainingMinor;
+        }
+
+        $amountMinor = $rule->fixedAmountMinor
+            ?? intdiv($allocationBaseMinor * (int) $rule->basisPoints, 10_000);
+
+        if ($rule->minimumAmountMinor !== null) {
+            $amountMinor = max($amountMinor, $rule->minimumAmountMinor);
+        }
+
+        if ($rule->maximumAmountMinor !== null) {
+            $amountMinor = min($amountMinor, $rule->maximumAmountMinor);
+        }
+
+        return $amountMinor;
     }
 }

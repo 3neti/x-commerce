@@ -8,6 +8,7 @@ use JsonException;
 use LBHurtado\XCommerce\Contracts\CommercialWaterfallCalculatorContract;
 use LBHurtado\XCommerce\Data\CommercialAttributionSnapshotData;
 use LBHurtado\XCommerce\Data\CommercialCatalogData;
+use LBHurtado\XCommerce\Data\CommercialOfferingData;
 use LBHurtado\XCommerce\Data\CommercialQuoteData;
 use LBHurtado\XCommerce\Data\CommercialQuoteLineData;
 use LBHurtado\XCommerce\Data\CommercialQuoteLineInputData;
@@ -32,6 +33,7 @@ final class DeterministicCommercialQuoteBuilder
         CommercialWaterfallPolicyData $waterfallPolicy,
         CommercialAttributionSnapshotData $attribution,
         array $lineInputs,
+        ?CommercialOfferingData $offering = null,
     ): CommercialQuoteData {
         if (trim($sourceCommercialEventReference) === '') {
             throw new CommercialWaterfallInvariantViolation('Commercial quote source event reference is required.');
@@ -39,6 +41,12 @@ final class DeterministicCommercialQuoteBuilder
 
         if ($catalog->currency !== $waterfallPolicy->currency) {
             throw new CommercialWaterfallInvariantViolation('Commercial quote catalog and waterfall currencies must match.');
+        }
+
+        if ($offering !== null
+            && ($offering->catalog->toArray() !== $catalog->toArray()
+                || $offering->waterfallPolicy->toArray() !== $waterfallPolicy->toArray())) {
+            throw new CommercialWaterfallInvariantViolation('Commercial quote catalog and Waterfall must match the Commercial Offering snapshot.');
         }
 
         $lines = [];
@@ -77,6 +85,7 @@ final class DeterministicCommercialQuoteBuilder
             new CommercialWaterfallInputData(
                 sourceCommercialEventReference: $sourceCommercialEventReference,
                 allocationBaseMinor: $totalPriceMinor,
+                participants: $attribution->participants,
             ),
         );
 
@@ -94,6 +103,10 @@ final class DeterministicCommercialQuoteBuilder
             'allocation_plan' => $allocationPlan->toArray(),
         ];
 
+        if ($offering !== null) {
+            $snapshot['offering_snapshot'] = $offering->toArray();
+        }
+
         return new CommercialQuoteData(
             reference: 'commercial-quote:'.hash(
                 'sha256',
@@ -107,6 +120,7 @@ final class DeterministicCommercialQuoteBuilder
             totalPriceMinor: $totalPriceMinor,
             currency: $catalog->currency,
             allocationPlan: $allocationPlan,
+            offeringSnapshot: $offering,
         );
     }
 }

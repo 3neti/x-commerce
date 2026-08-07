@@ -94,6 +94,95 @@ final class DeterministicCommercialWaterfallCalculatorTest extends TestCase
         new CommercialWaterfallInputData('pay-code:PC-NEG:generation:v1', -1);
     }
 
+    public function test_it_allocates_basis_points_with_floor_cap_and_exact_residual(): void
+    {
+        $policy = new CommercialWaterfallPolicyData(
+            reference: 'percentage-waterfall',
+            version: 1,
+            currency: 'PHP',
+            rules: [
+                new CommercialWaterfallRuleData(
+                    reference: 'provider-cost',
+                    sequence: 10,
+                    lineType: CommercialWaterfallLineType::Deduction,
+                    category: 'provider_cost',
+                    recipientReference: 'provider:netbank',
+                    fixedAmountMinor: null,
+                    basisPoints: 1_000,
+                    minimumAmountMinor: 200,
+                    maximumAmountMinor: 1_000,
+                ),
+                new CommercialWaterfallRuleData(
+                    reference: 'partner-commission',
+                    sequence: 20,
+                    lineType: CommercialWaterfallLineType::Allocation,
+                    category: 'partner_commission',
+                    recipientReference: 'participant:partner',
+                    fixedAmountMinor: null,
+                    basisPoints: 500,
+                    participantRole: 'partner',
+                ),
+                new CommercialWaterfallRuleData(
+                    reference: 'commercial-residual',
+                    sequence: 30,
+                    lineType: CommercialWaterfallLineType::Residual,
+                    category: 'commercial_revenue',
+                    recipientReference: 'operator:x-change',
+                    fixedAmountMinor: null,
+                ),
+            ],
+        );
+        $plan = (new DeterministicCommercialWaterfallCalculator)->calculate(
+            $policy,
+            new CommercialWaterfallInputData(
+                sourceCommercialEventReference: 'commercial-event:percentage',
+                allocationBaseMinor: 2_750,
+                participants: ['partner' => 'partner:approved-42'],
+            ),
+        );
+
+        $this->assertSame([275, 137, 2_338], array_column($plan->toArray()['lines'], 'amount_minor'));
+        $this->assertSame('partner:approved-42', $plan->lines[1]->recipientReference);
+        $this->assertSame(2_750, $plan->totalAllocatedMinor());
+    }
+
+    public function test_missing_partner_attribution_skips_commission_and_leaves_it_in_the_residual(): void
+    {
+        $policy = new CommercialWaterfallPolicyData(
+            reference: 'partner-conditional-waterfall',
+            version: 1,
+            currency: 'PHP',
+            rules: [
+                new CommercialWaterfallRuleData(
+                    reference: 'partner-commission',
+                    sequence: 10,
+                    lineType: CommercialWaterfallLineType::Allocation,
+                    category: 'partner_commission',
+                    recipientReference: 'participant:partner',
+                    fixedAmountMinor: null,
+                    basisPoints: 500,
+                    participantRole: 'partner',
+                ),
+                new CommercialWaterfallRuleData(
+                    reference: 'commercial-residual',
+                    sequence: 20,
+                    lineType: CommercialWaterfallLineType::Residual,
+                    category: 'commercial_revenue',
+                    recipientReference: 'operator:x-change',
+                    fixedAmountMinor: null,
+                ),
+            ],
+        );
+        $plan = (new DeterministicCommercialWaterfallCalculator)->calculate(
+            $policy,
+            new CommercialWaterfallInputData('commercial-event:direct', 2_750),
+        );
+
+        $this->assertCount(1, $plan->lines);
+        $this->assertSame('commercial_revenue', $plan->lines[0]->category);
+        $this->assertSame(2_750, $plan->lines[0]->amountMinor);
+    }
+
     private function policy(): CommercialWaterfallPolicyData
     {
         return new CommercialWaterfallPolicyData(

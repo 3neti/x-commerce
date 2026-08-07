@@ -19,6 +19,7 @@ final readonly class CommercialQuoteData
         public int $totalPriceMinor,
         public string $currency,
         public CommercialAllocationPlanData $allocationPlan,
+        public ?CommercialOfferingData $offeringSnapshot = null,
     ) {}
 
     /**
@@ -26,7 +27,7 @@ final readonly class CommercialQuoteData
      */
     public function toArray(): array
     {
-        return [
+        $snapshot = [
             'reference' => $this->reference,
             'source_commercial_event_reference' => $this->sourceCommercialEventReference,
             'catalog_snapshot' => $this->catalogSnapshot->toArray(),
@@ -40,5 +41,11 @@ final readonly class CommercialQuoteData
             'currency' => $this->currency,
             'allocation_plan' => $this->allocationPlan->toArray(),
         ];
+
+        if ($this->offeringSnapshot !== null) {
+            $snapshot['offering_snapshot'] = $this->offeringSnapshot->toArray();
+        }
+
+        return $snapshot;
     }
 }
