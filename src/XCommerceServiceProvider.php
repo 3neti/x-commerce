@@ -4,7 +4,9 @@ namespace LBHurtado\XCommerce;
 
 use Illuminate\Support\ServiceProvider;
 use LBHurtado\XCommerce\Contracts\CommercialComponentAllocationCalculatorContract;
+use LBHurtado\XCommerce\Contracts\CommercialWaterfallCalculatorContract;
 use LBHurtado\XCommerce\Services\DeterministicCommercialComponentAllocationCalculator;
+use LBHurtado\XCommerce\Services\DeterministicCommercialWaterfallCalculator;
 
 class XCommerceServiceProvider extends ServiceProvider
 {
@@ -13,6 +15,11 @@ class XCommerceServiceProvider extends ServiceProvider
         $this->app->singleton(
             CommercialComponentAllocationCalculatorContract::class,
             DeterministicCommercialComponentAllocationCalculator::class,
+        );
+
+        $this->app->singleton(
+            CommercialWaterfallCalculatorContract::class,
+            DeterministicCommercialWaterfallCalculator::class,
         );
 
         $this->mergeConfigFrom(

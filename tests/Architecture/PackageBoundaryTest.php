@@ -33,6 +33,8 @@ class PackageBoundaryTest extends TestCase
 
         $this->assertStringContainsString('mergeConfigFrom(', $source);
         $this->assertStringContainsString('config/x-commerce.php', $source);
+        $this->assertStringContainsString('CommercialWaterfallCalculatorContract::class', $source);
+        $this->assertStringContainsString('DeterministicCommercialWaterfallCalculator::class', $source);
         $this->assertFileExists($this->packageRoot('config/x-commerce.php'));
     }
 
