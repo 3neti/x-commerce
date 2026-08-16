@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace LBHurtado\XCommerce\Services;
 
 use JsonException;
+use LBHurtado\XCommerce\Contracts\CommercialComponentAllocationCalculatorContract;
 use LBHurtado\XCommerce\Contracts\CommercialWaterfallCalculatorContract;
 use LBHurtado\XCommerce\Data\CommercialAttributionSnapshotData;
 use LBHurtado\XCommerce\Data\CommercialCatalogData;
+use LBHurtado\XCommerce\Data\CommercialComponentEconomicsSetData;
 use LBHurtado\XCommerce\Data\CommercialOfferingData;
 use LBHurtado\XCommerce\Data\CommercialQuoteData;
 use LBHurtado\XCommerce\Data\CommercialQuoteLineData;
@@ -20,6 +22,7 @@ final class DeterministicCommercialQuoteBuilder
 {
     public function __construct(
         private readonly CommercialWaterfallCalculatorContract $waterfallCalculator,
+        private readonly ?CommercialComponentAllocationCalculatorContract $componentAllocationCalculator = null,
     ) {}
 
     /**
@@ -34,6 +37,7 @@ final class DeterministicCommercialQuoteBuilder
         CommercialAttributionSnapshotData $attribution,
         array $lineInputs,
         ?CommercialOfferingData $offering = null,
+        ?CommercialComponentEconomicsSetData $componentEconomics = null,
     ): CommercialQuoteData {
         if (trim($sourceCommercialEventReference) === '') {
             throw new CommercialWaterfallInvariantViolation('Commercial quote source event reference is required.');
@@ -80,14 +84,21 @@ final class DeterministicCommercialQuoteBuilder
             );
         }
 
-        $allocationPlan = $this->waterfallCalculator->calculate(
-            $waterfallPolicy,
-            new CommercialWaterfallInputData(
-                sourceCommercialEventReference: $sourceCommercialEventReference,
-                allocationBaseMinor: $totalPriceMinor,
-                participants: $attribution->participants,
-            ),
-        );
+        $allocationPlan = $componentEconomics instanceof CommercialComponentEconomicsSetData
+            ? ($this->componentAllocationCalculator ?? new DeterministicCommercialComponentAllocationCalculator)->calculate(
+                $sourceCommercialEventReference,
+                $catalog,
+                $componentEconomics,
+                $lines,
+            )
+            : $this->waterfallCalculator->calculate(
+                $waterfallPolicy,
+                new CommercialWaterfallInputData(
+                    sourceCommercialEventReference: $sourceCommercialEventReference,
+                    allocationBaseMinor: $totalPriceMinor,
+                    participants: $attribution->participants,
+                ),
+            );
 
         $snapshot = [
             'source_commercial_event_reference' => $sourceCommercialEventReference,

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LBHurtado\XCommerce\Tests\Unit\CommercialCatalog;
 
 use LBHurtado\XCommerce\Data\CommercialAttributionPolicyData;
+use LBHurtado\XCommerce\Data\CommercialAttributionSnapshotData;
 use LBHurtado\XCommerce\Data\CommercialCatalogData;
 use LBHurtado\XCommerce\Data\CommercialCatalogItemData;
 use LBHurtado\XCommerce\Data\CommercialComponentAllocationRuleData;
@@ -13,11 +14,15 @@ use LBHurtado\XCommerce\Data\CommercialComponentEconomicsData;
 use LBHurtado\XCommerce\Data\CommercialComponentEconomicsSetData;
 use LBHurtado\XCommerce\Data\CommercialLegalTraceData;
 use LBHurtado\XCommerce\Data\CommercialOfferingData;
+use LBHurtado\XCommerce\Data\CommercialQuoteLineInputData;
 use LBHurtado\XCommerce\Data\CommercialWaterfallPolicyData;
 use LBHurtado\XCommerce\Data\CommercialWaterfallRuleData;
 use LBHurtado\XCommerce\Enums\CommercialAllocationDestinationKind;
 use LBHurtado\XCommerce\Enums\CommercialWaterfallLineType;
 use LBHurtado\XCommerce\Exceptions\CommercialWaterfallInvariantViolation;
+use LBHurtado\XCommerce\Services\DeterministicCommercialComponentAllocationCalculator;
+use LBHurtado\XCommerce\Services\DeterministicCommercialQuoteBuilder;
+use LBHurtado\XCommerce\Services\DeterministicCommercialWaterfallCalculator;
 use LBHurtado\XCommerce\Tests\TestCase;
 
 final class CommercialComponentEconomicsTest extends TestCase
@@ -203,6 +208,45 @@ final class CommercialComponentEconomicsTest extends TestCase
         $this->expectExceptionMessage('schema is unsupported');
 
         CommercialComponentEconomicsSetData::fromArray($payload);
+    }
+
+    public function test_component_economics_allocates_each_quoted_item_and_quantity_exactly(): void
+    {
+        $offering = $this->offering($this->economics());
+        $quote = (new DeterministicCommercialQuoteBuilder(
+            new DeterministicCommercialWaterfallCalculator,
+            new DeterministicCommercialComponentAllocationCalculator,
+        ))->build(
+            sourceCommercialEventReference: 'pay-code:test-component-allocation',
+            catalog: $offering->catalog,
+            waterfallPolicy: $offering->waterfallPolicy,
+            attribution: new CommercialAttributionSnapshotData(
+                reference: $offering->attributionPolicy->reference,
+                version: $offering->attributionPolicy->version,
+                participants: [],
+            ),
+            lineInputs: [new CommercialQuoteLineInputData('inputs.fields.selfie', 2)],
+            offering: $offering,
+            componentEconomics: $offering->componentEconomics,
+        );
+
+        $lines = $quote->allocationPlan->lines;
+
+        $this->assertSame('component-economics:pay-code', $quote->allocationPlan->policyReference);
+        $this->assertSame(600, $quote->totalPriceMinor);
+        $this->assertSame(600, $quote->allocationPlan->totalAllocatedMinor());
+        $this->assertSame(0, $quote->allocationPlan->residualMinor());
+        $this->assertSame([400, 200], array_column($quote->allocationPlan->toArray()['lines'], 'amount_minor'));
+        $this->assertSame(['counterparty:3neti', 'institution-owned-funds:deploying-institution'], array_column(
+            $quote->allocationPlan->toArray()['lines'],
+            'recipient_reference',
+        ));
+        $this->assertSame('inputs.fields.selfie', $lines[0]->componentReference);
+        $this->assertSame('designation:3neti:service-aggregator:v1', $lines[0]->designationReference);
+        $this->assertSame('tax-policy:ph:withholding:v1', $lines[0]->taxPolicyReference);
+        $this->assertSame(200, $lines[0]->unitAmountMinor);
+        $this->assertSame(2, $lines[0]->quantity);
+        $this->assertSame(CommercialWaterfallLineType::Allocation, $lines[0]->lineType);
     }
 
     private function offering(CommercialComponentEconomicsSetData $economics): CommercialOfferingData

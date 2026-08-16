@@ -3,11 +3,18 @@
 namespace LBHurtado\XCommerce;
 
 use Illuminate\Support\ServiceProvider;
+use LBHurtado\XCommerce\Contracts\CommercialComponentAllocationCalculatorContract;
+use LBHurtado\XCommerce\Services\DeterministicCommercialComponentAllocationCalculator;
 
 class XCommerceServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->app->singleton(
+            CommercialComponentAllocationCalculatorContract::class,
+            DeterministicCommercialComponentAllocationCalculator::class,
+        );
+
         $this->mergeConfigFrom(
             __DIR__.'/../config/x-commerce.php',
             'x-commerce',
