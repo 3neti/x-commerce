@@ -118,6 +118,10 @@ final class DeterministicCommercialQuoteBuilder
             $snapshot['offering_snapshot'] = $offering->toArray();
         }
 
+        if ($componentEconomics !== null) {
+            $snapshot['component_economics_snapshot'] = $componentEconomics->toArray();
+        }
+
         return new CommercialQuoteData(
             reference: 'commercial-quote:'.hash(
                 'sha256',
@@ -132,6 +136,7 @@ final class DeterministicCommercialQuoteBuilder
             currency: $catalog->currency,
             allocationPlan: $allocationPlan,
             offeringSnapshot: $offering,
+            componentEconomicsSnapshot: $componentEconomics,
         );
     }
 }

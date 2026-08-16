@@ -20,6 +20,7 @@ final readonly class CommercialQuoteData
         public string $currency,
         public CommercialAllocationPlanData $allocationPlan,
         public ?CommercialOfferingData $offeringSnapshot = null,
+        public ?CommercialComponentEconomicsSetData $componentEconomicsSnapshot = null,
     ) {}
 
     /**
@@ -44,6 +45,10 @@ final readonly class CommercialQuoteData
 
         if ($this->offeringSnapshot !== null) {
             $snapshot['offering_snapshot'] = $this->offeringSnapshot->toArray();
+        }
+
+        if ($this->componentEconomicsSnapshot !== null) {
+            $snapshot['component_economics_snapshot'] = $this->componentEconomicsSnapshot->toArray();
         }
 
         return $snapshot;

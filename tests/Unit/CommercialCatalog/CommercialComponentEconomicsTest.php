@@ -233,6 +233,11 @@ final class CommercialComponentEconomicsTest extends TestCase
         $lines = $quote->allocationPlan->lines;
 
         $this->assertSame('component-economics:pay-code', $quote->allocationPlan->policyReference);
+        $this->assertSame(
+            $offering->componentEconomics->snapshotHash(),
+            $quote->componentEconomicsSnapshot?->snapshotHash(),
+        );
+        $this->assertArrayHasKey('component_economics_snapshot', $quote->toArray());
         $this->assertSame(600, $quote->totalPriceMinor);
         $this->assertSame(600, $quote->allocationPlan->totalAllocatedMinor());
         $this->assertSame(0, $quote->allocationPlan->residualMinor());
