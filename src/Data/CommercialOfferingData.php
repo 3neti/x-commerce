@@ -17,6 +17,7 @@ final readonly class CommercialOfferingData
         public CommercialAttributionPolicyData $attributionPolicy,
         public CommercialLegalTraceData $legalTrace,
         public string $effectiveAt,
+        public ?CommercialComponentEconomicsSetData $componentEconomics = null,
     ) {
         if (trim($reference) === '' || $version < 1 || trim($effectiveAt) === '') {
             throw new CommercialWaterfallInvariantViolation('Commercial Offering reference, positive version, and effective timestamp are required.');
@@ -25,6 +26,8 @@ final readonly class CommercialOfferingData
         if ($catalog->currency !== $waterfallPolicy->currency) {
             throw new CommercialWaterfallInvariantViolation('Commercial Offering catalog and Waterfall currencies must match.');
         }
+
+        $this->componentEconomics?->assertMatchesCatalog($this->catalog);
     }
 
     /**
@@ -32,7 +35,7 @@ final readonly class CommercialOfferingData
      */
     public function toArray(): array
     {
-        return [
+        $snapshot = [
             'reference' => $this->reference,
             'version' => $this->version,
             'catalog' => $this->catalog->toArray(),
@@ -41,6 +44,12 @@ final readonly class CommercialOfferingData
             'legal_trace' => $this->legalTrace->toArray(),
             'effective_at' => $this->effectiveAt,
         ];
+
+        if ($this->componentEconomics instanceof CommercialComponentEconomicsSetData) {
+            $snapshot['component_economics'] = $this->componentEconomics->toArray();
+        }
+
+        return $snapshot;
     }
 
     /**
@@ -67,6 +76,9 @@ final readonly class CommercialOfferingData
             attributionPolicy: CommercialAttributionPolicyData::fromArray((array) ($payload['attribution_policy'] ?? [])),
             legalTrace: CommercialLegalTraceData::fromArray((array) ($payload['legal_trace'] ?? [])),
             effectiveAt: (string) ($payload['effective_at'] ?? ''),
+            componentEconomics: isset($payload['component_economics'])
+                ? CommercialComponentEconomicsSetData::fromArray((array) $payload['component_economics'])
+                : null,
         );
     }
 }

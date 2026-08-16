@@ -83,6 +83,28 @@ class PackageBoundaryTest extends TestCase
         }
     }
 
+    public function test_component_economics_contract_is_pure_and_cannot_move_money(): void
+    {
+        $paths = array_merge(
+            glob($this->packageRoot('src/Data/CommercialComponent*.php')) ?: [],
+            glob($this->packageRoot('src/Enums/CommercialAllocation*.php')) ?: [],
+        );
+        $source = implode("\n", array_map('file_get_contents', $paths));
+
+        foreach ([
+            'Illuminate\\',
+            'Bavix\\',
+            'LBHurtado\\Wallet\\',
+            'LBHurtado\\XChange\\',
+            'config(',
+            'DB::',
+            'Http::',
+            'env(',
+        ] as $forbiddenReference) {
+            $this->assertStringNotContainsString($forbiddenReference, $source);
+        }
+    }
+
     public function test_documentation_preserves_package_boundary(): void
     {
         $compass = file_get_contents($this->packageRoot('docs/COMPASS.md'));
