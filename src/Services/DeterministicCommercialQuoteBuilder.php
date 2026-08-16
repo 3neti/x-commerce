@@ -6,6 +6,7 @@ namespace LBHurtado\XCommerce\Services;
 
 use JsonException;
 use LBHurtado\XCommerce\Contracts\CommercialComponentAllocationCalculatorContract;
+use LBHurtado\XCommerce\Contracts\CommercialTaxAllocationCalculatorContract;
 use LBHurtado\XCommerce\Contracts\CommercialWaterfallCalculatorContract;
 use LBHurtado\XCommerce\Data\CommercialAttributionSnapshotData;
 use LBHurtado\XCommerce\Data\CommercialCatalogData;
@@ -23,6 +24,7 @@ final class DeterministicCommercialQuoteBuilder
     public function __construct(
         private readonly CommercialWaterfallCalculatorContract $waterfallCalculator,
         private readonly ?CommercialComponentAllocationCalculatorContract $componentAllocationCalculator = null,
+        private readonly ?CommercialTaxAllocationCalculatorContract $taxAllocationCalculator = null,
     ) {}
 
     /**
@@ -38,6 +40,7 @@ final class DeterministicCommercialQuoteBuilder
         array $lineInputs,
         ?CommercialOfferingData $offering = null,
         ?CommercialComponentEconomicsSetData $componentEconomics = null,
+        array $taxProfiles = [],
     ): CommercialQuoteData {
         if (trim($sourceCommercialEventReference) === '') {
             throw new CommercialWaterfallInvariantViolation('Commercial quote source event reference is required.');
@@ -100,6 +103,19 @@ final class DeterministicCommercialQuoteBuilder
                 ),
             );
 
+        $hasTaxPolicy = false;
+        foreach ($allocationPlan->lines as $allocationLine) {
+            if ($allocationLine->taxPolicyReference !== null) {
+                $hasTaxPolicy = true;
+                break;
+            }
+        }
+
+        if ($hasTaxPolicy || $taxProfiles !== []) {
+            $allocationPlan = ($this->taxAllocationCalculator ?? new DeterministicCommercialTaxAllocationCalculator)
+                ->calculate($allocationPlan, $taxProfiles);
+        }
+
         $snapshot = [
             'source_commercial_event_reference' => $sourceCommercialEventReference,
             'catalog_snapshot' => $catalog->toArray(),
@@ -122,6 +138,14 @@ final class DeterministicCommercialQuoteBuilder
             $snapshot['component_economics_snapshot'] = $componentEconomics->toArray();
         }
 
+        if ($taxProfiles !== []) {
+            ksort($taxProfiles);
+            $snapshot['tax_profile_snapshots'] = array_map(
+                static fn ($profile): array => $profile->toArray(),
+                $taxProfiles,
+            );
+        }
+
         return new CommercialQuoteData(
             reference: 'commercial-quote:'.hash(
                 'sha256',
@@ -137,6 +161,7 @@ final class DeterministicCommercialQuoteBuilder
             allocationPlan: $allocationPlan,
             offeringSnapshot: $offering,
             componentEconomicsSnapshot: $componentEconomics,
+            taxProfileSnapshots: $taxProfiles,
         );
     }
 }

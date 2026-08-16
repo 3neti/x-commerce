@@ -8,6 +8,7 @@ final readonly class CommercialQuoteData
 {
     /**
      * @param  list<CommercialQuoteLineData>  $lines
+     * @param  array<string, CommercialTaxProfileData>  $taxProfileSnapshots
      */
     public function __construct(
         public string $reference,
@@ -21,6 +22,7 @@ final readonly class CommercialQuoteData
         public CommercialAllocationPlanData $allocationPlan,
         public ?CommercialOfferingData $offeringSnapshot = null,
         public ?CommercialComponentEconomicsSetData $componentEconomicsSnapshot = null,
+        public array $taxProfileSnapshots = [],
     ) {}
 
     /**
@@ -49,6 +51,15 @@ final readonly class CommercialQuoteData
 
         if ($this->componentEconomicsSnapshot !== null) {
             $snapshot['component_economics_snapshot'] = $this->componentEconomicsSnapshot->toArray();
+        }
+
+        if ($this->taxProfileSnapshots !== []) {
+            $profiles = $this->taxProfileSnapshots;
+            ksort($profiles);
+            $snapshot['tax_profile_snapshots'] = array_map(
+                static fn (CommercialTaxProfileData $profile): array => $profile->toArray(),
+                $profiles,
+            );
         }
 
         return $snapshot;

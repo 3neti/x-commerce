@@ -8,4 +8,5 @@ enum CommercialAllocationDestinationKind: string
 {
     case ExternalRecipient = 'external_recipient';
     case InternalOwner = 'internal_owner';
+    case TaxAuthority = 'tax_authority';
 }

@@ -15,9 +15,15 @@ use LBHurtado\XCommerce\Data\CommercialComponentEconomicsSetData;
 use LBHurtado\XCommerce\Data\CommercialLegalTraceData;
 use LBHurtado\XCommerce\Data\CommercialOfferingData;
 use LBHurtado\XCommerce\Data\CommercialQuoteLineInputData;
+use LBHurtado\XCommerce\Data\CommercialTaxProfileData;
 use LBHurtado\XCommerce\Data\CommercialWaterfallPolicyData;
 use LBHurtado\XCommerce\Data\CommercialWaterfallRuleData;
 use LBHurtado\XCommerce\Enums\CommercialAllocationDestinationKind;
+use LBHurtado\XCommerce\Enums\CommercialTaxCalculationBasis;
+use LBHurtado\XCommerce\Enums\CommercialTaxCollectionMethod;
+use LBHurtado\XCommerce\Enums\CommercialTaxRoundingMethod;
+use LBHurtado\XCommerce\Enums\CommercialTaxRoundingScope;
+use LBHurtado\XCommerce\Enums\CommercialTaxType;
 use LBHurtado\XCommerce\Enums\CommercialWaterfallLineType;
 use LBHurtado\XCommerce\Exceptions\CommercialWaterfallInvariantViolation;
 use LBHurtado\XCommerce\Services\DeterministicCommercialComponentAllocationCalculator;
@@ -228,6 +234,7 @@ final class CommercialComponentEconomicsTest extends TestCase
             lineInputs: [new CommercialQuoteLineInputData('inputs.fields.selfie', 2)],
             offering: $offering,
             componentEconomics: $offering->componentEconomics,
+            taxProfiles: ['tax-policy:ph:withholding:v1' => $this->taxProfile()],
         );
 
         $lines = $quote->allocationPlan->lines;
@@ -241,17 +248,37 @@ final class CommercialComponentEconomicsTest extends TestCase
         $this->assertSame(600, $quote->totalPriceMinor);
         $this->assertSame(600, $quote->allocationPlan->totalAllocatedMinor());
         $this->assertSame(0, $quote->allocationPlan->residualMinor());
-        $this->assertSame([400, 200], array_column($quote->allocationPlan->toArray()['lines'], 'amount_minor'));
-        $this->assertSame(['counterparty:3neti', 'institution-owned-funds:deploying-institution'], array_column(
+        $this->assertSame([360, 40, 200], array_column($quote->allocationPlan->toArray()['lines'], 'amount_minor'));
+        $this->assertSame(['counterparty:3neti', 'tax-authority:ph:bir', 'institution-owned-funds:deploying-institution'], array_column(
             $quote->allocationPlan->toArray()['lines'],
             'recipient_reference',
         ));
         $this->assertSame('inputs.fields.selfie', $lines[0]->componentReference);
         $this->assertSame('designation:3neti:service-aggregator:v1', $lines[0]->designationReference);
         $this->assertSame('tax-policy:ph:withholding:v1', $lines[0]->taxPolicyReference);
-        $this->assertSame(200, $lines[0]->unitAmountMinor);
+        $this->assertNull($lines[0]->unitAmountMinor);
         $this->assertSame(2, $lines[0]->quantity);
         $this->assertSame(CommercialWaterfallLineType::Allocation, $lines[0]->lineType);
+        $this->assertSame('tax_payable', $lines[1]->category);
+        $this->assertArrayHasKey('tax_profile_snapshots', $quote->toArray());
+    }
+
+    private function taxProfile(): CommercialTaxProfileData
+    {
+        return new CommercialTaxProfileData(
+            reference: 'tax-policy:ph:withholding:v1',
+            version: 1,
+            jurisdiction: 'PH',
+            currency: 'PHP',
+            taxType: CommercialTaxType::Withholding,
+            calculationBasis: CommercialTaxCalculationBasis::GrossExternalAllocation,
+            rateBasisPoints: 1_000,
+            roundingMethod: CommercialTaxRoundingMethod::HalfUpMinor,
+            roundingScope: CommercialTaxRoundingScope::LineTotal,
+            collectionMethod: CommercialTaxCollectionMethod::DeductFromRecipient,
+            taxRecipientReference: 'tax-authority:ph:bir',
+            effectiveFrom: '2026-01-01T00:00:00+00:00',
+        );
     }
 
     private function offering(CommercialComponentEconomicsSetData $economics): CommercialOfferingData

@@ -29,6 +29,10 @@ final readonly class CommercialAllocationLineData
         public ?string $taxPolicyReference = null,
         public ?int $unitAmountMinor = null,
         public ?int $quantity = null,
+        public ?string $parentPolicyRuleReference = null,
+        public ?int $grossAmountMinor = null,
+        public ?int $taxProfileVersion = null,
+        public ?string $taxProfileSnapshotHash = null,
     ) {}
 
     /** @return array<string, int|string|null> */
@@ -57,8 +61,42 @@ final readonly class CommercialAllocationLineData
             $line['tax_policy_reference'] = $this->taxPolicyReference;
             $line['unit_amount_minor'] = $this->unitAmountMinor;
             $line['quantity'] = $this->quantity;
+            $line['parent_policy_rule_reference'] = $this->parentPolicyRuleReference;
+            $line['gross_amount_minor'] = $this->grossAmountMinor;
+            $line['tax_profile_version'] = $this->taxProfileVersion;
+            $line['tax_profile_snapshot_hash'] = $this->taxProfileSnapshotHash;
         }
 
         return $line;
+    }
+
+    /** @return array<string, mixed> */
+    public function constructorArguments(?int $sequence = null): array
+    {
+        return [
+            'policyRuleReference' => $this->policyRuleReference,
+            'sequence' => $sequence ?? $this->sequence,
+            'lineType' => $this->lineType,
+            'category' => $this->category,
+            'recipientReference' => $this->recipientReference,
+            'amountMinor' => $this->amountMinor,
+            'currency' => $this->currency,
+            'componentReference' => $this->componentReference,
+            'componentScheduleReference' => $this->componentScheduleReference,
+            'componentScheduleVersion' => $this->componentScheduleVersion,
+            'componentRuleReference' => $this->componentRuleReference,
+            'componentRuleLineType' => $this->componentRuleLineType,
+            'destinationKind' => $this->destinationKind,
+            'participantRole' => $this->participantRole,
+            'agreementReference' => $this->agreementReference,
+            'designationReference' => $this->designationReference,
+            'taxPolicyReference' => $this->taxPolicyReference,
+            'unitAmountMinor' => $this->unitAmountMinor,
+            'quantity' => $this->quantity,
+            'parentPolicyRuleReference' => $this->parentPolicyRuleReference,
+            'grossAmountMinor' => $this->grossAmountMinor,
+            'taxProfileVersion' => $this->taxProfileVersion,
+            'taxProfileSnapshotHash' => $this->taxProfileSnapshotHash,
+        ];
     }
 }
