@@ -37,6 +37,8 @@ class XCommerceServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+
         $this->publishes([
             __DIR__.'/../config/x-commerce.php' => config_path('x-commerce.php'),
         ], 'x-commerce-config');

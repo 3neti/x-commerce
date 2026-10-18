@@ -25,6 +25,8 @@ Current: package identity, documentation architecture, commercial vocabulary, re
 
 Current: no production billing, payment, ledger, or settlement engine. A deterministic Commercial Waterfall calculator can produce a non-executing allocation plan from an immutable in-memory policy.
 
+Current: x-change consumes the package's deterministic quote contracts and exposes the Pay Code-specific estimate facade. The package also exposes a throttled, read-only structured quote estimate endpoint; quote acceptance and payment remain outside x-commerce.
+
 Current: no production commercial logic has yet been extracted from x-change.
 
 ## Foundational Axioms
@@ -39,7 +41,7 @@ Current: no production commercial logic has yet been extracted from x-change.
 
 x-change owns representation, authorization, execution, lifecycle, settlement, redemption or disbursement, execution state, and evidence for value-bearing instructions.
 
-x-commerce currently owns the commercial knowledge and architectural definitions for offerings, prices, rate cards, licensing plans, maintenance, subscriptions, usage billing, transaction charges, value-added service economics, marketplace participation, commissions, royalties, referrals, revenue sharing, and stakeholder business cases. It also owns the pure Commercial Waterfall calculation contract approved by Decision 0007 and the canonical catalog and immutable quote/sale snapshot contracts approved by Decision 0008.
+x-commerce currently owns the commercial knowledge and architectural definitions for offerings, prices, rate cards, licensing plans, maintenance, subscriptions, usage billing, transaction charges, value-added service economics, marketplace participation, commissions, royalties, referrals, revenue sharing, and stakeholder business cases. It also owns the pure Commercial Waterfall calculation contract approved by Decision 0007, the canonical catalog and immutable quote/sale snapshot contracts approved by Decision 0008, and the versioned quote-estimate boundary approved by Decision 0009.
 
 x-legal owns legal characterization, regulatory dependencies, legal traceability, and legal handoffs.
 
@@ -90,7 +92,7 @@ The package is organized into foundations, ecosystems, stakeholders, economics, 
 
 ## Non-Goals
 
-This slice does not implement pricing, quotations, catalogs, carts, checkout, orders, invoices, licensing enforcement, transaction billing, bank integrations, NetBank integrations, routes, migrations, models, UI, or x-change extraction. The Commercial Waterfall calculator does not execute or persist its allocation plan.
+This slice does not implement payment acceptance, checkout execution, orders, invoices, licensing enforcement, transaction billing, bank integrations, NetBank integrations, or settlement. Quote estimates remain non-executing; the consuming domain owns acceptance and persistence of the quote snapshot.
 
 ## Risks
 

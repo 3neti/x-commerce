@@ -3,6 +3,9 @@
 declare(strict_types=1);
 
 return [
+    'routes' => [
+        'api_prefix' => 'api/x/v1',
+    ],
     /*
     |--------------------------------------------------------------------------
     | Commercial Catalogs
