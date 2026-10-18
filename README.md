@@ -14,7 +14,7 @@ The customer is purchasing an outcome, not a software feature.
 
 ## What This Package Is
 
-x-commerce is a reusable package for commercial architecture. Its runtime primitives quote instruction items, capture immutable sale snapshots, and calculate a first-class Commercial Waterfall. Consuming applications remain responsible for authorization, persistence, accounting entries, and money movement.
+x-commerce is a reusable package for commercial architecture. Its runtime primitives own versioned catalogs, quote instruction items, expose a throttled read-only quote endpoint, capture immutable sale snapshots, and calculate a first-class Commercial Waterfall. Consuming applications remain responsible for authorization, quote acceptance, persistence, accounting entries, and money movement.
 
 The first documented ecosystem is the proposed **RBAP Digital Banking Program**, a rural-bank digital services program introduced through the Rural Bankers Association of the Philippines. RBAP is the first subject, not the package boundary.
 
@@ -23,7 +23,7 @@ The first documented ecosystem is the proposed **RBAP Digital Banking Program**,
 x-commerce is not:
 
 - a deployable customer application;
-- a catalog, cart, checkout, order, invoice, or billing system;
+- a customer-facing cart, checkout, order, invoice, or billing application;
 - a bank integration package;
 - a NetBank integration package;
 - a replacement for x-legal;
@@ -62,6 +62,7 @@ The package owns:
 
 - the versioned Pay Code commercial catalog;
 - deterministic instruction quotes;
+- the structured quote contract and HTTP estimate endpoint;
 - immutable commercial sale snapshots; and
 - pure allocation plans for provider cost, product revenue, partner commission, commercial revenue, and beneficiary principal.
 
@@ -74,6 +75,18 @@ The package does not own:
 - delivery orchestration.
 
 Those effects belong to the consuming settlement system. This keeps the same quote reproducible without allowing a pricing package to move money.
+
+## Quote API
+
+Laravel applications that install the package receive a read-only estimate route:
+
+```http
+POST /api/x/v1/quotes
+```
+
+The request supplies a catalog reference, currency, and catalog line references with quantities. The response includes the selected catalog version, deterministic snapshot hash, quote reference, line totals, and total minor-unit amount. The endpoint is throttled and cannot accept a quote, authorize payment, issue a Pay Code, or release funds.
+
+`x-change` translates Pay Code instructions into this contract and preserves the returned quote metadata when it accepts a checkout. A host application may expose a different public prefix through `x-commerce.routes.api_prefix`, but the default is `api/x/v1`.
 
 ## Installation
 
@@ -89,6 +102,8 @@ php artisan vendor:publish --tag=x-commerce-config
 
 Catalog versions become immutable once referenced by an accepted sale snapshot. Create a new catalog version instead of rewriting historical prices.
 
+The consuming host owns the Payment Operations console and its protected pricing management surface. Publishing a complete catalog version makes it effective for new estimates immediately; historical quote and sale snapshots retain their original version and hash.
+
 ## Compatibility
 
 - PHP 8.2, 8.3, and 8.4
@@ -100,6 +115,7 @@ The calculation layer is framework-independent. Laravel integration is limited t
 
 - [Compass](docs/COMPASS.md): canonical orientation.
 - [Architecture](docs/ARCHITECTURE.md): knowledge architecture and future software boundaries.
+- [Commercial Component Offerings Functional Specification](docs/COMMERCIAL_COMPONENT_OFFERINGS_FUNCTIONAL_SPECIFICATION.md): target behavior for priced instruction components, recipient provisioning, accrual, and settlement.
 - [Grammar](docs/GRAMMAR.md): commercial vocabulary and usage discipline.
 - [Assumptions Register](docs/ASSUMPTIONS_REGISTER.md): traceable working assumptions.
 - [Commercial Model Register](docs/COMMERCIAL_MODEL_REGISTER.md): model inventory.
