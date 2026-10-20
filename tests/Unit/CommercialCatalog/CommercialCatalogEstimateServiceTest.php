@@ -20,6 +20,8 @@ final class CommercialCatalogEstimateServiceTest extends TestCase
                     'label' => 'Transaction Fee',
                     'category' => 'base',
                     'unit_price_minor' => 1_500,
+                    'expected_provider_cost_minor' => 130,
+                    'expected_provider_cost_basis' => 'configured:sms-provider',
                 ],
             ],
         ];
@@ -34,6 +36,10 @@ final class CommercialCatalogEstimateServiceTest extends TestCase
         ]);
 
         $this->assertSame(3_000, $estimate->totalPriceMinor);
+        $this->assertSame(260, $estimate->totalExpectedProviderCostMinor);
+        $this->assertSame(130, $estimate->lines[0]['expected_provider_cost_minor']);
+        $this->assertSame(260, $estimate->lines[0]['expected_provider_cost_total_minor']);
+        $this->assertSame('configured:sms-provider', $estimate->lines[0]['expected_provider_cost_basis']);
         $this->assertSame(4, $estimate->catalog->version);
         $this->assertSame('PHP', $estimate->toArray()['currency']);
         $this->assertStringStartsWith('commercial-estimate:', $estimate->reference);

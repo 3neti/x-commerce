@@ -15,6 +15,9 @@ final readonly class CommercialQuoteLineData
         public int $totalPriceMinor,
         public string $currency,
         public ?string $sourceInstructionReference = null,
+        public int $expectedProviderCostMinor = 0,
+        public int $expectedProviderCostTotalMinor = 0,
+        public string $expectedProviderCostBasis = 'unconfigured',
     ) {}
 
     /**
@@ -40,6 +43,9 @@ final readonly class CommercialQuoteLineData
             'total_price_minor' => $this->totalPriceMinor,
             'currency' => $this->currency,
             'source_instruction_reference' => $this->sourceInstructionReference,
+            'expected_provider_cost_minor' => $this->expectedProviderCostMinor,
+            'expected_provider_cost_total_minor' => $this->expectedProviderCostTotalMinor,
+            'expected_provider_cost_basis' => $this->expectedProviderCostBasis,
         ];
     }
 }

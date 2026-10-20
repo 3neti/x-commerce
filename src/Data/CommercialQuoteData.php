@@ -23,6 +23,7 @@ final readonly class CommercialQuoteData
         public ?CommercialOfferingData $offeringSnapshot = null,
         public ?CommercialComponentEconomicsSetData $componentEconomicsSnapshot = null,
         public array $taxProfileSnapshots = [],
+        public int $totalExpectedProviderCostMinor = 0,
     ) {}
 
     /**
@@ -41,6 +42,7 @@ final readonly class CommercialQuoteData
                 $this->lines,
             ),
             'total_price_minor' => $this->totalPriceMinor,
+            'total_expected_provider_cost_minor' => $this->totalExpectedProviderCostMinor,
             'currency' => $this->currency,
             'allocation_plan' => $this->allocationPlan->toArray(),
         ];

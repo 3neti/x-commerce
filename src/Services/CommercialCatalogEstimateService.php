@@ -45,6 +45,7 @@ final class CommercialCatalogEstimateService
         }
         $lines = [];
         $total = 0;
+        $totalExpectedProviderCost = 0;
 
         foreach ((array) ($input['lines'] ?? []) as $line) {
             if (! is_array($line)) {
@@ -64,7 +65,9 @@ final class CommercialCatalogEstimateService
             }
 
             $lineTotal = $item->unitPriceMinor * $quantity;
+            $lineExpectedProviderCost = $item->expectedProviderCostMinor * $quantity;
             $total += $lineTotal;
+            $totalExpectedProviderCost += $lineExpectedProviderCost;
             $lines[] = [
                 'reference' => $item->reference,
                 'label' => $item->label,
@@ -72,6 +75,9 @@ final class CommercialCatalogEstimateService
                 'quantity' => $quantity,
                 'unit_price_minor' => $item->unitPriceMinor,
                 'total_price_minor' => $lineTotal,
+                'expected_provider_cost_minor' => $item->expectedProviderCostMinor,
+                'expected_provider_cost_total_minor' => $lineExpectedProviderCost,
+                'expected_provider_cost_basis' => $item->expectedProviderCostBasis,
                 'currency' => $item->currency,
             ];
         }
@@ -83,6 +89,7 @@ final class CommercialCatalogEstimateService
             catalog: $catalog,
             lines: $lines,
             totalPriceMinor: $total,
+            totalExpectedProviderCostMinor: $totalExpectedProviderCost,
         );
     }
 }

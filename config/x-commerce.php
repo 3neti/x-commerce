@@ -18,7 +18,7 @@ return [
     'catalogs' => [
         'pay_code' => [
             'reference' => 'pay-code',
-            'version' => 3,
+            'version' => 4,
             'currency' => 'PHP',
             'items' => [
                 'cash.amount' => [
@@ -50,6 +50,8 @@ return [
                     'unit_price_minor' => 1_800,
                     'label' => 'KYC Verification',
                     'category' => 'input_fields',
+                    'expected_provider_cost_minor' => 2_000,
+                    'expected_provider_cost_basis' => 'configured:hyperverge',
                 ],
                 'inputs.fields.otp' => [
                     'unit_price_minor' => 200,
@@ -65,6 +67,8 @@ return [
                     'unit_price_minor' => 120,
                     'label' => 'SMS Notification',
                     'category' => 'feedback',
+                    'expected_provider_cost_minor' => 130,
+                    'expected_provider_cost_basis' => 'configured:sms-provider',
                 ],
                 'feedback.webhook' => [
                     'unit_price_minor' => 50,
@@ -75,41 +79,52 @@ return [
                     'unit_price_minor' => 300,
                     'label' => 'Selfie Photo',
                     'category' => 'input_fields',
+                    'expected_provider_cost_minor' => 1,
+                    'expected_provider_cost_basis' => 'provisional:cloud-storage',
                 ],
                 'inputs.fields.signature' => [
                     'unit_price_minor' => 150,
                     'label' => 'Digital Signature',
                     'category' => 'input_fields',
+                    'expected_provider_cost_minor' => 1,
+                    'expected_provider_cost_basis' => 'provisional:cloud-storage',
                 ],
                 'inputs.fields.location' => [
                     'unit_price_minor' => 100,
                     'label' => 'GPS Location',
                     'category' => 'input_fields',
+                    'expected_provider_cost_minor' => 5,
+                    'expected_provider_cost_basis' => 'provisional:mapbox-temporary-geocoding',
                 ],
                 'inputs.fields.email' => [
                     'unit_price_minor' => 50,
                     'label' => 'Email Address',
                     'category' => 'input_fields',
+                    'expected_provider_cost_basis' => 'local:capture-and-persistence',
                 ],
                 'inputs.fields.mobile' => [
                     'unit_price_minor' => 50,
                     'label' => 'Mobile Number',
                     'category' => 'input_fields',
+                    'expected_provider_cost_basis' => 'local:capture-and-persistence',
                 ],
                 'inputs.fields.name' => [
                     'unit_price_minor' => 30,
                     'label' => 'Full Name',
                     'category' => 'input_fields',
+                    'expected_provider_cost_basis' => 'local:capture-and-persistence',
                 ],
                 'inputs.fields.address' => [
                     'unit_price_minor' => 50,
                     'label' => 'Full Address',
                     'category' => 'input_fields',
+                    'expected_provider_cost_basis' => 'local:capture-and-persistence',
                 ],
                 'inputs.fields.birth_date' => [
                     'unit_price_minor' => 30,
                     'label' => 'Birth Date',
                     'category' => 'input_fields',
+                    'expected_provider_cost_basis' => 'local:capture-and-persistence',
                 ],
                 'inputs.fields.gross_monthly_income' => [
                     'unit_price_minor' => 30,
@@ -140,6 +155,8 @@ return [
                     'unit_price_minor' => 120,
                     'label' => 'Location Validation',
                     'category' => 'validation',
+                    'expected_provider_cost_minor' => 5,
+                    'expected_provider_cost_basis' => 'provisional:mapbox-temporary-geocoding',
                 ],
                 'cash.validation.payable' => [
                     'unit_price_minor' => 200,

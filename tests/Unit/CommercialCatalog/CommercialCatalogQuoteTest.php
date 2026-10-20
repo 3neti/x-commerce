@@ -27,7 +27,12 @@ final class CommercialCatalogQuoteTest extends TestCase
         $this->assertSame(1_500, $catalog->item('flow_type.collectible')->unitPriceMinor);
         $this->assertSame(1_000, $catalog->item('onboarding.enabled')->unitPriceMinor);
         $this->assertSame(1_800, $catalog->item('inputs.fields.kyc')->unitPriceMinor);
+        $this->assertSame(2_000, $catalog->item('inputs.fields.kyc')->expectedProviderCostMinor);
+        $this->assertSame('configured:hyperverge', $catalog->item('inputs.fields.kyc')->expectedProviderCostBasis);
         $this->assertSame(120, $catalog->item('feedback.mobile')->unitPriceMinor);
+        $this->assertSame(130, $catalog->item('feedback.mobile')->expectedProviderCostMinor);
+        $this->assertSame(0, $catalog->item('inputs.fields.name')->expectedProviderCostMinor);
+        $this->assertSame('local:capture-and-persistence', $catalog->item('inputs.fields.name')->expectedProviderCostBasis);
         $this->assertSame(5_000, $catalog->item('rider.url')->unitPriceMinor);
         $this->assertTrue($catalog->item('cash.validation.location')->deprecated);
     }
@@ -55,7 +60,8 @@ final class CommercialCatalogQuoteTest extends TestCase
         $this->assertSame(1_560, $quote->totalPriceMinor);
         $this->assertSame(1_560, $quote->allocationPlan->totalAllocatedMinor());
         $this->assertSame(1_560, $quote->allocationPlan->residualMinor());
-        $this->assertSame(3, $quote->catalogSnapshot->version);
+        $this->assertSame(4, $quote->catalogSnapshot->version);
+        $this->assertSame(0, $quote->totalExpectedProviderCostMinor);
         $this->assertSame(1, $quote->waterfallPolicySnapshot->version);
         $this->assertSame('partner:approved-42', $quote->attributionSnapshot->participants['originator']);
         $this->assertStringStartsWith('commercial-quote:', $quote->reference);
@@ -107,6 +113,24 @@ final class CommercialCatalogQuoteTest extends TestCase
         $this->assertNotSame($first->reference, $second->reference);
         $this->assertSame(1_500, $first->totalPriceMinor);
         $this->assertSame(1_600, $second->totalPriceMinor);
+    }
+
+    public function test_quote_exposes_expected_provider_cost_without_changing_customer_price(): void
+    {
+        $quote = $this->builder()->build(
+            'pay-code:PC-123:generation:v1',
+            $this->catalog(),
+            $this->residualPolicy(),
+            $this->attribution(),
+            [new CommercialQuoteLineInputData('inputs.fields.kyc', quantity: 2)],
+        );
+
+        $this->assertSame(3_600, $quote->totalPriceMinor);
+        $this->assertSame(4_000, $quote->totalExpectedProviderCostMinor);
+        $this->assertSame(2_000, $quote->lines[0]->expectedProviderCostMinor);
+        $this->assertSame(4_000, $quote->lines[0]->expectedProviderCostTotalMinor);
+        $this->assertSame('configured:hyperverge', $quote->lines[0]->expectedProviderCostBasis);
+        $this->assertSame(4_000, $quote->toArray()['total_expected_provider_cost_minor']);
     }
 
     public function test_deprecated_items_fail_closed_instead_of_becoming_zero_price_sales(): void

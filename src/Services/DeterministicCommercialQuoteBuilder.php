@@ -58,6 +58,7 @@ final class DeterministicCommercialQuoteBuilder
 
         $lines = [];
         $totalPriceMinor = 0;
+        $totalExpectedProviderCostMinor = 0;
 
         foreach ($lineInputs as $lineInput) {
             if (! $lineInput instanceof CommercialQuoteLineInputData) {
@@ -73,7 +74,9 @@ final class DeterministicCommercialQuoteBuilder
             }
 
             $lineTotalMinor = $item->unitPriceMinor * $lineInput->quantity;
+            $lineExpectedProviderCostTotalMinor = $item->expectedProviderCostMinor * $lineInput->quantity;
             $totalPriceMinor += $lineTotalMinor;
+            $totalExpectedProviderCostMinor += $lineExpectedProviderCostTotalMinor;
 
             $lines[] = new CommercialQuoteLineData(
                 catalogItemReference: $item->reference,
@@ -84,6 +87,9 @@ final class DeterministicCommercialQuoteBuilder
                 totalPriceMinor: $lineTotalMinor,
                 currency: $catalog->currency,
                 sourceInstructionReference: $lineInput->sourceInstructionReference,
+                expectedProviderCostMinor: $item->expectedProviderCostMinor,
+                expectedProviderCostTotalMinor: $lineExpectedProviderCostTotalMinor,
+                expectedProviderCostBasis: $item->expectedProviderCostBasis,
             );
         }
 
@@ -126,6 +132,7 @@ final class DeterministicCommercialQuoteBuilder
                 $lines,
             ),
             'total_price_minor' => $totalPriceMinor,
+            'total_expected_provider_cost_minor' => $totalExpectedProviderCostMinor,
             'currency' => $catalog->currency,
             'allocation_plan' => $allocationPlan->toArray(),
         ];
@@ -162,6 +169,7 @@ final class DeterministicCommercialQuoteBuilder
             offeringSnapshot: $offering,
             componentEconomicsSnapshot: $componentEconomics,
             taxProfileSnapshots: $taxProfiles,
+            totalExpectedProviderCostMinor: $totalExpectedProviderCostMinor,
         );
     }
 }

@@ -2,6 +2,13 @@
 
 All notable changes to `3neti/x-commerce` are documented here.
 
+## 1.4.6 - 2026-10-21
+
+- Add versioned expected provider-cost metadata to commercial catalog items.
+- Include expected provider-cost totals in estimates and quote snapshots.
+- Configure provisional costs for SMS, KYC, evidence storage, and temporary location geocoding.
+- Keep ordinary bio-field capture at zero direct provider cost.
+
 ## 1.0.0 - 2026-07-31
 
 - Establish the versioned Pay Code commercial catalog as the pricing source of truth.
