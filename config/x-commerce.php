@@ -18,7 +18,7 @@ return [
     'catalogs' => [
         'pay_code' => [
             'reference' => 'pay-code',
-            'version' => 4,
+            'version' => 5,
             'currency' => 'PHP',
             'items' => [
                 'cash.amount' => [
@@ -80,6 +80,12 @@ return [
                     'label' => 'Selfie Photo',
                     'category' => 'input_fields',
                     'expected_provider_cost_minor' => 1,
+                    'expected_provider_cost_basis' => 'provisional:cloud-storage',
+                ],
+                'inputs.fields.documents' => [
+                    'unit_price_minor' => 200,
+                    'label' => 'Document Upload',
+                    'category' => 'input_fields',
                     'expected_provider_cost_basis' => 'provisional:cloud-storage',
                 ],
                 'inputs.fields.signature' => [
