@@ -28,7 +28,7 @@ final class CommercialOfferingTest extends TestCase
             CommercialOfferingData::fromArray($offering->toArray())->toArray(),
         );
         $this->assertSame(64, strlen($offering->snapshotHash()));
-        $this->assertSame('039406f6cdcb6415b23b198ed5ff6a2b345b3fffd0f13ea0f1bd98fcb7eb6cb8', $offering->snapshotHash());
+        $this->assertSame('6541687f9f9047f682b051e000464a1f79b5a5377d94d8d25b13ea57bac4dbe4', $offering->snapshotHash());
         $this->assertArrayNotHasKey('component_economics', $offering->toArray());
         $this->assertSame('review_required', $offering->legalTrace->decision);
     }

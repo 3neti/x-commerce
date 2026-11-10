@@ -9,6 +9,23 @@ use LBHurtado\XCommerce\Tests\TestCase;
 
 final class CommercialCatalogEstimateServiceTest extends TestCase
 {
+    public function test_default_catalog_prices_document_collection_per_pay_code(): void
+    {
+        $catalog = (require dirname(__DIR__, 3).'/config/x-commerce.php')['catalogs']['pay_code'];
+        $service = new CommercialCatalogEstimateService(
+            static fn (string $key): mixed => str_ends_with($key, 'pay_code') ? $catalog : null,
+        );
+
+        $estimate = $service->estimate([
+            'catalog_reference' => 'pay_code',
+            'currency' => 'PHP',
+            'lines' => [['reference' => 'inputs.fields.documents', 'quantity' => 3]],
+        ]);
+
+        $this->assertSame(5, $estimate->catalog->version);
+        $this->assertSame(600, $estimate->totalPriceMinor);
+    }
+
     public function test_it_builds_a_deterministic_estimate_from_catalog_line_inputs(): void
     {
         $catalog = [

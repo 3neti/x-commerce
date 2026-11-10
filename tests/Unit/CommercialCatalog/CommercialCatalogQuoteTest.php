@@ -60,7 +60,7 @@ final class CommercialCatalogQuoteTest extends TestCase
         $this->assertSame(1_560, $quote->totalPriceMinor);
         $this->assertSame(1_560, $quote->allocationPlan->totalAllocatedMinor());
         $this->assertSame(1_560, $quote->allocationPlan->residualMinor());
-        $this->assertSame(4, $quote->catalogSnapshot->version);
+        $this->assertSame(5, $quote->catalogSnapshot->version);
         $this->assertSame(0, $quote->totalExpectedProviderCostMinor);
         $this->assertSame(1, $quote->waterfallPolicySnapshot->version);
         $this->assertSame('partner:approved-42', $quote->attributionSnapshot->participants['originator']);
